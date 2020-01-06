@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="Ressources/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="js.js"></script>
+        <title>WinRun -- Nytuo Launcher</title>
+    </head>
+    <header>
+        
+        <nav id="nav">
+            <ul style="padding: auto;">
+                <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+                <div style="float: right;">
+                    <li><a href="about.html">Paramètres</a></li>
+                    <li><a href="index.html">Jeux</a><li>
+                    <li><a href="news.html">News</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+<body>
+    <iframe onload="detect('WR','VersionWR.txt','WR_Version.txt','WinRun','versiontxtwr')" src="javascript:void(0)" style="display: none;"></iframe>
+  
+        <div class="paralaxWR">
+            <table style="width: 100%;padding-top: 2%;">
+                <tr>
+                    <td>
+                        <a onclick="window.open('https://nytuo.yo.fr/wr.html')"><img src="Ressources/LogoWR.png" class="paraIMGWR" title="Image de WR"></a>
+                    </td>
+                    <td>
+                      <h1 class="paraTXTWR">WinRun</h1>
+    <h2 id="versiontxtwr"> Version : </h2>
+                    </td>
+                </tr>
+            </table>
+  <table id="ju">    
+        <tr>
+   
+            <td>
+                <div style="text-align: center;">
+            <a onclick="Do('WR','VersionWR.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_IDSJXSfRyN7MIoTQ?e=AWDWCb','WR.zip','WR_Version.txt','nw.exe','WinRun','nw','nwjs.app','https://1drv.ws/u/s!AkkqGntQc7Y5hJpdvEcr9t-HvCUPxQ?e=b7WMTS','https://1drv.ws/u/s!AkkqGntQc7Y5hJpedkoCDNmk_dOacQ?e=4rKaDy')" href="javascript:void(0)" class="WRbutton" id="WRbutton1"></a>                          
+        </div>
+            </td>
+            <td>
+                <div style="text-align: center;">
+            <a id="WRbutton2" onclick="repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_IDSJXSfRyN7MIoTQ?e=AWDWCb','WR','WR.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJpdvEcr9t-HvCUPxQ?e=b7WMTS','https://1drv.ws/u/s!AkkqGntQc7Y5hJpedkoCDNmk_dOacQ?e=4rKaDy')" href="javascript:void(0)" class="WRRbutton">Reparer</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="WRbutton3" onclick="deletefolder(__dirname+'/Games/WR')" href="javascript:void(0)" class="WRDbutton">Deinstaller</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="WRbutton4" onclick="OpenEmpl(__dirname+'/Games/WR/nw.exe')" href="javascript:void(0)" class="WRbutton">Emplacement du jeu</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="WRbutton5" onclick="createlink(__dirname+'/Games/WR/nw.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="WRbutton">Raccourcie</a>                            
+        </div>
+            </td>
+    </table>
+    <div id="myProgress"  style="text-align: center;">
+        <div id="myBar" style="background-color: #D76724;
+        color: black;"></div>
+    </div>   
+    </div>  
+</body>
+</html>

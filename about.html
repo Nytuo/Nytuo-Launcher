@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="Ressources/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js.js"></script>
+    <title>Paramètres -- Nytuo Launcher</title>
+</head>
+<header>
+    
+    <nav id="nav">
+        <ul style="padding: auto;">
+            <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+            <div style="float: right;">
+                <li><a href="about.html">Paramètres</a></li>
+                <li><a href="index.html">Jeux</a><li>
+                <li><a href="news.html">News</a></li>
+            </div>
+        </ul>
+    </nav>
+</header>
+<body>
+	<div class="spaceX2" style="text-align: center;"></div>
+	
+    
+    <div class="paralaxparam"><h1>Paramètres</h1>
+    <p>A propos : <br/>Nytuo Launcher Version : 
+    <script type="text/javascript">
+        document.write(window.require('electron').remote.app.getVersion())
+    </script>
+    <br/>Créé et codé par : Nytuo (Arnaud BEUX)<br/>Créé en HTML/CSS/JS<br/>avec Electron version : 
+    <script type="text/javascript">
+    document.write(process.versions.electron)
+    </script><br/> et Node version : <script type="text/javascript">document.write(process.versions.node);</script><br/>et Chromium : <script type="text/javascript">document.write(process.versions.chrome)</script><br/>Launcher : <script type="text/javascript">
+        const alertOnlineStatus = () => {
+    document.write(navigator.onLine ? "Connecté a l'internet" : "Déconnecté de l'internet")
+  }
+    window.addEventListener('online',  alertOnlineStatus)
+    window.addEventListener('offline',  alertOnlineStatus)
+    alertOnlineStatus();</script><br/>Sur : <script type="text/javascript">document.write(process.platform)</script></p>
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 25%;">
+                    <div style="text-align: center;">
+                <a onclick="OpenEmpl(__dirname+'/nytuolauncher.exe')" href="javascript:void(0)" class="button">Ouvrir Emplacement locale du Nytuo Launcher</a>                          
+            </div>
+                </td>
+                <td style="width: 25%;">
+                    <div style="text-align: center;">
+                <a  onclick="deleteall()" href="javascript:void(0)" class="Dbutton">Déinstaller tous les jeux</a>                            
+            </div>
+                </td>
+                <td style="width:25%;">
+                     <div style="text-align: center;">
+                <a  onclick="window.open('https://nytuo.yo.fr')" href="javascript:void(0)" class="button">Site Internet</a>                            
+            </div>
+                </td>
+                <td style="width: 25%;">
+                     <div style="text-align: center;">
+                <a  onclick="" href="javascript:void(0)" class="button">Vérifier les mises à jour</a>                            
+            </div>
+                </td>
+
+        </table>
+    </div>
+   
+</body>
+</html>

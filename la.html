@@ -1,0 +1,74 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <link rel="stylesheet" href="style.css" />
+            <link rel="icon" href="Ressources/favicon.ico" />
+            <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+            <script type="text/javascript" src="js.js"></script>
+            <title>Legend Adventure and the Infernal Maze -- Nytuo Launcher</title>
+        </head>
+        <header>
+            
+            <nav id="nav">
+                <ul style="padding: auto;">
+                    <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+                    <div style="float: right;">
+                        <li><a href="about.html">Paramètres</a></li>
+                        <li><a href="index.html">Jeux</a><li>
+                        <li><a href="news.html">News</a></li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        <body>
+            <iframe onload="detectforWin('LA','VersionLA.txt','LA_Version.txt','Lutin Adventure','versiontxtla')" src="javascript:void(0)" style="display: none;"></iframe>
+          
+                <div class="paralaxLA">
+                    <table style="width: 100%;padding-top: 2%;">
+                        <tr>
+                            <td>
+                                <a onclick="window.open('https://nytuo.yo.fr/la.html')"><img src="Ressources/LogoLA.png" class="paraIMGLA" title="Image de LA"></a>
+                            </td>
+                            <td>
+                               <h1 class="paraTXTLA">Lutin Adventure</h1><h2 id="versiontxtla"> Version : </h2>
+                            </td>
+                        </tr>
+                    </table>
+            <table id="ju">
+                   
+           
+
+                <tr>
+                    <td>
+                        <div style="text-align: center;">
+                    <a onclick="DoforWin('LA','VersionLA.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_IEdbfA3BO7-w0QVQ?e=LqX9l3','LA.zip','LA_Version.txt','Lutin_Adventure.exe','Lutin Adventure')" href="javascript:void(0)" class="LAbutton" id="LAbutton1"></a>                          
+                </div>
+                    </td>
+                    <td>
+                        <div style="text-align: center;">
+                    <a id="LAbutton2" onclick="repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_IEdbfA3BO7-w0QVQ?e=Z6f7rc','LA','LA.zip')" href="javascript:void(0)" class="LARbutton">Réparer</a>                            
+                </div>
+                    </td>
+                    <td>
+                         <div style="text-align: center;">
+                    <a id="LAbutton3" onclick="deletefolder(__dirname+'/Games/LA')" href="javascript:void(0)" class="LADbutton">Déinstaller</a>                            
+                </div>
+                    </td>
+                    <td>
+                         <div style="text-align: center;">
+                    <a id="LAbutton4" onclick="OpenEmpl(__dirname+'/Games/LA/Lutin_Adventure.exe')" href="javascript:void(0)" class="LAbutton">Emplacement du jeu</a>                            
+                </div>
+                    </td>
+                    <td>
+                         <div style="text-align: center;">
+                    <a id="LAbutton5" onclick="createlink(__dirname+'/Games/LA/Lutin_Adventure.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="LAbutton">Raccourcie</a>                            
+                </div>
+                    </td>
+            </table>
+            <div id="myProgress"  style="text-align: center;">
+                <div id="myBar" style="background-color: #40C101;color: black;"></div>
+            </div>   
+            </div>  
+            </body> 
+</html>

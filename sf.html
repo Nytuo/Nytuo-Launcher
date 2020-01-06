@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="Ressources/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="js.js"></script>
+        <title>ShootFighter -- Nytuo Launcher</title>
+    </head>
+    <header>
+        
+        <nav id="nav">
+            <ul style="padding: auto;">
+                <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+                <div style="float: right;">
+                    <li><a href="about.html">Paramètres</a></li>
+                    <li><a href="index.html">Jeux</a><li>
+                    <li><a href="news.html">News</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <body>
+        <iframe onload="detectforWin('SF','VersionSF.txt','SF_Version.txt','ShootFighter','versiontxtsf')" src="javascript:void(0)" style="display: none;"></iframe>
+      
+            <div class="paralaxSF">
+                <table style="width: 100%;padding-top: 1%;">
+                    <tr>
+                        <td>
+                           <a onclick="window.open('https://nytuo.yo.fr/sf.html')"><img src="Ressources/LogoSF2.png" class="paraIMGSF" title="Image de SF"></a>
+                        </td>
+                        <td>
+                         <h1 class="paraTXTSF">ShootFighter</h1><h2 id="versiontxtsf"> Version : </h2>
+                        </td>
+                    </tr>
+                </table>
+        
+        
+        <table id="ju">
+            <tr>
+                <td>
+                    <div style="text-align: center;">
+                <a onclick="DoforWin('SF','VersionSF.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF.zip','SF_Version.txt','ShootFighter.exe','Shoot Fighter')" href="javascript:void(0)" class="SFbutton" id="SFbutton1"></a>                          
+            </div>
+                </td>
+                <td>
+                    <div style="text-align: center;">
+                <a id="SFbutton2" onclick="repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF','SF.zip')" href="javascript:void(0)" class="SFRbutton">Réparer</a>                            
+            </div>
+                </td>
+                <td>
+                     <div style="text-align: center;">
+                <a id="SFbutton3" onclick="deletefolder(__dirname+'/Games/SF')" href="javascript:void(0)" class="SFDbutton">Déinstaller</a>                            
+            </div>
+                </td>
+                <td>
+                     <div style="text-align: center;">
+                <a id="SFbutton4" onclick="OpenEmpl(__dirname+'/Games/SF/ShootFighter.exe')" href="javascript:void(0)" class="SFbutton">Emplacement du jeu</a>                            
+            </div>
+                </td>
+                <td>
+                     <div style="text-align: center;">
+                <a id="SFbutton5" onclick="createlink(__dirname+'/Games/SF/ShootFighter.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="SFbutton">Raccourcie</a>                            
+            </div>
+                </td>
+        </table>
+        <div id="myProgress"  style="text-align: center;">
+            <div id="myBar" style="background-color: #D40A10;"></div>
+        </div>   
+        </div>  
+        </body> 
+</html>

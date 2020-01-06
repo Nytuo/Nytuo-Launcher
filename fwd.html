@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="Ressources/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="js.js"></script>
+        <title>FireWall Defender -- Nytuo Launcher</title>
+    </head>
+    <header>
+        
+        <nav id="nav">
+            <ul style="padding: auto;">
+                <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+                <div style="float: right;">
+                    <li><a href="about.html">Paramètres</a></li>
+                    <li><a href="index.html">Jeux</a><li>
+                    <li><a href="news.html">News</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+<body>
+    <iframe onload="detect('FWD','VersionFWD.txt','FWD_Version.txt','FireWall Defender','versiontxtfwd')" src="javascript:void(0)" style="display: none;"></iframe>
+  
+        <div class="paralaxFWD">
+            <table style="width: 100%;padding-top: 2%;">
+                <tr>
+                    <td>
+                        <a onclick="window.open('https://nytuo.yo.fr/fwd.html')"><img src="Ressources/LogoFWD.png" class="paraIMGFWD" title="Image de FWD"></a>
+                    </td>
+                    <td>
+                      <h1 class="paraTXTFWD">FireWall Defender</h1>
+    <h2 id="versiontxtfwd"> Version : </h2>
+                    </td>
+                </tr>
+            </table>
+  <table id="ju">   
+    <tr>
+        <td colspan="5">
+            <div style="text-align: center;">
+        <a onclick="RunWithoutInstall('https://widgets.gamejolt.com/package/v1?key=cU9MFNH4')" href="javascript:void(0)" class="FWDbutton" id="FWDbutton6">Jouer en ligne</a>                          
+    </div>
+        </td>
+    </tr>    
+        <tr>
+   
+            <td>
+                <div style="text-align: center;">
+            <a onclick="Do('FWD','VersionFWD.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_IBNSxQ8w8-2XAbHg?e=4R8VIa','FWD.zip','FWD_Version.txt','nw.exe','FireWall Defender','nw','nwjs.app','https://1drv.ws/u/s!AkkqGntQc7Y5hJpa5YZLYYEr6VruMA?e=T43KmO','https://1drv.ws/u/s!AkkqGntQc7Y5hJpZLNWZwQFfddbrTA?e=P3On9n')" href="javascript:void(0)" class="FWDbutton" id="FWDbutton1"></a>                          
+        </div>
+            </td>
+            <td>
+                <div style="text-align: center;">
+            <a id="FWDbutton2" onclick="repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_IBNSxQ8w8-2XAbHg?e=4R8VIa','FWD','FWD.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJpa5YZLYYEr6VruMA?e=T43KmO','https://1drv.ws/u/s!AkkqGntQc7Y5hJpZLNWZwQFfddbrTA?e=P3On9n')" href="javascript:void(0)" class="FWDRbutton">Reparer</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="FWDbutton3" onclick="deletefolder(__dirname+'/Games/FWD')" href="javascript:void(0)" class="FWDDbutton">Deinstaller</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="FWDbutton4" onclick="OpenEmpl(__dirname+'/Games/FWD/nw.exe')" href="javascript:void(0)" class="FWDbutton">Emplacement du jeu</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="FWDbutton5" onclick="createlink(__dirname+'/Games/FWD/nw.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="FWDbutton">Raccourcie</a>                            
+        </div>
+            </td>
+    </table>
+    <div id="myProgress"  style="text-align: center;">
+        <div id="myBar" style="background-color: #E77817;
+        color: black;"></div>
+    </div>   
+    </div>  
+</body>
+    </html>

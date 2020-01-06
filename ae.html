@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="Ressources/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="js.js"></script>
+        <title>AsteroidEscape -- Nytuo Launcher</title>
+    </head>
+    <header>
+        
+        <nav id="nav">
+            <ul style="padding: auto;">
+                <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+                <div style="float: right;">
+                    <li><a href="about.html">Paramètres</a></li>
+                    <li><a href="index.html">Jeux</a><li>
+                    <li><a href="news.html">News</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <body>
+        <iframe onload="detectforWin('AE','VersionAE.txt','AE_Version.txt','AsteroidEscape','versiontxtae')" src="javascript:void(0)" style="display: none;"></iframe>
+      
+            <div class="paralaxAE">
+                <table style="width: 100%;padding-top: 2%;">
+                    <tr>
+                        <td>
+                            <a onclick="window.open('https://nytuo.yo.fr/ae.html')"><img src="Ressources/LogoAE.png" class="paraIMGAE" title="Image de AE"></a>
+                        </td>
+                        <td>
+                               <h1 class="paraTXTAE">AsteroidEscape</h1><h2 id="versiontxtae"> Version : </h2>
+                        </td>
+                    </tr>
+                </table>
+        <table id="ju">
+            <tr>
+                <td>
+                    <div style="text-align: center;">
+                <a onclick="DoforWin('AE','VersionAE.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_F4DvrGjsHHLDrp1Q?e=pPapa9','AE.zip','AE_Version.txt','AsteroidEscapeWinV1FinalPatch1.exe','AsteroidEscape')" href="javascript:void(0)" class="AEbutton" id="AEbutton1"></a>                          
+            </div>
+                </td>
+                <td>
+                    <div style="text-align: center;">
+                <a id="AEbutton2" onclick="repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_F4DvrGjsHHLDrp1Q?e=pPapa9','AE','AE.zip')" href="javascript:void(0)" class="AERbutton">Réparer</a>                            
+            </div>
+                </td>
+                <td>
+                     <div style="text-align: center;">
+                <a id="AEbutton3" onclick="deletefolder(__dirname+'/Games/AE')" href="javascript:void(0)" class="AEDbutton">Déinstaller</a>                            
+            </div>
+                </td>
+                <td>
+                     <div style="text-align: center;">
+                <a id="AEbutton4" onclick="OpenEmpl(__dirname+'/Games/AE/AsteroidEscapeWinV1FinalPatch1.exe')" href="javascript:void(0)" class="AEbutton">Emplacement du jeu</a>                            
+            </div>
+                </td>
+                <td>
+                     <div style="text-align: center;">
+                <a id="AEbutton5" onclick="createlink(__dirname+'/Games/AE/AsteroidEscapeWinV1FinalPatch1.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="AEbutton">Raccourcie</a>                            
+            </div>
+                </td>
+        </table>
+        <div id="myProgress" style="text-align: center;">
+            <div id="myBar" style="background-color: #57B3B8;color: black;"></div>
+        </div>   
+        </div>  
+        </body> 
+</html>

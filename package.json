@@ -1,0 +1,25 @@
+{
+  "name": "nytuolauncher",
+  "version": "2.7.0",
+  "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Nytuo",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.7"
+  },
+  "dependencies": {
+    "app": "^0.1.0",
+    "electron-dl": "^2.0.0",
+    "electron-packager": "^14.1.1",
+    "electron-simple-updater": "^1.5.0",
+    "extract-zip": "^1.6.7",
+    "nodejs": "0.0.0",
+    "request": "^2.88.0",
+    "rimraf": "^3.0.0",
+    "windows-shortcuts": "^0.1.6"
+  }
+}

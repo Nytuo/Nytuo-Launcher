@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="Ressources/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="js.js"></script>
+        <title>TanksBattle -- Nytuo Launcher</title>
+    </head>
+    <header>
+        
+        <nav id="nav">
+            <ul style="padding: auto;">
+                <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+                <div style="float: right;">
+                    <li><a href="about.html">Paramètres</a></li>
+                    <li><a href="index.html">Jeux</a><li>
+                    <li><a href="news.html">News</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+<body>
+    <iframe onload="detect('TB','VersionTB.txt','TB_Version.txt','TanksBattle','versiontxttb')" src="javascript:void(0)" style="display: none;"></iframe>
+  
+        <div class="paralaxTB">
+            <table style="width: 100%;padding-top: 2%;">
+                <tr>
+                    <td>
+                        <a onclick="window.open('https://nytuo.yo.fr/tb.html')"><img src="Ressources/LogoTB.png" class="paraIMGTB" title="Image de TB"></a>
+                    </td>
+                    <td>
+                      <h1 class="paraTXTTB">TanksBattle</h1>
+    <h2 id="versiontxttb"> Version : </h2>
+                    </td>
+                </tr>
+            </table>
+  <table id="ju">
+  
+        <tr>
+   
+            <td>
+                <div style="text-align: center;">
+            <a onclick="Do('TB','VersionTB.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_ICTWGXUK_2YQehdA?e=UPND7O','TB.zip','TB_Version.txt','nw.exe','TanksBattle','nw','nwjs.app','https://1drv.ws/u/s!AkkqGntQc7Y5hJpc_C0cQOMw2-rB5A?e=nYayYu','https://1drv.ws/u/s!AkkqGntQc7Y5hJpbqpPrgdoUixV9eg?e=0B0D9b')" href="javascript:void(0)" class="TBbutton" id="TBbutton1"></a>                          
+        </div>
+            </td>
+            <td>
+                <div style="text-align: center;">
+            <a id="TBbutton2" onclick="repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_ICTWGXUK_2YQehdA?e=UPND7O','TB','TB.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJpc_C0cQOMw2-rB5A?e=nYayYu','https://1drv.ws/u/s!AkkqGntQc7Y5hJpbqpPrgdoUixV9eg?e=0B0D9b')" href="javascript:void(0)" class="TBRbutton">Reparer</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="TBbutton3" onclick="deletefolder(__dirname+'/Games/TB')" href="javascript:void(0)" class="TBDbutton">Deinstaller</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="TBbutton4" onclick="OpenEmpl(__dirname+'/Games/TB/nw.exe')" href="javascript:void(0)" class="TBbutton">Emplacement du jeu</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="TBbutton5" onclick="createlink(__dirname+'/Games/TB/nw.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="TBbutton">Raccourcie</a>                            
+        </div>
+            </td>
+    </table>
+    <div id="myProgress"  style="text-align: center;">
+        <div id="myBar" style="background-color: #229ACA;
+        color: white;"></div>
+    </div>   
+    </div>  
+</body>
+</html>
