@@ -1,0 +1,9 @@
+directories:
+  output: dist
+  buildResources: build
+publish:
+  provider: github
+  token: <stripped sensitive data>
+productName: Nytuo Launcher
+appId: Nytuo.Launcher
+electronVersion: 7.1.7

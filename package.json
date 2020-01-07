@@ -1,11 +1,11 @@
 {
   "name": "nytuolauncher",
-  "productName":"Nytuo Launcher",
-  "publish":[
+  "productName": "Nytuo Launcher",
+  "publish": [
     {
-      "provider":"github",
-      "repo":"Nytuo-Launcher",
-      "owner":"Nytuo"
+      "provider": "github",
+      "repo": "Nytuo-Launcher",
+      "owner": "Nytuo"
     }
   ],
   "version": "2.7.0",
@@ -15,9 +15,12 @@
   "scripts": {
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
+    "ship": "electron-builder --win -p always",
     "start": "electron .",
     "postinstall": "electron-builder install-app-deps",
     "gh-publish": "electron-builder --x64 -p always"
+    
+    
   },
   "author": "Nytuo",
   "license": "ISC",
@@ -35,16 +38,5 @@
     "request": "^2.88.0",
     "rimraf": "^3.0.0",
     "windows-shortcuts": "^0.1.6"
-  },
-  "build": {
-    "appId": "com.Nytuo.NytuoLauncher",
-    "mac": {
-      "category": "public.app-category.games"
-    },
-    "win": {
-      "publish": [
-        "github"
-      ]
-    }
   }
 }
