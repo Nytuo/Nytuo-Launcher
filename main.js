@@ -1,6 +1,6 @@
 const { app, BrowserWindow,ipcMain,ipcRenderer,webContents} = require('electron')
 const updater = require('electron-simple-updater');
-updater.init('https://raw.githubusercontent.com/megahertz/electron-simple-updater/master/example/updates.json');
+updater.init('https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/updates.json');
 const {download}= require('electron-dl')
 const path = require('path')
 var fs=require('fs')
