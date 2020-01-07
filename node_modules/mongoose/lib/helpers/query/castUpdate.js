@@ -8,6 +8,8 @@ const castNumber = require('../../cast/number');
 const cast = require('../../cast');
 const getEmbeddedDiscriminatorPath = require('./getEmbeddedDiscriminatorPath');
 const handleImmutable = require('./handleImmutable');
+const moveImmutableProperties = require('../update/moveImmutableProperties');
+const schemaMixedSymbol = require('../../schema/symbols').schemaMixedSymbol;
 const utils = require('../../utils');
 
 /*!
@@ -49,6 +51,8 @@ module.exports = function castUpdate(schema, obj, options, context, filter) {
   const overwrite = options.overwrite;
 
   filter = filter || {};
+
+  moveImmutableProperties(schema, obj, context);
 
   while (i--) {
     const op = ops[i];
@@ -511,7 +515,8 @@ function castUpdateVal(schema, val, op, $conditional, context, path) {
     return schema.castForQueryWrapper({
       val: val,
       context: context,
-      $skipQueryCastForUpdate: val != null && schema.$isMongooseArray && schema.$fullPath != null && !schema.$fullPath.match(/\d+$/)
+      $skipQueryCastForUpdate: val != null && schema.$isMongooseArray && schema.$fullPath != null && !schema.$fullPath.match(/\d+$/),
+      $applySetters: schema[schemaMixedSymbol] != null
     });
   }
 
