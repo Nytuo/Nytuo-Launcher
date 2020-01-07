@@ -15,10 +15,9 @@
   "scripts": {
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "ship": "electron-builder --all -p always",
+    "ship": "electron-builder --x64 -p always",
     "start": "electron .",
     "postinstall": "electron-builder install-app-deps",
-    "gh-publish": "electron-builder --x64 -p always"
     
     
   },
