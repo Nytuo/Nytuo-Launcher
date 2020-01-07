@@ -1,3 +1,4 @@
 /dist/
 /Games/
 electron-builder.yml
+yarn.lock
