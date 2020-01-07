@@ -1,3 +1,3 @@
-.dist/
-.Games/
-.electron-builder.yml
+/dist/
+/Games/
+electron-builder.yml
