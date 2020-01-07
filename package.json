@@ -17,8 +17,7 @@
     "dist": "electron-builder",
     "ship": "electron-builder --x64 -p always",
     "start": "electron .",
-    "postinstall": "electron-builder install-app-deps",
-    
+    "postinstall": "electron-builder install-app-deps" 
     
   },
   "author": "Nytuo",
