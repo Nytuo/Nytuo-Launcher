@@ -1,10 +1,9 @@
 const { app, BrowserWindow,ipcMain,ipcRenderer,webContents} = require('electron')
-const updater = require('electron-simple-updater');
-updater.init('https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/updates.json');
+const {autoUpdater} = require('electron-updater')
 const {download}= require('electron-dl')
 const path = require('path')
 var fs=require('fs')
-var request = require('request');
+var request = require('request')
 function createWindow () {
   // Create the browser window.
   let win = new BrowserWindow({
@@ -40,6 +39,7 @@ function createWindow () {
 
 app.on('ready', createWindow,function(){
   console.log(app.getVersion())
+  autoUpdater.checkForUpdatesAndNotify()
 })
 let onlineStatusWindow
 
