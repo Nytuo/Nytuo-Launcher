@@ -1076,46 +1076,49 @@ function DLauncher(url){
     extractzipgame( __dirname+"/Nytuo.Launcher.zip",__dirname);
 
 };
-var isUp2date = true
-function verifupdate(){
-    console.log(window.require('electron').remote.app.getVersion().toString());
-    console.log(fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString());
-    if (window.require('electron').remote.app.getVersion().toString()<fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
-    {
-        let myNotification = new Notification('Nytuo Launcher -- Updater', {
-            body: "Le launcher n'est pas à jour !"
-        })
-        
-        isUp2date = false
-    }
-    if (window.require('electron').remote.app.getVersion().toString()>fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
-    {
-        let myNotification = new Notification('Nytuo Launcher -- Updater', {
-            body: "Le launcher est plus qu'a jour !"
-        })
-    }
-    if (window.require('electron').remote.app.getVersion().toString()===fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
-    {
-        let myNotification = new Notification('Nytuo Launcher -- Updater', {
-            body: "Le launcher est à jour !"
-        })
-    }
-    if (isUp2date === false)
-    {
-        if (process.platform === "linux")
-        {
-            DLauncher("https://github.com/nytuo/nytuo-launcher/release/latest/download/Nytuo.Launcher-linux-x64.zip");
-            isUp2date = true;
+var isUp2date = true;
+
+var update = (function(){
+    var executed = false;
+    return function(){
+        if (!executed){
+            executed = true;
+            console.log(window.require('electron').remote.app.getVersion().toString());
+            console.log(fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString());
+            if (window.require('electron').remote.app.getVersion().toString()<fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())   
+            {
+                let myNotification = new Notification('Nytuo Launcher -- Updater', {
+                    body: "Le launcher n'est pas à jour !"
+                })
+                console.log("You have to update the launcher !")
+                isUp2date = false
+            }
+            if (window.require('electron').remote.app.getVersion().toString()>fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
+            {
+                console.log("Very UpToDate")
+            }
+            if (window.require('electron').remote.app.getVersion().toString()===fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
+            {
+                console.log("UpToDate")
+            }
+            if (isUp2date === false)
+            {
+                if (process.platform === "linux")
+                {
+                    DLauncher("https://github.com/nytuo/nytuo-launcher/release/latest/download/Nytuo.Launcher-linux-x64.zip");
+                    isUp2date = true;
+                }
+                if (process.platform === "win32")
+                {
+                    DLauncher("https://github.com/nytuo/nytuo-launcher/release/latest/download/Nytuo.Launcher-win32-x64.zip");
+                    isUp2date = true;
+                }
+                if (process.platform === "darwin")
+                {
+                    DLauncher("https://github.com/nytuo/nytuo-launcher/release/latest/download/Nytuo.Launcher-darwin-x64.zip");
+                    isUp2date = true;
+                }
+            }
         }
-        if (process.platform === "win32")
-        {
-            DLauncher("https://github.com/nytuo/nytuo-launcher/release/latest/download/Nytuo.Launcher-win32-x64.zip");
-            isUp2date = true;
-        }
-        if (process.platform === "darwin")
-        {
-            DLauncher("https://github.com/nytuo/nytuo-launcher/release/latest/download/Nytuo.Launcher-darwin-x64.zip");
-            isUp2date = true;
-        }
     }
-}
+})();

@@ -1,64 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="Ressources/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
-    <title>SansNom - Nytuo Launcher</title>
-</head>
-<header>
-  <nav id="nav">
-        <ul>
-            <table>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="Ressources/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="js.js"></script>
+        <title>SansNom Classic & Réédition -- Nytuo Launcher</title>
+    </head>
+    <header>
+        
+        <nav id="nav">
+            <ul style="padding: auto;">
+                <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+                <div style="float: right;">
+                    <li><a href="about.html">Paramètres</a></li>
+                    <li><a href="index.html">Jeux</a><li>
+                    <li><a href="news.html">News</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+<body>
+    <iframe onload="detect('SN','SN_Version.txt','SN_Version.txt','Sans Nom Réédition','versiontxtsn')" src="javascript:void(0)" style="display: none;"></iframe>
+  
+        <div class="paralaxSN">
+            <table style="width: 100%;padding-top: 2%;">
                 <tr>
                     <td>
-                        <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" align="left">
+                        <a onclick="window.open('https://nytuo.yo.fr/sn.html')"><img src="Ressources/LogoSN.png" class="paraIMGSN" title="Image de SN"></a>
                     </td>
                     <td>
-                        <li><a href="about.html">Paramètres</a></li>
-                        <li><a href="index.html">Jeux</a></li>
-                        <li><a href="news.html">Actualités</a></li>
+                      <h1 class="paraTXTSN">Sans Nom : Réédition</h1>
+    <h2 id="versiontxtsn"> Version : </h2>
                     </td>
                 </tr>
             </table>
-        </ul>
-    </nav>
-<div class="paralaxSN"><img src="Ressources/LogoSN.png" class="paraIMGSN" title="Image de SN">
-    <h1 class="paraTXTSN">SansNom</h1></div>   
-</header>
-<body>
-    <h1>Description :</h1><br/>
-    <p>Un jeu de plateforme basique juste pour le fun.<br/>Mon premier jeu !<br/></p>
-        <h1>Informations :</h1><br/>
-        <p>plateforme : HTML5, Android.<br/>Contrôleurs : Clavier, tactile<br/>Langue : Français<br/>Créé avec : Construct 2<br/>Auteur : Nytuo<br/>Genre : Plateformer<br/>Statut : Stable<br/>Version : 1.0.0.0<br/></p>
-            <h1>ScreenShots :</h1><br/>
-            <div class="slider">
-                <div class="slides">
-                    <div class="slide"><img src="Ressources/SN1.png" alt=""/></div>
-                    <div class="slide"><img src="Ressources/SN2.png" alt=""/></div>
-                    <div class="slide"><img src="Ressources/IMGSN.png" alt=""/></div>
-                </div>
-            </div>
-            <h1>Téléchargements : </h1>
-            <table align="center">
-                <tr>
-                    <td colspan="2"></td>
-                    <td><div class="container">
-                        <a href="http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414" class="button">Le jeu sur Newgrounds</a>
-                    </div></td>
-                    <td></td>
-                    <td><div class="container">
-                        <a href="http://www.kongregate.com/games/Nytuo/sansnom-alpha-2" class="button">Le jeu sur Kongregate</a>
-                    </div></td>
-                </tr>
-            </table> 
-        </body>
-        <footer>
-        <div class="spaceX"></div>
-        <a href="https://gamejolt.com/@Nytuo"><img src="Ressources/LogoJolt.png" class="logofoot" title="Gamejolt.com" ></a>&nbsp &nbsp &nbsp &nbsp
-        <a href="home.html"><img src="Ressources/logo.png" class="logofoot" title="Logo de Nytuo" /></a>&nbsp &nbsp &nbsp &nbsp
-        <a href="https://nytuo.itch.io"><img src="Ressources/LogoItch.png" class="logofoot" title="Itch.io"></a>
-        <p class="txtfoot">Website of Nytuo, Host by PlanetHoster WorldLite. HTML5 CSS3 website, Entirely Create by Nytuo. All Rights Reserved</p>          
-    </footer>
+  <table id="ju">
+
+        <tr>
+            <td colspan="3">
+                <div style="text-align: center;">
+            <a onclick="RunWithoutInstall('http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414')" href="javascript:void(0)" class="SNbutton" id="SNbutton6">Jouer en ligne à Sans Nom Classic</a>                          
+        </div>
+            </td>
+             <td colspan="5">
+                <div style="text-align: center;">
+            <a onclick="RunWithoutInstall('https://itch.io/embed-upload/1885573?color=333333')" href="javascript:void(0)" class="SNbutton" id="SNbutton7" style="text-align: center;">Jouer en ligne à Sans Nom Réédition</a>                          
+        </div>
+            </td>
+        </tr>     
+        <tr>
+   
+            <td>
+                <div style="text-align: center;">
+            <a onclick="Do('SN','SN_Version.txt','https://1drv.ws/u/s!AkkqGntQc7Y5hIVjIheY_aPr1832Gg?e=bQLmFz','SN.zip','SN_Version.txt','nw.exe','Sans Nom : Réédition','nw','nwjs.app','https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=9JoMti','https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=pbdjt4')" href="javascript:void(0)" class="SNbutton" id="SNbutton1"></a>                          
+        </div>
+            </td>
+            <td>
+                <div style="text-align: center;">
+            <a id="SNbutton2" onclick="repair('https://1drv.ws/u/s!AkkqGntQc7Y5hIVjIheY_aPr1832Gg?e=bQLmFz','SN','SN.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=9JoMti','https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=pbdjt4')" href="javascript:void(0)" class="SNRbutton">Reparer</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="SNbutton3" onclick="deletefolder(__dirname+'/Games/SN')" href="javascript:void(0)" class="SNDbutton">Deinstaller</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="SNbutton4" onclick="OpenEmpl(__dirname+'/Games/SN/nw.exe')" href="javascript:void(0)" class="SNbutton">Emplacement du jeu</a>                            
+        </div>
+            </td>
+            <td>
+                 <div style="text-align: center;">
+            <a id="SNbutton5" onclick="createlink(__dirname+'/Games/SN/nw.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="SNbutton">Raccourcie</a>                            
+        </div>
+            </td>
+    </table>
+    <div id="myProgress"  style="text-align: center;">
+        <div id="myBar" style="background-color: #6FC4A9;
+        color: black;"></div>
+    </div>   
+    </div>  
+</body>
     </html>
