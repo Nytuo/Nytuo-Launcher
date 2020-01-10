@@ -1,5 +1,0 @@
-publish:
-  provider: github
-  token: 930ee96b9e88473e2cfbd595a88ee20467009ae2
-productName: Nytuo Launcher
-appId : Nytuo.Launcher

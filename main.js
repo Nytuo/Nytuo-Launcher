@@ -1,5 +1,4 @@
 const { app, BrowserWindow,ipcMain,ipcRenderer,webContents} = require('electron')
-const {autoUpdater} = require('electron-updater')
 const {download}= require('electron-dl')
 const path = require('path')
 var fs=require('fs')
@@ -34,18 +33,14 @@ function createWindow () {
   if (!fs.existsSync(__dirname+'/Games/VITF'))fs.mkdirSync(__dirname+'/Games/VITF', { recursive: true });
   if (!fs.existsSync(__dirname+'/Games/WR'))fs.mkdirSync(__dirname+'/Games/WR', { recursive: true });
   if (!fs.existsSync(__dirname+'/VersionsFiles'))fs.mkdirSync(__dirname+'/VersionsFiles', { recursive: true });
+
   if (process.platform === "linux"){alert("Pour lancer un jeu vous devez lui accorder des permisions(pour chaque jeu) et l'ouvrir par defaut avec l'émulateur de terminale(une seul fois).Référer vous à l'aide disponible sur mon site.")}
+  
 }
 
 app.on('ready', createWindow,function(){
   console.log(app.getVersion())
-  autoUpdater.checkForUpdatesAndNotify()
-})
-let onlineStatusWindow
-
-app.on('ready', () => {
-  onlineStatusWindow = new BrowserWindow({ width: 0, height: 0, show: false })
-  onlineStatusWindow.loadURL(`file://${__dirname}/online-status.html`)
+  
 })
 app.setAsDefaultProtocolClient('Nytuo');
 app.once('before-quit',()=>{ipcRenderer.removeAllListeners('close');});

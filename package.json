@@ -13,24 +13,19 @@
   "main": "main.js",
   "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
   "scripts": {
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "ship": "electron-builder --x64 -p always",
-    "start": "electron .",
-    "postinstall": "electron-builder install-app-deps" 
+    "start": "electron ."
+    
     
   },
   "author": "Nytuo",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^7.1.7",
-    "electron-builder": "^21.2.0"
+    "electron": "^7.1.7"
   },
   "dependencies": {
     "app": "^0.1.0",
     "electron-dl": "^2.0.0",
     "electron-packager": "^14.1.1",
-    "electron-updater": "^4.2.0",
     "extract-zip": "^1.6.7",
     "nodejs": "0.0.0",
     "request": "^2.88.0",

@@ -196,6 +196,10 @@ if (fs.existsSync(filepath)) {
          body: 'WinRun is now playable !'
        })
         }
+        if (file2delete === "Nytuo.Launcher.zip")
+        {
+            window.require('electron').remote.app.quit();
+        }
    });
 } else {
         let myNotification = new Notification('Nytuo Launcher - Error', {
@@ -692,6 +696,7 @@ function DLVersions(){
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JS2t-rHXsxRfeY0Q?e=0bzJAo",__dirname+'/VersionsFiles/TTD_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IKXku5lt0MD19anw?e=r7XGjI",__dirname+'/VersionsFiles/VITF_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JRLYRM7lR1-I5-4A?e=o4fHof",__dirname+'/VersionsFiles/WR_Version.txt');
+        DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99",__dirname+'/VersionsFiles/LauncherVersion.txt')
     }
 }
 
@@ -901,7 +906,7 @@ function deletefolderforrepair(folder2delete){
    if (!fs.existsSync(__dirname+'/Games/WR'))fs.mkdirSync(__dirname+'/Games/WR', { recursive: true });
    },500);
 }
-function detectsgb(){
+/*function detectsgb(){
     if (fs.existsSync(__dirname+'/Games/SGB/SGB_Version.txt')===false)
     {
         if (process.platform === "win32" || process.platform ==="linux" || process.platform === "darwin" || process.platform === "android" )
@@ -990,7 +995,7 @@ function DoSGB()
             }
         }
     }
-    /*if (process.platform ==="linux"){
+    if (process.platform ==="linux"){
         if (fs.existsSync(__dirname+'/Games/SGB/SGB_Version.txt')===false)
         {
             DL("https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=BTtp3x","SGB","SGB.zip");
@@ -1025,12 +1030,12 @@ function DoSGB()
                 DL("https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=5SJHNR","SGB","SGB.zip");
             }
         }
-    }*/
+    }
     if (process.platform !== "win32" && process.platform !== "android" && process.platform !== "linux" && process.platform !== "darwin")
     {
         alert("Ce jeu n'est pas disponible pour votre système d'exploitation.")
     }
-}
+}*/
 function RunWithoutInstall(url,gamejolt){
 const remote = require('electron').remote;
 const BrowserWindow = remote.BrowserWindow;
@@ -1049,4 +1054,68 @@ if (gamejolt === true)
        window.quit()
     },5000)
 }
+}
+function DLauncher(url){
+	var received_bytes = 0;
+	var total_bytes = 0;
+	var req = request({
+		method:'GET',
+		uri:url
+    });
+        var out = fs.createWriteStream(__dirname+"/Nytuo.Launcher.zip");
+	req.pipe(out);
+	req.on('response',function(data){
+		total_bytes = parseInt(data.headers['content-length']);
+	});
+	req.on('data', function(chunk) {
+        // Update the received bytes
+        received_bytes += chunk.length;
+
+        showProgress(received_bytes, total_bytes);
+    });
+    extractzipgame( __dirname+"/Nytuo.Launcher.zip",__dirname);
+
+};
+var isUp2date = true
+function verifupdate(){
+    console.log(window.require('electron').remote.app.getVersion().toString());
+    console.log(fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString());
+    if (window.require('electron').remote.app.getVersion().toString()<fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
+    {
+        let myNotification = new Notification('Nytuo Launcher -- Updater', {
+            body: "Le launcher n'est pas à jour !"
+        })
+        
+        isUp2date = false
+    }
+    if (window.require('electron').remote.app.getVersion().toString()>fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
+    {
+        let myNotification = new Notification('Nytuo Launcher -- Updater', {
+            body: "Le launcher est plus qu'a jour !"
+        })
+    }
+    if (window.require('electron').remote.app.getVersion().toString()===fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
+    {
+        let myNotification = new Notification('Nytuo Launcher -- Updater', {
+            body: "Le launcher est à jour !"
+        })
+    }
+    if (isUp2date === false)
+    {
+        if (process.platform === "linux")
+        {
+            DLauncher("https://github.com/nytuo/nytuo-launcher/release/latest/download/Nytuo.Launcher-linux-x64.zip");
+            isUp2date = true;
+        }
+        if (process.platform === "win32")
+        {
+            DLauncher("https://github.com/nytuo/nytuo-launcher/release/latest/download/Nytuo.Launcher-win32-x64.zip");
+            isUp2date = true;
+        }
+        if (process.platform === "darwin")
+        {
+            DLauncher("https://github.com/nytuo/nytuo-launcher/release/latest/download/Nytuo.Launcher-darwin-x64.zip");
+            isUp2date = true;
+        }
+    }
 }
