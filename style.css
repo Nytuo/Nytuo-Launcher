@@ -1295,8 +1295,10 @@ ul ul li a{
   height: auto;
   transform: scale(1);
 }
+
 .redimhome2:hover img{
   transform: scale(1.5);
+
 }
 /*#endregion*/
 /*#region WR*/
@@ -2131,6 +2133,79 @@ ul ul li a{
 }
 
 /*#endregion*/
+
+.updated{
+  cursor: default;
+  color: #ffc107;
+  font-weight: 600;
+  font-size: 18px;
+  padding-left: 0.9375rem;
+  padding-top: 0.4375rem;
+  padding-right: 0.9375rem;
+  padding-bottom: 0.4375rem;
+  background-color: rgba(255, 193, 7, 0.1);;
+  border-color: transparent;
+  border-radius: 0.5rem;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5;
+ margin-right: 10px;
+}
+.new{
+  cursor: default;
+  color: #377dff;
+  font-weight: 600;
+  font-size: 18px;
+  padding-left: 0.9375rem;
+  padding-top: 0.4375rem;
+  padding-right: 0.9375rem;
+  padding-bottom: 0.4375rem;
+  background-color: rgba(55, 125, 255, 0.1);
+  border-color: transparent;
+  border-radius: 0.5rem;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5;
+ margin-right: 10px;
+}
+.fixed{
+  cursor: default;
+  color: #de4437;
+  font-weight: 600;
+  font-size: 18px;
+  padding-left: 0.9375rem;
+  padding-top: 0.4375rem;
+  padding-right: 0.9375rem;
+  padding-bottom: 0.4375rem;
+  background-color: rgba(222, 68, 55, 0.1);
+  border-color: tranrgba(160, 73, 65, 0.1);
+  border-radius: 0.5rem;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5;
+ margin-right: 10px;
+}
+.enhanced{
+  cursor: default;
+  color: #00c9a7;
+  font-weight: 600;
+  font-size: 18px;
+  padding-left: 0.9375rem;
+  padding-top: 0.4375rem;
+  padding-right: 0.9375rem;
+  padding-bottom: 0.4375rem;
+  background-color: rgba(0, 201, 167, 0.1);
+  border-color: transparent;
+  border-radius: 0.5rem;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5;
+ margin-right: 10px;
+}
 @media only screen and (max-width: 1680px){
   /*#region common*/ 
   .button {

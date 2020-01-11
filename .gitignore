@@ -4,3 +4,4 @@ electron-builder.yml
 yarn.lock
 /node_modules/
 /VersionsFiles/
+news.html
