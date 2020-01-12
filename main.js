@@ -7,7 +7,7 @@ var request = require('request')
 
 function createWindow () {
   let win = new BrowserWindow({
-    
+    backgroundColor : 212121,
     minWidth: 980,
     minHeight:480,
     width: 980,
@@ -42,7 +42,7 @@ app.on('ready', createWindow,function(){
   console.log(app.getVersion())
   
 })
-var link;
 
-app.setAsDefaultProtocolClient('nytuo',process.execPath);
+app.setAsDefaultProtocolClient('nytuo', process.execPath, [path.resolve(process.argv[1])])
+
 app.once('before-quit',()=>{ipcRenderer.removeAllListeners('close');});

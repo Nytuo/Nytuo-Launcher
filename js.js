@@ -7,6 +7,7 @@ var fs =require('fs');
 var app = require('electron').remote;
 var dialog = app.dialog; 
 const ws = require('windows-shortcuts');
+
 function Open(dossierdujeu,filename){
 shell.openItem(__dirname + "/Games/"+dossierdujeu+"/"+filename);
 }
@@ -664,7 +665,11 @@ function detectsf(){
         }
     }
 }*/
+var only_one = false
 function DownlaodVersion(file_url,targetPath){
+    if(only_one === false)
+    {
+        only_one = true
 	var received_bytes = 0;
 	var total_bytes = 0;
 	var req = request({
@@ -681,11 +686,12 @@ function DownlaodVersion(file_url,targetPath){
         showProgress(received_bytes, total_bytes);
     });
 }
-var only_one = false
+}
+
 function DLVersions(){
     if (only_one===false){
-        only_one===true
-        DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJolpeqR1khuFIbpjA?e=dzHBIo",__dirname+'/VersionsFiles/SNRE_Version.txt');
+        only_one=true
+        DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJolpeqR1khuFIbpjA?e=wTgArs",__dirname+'/VersionsFiles/SNRE_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JUXbjPwj1mBzrOuA?e=wVHkGU",__dirname+'/VersionsFiles/AE_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JT9OzEaq3ZoNfmnA?e=tR3RtZ",__dirname+'/VersionsFiles/FWD_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJJHH7sOlvHBfzY_GQ?e=bvxWKA",__dirname+'/VersionsFiles/LAIM_Version.txt');
@@ -697,7 +703,8 @@ function DLVersions(){
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IKXku5lt0MD19anw?e=r7XGjI",__dirname+'/VersionsFiles/VITF_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JRLYRM7lR1-I5-4A?e=o4fHof",__dirname+'/VersionsFiles/WR_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99",__dirname+'/VersionsFiles/LauncherVersion.txt');
-        DownlaodVersion("https://1drv.ws/u/s!AkkqGntQc7Y5hJpf7fm6Vp75nfiuYQ?e=Y7pHBG",__dirname+'/news.html');
+        DownlaodVersion("https://1drv.ws/u/s!AkkqGntQc7Y5hJpf7fm6Vp75nfiuYQ?e=PM7c0S",__dirname+'/news.html');
+     
     }
 }
 
