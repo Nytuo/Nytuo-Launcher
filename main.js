@@ -3,26 +3,9 @@ const {download}= require('electron-dl')
 const path = require('path')
 var fs=require('fs')
 var request = require('request')
-var url = require('url')
-let deeplinkingUrl
-const shouldQuit = app.requestSingleInstanceLock((argv,workingDirectory)=>{
-  if (process.platform === "win32")
-  {
-    deeplinkingUrl = argv.slice(1);
-  }
-  if (win)
-   {
-     if (win.isMinimized()) win.restore()
-     win.focus()
-   }
-   if (shouldQuit)
-   {
-     app.quit()
-     return
-   }
-})
+
+
 function createWindow () {
-  // Create the browser window.
   let win = new BrowserWindow({
     
     minWidth: 980,
@@ -35,8 +18,6 @@ function createWindow () {
     },
 
   })
-
-  // and load the index.html of the app.
   win.loadFile('index.html')
   if (!fs.existsSync(__dirname+'/Games'))fs.mkdirSync(__dirname+'/Games', { recursive: true });
   if (!fs.existsSync(__dirname+'/Games/AE'))fs.mkdirSync(__dirname+'/Games/AE', { recursive: true });
@@ -54,20 +35,14 @@ function createWindow () {
 
   if (process.platform === "linux"){alert("Pour lancer un jeu vous devez lui accorder des permisions(pour chaque jeu) et l'ouvrir par defaut avec l'émulateur de terminale(une seul fois).Référer vous à l'aide disponible sur mon site.")}
  
-}
- if (process.platform === "win32")
-{
-  deeplinkingUrl = process.argv.slice(1)
+
 }
 
 app.on('ready', createWindow,function(){
   console.log(app.getVersion())
   
 })
+var link;
+
 app.setAsDefaultProtocolClient('nytuo',process.execPath);
 app.once('before-quit',()=>{ipcRenderer.removeAllListeners('close');});
-app.on('open-url',function(event,url){
-  event.preventDefault()
-  deeplinkingUrl = url
-
-})

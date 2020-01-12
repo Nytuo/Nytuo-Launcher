@@ -22,10 +22,16 @@
         </ul>
     </nav>
 </header>
-<body>	
+<body>
+
     <script>update();
-    DLVersions();</script>
+    DLVersions();
+
+    const {getlink} = require('electron').remote.require('./main.js');
+    document.querySelector('#data').value = getLink();
+    </script>
 <div style="padding-top: 120px;"></div>
+<p>url : <input id="data"></p>
         <table>
             <tr>
                 <td>
