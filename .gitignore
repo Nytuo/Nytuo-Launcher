@@ -1,7 +1,7 @@
 /dist/
-/Games/
+/src/Games/
 electron-builder.yml
 yarn.lock
-/node_modules/
-/VersionsFiles/
-news.html
+/src/node_modules/
+/src/VersionsFiles/
+/src/news.html
