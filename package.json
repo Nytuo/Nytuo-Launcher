@@ -1,16 +1,6 @@
 {
   "name": "nytuolauncher",
-  "productName": "Nytuo Launcher",
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-zip"
-        }
-      ]
-    }
-  },
+  "productName": "Nytuo-Launcher",
   "publish": [
     {
       "provider": "github",
@@ -30,13 +20,11 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^7.1.9",
-    "electron-builder": "^21.2.0",
-    "electron-prebuilt-compile": "1.8.4"
+    "electron-builder": "^22.2.0"
   },
   "dependencies": {
     "app": "^0.1.0",
-    "electron-dl": "^2.0.0",
-    "electron-forge": "^5.2.4",
+    "electron-dl": "^3.0.0",
     "electron-packager": "^14.2.0",
     "extract-zip": "^1.6.7",
     "nodejs": "0.0.0",

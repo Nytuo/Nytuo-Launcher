@@ -2,6 +2,8 @@
 /src/Games/
 electron-builder.yml
 yarn.lock
-/src/node_modules/
+/node_modules/
 /src/VersionsFiles/
 /src/news.html
+/out/
+/.vscode/
