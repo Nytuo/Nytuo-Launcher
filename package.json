@@ -27,6 +27,7 @@
     "electron-dl": "^3.0.0",
     "electron-packager": "^14.2.0",
     "extract-zip": "^1.6.7",
+    "fs": "^0.0.1-security",
     "nodejs": "0.0.0",
     "request": "^2.88.0",
     "rimraf": "^3.0.0",

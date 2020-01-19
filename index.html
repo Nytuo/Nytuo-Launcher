@@ -19,7 +19,6 @@
                 <li><a href="about.html">Paramètres</a></li>
                 <li><a href="index.html">Jeux</a><li>
                 <li><a href="news.html">News</a></li>
-                <li><a onclick="updatewin()" href="javascript:void(0)">updater</a></li>
             </div>
         </ul>
     </nav>
@@ -28,8 +27,6 @@
 
     <script>update();
     DLVersions();
-    const {getlink} = require('electron').remote.require('./main.js');
-    document.querySelector('#data').value = getLink();
     </script>
 
 

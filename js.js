@@ -207,7 +207,14 @@ if (fs.existsSync(filepath)) {
      body: "Game can't be deleted !"
    })
 }
-refresh();
+if (isUp2date === true)
+{
+    refresh();
+}
+else
+{
+ window.location.href = "./index.html"
+}
 }
 function OpenEmpl(emplacement){
     shell.showItemInFolder(emplacement);
@@ -670,7 +677,7 @@ var update = (function(){
                     body: "Le launcher n'est pas à jour !"
                 })
                 console.log("You have to update the launcher !")
-                isUp2date = false
+                isUp2date = false;
             }
             if (window.require('electron').remote.app.getVersion().toString()>fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
             {
@@ -686,34 +693,23 @@ var update = (function(){
                 {
                     bigupdate = true;
                 }
-                updatewin();
+                window.location.href = './updater.html'
             }
         }
     }
 })();
-function updatewin(){
-    const remote = require('electron').remote;
-    const BrowserWindow = remote.BrowserWindow;
-    const path = require('path')
-    const win = new BrowserWindow({
-        maxHeight:480,
-        maxWidth : 720,
-        height : 480,
-        width:720,
-        icon : path.join(__dirname,'Ressources/logoexp.png')
-    });
-    win.loadURL(__dirname+'/updater.html');
-}
+
 function Updater(){
+    isUp2date = false;
     if (process.platform === "win32")
     {
         if (bigupdate === false)
         {
-            DL('https://github.com/Nytuo/Nytuo-Launcher/releases/latest/download/Nytuo.Launcher-win32-x64_Supdate.zip',__dirname,'Update.zip')
+            DownlaodFile('https://1drv.ws/u/s!AkkqGntQc7Y5hJsEjXILLAN5SKmK7g?e=RbfebR',__dirname+'/Update.zip',__dirname)
         }
         else
         {
-            DL('https://github.com/Nytuo/Nytuo-Launcher/releases/latest/download/Nytuo.Launcher-win32-x64.zip',__dirname,'Update.zip')
+            DownlaodFile('https://1drv.ws/u/s!AkkqGntQc7Y5hJsDDGucJJ__2ryiUA?e=zeijLG',__dirname+'/Update.zip',__dirname)
             shell.openItem(__dirname+'/Nytuo Launcher Setup '+fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString()+'.exe')
         }
     } 
@@ -721,11 +717,11 @@ function Updater(){
     {
         if (bigupdate === false)
         {
-            DL('https://github.com/Nytuo/Nytuo-Launcher/releases/latest/download/Nytuo.Launcher-linux-x64_Supdate.zip',__dirname,'Update.zip')
+            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsFg8wgs12cJMiKWw?e=IFQjXJ',__dirname+'/Update.zip',__dirname)
         }
         else
         {
-            DL('https://github.com/Nytuo/Nytuo-Launcher/releases/latest/download/Nytuo.Launcher-linux-x64.zip',__dirname,'Update.zip')
+            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsGgVJ-WINxz-jfVQ?e=AqpBKh',__dirname+'/Update.zip',__dirname)
             shell.openItem(__dirname+'/Nytuo Launcher Setup '+fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString()+'.appimage')
         }
     }
@@ -733,11 +729,11 @@ function Updater(){
     {
         if (bigupdate === false)
         {
-            DL('https://github.com/Nytuo/Nytuo-Launcher/releases/latest/download/Nytuo.Launcher-darwin-x64_Supdate.zip',__dirname,'Update.zip')
+            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsIU0MaYAVDrJa_ig?e=lX4Dnv',__dirname+'/Update.zip',__dirname)
         }
         else
         {
-            DL('https://github.com/Nytuo/Nytuo-Launcher/releases/latest/download/Nytuo.Launcher-darwin-x64.zip',__dirname,'Update.zip')
+            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsHrdjh7vcEs41iyw?e=d7euDn',__dirname+'/Update.zip',__dirname)
             shell.openItem(__dirname+'/Nytuo Launcher Setup '+fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString()+'.')
         }
     }
