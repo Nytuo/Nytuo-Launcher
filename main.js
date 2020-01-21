@@ -43,6 +43,6 @@ app.on('ready', createWindow,function(){
   
 })
 
-app.setAsDefaultProtocolClient('nytuo', process.execPath, [path.resolve(process.argv[1])])
+app.setAsDefaultProtocolClient('nytuo', process.execPath)
 
 app.on('before-quit',()=>{ipcRenderer.removeAllListeners('close');});

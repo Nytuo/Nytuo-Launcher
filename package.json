@@ -13,7 +13,7 @@
   "main": "main.js",
   "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
   "scripts": {
-    "build": "electron-builder --mwl --x64",
+    "build": "electron-packager . --icon=./Ressources/favicon.ico",
     "start": "electron ."
   },
   "author": "Nytuo",
@@ -28,7 +28,8 @@
     "electron-packager": "^14.2.0",
     "extract-zip": "^1.6.7",
     "fs": "^0.0.1-security",
-    "nodejs": "0.0.0",
+    "nodejs": "^0.0.0",
+    "path": "^0.12.7",
     "request": "^2.88.0",
     "rimraf": "^3.0.0",
     "shell": "^0.5.0",
