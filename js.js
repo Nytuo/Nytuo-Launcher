@@ -4,7 +4,7 @@ const rimraf = require("rimraf");
 const extract=require('extract-zip');
 var request = require('request');
 var fs =require('fs');
-var app = require('electron').remote;
+const app = require('electron').remote;
 var dialog = app.dialog; 
 const ws = require('windows-shortcuts');
 var bigupdate = false;
@@ -217,7 +217,8 @@ else
 }
 }
 function OpenEmpl(emplacement){
-    shell.showItemInFolder(emplacement);
+    console.log(emplacement);
+    shell.openItem(emplacement)
 }
 function redm(){
     exec(process.execPath);

@@ -13,7 +13,7 @@
   "main": "main.js",
   "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
   "scripts": {
-    "build": "electron-builder --win --linux --x64",
+    "build": "electron-builder --mwl --x64",
     "start": "electron ."
   },
   "author": "Nytuo",
@@ -31,6 +31,7 @@
     "nodejs": "0.0.0",
     "request": "^2.88.0",
     "rimraf": "^3.0.0",
+    "shell": "^0.5.0",
     "windows-shortcuts": "^0.1.6"
   }
 }

@@ -1,9 +1,9 @@
 /dist/
-/src/Games/
+/Games/
 electron-builder.yml
 yarn.lock
 /node_modules/
-/src/VersionsFiles/
-/src/news.html
+/VersionsFiles/
+news.html
 /out/
 /.vscode/
