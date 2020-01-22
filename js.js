@@ -4,7 +4,7 @@ const rimraf = require("rimraf");
 const extract=require('extract-zip');
 var request = require('request');
 var fs =require('fs');
-const app = require('electron').remote;
+const app = require('electron').remote.app;
 var dialog = app.dialog; 
 const ws = require('windows-shortcuts');
 var bigupdate = false;
@@ -683,6 +683,7 @@ var update = (function(){
             if (window.require('electron').remote.app.getVersion().toString()>fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
             {
                 console.log("Very UpToDate")
+                console.log(app.getAppPath())
             }
             if (window.require('electron').remote.app.getVersion().toString()===fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
             {
@@ -710,8 +711,7 @@ function Updater(){
         }
         else
         {
-            DownlaodFile('https://1drv.ws/u/s!AkkqGntQc7Y5hJsDDGucJJ__2ryiUA?e=zeijLG',__dirname+'/Update.zip',__dirname)
-            shell.openItem(__dirname+'/Nytuo Launcher Setup '+fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString()+'.exe')
+            DownlaodFile('https://1drv.ws/u/s!AkkqGntQc7Y5hJsDDGucJJ__2ryiUA?e=zeijLG',__dirname+'/Update.zip',app.getAppPath())
         }
     } 
     if (process.platform === "linux")
@@ -722,8 +722,7 @@ function Updater(){
         }
         else
         {
-            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsGgVJ-WINxz-jfVQ?e=AqpBKh',__dirname+'/Update.zip',__dirname)
-            shell.openItem(__dirname+'/Nytuo Launcher Setup '+fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString()+'.appimage')
+            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsGgVJ-WINxz-jfVQ?e=AqpBKh',__dirname+'/Update.zip',app.getAppPath())
         }
     }
     if (process.platform === "darwin")
@@ -734,8 +733,7 @@ function Updater(){
         }
         else
         {
-            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsHrdjh7vcEs41iyw?e=d7euDn',__dirname+'/Update.zip',__dirname)
-            shell.openItem(__dirname+'/Nytuo Launcher Setup '+fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString()+'.')
+            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsHrdjh7vcEs41iyw?e=d7euDn',__dirname+'/Update.zip',app.getAppPath())
         }
     }
 }
