@@ -8,6 +8,7 @@ const app = require('electron').remote.app;
 var dialog = app.dialog; 
 const ws = require('windows-shortcuts');
 var bigupdate = false;
+var updatedownloaded = false;
 function Open(dossierdujeu,filename){
 shell.openItem(__dirname + "/Games/"+dossierdujeu+"/"+filename);
 }
@@ -472,8 +473,7 @@ function detect(dossierdujeu,versiontxt,versionlcl,gamename,txtVID){
 
 var only_one = false
 function DownlaodVersion(file_url,targetPath){
-    if(only_one === false)
-    {
+
         only_one = true
 	var received_bytes = 0;
 	var total_bytes = 0;
@@ -488,14 +488,11 @@ function DownlaodVersion(file_url,targetPath){
 	});
 	req.on('data', function(chunk) {
         received_bytes += chunk.length;
-        showProgress(received_bytes, total_bytes);
     });
-}
 }
 
 function DLVersions(){
-    if (only_one===false){
-        only_one=true
+
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJolpeqR1khuFIbpjA?e=wTgArs",__dirname+'/VersionsFiles/SNRE_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JUXbjPwj1mBzrOuA?e=wVHkGU",__dirname+'/VersionsFiles/AE_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JT9OzEaq3ZoNfmnA?e=tR3RtZ",__dirname+'/VersionsFiles/FWD_Version.txt');
@@ -510,8 +507,7 @@ function DLVersions(){
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99",__dirname+'/VersionsFiles/LauncherVersion.txt');
         DownlaodVersion("https://1drv.ws/u/s!AkkqGntQc7Y5hJpf7fm6Vp75nfiuYQ?e=PM7c0S",__dirname+'/news.html');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu",__dirname+'/VersionsFiles/LauncherUpdateType.txt');
-     
-    }
+
 }
 
 function DoforWin(dossierdujeu,versiontxt,URL,zipname,versionlcl,nomexe,gamename)
@@ -669,34 +665,37 @@ var update = (function(){
     var executed = false;
     return function(){
         if (!executed){
-            executed = true;
-            console.log(window.require('electron').remote.app.getVersion().toString());
-            console.log(fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString());
-            if (window.require('electron').remote.app.getVersion().toString()<fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())   
-            {
-                let myNotification = new Notification('Nytuo Launcher -- Updater', {
-                    body: "Le launcher n'est pas à jour !"
-                })
-                console.log("You have to update the launcher !")
-                isUp2date = false;
-            }
-            if (window.require('electron').remote.app.getVersion().toString()>fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
-            {
-                console.log("Very UpToDate")
-                console.log(app.getAppPath())
-            }
-            if (window.require('electron').remote.app.getVersion().toString()===fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
-            {
-                console.log("UpToDate")
-            }
-            if (isUp2date === false)
-            {
-                if (fs.readFileSync(__dirname+'/VersionsFiles/LauncherUpdateType.txt').toString==="yes")
+            setTimeout(function (){
+                executed = true;
+                console.log(window.require('electron').remote.app.getVersion().toString());
+                console.log(fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString());
+                if (window.require('electron').remote.app.getVersion().toString()<fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())   
                 {
-                    bigupdate = true;
+                    let myNotification = new Notification('Nytuo Launcher -- Updater', {
+                        body: "Le launcher n'est pas à jour !"
+                    })
+                    console.log("You have to update the launcher !")
+                    isUp2date = false;
                 }
-                window.location.href = './updater.html'
-            }
+                if (window.require('electron').remote.app.getVersion().toString()>fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
+                {
+                    console.log("Very UpToDate")
+                    console.log(app.getAppPath())
+                }
+                if (window.require('electron').remote.app.getVersion().toString()===fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
+                {
+                    console.log("UpToDate")
+                }
+                if (isUp2date === false)
+                {
+                    if (fs.readFileSync(__dirname+'/VersionsFiles/LauncherUpdateType.txt').toString==="yes")
+                    {
+                        bigupdate = true;
+                    }
+                    window.location.href = './updater.html'
+                }
+
+            },5000)
         }
     }
 })();
