@@ -7,8 +7,8 @@ var fs =require('fs');
 const app = require('electron').remote.app;
 var dialog = app.dialog; 
 const ws = require('windows-shortcuts');
-var bigupdate = false;
 var updatedownloaded = false;
+var path = require('path');
 function Open(dossierdujeu,filename){
 shell.openItem(__dirname + "/Games/"+dossierdujeu+"/"+filename);
 }
@@ -198,9 +198,9 @@ if (fs.existsSync(filepath)) {
          body: 'WinRun is now playable !'
        })
         }
-        if (file2delete === "Nytuo.Launcher.zip")
+        if (file2delete === "Update.zip")
         {
-            window.require('electron').remote.app.quit();
+            refresh()
         }
    });
 } else {
@@ -208,14 +208,7 @@ if (fs.existsSync(filepath)) {
      body: "Game can't be deleted !"
    })
 }
-if (isUp2date === true)
-{
-    refresh();
-}
-else
-{
- window.location.href = "./index.html"
-}
+
 }
 function OpenEmpl(emplacement){
     console.log(emplacement);
@@ -659,7 +652,8 @@ if (gamejolt === true)
 }
 }
 var isUp2date = true;
-
+var parentfolder1 = require('path').dirname(__dirname);
+var parentfolder2 = require('path').dirname(parentfolder1)+"/";
 var update = (function(){
     var executed = false;
     return function(){
@@ -667,6 +661,8 @@ var update = (function(){
             setTimeout(function (){
                 executed = true;
                 console.log(window.require('electron').remote.app.getVersion().toString());
+
+                console.log(parentfolder2);
                 console.log(fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString());
                 if (window.require('electron').remote.app.getVersion().toString()<fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())   
                 {
@@ -689,10 +685,6 @@ var update = (function(){
                 }
                 if (isUp2date === false)
                 {
-                    if (fs.readFileSync(__dirname+'/VersionsFiles/LauncherUpdateType.txt').toString==="yes")
-                    {
-                        bigupdate = true;
-                    }
                     window.location.href = './updater.html'
                 }
 
@@ -705,36 +697,18 @@ function Updater(){
     isUp2date = false;
     if (process.platform === "win32")
     {
-        if (bigupdate === false)
-        {
-            DownlaodFile('https://1drv.ws/u/s!AkkqGntQc7Y5hJsEjXILLAN5SKmK7g?e=RbfebR',__dirname+'/Update.zip',__dirname)
-        }
-        else
-        {
-            DownlaodFile('https://1drv.ws/u/s!AkkqGntQc7Y5hJsDDGucJJ__2ryiUA?e=zeijLG',__dirname+'/Update.zip',app.getAppPath())
-        }
+            DownlaodFile('https://1drv.ws/u/s!AkkqGntQc7Y5hJsDDGucJJ__2ryiUA?e=zeijLG',__dirname+'/Update.zip',parentfolder2)
     } 
     if (process.platform === "linux")
     {
-        if (bigupdate === false)
-        {
-            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsFg8wgs12cJMiKWw?e=IFQjXJ',__dirname+'/Update.zip',__dirname)
-        }
-        else
-        {
-            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsGgVJ-WINxz-jfVQ?e=AqpBKh',__dirname+'/Update.zip',app.getAppPath())
-        }
+        
+            DownlaodFile('https://1drv.ws/u/s!AkkqGntQc7Y5hJsGgVJ-WINxz-jfVQ?e=AqpBKh',__dirname+'/Update.zip',parentfolder2)
+        
     }
     if (process.platform === "darwin")
     {
-        if (bigupdate === false)
-        {
-            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsIU0MaYAVDrJa_ig?e=lX4Dnv',__dirname+'/Update.zip',__dirname)
-        }
-        else
-        {
-            DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsHrdjh7vcEs41iyw?e=d7euDn',__dirname+'/Update.zip',app.getAppPath())
-        }
+        
+            DownlaodFile('https://1drv.ws/u/s!AkkqGntQc7Y5hJsHrdjh7vcEs41iyw?e=d7euDn',__dirname+'/Update.zip',parentfolder2)
     }
 }
 function verif_gameVersionLoading(){
