@@ -492,7 +492,6 @@ function DownlaodVersion(file_url,targetPath){
 }
 
 function DLVersions(){
-
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJolpeqR1khuFIbpjA?e=wTgArs",__dirname+'/VersionsFiles/SNRE_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JUXbjPwj1mBzrOuA?e=wVHkGU",__dirname+'/VersionsFiles/AE_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JT9OzEaq3ZoNfmnA?e=tR3RtZ",__dirname+'/VersionsFiles/FWD_Version.txt');
@@ -681,10 +680,12 @@ var update = (function(){
                 {
                     console.log("Very UpToDate")
                     console.log(app.getAppPath())
+                    verif_gameVersionLoading();
                 }
                 if (window.require('electron').remote.app.getVersion().toString()===fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
                 {
                     console.log("UpToDate")
+                    verif_gameVersionLoading();
                 }
                 if (isUp2date === false)
                 {
@@ -735,4 +736,93 @@ function Updater(){
             DL('https://1drv.ws/u/s!AkkqGntQc7Y5hJsHrdjh7vcEs41iyw?e=d7euDn',__dirname+'/Update.zip',app.getAppPath())
         }
     }
+}
+function verif_gameVersionLoading(){
+
+if (window.require('electron').remote.app.getVersion().toString()>=fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
+{
+
+
+    setTimeout(function (){
+       if (fs.existsSync(__dirname+'/Games/LAATIM/LAIM_Version.txt').toString === true)
+       { if(fs.readFileSync(__dirname+'/Games/LAATIM/LAIM_Version.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/LAIM_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu Legend Adventure And The Infernal Maze est disponible !'
+      })
+       }
+    }
+    if (fs.existsSync(__dirname+'/Games/SF/VersionSF.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/SF/VersionSF.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/SF_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu ShootFighter est disponible !'
+      })
+       }}
+       if (fs.existsSync(__dirname+'/Games/LA/VersionLA.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/LA/VersionLA.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/LA_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu Lutin Adventure est disponible !'
+      })
+       }}
+       if (fs.existsSync(__dirname+'/Games/AE/VersionAE.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/AE/VersionAE.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/AE_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu AsteroidEscape est disponible !'
+      })
+       }}
+       if (fs.existsSync(__dirname+'/Games/SNRE/SNRE_Version.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/SNRE/SNRE_Version.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/SNRE_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu SansNom Réédition est disponible !'
+      })
+       }}
+       if (fs.existsSync(__dirname+'/Games/SGB/SGB_Version.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/SGB/SGB_Version.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/SGB_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu Super Geoffrey Bros est disponible !'
+      })
+       }}
+       if (fs.existsSync(__dirname+'/Games/TTD/TTD_Version.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/TTD/TTD_Version.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/TTD_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu The Tardis Defender est disponible !'
+      })
+       }}
+       if (fs.existsSync(__dirname+'/Games/TB/VersionTB.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/TB/VersionTB.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/TB_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu TanksBattle est disponible !'
+      })
+       }}
+       if (fs.existsSync(__dirname+'/Games/FWD/VersionFWD.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/FWD/VersionFWD.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/FWD_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu FireWall Defender est disponible !'
+      })
+       }}
+       if (fs.existsSync(__dirname+'/Games/VITF/VersionVITF.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/VITF/VersionVITF.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/VITF_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu Vincent In The Forest est disponible !'
+      })
+       }}
+       if (fs.existsSync(__dirname+'/Games/WR/VersionWR.txt').toString === true){
+       if (fs.readFileSync(__dirname+'/Games/WR/VersionWR.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/WR_Version.txt').toString())
+       {
+           let myNotification = new Notification('Nytuo Launcher', {
+        body: 'Une mise à jour du jeu WinRun est disponible !'
+      })
+       }}
+       window.location.href = "./index.html"    
+       },4000);
+    }   
 }
