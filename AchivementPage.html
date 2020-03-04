@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="Ressources/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <script type="text/javascript" src="js.js"></script>
+    <title>Nytuo Launcher - Achivements</title>
+</head>
+<header>
+    
+    <nav id="nav">
+        <ul style="padding: auto;">
+            <img src="Ressources/logoLauncher.png" class="logonav"  title="Logo de Nytuo" style="text-align:left;width: 15%;">
+            <div style="float: right;">
+                <li><a href="about.html">Paramètres</a></li>
+                <li><a href="AchivementPage.html">Achievements</a></li>
+                <li><a href="index.html">Jeux</a><li>
+                <li><a href="news.html">News</a></li>
+            </div>
+        </ul>
+    </nav>
+</header>
+<body>
+
+
+
+<div style="padding-top: 120px;"></div>
+<h1>Achievements : </h1>
+<p>Les jeux non listés de ne sont pas supportés par la focntionalité d'Achievements</p>
+<div class="cards-list">
+    <a href="LAATIMAch.html">
+        <div class="card 1">
+            <div class="card_image">
+                <img src="Ressources/IMGLAATIM.png" />
+            </div>
+            <div class="card_title title-white">
+                <img src="Ressources/LogoLAATIM.png"  style="z-index: 1; width: 25%;top: 35%;left: 40%">
+                <div id="ProgressAchLAATIM"  style="text-align: center;height: 10px;">
+                    <div id="BarAchLAATIM" style="background-color: #008C3F;color: transparent;height: 10px;"></div>
+                </div>   
+            </div>
+        </div>
+    </a>
+    <a href="SGBAch.html"><div class="card 1">                     
+        <div class="card_image"> <img src="Ressources/SGB2.png" /> </div>
+        <div class="card_title title-white">
+            <img src="Ressources/SGB1.png" style="z-index: 1; width: 55%;top: 40%;left: 35%">
+                <div id="ProgressAchSGB"  style="text-align: center;height: 10px;">
+                    <div id="BarAchSGB" style="background-color: #FBCF08;color: transparent;height: 10px;"></div>
+                </div>  
+        </div></div>
+    </a> 
+    <a href="SNREAch.html">
+        <div class="card 1">
+            <div class="card_image"> <img src="Ressources/IMGSN.png" /> </div>
+            <div class="card_title title-white" >
+                <img src="Ressources/LogoSN.png" style="z-index: 1; width:22%;top: 35%;left: 40%">
+                <div id="ProgressAchSNRE"  style="text-align: center;height: 10px;">
+                    <div id="BarAchSNRE" style="background-color: #6FC4A9;color: transparent;height: 10px;"></div>
+                </div>   
+            </div>
+        </div>
+    </a>
+</body>
+<script>
+    LoadAchivements()
+</script>
+</html>

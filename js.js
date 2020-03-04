@@ -4,11 +4,39 @@ const rimraf = require("rimraf");
 const extract=require('extract-zip');
 var request = require('request');
 var fs =require('fs');
+const os = require('os');
+var homedir = os.homedir();
 const app = require('electron').remote.app;
 var dialog = app.dialog; 
 const ws = require('windows-shortcuts');
 var updatedownloaded = false;
 var path = require('path');
+function achivement(){
+
+    const remote = require('electron').remote;
+const BrowserWindow = remote.BrowserWindow;
+const path = require('path')
+let display = remote.screen.getPrimaryDisplay();
+let width = display.bounds.width;
+let height = display.bounds.height;
+const ach = new BrowserWindow({
+    frame : false,
+    resizable: false,
+    height : 100,
+    width:350,
+    alwaysOnTop: true,
+    icon : path.join(__dirname,'Ressources/logoexp.png'),
+    x: width -380,
+    y: height-150,
+    webPreferences: {
+        nodeIntegration: true
+      },
+});
+
+ach.loadFile("./achivement.html");
+ach.setAlwaysOnTop(true, "floating", 1);
+ach.setVisibleOnAllWorkspaces(true);
+}
 function Open(dossierdujeu,filename){
 shell.openItem(__dirname + "/Games/"+dossierdujeu+"/"+filename);
 }
@@ -30,74 +58,7 @@ function DownlaodFile(file_url,targetPath,dossierdujeu){
 
         showProgress(received_bytes, total_bytes);
     });
-    req.on('end', function() {
-        if (dossierdujeu === "LAATIM")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'Legend Adventure And The Infernal Maze downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "SF")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'ShootFighter downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "LA")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'Lutin Adventure downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "AE")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'AsteroidEscape downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "SNRE")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'SansNom Réédition downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "SGB")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'Super Geoffrey Bros downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "TTD")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'The Tardis Defender downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "TB")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'TanksBattle downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "FWD")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'FireWall Defender downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "VITF")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'Vincent In The Forest downloaded, extracting !'
-       })
-        }
-        if (dossierdujeu === "WR")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'WinRun downloaded, extracting !'
-       })
-        }
-    	
+    req.on('end', function() {    	
         extractzipgame(targetPath,dossierdujeu);
     });
 }
@@ -105,7 +66,6 @@ function showProgress(received,total){
     var percentage = (received * 100) / total;
     var elem = document.getElementById("myBar");   
     var width = 0;
-
         width++; 
         elem.style.width = percentage + "%"; 
         elem.innerHTML = percentage.toFixed() + "%";
@@ -121,93 +81,92 @@ function extractzipgame(zippath,destpath){
 	})
 }
 function deletefile(file2delete){
-	var filepath = file2delete;
+    var filepath = file2delete;
+    console.log(filepath)
 if (fs.existsSync(filepath)) {
     fs.unlink(filepath, (err) => {
         if (err) {
-            let myNotification = new Notification('Nytuo Launcher - Error', {
-                body: err.message
-              })
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Erreur : "+err.message+" \nLogoexp.png");
+                    achivement();
             console.log(err);
             return;
             
-        }
-        if (file2delete === "LA_IM.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'Legend Adventure And The Infernal Maze is now playable !'
-       })
-        }
-        if (file2delete === "SF.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'ShootFighter is now playable !'
-       })
-        }
-        if (file2delete === "LA.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'Lutin Adventure is now playable !'
-       })
-        }
-        if (file2delete === "AE.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'AsteroidEscape is now playable !'
-       })
-        }
-        if (file2delete === "SNRE.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'SansNom Réédition is now playable !'
-       })
-        }
-        if (file2delete === "SGB.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'Super Geoffrey Bros is now playable !'
-       })
-        }
-        if (file2delete === "TTD.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'The Tardis Defender is now playable !'
-       })
-        }
-        if (file2delete === "TB.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'TanksBattle is now playable !'
-       })
-        }
-        if (file2delete === "FWD.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'FireWall Defender is now playable !'
-       })
-        }
-        if (file2delete === "VITF.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'Vincent In The Forest is now playable !'
-       })
-        }
-        if (file2delete === "WR.zip")
-        {
-            let myNotification = new Notification('Nytuo Launcher', {
-         body: 'WinRun is now playable !'
-       })
-        }
-        if (file2delete === "Update.zip")
-        {
-            refresh()
-        }
-   });
+        }});
+        
 } else {
-        let myNotification = new Notification('Nytuo Launcher - Error', {
-     body: "Game can't be deleted !"
-   })
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Le vidage du cache a rencontré une erreur \nLogoexp.png");
+    achivement();
 }
+if (file2delete === __dirname+"/Games/LAATIM/LA_IM.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Legend Adventure and the Infernal Maze est maintenant jouable \nLogoLAATIM.png");
+                    achivement();
+        }
+        if (file2delete === __dirname+"/Games/SF/SF.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","ShootFighter est maintenant jouable \nLogoSF.png");
+            achivement();
+        }
+        if (file2delete === __dirname+"/Games/LA/LA.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Lutin Adventure est maintenant jouable \nLogoLA.png");
+                    achivement();
+        }
+        if (file2delete === __dirname+"/Games/AE/AE.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","AstéroidEscape est maintenant jouable ! \nLogoAE.png");
+            achivement();
+        }
+        if (file2delete === __dirname+"/Games/SNRE/SNRE.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","SansNom Réédition est maintenant jouable \nLogoSN.png");
+            achivement();
+        }
+        if (file2delete === __dirname+"/Games/SGB/SGB.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Super Geoffrey Bros est maintenant jouable \nLogoSGB.png");
+            achivement();
+        }
+        if (file2delete === __dirname+"/Games/TTD/TTD.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","The Tardis Defender est maintenant jouable \nLogoTTD.png");
+            achivement();
+        }
+        if (file2delete === __dirname+"/Games/TB/TB.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","TanksBattle est maintenant jouable \nLogoTB.png");
+            achivement();
+        }
+        if (file2delete === __dirname+"/Games/FWD/FWD.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","FireWall Defender est maintenant jouable \nLogoFWD.png");
+                    achivement();
+        }
+        if (file2delete === __dirname+"/Games/VITF/VITF.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Vincent In The Forest est maintenant jouable \nLogoVITF.png");
+            achivement();
+        }
+        if (file2delete === __dirname+"/Games/WR/WR.zip")
+        {
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","WinRun est maintenant jouable \nLogoWR.png");
+            achivement();
+        }
+        if (file2delete === __dirname+"/Update.zip")
+        {
+            window.location.href = "./index.html"
+        }
+
+        setTimeout(function (){
+if (isUp2date === true)
+{
+    refresh();
+}
+else
+{
+ window.location.href = "./index.html"
+}
+},2000);
 
 }
 function OpenEmpl(emplacement){
@@ -220,6 +179,61 @@ function redm(){
 }
 function deletefolder(folder2delete){
     rimraf(folder2delete, function () { console.log("done"); });
+    if (folder2delete === __dirname+"/Games/LAATIM")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Legend Adventure and the Infernal Maze est maintenant supprimer \nLogoLAATIM.png");
+    achivement();
+   }
+   if (folder2delete === __dirname+"/Games/SF")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Shootfighter est maintenant supprimer \nLogoSF.png");
+    achivement();
+   }
+   if (folder2delete === __dirname+"/Games/LA")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Lutin Adventure est maintenant supprimer \nLogoLA.png");
+    achivement();
+   }
+   if (folder2delete === __dirname+"/Games/AE")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","AstéroidEscape est maintenant supprimer \nLogoAE.png");
+                    achivement();   
+   }
+   if (folder2delete === __dirname+"/Games/SNRE")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","SansNom Réédition est maintenant supprimer \nLogoSN.png");
+    achivement();
+   }
+   if (folder2delete === __dirname+"/Games/SGB")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Super Geoffrey Bros est maintenant supprimer \nSGB1.png");
+    achivement();
+   }
+   if (folder2delete === __dirname+"/Games/TTD")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","The Tardis Defender est maintenant supprimer \nLogoTTD.png");
+    achivement();
+   }
+   if (folder2delete === __dirname+"/Games/TB")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","TanksBattle est maintenant supprimer\nLogoTB.png");
+    achivement();
+   }
+   if (folder2delete === __dirname+"/Games/FWD")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","FireWall Defender est maintenant supprimer \nLogoFWD.png");
+    achivement();
+   }
+   if (folder2delete === __dirname+"/Games/VITF")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Vincent In The Forest est maintenant supprimer \nLogoVITF.png");
+    achivement();
+   }
+   if (folder2delete === __dirname+"/Games/WR")
+   {
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","WinRun est maintenant Supprimer \nLogoWR.png");
+    achivement();
+   }
     setTimeout(function (){
     if (!fs.existsSync(__dirname+'/Games'))fs.mkdirSync(__dirname+'/Games', { recursive: true });
    if (!fs.existsSync(__dirname+'/Games/AE'))fs.mkdirSync(__dirname+'/Games/AE', { recursive: true });
@@ -233,73 +247,9 @@ function deletefolder(folder2delete){
    if (!fs.existsSync(__dirname+'/Games/FWD'))fs.mkdirSync(__dirname+'/Games/FWD', { recursive: true });
    if (!fs.existsSync(__dirname+'/Games/VITF'))fs.mkdirSync(__dirname+'/Games/VITF', { recursive: true });
    if (!fs.existsSync(__dirname+'/Games/WR'))fs.mkdirSync(__dirname+'/Games/WR', { recursive: true });
+   
+   
    refresh();
-   if (folder2delete === "LAATIM")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'Legend Adventure And The Infernal Maze is now deleted !'
-  })
-   }
-   if (folder2delete === "SF")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'ShootFighter is now deleted !'
-  })
-   }
-   if (folder2delete === "LA")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'Lutin Adventure is now deleted !'
-  })
-   }
-   if (folder2delete === "AE")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'AsteroidEscape is now deleted !'
-  })
-   }
-   if (folder2delete === "SNRE")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'SansNom Réédition is now deleted !'
-  })
-   }
-   if (folder2delete === "SGB")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'Super Geoffrey Bros is now deleted !'
-  })
-   }
-   if (folder2delete === "TTD")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'The Tardis Defender is now deleted !'
-  })
-   }
-   if (folder2delete === "TB")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'TanksBattle is now deleted !'
-  })
-   }
-   if (folder2delete === "FWD")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'FireWall Defender is now deleted !'
-  })
-   }
-   if (folder2delete === "VITF")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'Vincent In The Forest is now deleted !'
-  })
-   }
-   if (folder2delete === "WR")
-   {
-       let myNotification = new Notification('Nytuo Launcher', {
-    body: 'WinRun is now deleted !'
-  })
-   }
    },5000);
 }
 function deleteall(){
@@ -317,10 +267,10 @@ function deleteall(){
     if (!fs.existsSync(__dirname+'/Games/FWD'))fs.mkdirSync(__dirname+'/Games/FWD', { recursive: true });
     if (!fs.existsSync(__dirname+'/Games/VITF'))fs.mkdirSync(__dirname+'/Games/VITF', { recursive: true });
     if (!fs.existsSync(__dirname+'/Games/WR'))fs.mkdirSync(__dirname+'/Games/WR', { recursive: true });
-    refresh();
-    let myNotification = new Notification('All Games Deleted !', {
-        body: 'All your games are now deleted !'
-      })
+    
+    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Tous les jeux ont été supprimer \nLogoexp.png");
+                    achivement();
+      refresh();
     },5000);
 }
 function createlink(path,path2link){
@@ -371,9 +321,42 @@ function detectforWin(dossierdujeu,versiontxt,versionlcl,gamename,txtVID){
         {
             document.getElementById(dossierdujeu+"button1").innerHTML = "Mettre à jour";
             document.getElementById(txtVID).innerHTML = "Version : "+fs.readFileSync(__dirname+'/Games/'+dossierdujeu+'/'+versiontxt).toString()+" (Non à jour)";
-            let myNotification = new Notification(gamename, {
-                body: "Une mise à jour du jeu "+gamename+" est disponible !"
-              })
+            var logo;
+            if (gamename === "Lutin Adventure"){
+                logo = "LogoLA"
+            }
+            if (gamename === "ShootFighter"){
+                logo = "LogoSF"
+            }
+            if (gamename === "Super Geoffrey Bros"){
+                logo = "SGB1"
+            }
+            if (gamename === "Legend Adventure and the Infernal Maze"){
+                logo = "LogoLAATIM"
+            }
+            if (gamename === "Vincent In The Forest"){
+                logo = "LogoVITF"
+            }
+            if (gamename === "The Tardis Defender"){
+                logo = "LogoTTD"
+            }
+            if (gamename === "FireWall Defender"){
+                logo = "LogoFWD"
+            }
+            if (gamename === "TanksBattle"){
+                logo = "LogoTB"
+            }
+            if (gamename === "WinRun"){
+                logo = "LogoWR"
+            }
+            if (gamename === "AsteroidEscape"){
+                logo = "LogoAE"
+            }
+            if (gamename === "SansNom Réédition"){
+                logo = "LogoSN"
+            }
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Une mise à jour du jeu "+gamename+" est disponible \n"+logo+".png");
+                    achivement();
         } 
         }
         if (process.platform !== "win32")
@@ -441,9 +424,42 @@ function detect(dossierdujeu,versiontxt,versionlcl,gamename,txtVID){
             {
                 document.getElementById(dossierdujeu+"button1").innerHTML = "Mettre à jour";
                 document.getElementById(txtVID).innerHTML = "Version : "+fs.readFileSync(__dirname+'/Games/'+dossierdujeu+'/'+versiontxt).toString()+" (Non à jour)";
-                let myNotification = new Notification(gamename, {
-                    body: "Une mise à jour du jeu "+gamename+" est disponible !"
-                })
+                var logo;
+            if (gamename === "Lutin Adventure"){
+                logo = "LogoLA"
+            }
+            if (gamename === "ShootFighter"){
+                logo = "LogoSF"
+            }
+            if (gamename === "Super Geoffrey Bros"){
+                logo = "SGB1"
+            }
+            if (gamename === "Legend Adventure and the Infernal Maze"){
+                logo = "LogoLAATIM"
+            }
+            if (gamename === "Vincent In The Forest"){
+                logo = "LogoVITF"
+            }
+            if (gamename === "The Tardis Defender"){
+                logo = "LogoTTD"
+            }
+            if (gamename === "FireWall Defender"){
+                logo = "LogoFWD"
+            }
+            if (gamename === "TanksBattle"){
+                logo = "LogoTB"
+            }
+            if (gamename === "WinRun"){
+                logo = "LogoWR"
+            }
+            if (gamename === "AsteroidEscape"){
+                logo = "LogoAE"
+            }
+            if (gamename === "SansNom Réédition"){
+                logo = "LogoSN"
+            }
+            fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Une mise à jour du jeu "+gamename+" est disponible \n"+logo+".png");
+                    achivement();
             } 
         }
         else
@@ -483,7 +499,44 @@ function DownlaodVersion(file_url,targetPath){
         received_bytes += chunk.length;
     });
 }
+function choose(){
+    let random = Math.floor(Math.random()*(10-0+1)+0);
+    if (random===0){
+        document.getElementById("loadertxt").innerHTML = "Connecting to the TARDIS's database..."
+    }
+    if (random===1){
+        document.getElementById("loadertxt").innerHTML = "Toss a coin to your Programer..."
+    }
+    if (random===2){
+        document.getElementById("loadertxt").innerHTML = "To Be or not to Be, why not Be a Launcher ?"
+    }
+    if (random===3){
+        document.getElementById("loadertxt").innerHTML = "Nothing is true, everything is permitted !"
+    }
+    if (random===4){
+        document.getElementById("loadertxt").innerHTML = "Darth Vader is Immortal !"
+    }
+    if (random===5){
+        document.getElementById("loadertxt").innerHTML = "Thanos kill half of univers population..."
+    }
+    if (random===6){
+        document.getElementById("loadertxt").innerHTML = "Checking for upgrade..."
+    }
+    if (random===7){
+        document.getElementById("loadertxt").innerHTML = "Loading..."
+    }
+    if (random===8){
+        document.getElementById("loadertxt").innerHTML = "Avengers Assemble ! "
+    }
+    if (random===9){
+        document.getElementById("loadertxt").innerHTML = "The Nytuo Launcher is loading..."
+    }
+    if (random===10){
+        document.getElementById("loadertxt").innerHTML = "I turn myself into a Launcher, Morty ! I'm Launcher Riiiick !!"
+    }
 
+    
+}
 function DLVersions(){
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJolpeqR1khuFIbpjA?e=wTgArs",__dirname+'/VersionsFiles/SNRE_Version.txt');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JUXbjPwj1mBzrOuA?e=wVHkGU",__dirname+'/VersionsFiles/AE_Version.txt');
@@ -499,6 +552,10 @@ function DLVersions(){
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99",__dirname+'/VersionsFiles/LauncherVersion.txt');
         DownlaodVersion("https://1drv.ws/u/s!AkkqGntQc7Y5hJpf7fm6Vp75nfiuYQ?e=PM7c0S",__dirname+'/news.html');
         DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu",__dirname+'/VersionsFiles/LauncherUpdateType.txt');
+        if (fs.readFileSync(__dirname+'/VersionsFiles/LauncherUpdateType.txt') === "1")
+        {
+            document.getElementById("updatetext1").innerHTML = "Mise à jour manuelle requise : visiter le site web pour plus d'information..."
+        }
 
 }
 
@@ -632,6 +689,10 @@ function deletefolderforrepair(folder2delete){
    },500);
 }
 
+
+function achivementanim(){
+
+}
 function RunWithoutInstall(url,gamejolt){
 const remote = require('electron').remote;
 const BrowserWindow = remote.BrowserWindow;
@@ -666,9 +727,8 @@ var update = (function(){
                 console.log(fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString());
                 if (window.require('electron').remote.app.getVersion().toString()<fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())   
                 {
-                    let myNotification = new Notification('Nytuo Launcher -- Updater', {
-                        body: "Le launcher n'est pas à jour !"
-                    })
+                    fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du Nytuo Launcher Disponible\nLogoexp.png");
+                    achivement();
                     console.log("You have to update the launcher !")
                     isUp2date = false;
                 }
@@ -679,7 +739,7 @@ var update = (function(){
                     verif_gameVersionLoading();
                 }
                 if (window.require('electron').remote.app.getVersion().toString()===fs.readFileSync(__dirname+'/VersionsFiles/LauncherVersion.txt').toString())
-                {
+                {                    
                     console.log("UpToDate")
                     verif_gameVersionLoading();
                 }
@@ -721,82 +781,190 @@ if (window.require('electron').remote.app.getVersion().toString()>=fs.readFileSy
        if (fs.existsSync(__dirname+'/Games/LAATIM/LAIM_Version.txt').toString === true)
        { if(fs.readFileSync(__dirname+'/Games/LAATIM/LAIM_Version.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/LAIM_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu Legend Adventure And The Infernal Maze est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du jeu Legend Adventure and the Infernal Maze Disponible\nLogoLAATIM.png");
+        achivement();
        }
     }
     if (fs.existsSync(__dirname+'/Games/SF/VersionSF.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/SF/VersionSF.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/SF_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu ShootFighter est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du jeu ShootFighter Disponible\nLogoSF.png");
+        achivement();
        }}
        if (fs.existsSync(__dirname+'/Games/LA/VersionLA.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/LA/VersionLA.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/LA_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu Lutin Adventure est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du jeu Lutin Adventure Disponible\nLogoLA.png");
+        achivement();
        }}
        if (fs.existsSync(__dirname+'/Games/AE/VersionAE.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/AE/VersionAE.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/AE_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu AsteroidEscape est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du jeu Astéroid Escape Disponible\nLogoAE.png");
+        achivement();
        }}
        if (fs.existsSync(__dirname+'/Games/SNRE/SNRE_Version.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/SNRE/SNRE_Version.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/SNRE_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu SansNom Réédition est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du jeu SansNom Réédition Disponible\nLogoSN.png");
+        achivement();
        }}
        if (fs.existsSync(__dirname+'/Games/SGB/SGB_Version.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/SGB/SGB_Version.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/SGB_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu Super Geoffrey Bros est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du jeu Super Geoffrey Bros Disponible\nSGB1.png");
+        achivement();
        }}
        if (fs.existsSync(__dirname+'/Games/TTD/TTD_Version.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/TTD/TTD_Version.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/TTD_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu The Tardis Defender est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du jeu The Tardis Defender Disponible\nLogoTTD.png");
+        achivement();
        }}
        if (fs.existsSync(__dirname+'/Games/TB/VersionTB.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/TB/VersionTB.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/TB_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu TanksBattle est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du TanksBattle Disponible\nLogoTB.png");
+        achivement();
        }}
        if (fs.existsSync(__dirname+'/Games/FWD/VersionFWD.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/FWD/VersionFWD.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/FWD_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu FireWall Defender est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du FireWall Defender Disponible\nLogoFWD.png");
+        achivement();
        }}
        if (fs.existsSync(__dirname+'/Games/VITF/VersionVITF.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/VITF/VersionVITF.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/VITF_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu Vincent In The Forest est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du jeu Vincent In The Forest Disponible\nLogoVITF.png");
+        achivement();
        }}
        if (fs.existsSync(__dirname+'/Games/WR/VersionWR.txt').toString === true){
        if (fs.readFileSync(__dirname+'/Games/WR/VersionWR.txt').toString()<fs.readFileSync(__dirname+'/VersionsFiles/WR_Version.txt').toString())
        {
-           let myNotification = new Notification('Nytuo Launcher', {
-        body: 'Une mise à jour du jeu WinRun est disponible !'
-      })
+        fs.writeFileSync(__dirname+"/Ach_Notif_TXT.txt","Mise à jour du jeu WinRun Disponible\nLogoWR.png");
+        achivement();
        }}
+
        window.location.href = "./index.html"    
        },4000);
     }   
+}
+
+function compare(array1,array2){
+    var temp = [];
+    array1 = array1.toString().split(',').map(String);
+    array2 = array2.toString().split(',').map(String);
+    
+    for (var i in array1) {
+    if(array2.indexOf(array1[i]) === -1) temp.push(array1[i]);
+    }
+    return temp.sort((a) => a);
+}
+function LoadAchivements(){
+   console.log(homedir)
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    if (page === "SGBAch.html" || page === "AchivementPage.html"){
+        var AchlistSGB = require('fs').readFileSync(__dirname+'/Achievements/SGB/AllAchievements.txt','utf-8').split('\n');
+        let AchListSGBDone2 =require('fs').readFileSync(homedir+"/Nytuo/Achievements/SGB/AchDone.txt",'utf-8').split('\n');
+        console.log(AchListSGBDone2);
+        let temp = AchListSGBDone2.sort();
+        let AchListSGBDone=  Array.from(new Set(temp));
+        console.log(AchListSGBDone);
+        var percentage = ((AchListSGBDone.length-2) * 100) / (AchlistSGB.length-1);
+         if (percentage < "0"){
+                percentage = 0
+            }
+        console.log(percentage);
+        var elem = document.getElementById("BarAchSGB");   
+        var width = 0;
+        elem.style.width = percentage + "%"; 
+        elem.innerHTML = percentage.toFixed() + "%";
+        var AchListSGBTab = AchListSGBDone.slice(1,(AchListSGBDone.length));
+        var AchListSGBTXT = AchListSGBTab.toString().split(",").join("<br/>");
+        if (page==="SGBAch.html"){
+            document.getElementById('SGBachDone').innerHTML = AchListSGBTXT.toString();
+            var SGBLock = compare(AchlistSGB,AchListSGBDone);
+           
+            if (percentage <= "0"){
+                document.getElementById('SGBachDone').innerHTML = "Aucun Achievements n'a encore était débloquer pour ce jeu"
+            }
+            if (percentage != "100")
+            {
+                document.getElementById('SGBach').innerHTML = SGBLock.toString().split(",").join('<br/>');
+            } 
+            else{
+                document.getElementById('SGBach').innerHTML = "All Achievements are Unlocked"
+            }
+        }
+    }
+    if (page === "LAATIMAch.html" || page === "AchivementPage.html"){
+        var AchlistLAATIM = require('fs').readFileSync(__dirname+'/Achievements/LAATIM/AllAchievements.txt','utf-8').split('\n');
+        let AchListLAATIMDone2 =require('fs').readFileSync(__dirname+"/Games/LAATIM/Achievements.txt",'utf-8').split('\n');
+        console.log(AchListLAATIMDone2);
+        let temp = AchListLAATIMDone2.sort();
+        let AchListLAATIMDone=  Array.from(new Set(temp));
+        console.log(AchListLAATIMDone);
+        var percentage = ((AchListLAATIMDone.length-2) * 100) / (AchlistLAATIM.length-1);
+         if (percentage < "0"){
+                percentage = 0
+            }
+        console.log(percentage);
+        var elem = document.getElementById("BarAchLAATIM");   
+        var width = 0;
+        elem.style.width = percentage + "%"; 
+        elem.innerHTML = percentage.toFixed() + "%";
+        var AchListLAATIMTab = AchListLAATIMDone.slice(1,(AchListLAATIMDone.length));
+        var AchListLAATIMTXT = AchListLAATIMTab.toString().split(",").join("<br/>");
+        if (page==="LAATIMAch.html"){
+            document.getElementById('LAATIMachDone').innerHTML = AchListLAATIMTXT.toString();
+            var LAATIMLock = compare(AchlistLAATIM,AchListLAATIMDone);
+           
+            if (percentage <= "0"){
+                document.getElementById('LAATIMachDone').innerHTML = "Aucun Achievements n'a encore était débloquer pour ce jeu"
+            }
+            if (percentage != "100")
+            {
+                document.getElementById('LAATIMach').innerHTML = LAATIMLock.toString().split(",").join('<br/>');
+            } 
+            else{
+                document.getElementById('LAATIMach').innerHTML = "All Achievements are Unlocked"
+            }
+        }
+    }
+    if (page === "SNREAch.html" || page === "AchivementPage.html"){
+        var AchlistSNRE = require('fs').readFileSync(__dirname+'/Achievements/SNRE/AllAchievements.txt','utf-8').split('\n');
+        let AchListSNREDone2 =require('fs').readFileSync(homedir+"/Nytuo/Achievements/SNRE/AchDone.txt",'utf-8').split('\n');
+        console.log(AchListSNREDone2);
+        let temp = AchListSNREDone2.sort();
+        let AchListSNREDone=  Array.from(new Set(temp));
+        console.log(AchListSNREDone);
+        var percentage = ((AchListSNREDone.length-2) * 100) / (AchlistSNRE.length-1);
+         if (percentage < "0"){
+                percentage = 0
+            }
+        console.log(percentage);
+        var elem = document.getElementById("BarAchSNRE");   
+        var width = 0;
+        elem.style.width = percentage + "%"; 
+        elem.innerHTML = percentage.toFixed() + "%";
+        var AchListSNRETab = AchListSNREDone.slice(1,(AchListSNREDone.length));
+        var AchListSNRETXT = AchListSNRETab.toString().split(",").join("<br/>");
+        if (page==="SNREAch.html"){
+            document.getElementById('SNREachDone').innerHTML = AchListSNRETXT.toString();
+            var SNRELock = compare(AchlistSNRE,AchListSNREDone);
+           
+            if (percentage <= "0"){
+                document.getElementById('SNREachDone').innerHTML = "Aucun Achievements n'a encore était débloquer pour ce jeu"
+            }
+            if (percentage != "100")
+            {
+                document.getElementById('SNREach').innerHTML = SNRELock.toString().split(",").join('<br/>');
+            } 
+            else{
+                document.getElementById('SNREach').innerHTML = "All Achievements are Unlocked"
+            }
+        }
+    }
 }

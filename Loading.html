@@ -5,17 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="Ressources/favicon.ico" />
+    <link rel="stylesheet" href="animate.min.css" />
     <script type="text/javascript" src="js.js"></script>
     <title>Nytuo Launcher -- Loading</title>
 </head>
-<script>
-update();
-DLVersions();
-</script>
+
 <body>
-    <div style="text-align: center;margin-top: 15%;">
+    <div style="text-align: center;margin-top: 15%;">        
         <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        <h2>Loading...</h2>
+        <h2 id="loadertxt">Loading...</h2>
+        <p><script type="text/javascript">
+            const alertOnlineStatus = () => {
+        document.write(navigator.onLine ? "" : "Déconnecté de l'internet")
+      }
+        window.addEventListener('online',  alertOnlineStatus)
+        window.addEventListener('offline',  alertOnlineStatus)
+        alertOnlineStatus();
+        
+        </script></p>
+        <p id="updatetext1">  </p>
     </div>
 </body>
+<script>
+    choose();
+update();
+DLVersions();
+
+</script>
 </html>

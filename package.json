@@ -1,6 +1,7 @@
 {
   "name": "nytuolauncher",
   "productName": "Nytuo-Launcher",
+  "appId": "com.Nytuo.NytuoLauncher",
   "publish": [
     {
       "provider": "github",
@@ -8,7 +9,7 @@
       "owner": "Nytuo"
     }
   ],
-  "version": "2.7.2",
+  "version": "2.7.4",
   "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
   "main": "main.js",
   "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
@@ -31,7 +32,7 @@
     "nodejs": "^0.0.0",
     "path": "^0.12.7",
     "request": "^2.88.0",
-    "rimraf": "^3.0.0",
+    "rimraf": "^3.0.2",
     "shell": "^0.5.0",
     "windows-shortcuts": "^0.1.6"
   }

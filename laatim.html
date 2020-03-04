@@ -15,6 +15,7 @@
             <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
             <div style="float: right;">
                 <li><a href="about.html">Paramètres</a></li>
+                <li><a href="AchivementPage.html">Achievements</a></li>
                 <li><a href="index.html">Jeux</a><li>
                 <li><a href="news.html">News</a></li>
             </div>
@@ -49,14 +50,25 @@
             </td>
             <td>
                  <div style="text-align: center;">
-            <a id="LAATIMbutton3" onclick="deletefolder(__dirname+'/Games/LAATIM')" href="javascript:void(0)" class="LAATIMDbutton">Déinstaller</a>                            
+            <a id="LAATIMbutton3" onclick="deletefolder(__dirname+'/Games/LAATIM')" href="javascript:void(0)" class="LAATIMDbutton">Déinstaller</a>        
+                                
         </div>
             </td>
+            <td>
+                <div style="text-align: center;">
+           <a id="LAATIMbutton6" href="AchivementPage.html" class="LAATIMbutton">Achievements</a>                            
+       </div>
+           </td>
             <td>
                  <div style="text-align: center;">
             <a id="LAATIMbutton4" onclick="OpenEmpl(__dirname+'/Games/LAATIM/')" href="javascript:void(0)" class="LAATIMbutton">Emplacement du jeu</a>                            
         </div>
             </td>
+            <td>
+                <div style="text-align: center;">
+           <a id="LAATIMbutton7" onclick="OpenEmpl(homedir+'/AppData/Local/LA_IM/Saved/SaveGames/')" href="javascript:void(0)" class="LAATIMbutton">Sauvegardes</a>                            
+       </div>
+           </td>
             <td>
                  <div style="text-align: center;">
             <a id="LAATIMbutton5" onclick="createlink(__dirname+'/Games/LAATIM/LA_IM.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="LAATIMbutton">Raccourcie</a>                            

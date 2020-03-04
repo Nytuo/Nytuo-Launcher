@@ -15,6 +15,7 @@
                 <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
                 <div style="float: right;">
                     <li><a href="about.html">Paramètres</a></li>
+                    <li><a href="AchivementPage.html">Achievements</a></li>
                     <li><a href="index.html">Jeux</a><li>
                     <li><a href="news.html">News</a></li>
                 </div>
@@ -44,7 +45,7 @@
             <a onclick="RunWithoutInstall('http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414')" href="javascript:void(0)" class="SNbutton" id="SNREbutton6">Jouer en ligne à Sans Nom Classic</a>                          
         </div>
             </td>
-             <td colspan="5">
+             <td colspan="3">
                 <div style="text-align: center;">
             <a onclick="RunWithoutInstall('https://itch.io/embed-upload/1889077?color=303030')" href="javascript:void(0)" class="SNbutton" id="SNREbutton7" style="text-align: center;">Jouer en ligne à Sans Nom Réédition</a>                          
         </div>
@@ -67,6 +68,11 @@
             <a id="SNREbutton3" onclick="deletefolder(__dirname+'/Games/SNRE')" href="javascript:void(0)" class="SNDbutton">Deinstaller</a>                            
         </div>
             </td>
+                        <td>
+                <div style="text-align: center;">
+           <a id="SNREbutton6" href="SNREAch.html" class="SNbutton">Achievements</a>                            
+       </div>
+           </td>
             <td>
                  <div style="text-align: center;">
             <a id="SNREbutton4" onclick="OpenEmpl(__dirname+'/Games/SNRE/')" href="javascript:void(0)" class="SNbutton">Emplacement du jeu</a>                            
@@ -77,6 +83,7 @@
             <a id="SNREbutton5" onclick="createlink(__dirname+'/Games/SNRE/nw.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="SNbutton">Raccourcie</a>                            
         </div>
             </td>
+
     </table>
     <div id="myProgress"  style="text-align: center;">
         <div id="myBar" style="background-color: #6FC4A9;

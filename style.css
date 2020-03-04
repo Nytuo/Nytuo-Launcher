@@ -201,6 +201,17 @@ h4{
   size: 24px;
   text-align: center;
 }
+.column{
+  float: left;
+  width: 50%;
+  padding: 8px;
+}
+.row::after{
+  content: "";
+  clear: both;
+  display: table;
+  text-align: center;
+}
 p{
  font-family: 'Roboto Condensed', sans-serif;
   font-size: 28px;
@@ -3226,6 +3237,39 @@ width: 75%;
   background-color: #333333;
 }
 #myBar{
+  width: 0%;
+  height: 30px;
+  background-color: #008C3F;
+  color: #ffffff;
+  font-family: 'Oswald',sans-serif;
+}
+#ProgressAchSGB{
+  width: 100%;
+  background-color: #333333;
+}
+#BarAchSGB{
+  width: 0%;
+  height: 30px;
+  background-color: #008C3F;
+  color: #ffffff;
+  font-family: 'Oswald',sans-serif;
+}
+#ProgressAchLAATIM{
+  width: 100%;
+  background-color: #333333;
+}
+#BarAchLAATIM{
+  width: 0%;
+  height: 30px;
+  background-color: #008C3F;
+  color: #ffffff;
+  font-family: 'Oswald',sans-serif;
+}
+#ProgressAchSNRE{
+  width: 100%;
+  background-color: #333333;
+}
+#BarAchSNRE{
   width: 0%;
   height: 30px;
   background-color: #008C3F;

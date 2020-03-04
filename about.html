@@ -15,6 +15,7 @@
             <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
             <div style="float: right;">
                 <li><a href="about.html">Paramètres</a></li>
+                <li><a href="AchivementPage.html">Achievements</a></li>
                 <li><a href="index.html">Jeux</a><li>
                 <li><a href="news.html">News</a></li>
             </div>
@@ -35,7 +36,7 @@
     document.write(process.versions.electron)
     </script><br/> et Node version : <script type="text/javascript">document.write(process.versions.node);</script><br/>et Chromium : <script type="text/javascript">document.write(process.versions.chrome)</script><br/>Launcher : <script type="text/javascript">
         const alertOnlineStatus = () => {
-    document.write(navigator.onLine ? "Connecté a l'internet" : "Déconnecté de l'internet")
+    document.write(navigator.onLine ? "Connecté à l'internet" : "Déconnecté de l'internet")
   }
     window.addEventListener('online',  alertOnlineStatus)
     window.addEventListener('offline',  alertOnlineStatus)
