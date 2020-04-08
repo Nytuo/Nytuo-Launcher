@@ -13,12 +13,12 @@
 <header>
     
     <nav id="nav">
-        <ul style="padding: auto;">
+        <ul>
             <img src="Ressources/logoLauncher.png" class="logonav"  title="Logo de Nytuo" style="text-align:left;width: 15%;">
             <div style="float: right;">
-                <li><a href="about.html">Paramètres</a></li>
-                <li><a href="AchivementPage.html">Achievements</a></li>
-                <li><a href="index.html">Jeux</a><li>
+                <li><a href="about.html">Settings</a></li>
+                <li><a onclick="document.getElementById('achpopup').style.display='block'" style="cursor:pointer;">Achievements</a></li>
+                <li><a href="index.html">Games</a><li>
                 <li><a href="news.html">News</a></li>
                 
             </div>
@@ -29,7 +29,7 @@
 
 
 
-<div style="padding-top: 120px;"></div>
+<div style="padding-top: 100px;"></div>
 <div class="cards-list">
   
     <a href="laatim.html"><div class="card 1">
@@ -99,5 +99,52 @@
         </div>
       </div></a>
     </div>
+    <div id="achpopup" class="modal">
+
+      <div class="modal-content animate" style="text-align: center;">
+          <h1>Achievements :</h1>
+          <h2>Legend Adventure and the Infernal Maze : </h2>
+          <div id="ProgressAchLAATIM"  style="text-align: center;height: 10px;">
+            <div id="BarAchLAATIM" style="background-color: #008C3F;color: transparent;height: 10px;"></div>
+        </div>   
+        <h2>Super Geoffrey Bros :</h2>
+        <div id="ProgressAchSGB"  style="text-align: center;height: 10px;">
+          <div id="BarAchSGB" style="background-color: #FBCF08;color: transparent;height: 10px;"></div>
+      </div>  
+      <h2>SansNom Réédition : </h2>
+      <div id="ProgressAchSNRE"  style="text-align: center;height: 10px;">
+        <div id="BarAchSNRE" style="background-color: #6FC4A9;color: transparent;height: 10px;"></div>
+    </div>   
+        <div style="padding-top: 2%;"></div>
+          <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+              <table>
+                  <tr>
+                      <td>
+                          <div class="box-3">
+                              <a onclick="document.getElementById('achpopup').style.display='none'">
+                                  <div class="btn btn-three">
+                                      <span>Back</span>
+                                  </div>
+                              </a>
+                          </div>
+                      </td>
+                  </tr>
+              </table>
+          </div>
+      </div>
+  </div>
+  <script>
+    // Get the modal
+    var modal = document.getElementById('achpopup');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    LoadAchivements()
+
+</script>
 </body>
 </html>

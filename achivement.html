@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
     <link rel="icon" href="Ressources/favicon.ico" />
     <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
-
+    <script type="text/javascript" src="js.js"></script>
     <title>Nytuo Launcher -- Notifycation</title>
 </head>
 <style>
@@ -68,14 +68,6 @@ body {
         <h2 id="ach-game"></h2>
 <h2 id="ach-txt"></h2>
 <script>
-var txt = require('fs').readFileSync(__dirname+'/Ach_Notif_TXT.txt','utf-8')
-    .split('\n');
-var AchTxtTemp = txt[0];
-var img = txt[1];
-function achivementtxt(){
-    document.getElementById("ach-txt").innerHTML = AchTxtTemp;
-    document.getElementById("ach-img").src = __dirname+"/Ressources/"+img
-}
     achivementtxt();
     setTimeout(function (){
     close()

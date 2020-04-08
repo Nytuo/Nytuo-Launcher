@@ -1,74 +1,349 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="style.css" />
-        <link rel="icon" href="Ressources/favicon.ico" />
-        <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
-        <script type="text/javascript" src="js.js"></script>
-        <title>ShootFighter -- Nytuo Launcher</title>
-    </head>
-    <header>
-        
-        <nav id="nav">
-            <ul style="padding: auto;">
-                <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
-                <div style="float: right;">
-                    <li><a href="about.html">Paramètres</a></li>
-                    <li><a href="AchivementPage.html">Achievements</a></li>
-                    <li><a href="index.html">Jeux</a><li>
-                    <li><a href="news.html">News</a></li>
-                </div>
-            </ul>
-        </nav>
-    </header>
-    <body>
-        <iframe onload="detectforWin('SF','VersionSF.txt','SF_Version.txt','ShootFighter','versiontxtsf')" src="javascript:void(0)" style="display: none;"></iframe>
-      
-            <div class="paralaxSF">
-                <table style="width: 100%;padding-top: 1%;">
+<html style="background-image: url(Ressources/IMGSF.png);">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="Ressources/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js.js"></script>
+    <title>ShootFighter -- Nytuo Launcher</title>
+</head>
+<header>
+
+    <nav id="nav">
+        <ul style="padding: auto;">
+            <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo"
+                style="text-align:left;width: 15%;">
+            <div style="float: right;">
+                <li><a href="about.html">Settings</a></li>
+                <li><a href="index.html">Games</a>
+                <li>
+                <li><a href="news.html">News</a></li>
+            </div>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <div id="overlay">
+        <div style="text-align: center;margin-top: 20%;">
+            <div class="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <!--Detection de la version et remplacement du text de version en conséquence-->
+    <iframe onload="detectforWin('SF','VersionSF.txt','SF_Version.txt','ShootFighter','versiontxtsf','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N')"
+        src="javascript:void(0)" style="display: none;"></iframe>
+    <!--Placement du titre du jeu, du text version et de l'affiche-->
+    <div style="padding-top: 8%;"></div>
+    <table style="width: 100%;">
+        <tr>
+            <td style="float: left;">
+                <div class="card 1">
+                    <div class="card_image"> <img src="Ressources/IMGSF.png" /> </div>
+                    <div class="card_title title-white">
+                        <img src="Ressources/LogoSF.png" style="z-index: 1; width: 30%;top: 35%;left: 40%">
+                    </div>
+                  </div>
+            </td>
+            <td>
+                <h1 class="paraTXTSF">ShootFighter</h1>
+                <h2 class="paraTXTSF" id="versiontxtsf"> Version : </h2>
+            </td>
+        </tr>
+    </table>
+    <!--Buttons-->
+    <div style="text-align: center;width: 100%;">
+        <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+            <table style="text-align: center;">
+                <tr>
+                    <td>
+                        <div class="box-3">
+
+                            <a onclick="document.getElementById('ConfirmDL').style.display='block';"
+                                href="javascript:void(0)">
+                                <div class="btn btn-three">
+                                    <span id="SFbutton1">PLAY</span>
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="box-3">
+                            <a id="SFbutton3" onclick="document.getElementById('id01').style.display='block'"
+                                href="javascript:void(0)">
+                                <div class="btn btn-three">
+                                    <span id="SFbutton3">Settings</span>
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!--Confirmation de déinstallation-->
+    <div id="ConfirmUN" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <h1>Confirmation :</h1>
+            <h2>You are about to DELETE ShootFighter</h2>
+            <h3>This action can't be undone.</br>If you search to repair the game is not here.</br>All the data (like saves) may be loose (You can eventually do a manual backup)</h3>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
                     <tr>
                         <td>
-                           <a onclick="window.open('https://nytuo.yo.fr/sf.html')"><img src="Ressources/LogoSF2.png" class="paraIMGSF" title="Image de SF"></a>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('ConfirmUN').style.display='none'">
+                                    <div class="btn btn-three">
+                                        <span>No</span>
+                                    </div>
+                                </a>
+                            </div>
                         </td>
                         <td>
-                         <h1 class="paraTXTSF">ShootFighter</h1><h2 id="versiontxtsf"> Version : </h2>
+                            <div class="box-3">
+                                <a onclick="deletefolder(gamelocation+'/Games/SF')">
+                                    <div class="btn btn-three">
+                                        <span>Yes</span>
+                                    </div>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 </table>
-        
-        
-        <table id="ju">
-            <tr>
-                <td>
-                    <div style="text-align: center;">
-                <a onclick="DoforWin('SF','VersionSF.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF.zip','SF_Version.txt','ShootFighter.exe','Shoot Fighter')" href="javascript:void(0)" class="SFbutton" id="SFbutton1"></a>                          
             </div>
-                </td>
-                <td>
-                    <div style="text-align: center;">
-                <a id="SFbutton2" onclick="repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF','SF.zip')" href="javascript:void(0)" class="SFRbutton">Réparer</a>                            
+        </div>
+    </div>
+    <!--Confirmation de réparation-->
+    <div id="ConfirmUP" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <h1>Confirmation :</h1>
+            <h2>You are about to repair ShootFighter</h2>
+            <h3>All your data will be loose, please do a manual backup</h3>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('ConfirmUP').style.display='none'">
+                                    <div class="btn btn-three">
+                                        <span>No</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="box-3">
+                                <a
+                                    onclick="document.getElementById('ConfirmUP').style.display='none';document.getElementById('id02').style.display='block';repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF','SF.zip')">
+                                    <div class="btn btn-three">
+                                        <span>Yes</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-                </td>
-                <td>
-                     <div style="text-align: center;">
-                <a id="SFbutton3" onclick="deletefolder(__dirname+'/Games/SF')" href="javascript:void(0)" class="SFDbutton">Déinstaller</a>                            
+        </div>
+    </div>
+    <!--Game Settings-->
+    <div id="id01" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <div class="imgcontainer">
+                <h1>Game Settings</h1>
             </div>
-                </td>
-                <td>
-                     <div style="text-align: center;">
-                <a id="SFbutton4" onclick="OpenEmpl(__dirname+'/Games/SF/')" href="javascript:void(0)" class="SFbutton">Emplacement du jeu</a>                            
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
+                    <tr>
+                        <td style="text-align: center;">
+                            <div class="box-3">
+                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUP').style.display='block';"
+                                    href="javascript:void(0)">
+                                    <div class="btn btn-three">
+                                        <span>Repair</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUN').style.display='block';"
+                                    href="javascript:void(0)">
+                                    <div class="btn btn-three">
+                                        <span>Uninstall</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="OpenEmpl(gamelocation+'/Games/SF/')" href="javascript:void(0)">
+                                    <div class="btn btn-three">
+                                        <span>Open Game Location</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="createlink(gamelocation+'/Games/SF/ShootFighter.exe',require('path').join(require('os').homedir(),'Desktop'))"
+                                    href="javascript:void(0)">
+                                    <div class="btn btn-three">
+                                        <span>ShortCut</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-                </td>
-                <td>
-                     <div style="text-align: center;">
-                <a id="SFbutton5" onclick="createlink(__dirname+'/Games/SF/ShootFighter.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="SFbutton">Raccourcie</a>                            
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <div style="padding-top: 2%;"></div>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('id01').style.display='none'">
+                                    <div class="btn btn-three">
+                                        <span>Back</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-                </td>
-        </table>
-        <div id="myProgress"  style="text-align: center;">
-            <div id="myBar" style="background-color: #D40A10;"></div>
-        </div>   
-        </div>  
-        </body> 
+        </div>
+    </div>
+    <!--Download-->
+    <div id="id02" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <div class="imgcontainer">
+                <h1 id="DLTEXT">Downloading... </h1>
+            </div>
+            <div class="progressBarLAATIM">
+                <div id="myProgress" style="text-align: center; ">
+                    <div id="myBar" style="background-color: #D40A10;"></div>
+                </div>
+            </div>
+            <div style="padding-top: 2%;"></div>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="refresh()">
+                                    <div class="btn btn-three">
+                                        <span>Cancel</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--Confirmation de téléchargement-->
+    <div id="ConfirmDL" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <h1>Confirmation :</h1>
+            <h2 id="resultofcalculsize">Wait a moment ...</h2>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('ConfirmDL').style.display='none'">
+                                    <div class="btn btn-three">
+                                        <span>No</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="whattodo()">
+                                    <script>
+                                        function whattodo() {
+                                            if (document.getElementById('SFbutton1').innerHTML === "Install") {
+                                                document.getElementById('ConfirmDL').style.display = 'none';
+                                                document.getElementById('id02').style.display = 'block';
+                                                DoforWin('SF','VersionSF.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF.zip','SF_Version.txt','ShootFighter.exe','Shoot Fighter');
+                                            }
+                                            if (document.getElementById('SFbutton1').innerHTML === "Update") {
+                                                document.getElementById('ConfirmDL').style.display = 'none';
+                                                document.getElementById('id02').style.display = 'block';
+                                                DoforWin('SF','VersionSF.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF.zip','SF_Version.txt','ShootFighter.exe','Shoot Fighter');
+                                            }
+                                            if (document.getElementById('SFbutton1').innerHTML === "Play") {
+                                                document.getElementById('ConfirmDL').style.display = 'none';
+                                                DoforWin('SF','VersionSF.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF.zip','SF_Version.txt','ShootFighter.exe','Shoot Fighter');
+                                            }
+                                        }
+                                    </script>
+                                    <div class="btn btn-three">
+                                        <span>Yes</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            <!--Script-->
+            <script>
+                // Get the modal
+                var modal = document.getElementById('id01');
+                var modal2 = document.getElementById('id02');
+                var modal3 = document.getElementById('id03');
+                var modal4 = document.getElementById('ConfirmDL');
+                var modal5 = document.getElementById('ConfirmUN');
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                    if (event.target == modal3) {
+                        modal3.style.display = "none";
+                    }
+                    if (event.target == modal4) {
+                        modal4.style.display = "none";
+                    }
+                    if (event.target == modal5) {
+                        modal5.style.display = "none";
+                    }
+                }
+
+            </script>
+</body>
+
 </html>

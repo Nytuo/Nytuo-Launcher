@@ -1,76 +1,340 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="style.css" />
-        <link rel="icon" href="Ressources/favicon.ico" />
-        <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
-        <script type="text/javascript" src="js.js"></script>
-        <title>TanksBattle -- Nytuo Launcher</title>
-    </head>
-    <header>
-        
-        <nav id="nav">
-            <ul style="padding: auto;">
-                <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
-                <div style="float: right;">
-                    <li><a href="about.html">Paramètres</a></li>
-                    <li><a href="AchivementPage.html">Achievements</a></li>
-                    <li><a href="index.html">Jeux</a><li>
-                    <li><a href="news.html">News</a></li>
-                </div>
-            </ul>
-        </nav>
-    </header>
+<html style="background-image: url(Ressources/IMGTB.png);">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="Ressources/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js.js"></script>
+    <title>TanksBattle -- Nytuo Launcher</title>
+</head>
+<header>
+
+    <nav id="nav">
+        <ul style="padding: auto;">
+            <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+            <div style="float: right;">
+                <li><a href="about.html">Settings</a></li>
+                <li><a href="index.html">Games</a>
+                    <li>
+                        <li><a href="news.html">News</a></li>
+            </div>
+        </ul>
+    </nav>
+</header>
+
 <body>
-    <iframe onload="detect('TB','VersionTB.txt','TB_Version.txt','TanksBattle','versiontxttb')" src="javascript:void(0)" style="display: none;"></iframe>
-  
-        <div class="paralaxTB">
-            <table style="width: 100%;padding-top: 2%;">
+    <div id="overlay">
+        <div style="text-align: center;margin-top: 20%;">
+            <div class="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <!--Detection de la version et remplacement du text de version en conséquence-->
+    <iframe onload="detect('TB','VersionTB.txt','TB_Version.txt','TanksBattle','versiontxttb','https://1drv.ws/u/s!AkkqGntQc7Y5g_ICTWGXUK_2YQehdA?e=UPND7O')" src="javascript:void(0)" style="display: none;"></iframe>
+    <!--Placement du titre du jeu, du text version et de l'affiche-->
+    <div style="padding-top: 8%;"></div>
+    <table style="width: 100%;">
+        <tr>
+            <td style="float: left;">
+                <div class="card 1">
+                    <div class="card_image"> <img src="Ressources/IMGTB.png" /> </div>
+                    <div class="card_title title-white">
+                        <img src="Ressources/LogoTB.png" style="z-index: 1; width: 40%;top: 25%;left: 35%">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <h1 class="paraTXTTB">TanksBattle</h1>
+                <h2 class="paraTXTTB" id="versiontxttb"> Version : </h2>
+            </td>
+        </tr>
+    </table>
+    <!--Buttons-->
+    <div style="text-align: center;width: 100%;">
+        <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+            <table style="text-align: center;">
                 <tr>
                     <td>
-                        <a onclick="window.open('https://nytuo.yo.fr/tb.html')"><img src="Ressources/LogoTB.png" class="paraIMGTB" title="Image de TB"></a>
+                        <div class="box-3">
+
+                            <a onclick="document.getElementById('ConfirmDL').style.display='block';" href="javascript:void(0)">
+                                <div class="btn btn-three">
+                                    <span id="TBbutton1">PLAY</span>
+                                </div>
+                            </a>
+                        </div>
                     </td>
+                </tr>
+                <tr>
                     <td>
-                      <h1 class="paraTXTTB">TanksBattle</h1>
-    <h2 id="versiontxttb"> Version : </h2>
+                        <div class="box-3">
+                            <a id="TBbutton3" onclick="document.getElementById('id01').style.display='block'" href="javascript:void(0)">
+                                <div class="btn btn-three">
+                                    <span id="TBbutton3">Settings</span>
+                                </div>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             </table>
-  <table id="ju">
-  
-        <tr>
-   
-            <td>
-                <div style="text-align: center;">
-            <a onclick="Do('TB','VersionTB.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_ICTWGXUK_2YQehdA?e=UPND7O','TB.zip','TB_Version.txt','nw.exe','TanksBattle','nw','nwjs.app','https://1drv.ws/u/s!AkkqGntQc7Y5hJpc_C0cQOMw2-rB5A?e=nYayYu','https://1drv.ws/u/s!AkkqGntQc7Y5hJpbqpPrgdoUixV9eg?e=0B0D9b')" href="javascript:void(0)" class="TBbutton" id="TBbutton1"></a>                          
         </div>
-            </td>
-            <td>
-                <div style="text-align: center;">
-            <a id="TBbutton2" onclick="repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_ICTWGXUK_2YQehdA?e=UPND7O','TB','TB.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJpc_C0cQOMw2-rB5A?e=nYayYu','https://1drv.ws/u/s!AkkqGntQc7Y5hJpbqpPrgdoUixV9eg?e=0B0D9b')" href="javascript:void(0)" class="TBRbutton">Reparer</a>                            
+    </div>
+    <!--Confirmation de déinstallation-->
+    <div id="ConfirmUN" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <h1>Confirmation :</h1>
+            <h2>You are about to DELETE TanksBattle</h2>
+            <h3>This action can't be undone.</br>If you search to repair the game is not here.</h3>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('ConfirmUN').style.display='none'">
+                                    <div class="btn btn-three">
+                                        <span>No</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="deletefolder(gamelocation+'/Games/TB')">
+                                    <div class="btn btn-three">
+                                        <span>Yes</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-            </td>
-            <td>
-                 <div style="text-align: center;">
-            <a id="TBbutton3" onclick="deletefolder(__dirname+'/Games/TB')" href="javascript:void(0)" class="TBDbutton">Deinstaller</a>                            
+    </div>
+    <!--Confirmation de réparation-->
+    <div id="ConfirmUP" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <h1>Confirmation :</h1>
+            <h2>You are about to repair TanksBattle</h2>
+            <h3>All your data will be loose, please do a manual backup</h3>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('ConfirmUP').style.display='none'">
+                                    <div class="btn btn-three">
+                                        <span>No</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('ConfirmUP').style.display='none';document.getElementById('id02').style.display='block';repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_ICTWGXUK_2YQehdA?e=UPND7O','TB','TB.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJpc_C0cQOMw2-rB5A?e=nYayYu','https://1drv.ws/u/s!AkkqGntQc7Y5hJpbqpPrgdoUixV9eg?e=0B0D9b')">
+                                    <div class="btn btn-three">
+                                        <span>Yes</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-            </td>
-            <td>
-                 <div style="text-align: center;">
-            <a id="TBbutton4" onclick="OpenEmpl(__dirname+'/Games/TB/')" href="javascript:void(0)" class="TBbutton">Emplacement du jeu</a>                            
+    </div>
+    <!--Game Settings-->
+    <div id="id01" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <div class="imgcontainer">
+                <h1>Game Settings</h1>
+            </div>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
+                    <tr>
+                        <td style="text-align: center;">
+                            <div class="box-3">
+                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUP').style.display='block';" href="javascript:void(0)">
+                                    <div class="btn btn-three">
+                                        <span>Repair</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUN').style.display='block';" href="javascript:void(0)">
+                                    <div class="btn btn-three">
+                                        <span>Uninstall</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="OpenEmpl(gamelocation+'/Games/TB/')" href="javascript:void(0)">
+                                    <div class="btn btn-three">
+                                        <span>Open Game Location</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="createlink(gamelocation+'/Games/TB/nw.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)">
+                                    <div class="btn btn-three">
+                                        <span>ShortCut</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <div style="padding-top: 2%;"></div>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('id01').style.display='none'">
+                                    <div class="btn btn-three">
+                                        <span>Back</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-            </td>
-            <td>
-                 <div style="text-align: center;">
-            <a id="TBbutton5" onclick="createlink(__dirname+'/Games/TB/nw.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)" class="TBbutton">Raccourcie</a>                            
+    </div>
+    <!--Download-->
+    <div id="id02" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <div class="imgcontainer">
+                <h1 id="DLTEXT">Downloading... </h1>
+            </div>
+            <div class="progressBarLAATIM">
+                <div id="myProgress" style="text-align: center; ">
+                    <div id="myBar" style="background-color: #229ACA;color: black;"></div>
+                </div>
+            </div>
+            <div style="padding-top: 2%;"></div>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="refresh()">
+                                    <div class="btn btn-three">
+                                        <span>Cancel</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-            </td>
-    </table>
-    <div id="myProgress"  style="text-align: center;">
-        <div id="myBar" style="background-color: #229ACA;
-        color: white;"></div>
-    </div>   
-    </div>  
+    </div>
+
+    <!--Confirmation de téléchargement-->
+    <div id="ConfirmDL" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <h1>Confirmation :</h1>
+            <h2 id="resultofcalculsize">Wait a moment ...</h2>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="document.getElementById('ConfirmDL').style.display='none'">
+                                    <div class="btn btn-three">
+                                        <span>No</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="box-3">
+                                <a onclick="whattodo()">
+                                    <script>
+                                        function whattodo() {
+                                            if (document.getElementById('TBbutton1').innerHTML === "Install") {
+                                                document.getElementById('ConfirmDL').style.display = 'none';
+                                                document.getElementById('id02').style.display = 'block';
+                                                Do('TB', 'VersionTB.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_ICTWGXUK_2YQehdA?e=UPND7O', 'TB.zip', 'TB_Version.txt', 'nw.exe', 'TanksBattle', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpc_C0cQOMw2-rB5A?e=nYayYu', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpbqpPrgdoUixV9eg?e=0B0D9b');
+                                            }
+                                            if (document.getElementById('TBbutton1').innerHTML === "Update") {
+                                                document.getElementById('ConfirmDL').style.display = 'none';
+                                                document.getElementById('id02').style.display = 'block';
+                                                Do('TB', 'VersionTB.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_ICTWGXUK_2YQehdA?e=UPND7O', 'TB.zip', 'TB_Version.txt', 'nw.exe', 'TanksBattle', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpc_C0cQOMw2-rB5A?e=nYayYu', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpbqpPrgdoUixV9eg?e=0B0D9b');
+                                            }
+                                            if (document.getElementById('TBbutton1').innerHTML === "Play") {
+                                                document.getElementById('ConfirmDL').style.display = 'none';
+                                                Do('TB', 'VersionTB.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_ICTWGXUK_2YQehdA?e=UPND7O', 'TB.zip', 'TB_Version.txt', 'nw.exe', 'TanksBattle', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpc_C0cQOMw2-rB5A?e=nYayYu', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpbqpPrgdoUixV9eg?e=0B0D9b');
+                                            }
+                                        }
+                                    </script>
+                                    <div class="btn btn-three">
+                                        <span>Yes</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            <!--Script-->
+            <script>
+                // Get the modal
+                var modal = document.getElementById('id01');
+                var modal2 = document.getElementById('id02');
+                var modal3 = document.getElementById('id03');
+                var modal4 = document.getElementById('ConfirmDL');
+                var modal5 = document.getElementById('ConfirmUN');
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                    if (event.target == modal3) {
+                        modal3.style.display = "none";
+                    }
+                    if (event.target == modal4) {
+                        modal4.style.display = "none";
+                    }
+                    if (event.target == modal5) {
+                        modal5.style.display = "none";
+                    }
+                }
+            </script>
 </body>
+
 </html>

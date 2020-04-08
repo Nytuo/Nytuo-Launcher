@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +12,58 @@
 </head>
 
 <body>
-    <div style="text-align: center;margin-top: 15%;">        
-        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div style="text-align: center;margin-top: 15%;">
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <h2 id="loadertxt">Loading...</h2>
-        <p><script type="text/javascript">
-            const alertOnlineStatus = () => {
-        document.write(navigator.onLine ? "" : "Déconnecté de l'internet")
-      }
-        window.addEventListener('online',  alertOnlineStatus)
-        window.addEventListener('offline',  alertOnlineStatus)
-        alertOnlineStatus();
-        
-        </script></p>
-        <p id="updatetext1">  </p>
+        <p>
+            <script type="text/javascript">
+                const alertOnlineStatus = () => {
+                    document.write(navigator.onLine ? "" : "Disconnected from the internet")
+                }
+                window.addEventListener('online', alertOnlineStatus)
+                window.addEventListener('offline', alertOnlineStatus)
+                alertOnlineStatus();
+            </script>
+        </p>
+        <p id="updatetext1"> </p>
+    </div>
+    <div style="text-align: center; padding-top: 20%;">
+
+        <h2>Created by Nytuo (Arnaud BEUX)</p>
+    </div>
+    <!--Download-->
+    <div id="updateview" class="modal">
+
+        <div class="modal-content animate" style="text-align: center;">
+            <div class="imgcontainer">
+                <h1 id="DLTEXT">Downloading... </h1>
+            </div>
+            <div class="progressBar">
+                <div id="myProgress" style="text-align: center; ">
+                    <div id="myBar"></div>
+                </div>
+            </div>
+            <div style="padding-top: 2%;"></div>
+            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+            </div>
+        </div>
     </div>
 </body>
-<script>
-    choose();
-update();
-DLVersions();
 
+<script>
+    //gameloc();
+    choose();
+    update();
+    DLVersions();
 </script>
+
 </html>
