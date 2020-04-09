@@ -19,7 +19,16 @@
         "github"
       ],
       "target": [
-        "nsis"
+        "nsis","zip"
+      ],
+      "icon": "Ressources/favicon.ico"
+    },
+    "linux": {
+      "publish": [
+        "github"
+      ],
+      "target": [
+        "appimage","zip"
       ],
       "icon": "Ressources/favicon.ico"
     }

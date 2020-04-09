@@ -15,7 +15,6 @@ var parentfolder2 = require('path').dirname(parentfolder1);
 var parentfolder3 = require('path').dirname(parentfolder2);
 var gamelocation = gameloc();
 const { execSync } = require('child_process');
-const { spawn } = require('child_process');
 function gameloc() {
     if (process.platform == "linux") {
 
@@ -1059,7 +1058,7 @@ var update = (function () {
                         if (!!document.getElementById('updateview') === true) {
                             document.getElementById('updateview').style.display = "block";
                         }
-                        DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversionbeta + '/Nytuo-Launcher-win64.exe', parentfolder3 + "/nytuolauncher_data/win64UpdateBeta.exe");
+                        DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversionbeta + '/Nytuo-Launcher-Setup-'+launcherversionbeta+'.exe', parentfolder3 + "/nytuolauncher_data/win64UpdateBeta.exe");
                     }
                 } else {
                     if (process.platform == "linux") {
@@ -1085,7 +1084,7 @@ var update = (function () {
                             if (!!document.getElementById('updateview') === true) {
                                 document.getElementById('updateview').style.display = "block";
                             }
-                            DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-linux.appimage', app.getPath("documents") + "/nytuolauncher_data/linuxUpdate.appimage");
+                            DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-'+launcherversion+'.appimage', app.getPath("documents") + "/nytuolauncher_data/linuxUpdate.appimage");
 
 
                         }
@@ -1114,7 +1113,7 @@ var update = (function () {
                             }
                             if (process.platform == 'win32') {
 
-                                DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-win64.exe', parentfolder3 + "/nytuolauncher_data/win64Update.exe");
+                                DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-'+launcherversion+'.exe', parentfolder3 + "/nytuolauncher_data/win64Update.exe");
                             }
 
                         }
