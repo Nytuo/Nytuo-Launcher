@@ -2,136 +2,170 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="Ressources/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <script type="text/javascript" src="js.js"></script>
-    <title>Nytuo Launcher - Games</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="Ressources/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <script type="text/javascript" src="js.js"></script>
+  <title>Nytuo Launcher - Games</title>
 </head>
 <header>
-    
-    <nav id="nav">
-        <ul>
-            <img src="Ressources/logoLauncher.png" class="logonav"  title="Logo de Nytuo" style="text-align:left;width: 15%;">
-            <div style="float: right;">
-                <li><a href="about.html">Settings</a></li>
-                <li><a onclick="document.getElementById('achpopup').style.display='block'" style="cursor:pointer;">Achievements</a></li>
-                <li><a href="index.html">Games</a><li>
-                <li><a href="news.html">News</a></li>
-                
-            </div>
-        </ul>
-    </nav>
+  <script>
+    function gohome() {
+        if (navigator.onLine == true) {
+            window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+        } else {
+            window.location.href = "index.html"
+        }
+    }
+
+</script>
+  <nav id="nav">
+    <ul>
+      <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+      <div style="float: right;">
+        <li><a href="about.html">Settings</a></li>
+        <li><a onclick="document.getElementById('achpopup').style.display='block'"
+            style="cursor:pointer;">Achievements</a></li>
+        <li><a onclick="gohome()" style="cursor: pointer;">Games</a>
+        <li>
+        <li><a onclick="window.location.href = 'news.html'">News</a></li>
+
+      </div>
+    </ul>
+  </nav>
 </header>
+
 <body>
 
 
 
-<div style="padding-top: 100px;"></div>
-<div class="cards-list">
-  
-    <a href="laatim.html"><div class="card 1">
-      <div class="card_image"> <img src="Ressources/IMGLAATIM.png" /> </div>
-      <div class="card_title title-white">
-        <img src="Ressources/LogoLAATIM.png"  style="z-index: 1; width: 25%;top: 35%;left: 40%">
+  <div style="padding-top: 150px;"></div>
+
+  <div class="cards-list">
+    <a href="laatim.html">
+      <div class="card 1">
+        <div class="card_image"> <img src="Ressources/IMGLAATIM.png" /> </div>
+        <div class="card_title title-white">
+          <img src="Ressources/LogoLAATIM.png" style="z-index: 1; width: 25%;top: 35%;left: 40%">
+        </div>
       </div>
-    </div></a>
-    <a href="sgb.html"><div class="card 1">
+    </a>
+    <a href="sgb.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/SGB2.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/SGB1.png" style="z-index: 1; width: 55%;top: 40%;left: 35%">
+          <img src="Ressources/SGB1.png" style="z-index: 1; width: 55%;top: 40%;left: 35%">
         </div>
-      </div></a>
-      <a href="sf.html"><div class="card 1">
+      </div>
+    </a>
+    <a href="sf.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/IMGSF.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/LogoSF.png" style="z-index: 1; width: 30%;top: 35%;left: 40%">
+          <img src="Ressources/LogoSF.png" style="z-index: 1; width: 30%;top: 35%;left: 40%">
         </div>
-      </div></a>
-      <a href="la.html"><div class="card 1">
+      </div>
+    </a>
+    <a href="la.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/IMGLA.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/LogoLA.png"  style="z-index: 1; width: 45%;top: 45%;left: 32%">
+          <img src="Ressources/LogoLA.png" style="z-index: 1; width: 45%;top: 45%;left: 32%">
         </div>
-      </div></a>
-      <a href="vitf.html"><div class="card 1">
+      </div>
+    </a>
+    <a href="vitf.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/IMGVITF.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/LogoVITF.png" style="z-index: 1; width:60%;top: 35%;left: 35%">
+          <img src="Ressources/LogoVITF.png" style="z-index: 1; width:60%;top: 35%;left: 35%">
         </div>
-      </div></a>
-      <a href="ttd.html"><div class="card 1">
+      </div>
+    </a>
+    <a href="ttd.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/IMGTTD.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/LogoTTD.png" style="z-index: 1; width: 40%;top: 25%;left: 32%">
+          <img src="Ressources/LogoTTD.png" style="z-index: 1; width: 40%;top: 25%;left: 32%">
         </div>
-      </div></a>
-      <a href="fwd.html"><div class="card 1">
+      </div>
+    </a>
+    <a href="fwd.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/IMGFWD.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/LogoFWD.png" style="z-index: 1; width: 38%;top: 30%;left: 35%">
+          <img src="Ressources/LogoFWD.png" style="z-index: 1; width: 38%;top: 30%;left: 35%">
         </div>
-      </div></a>
-      <a href="tb.html"><div class="card 1">
+      </div>
+    </a>
+    <a href="tb.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/IMGTB.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/LogoTB.png" style="z-index: 1; width: 40%;top: 25%;left: 35%">
+          <img src="Ressources/LogoTB.png" style="z-index: 1; width: 40%;top: 25%;left: 35%">
         </div>
-      </div></a>
-      <a href="wr.html"><div class="card 1">
+      </div>
+    </a>
+    <a href="wr.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/IMGWR.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/LogoWR.png" style="z-index: 1; width: 40%;top: 30%;left: 35%">
+          <img src="Ressources/LogoWR.png" style="z-index: 1; width: 40%;top: 30%;left: 35%">
         </div>
-      </div></a>
-      <a href="ae.html"><div class="card 1">
+      </div>
+    </a>
+    <a href="ae.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/IMGAE.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/LogoAE.png" style="z-index: 1; width: 40%;top: 30%;left: 35%">
+          <img src="Ressources/LogoAE.png" style="z-index: 1; width: 40%;top: 30%;left: 35%">
         </div>
-      </div></a>
-      <a href="sn.html"><div class="card 1">
+      </div>
+    </a>
+    <a href="sn.html">
+      <div class="card 1">
         <div class="card_image"> <img src="Ressources/IMGSN.png" /> </div>
         <div class="card_title title-white">
-            <img src="Ressources/LogoSN.png" style="z-index: 1; width:25%;top: 35%;left: 40%">
+          <img src="Ressources/LogoSN.png" style="z-index: 1; width:25%;top: 35%;left: 40%">
         </div>
-      </div></a>
-    </div>
-    <div id="achpopup" class="modal">
-
-      <div class="modal-content animate" style="text-align: center;">
-          <h1>Achievements :</h1>
-          <h2>Legend Adventure and the Infernal Maze : </h2>
-          <div id="ProgressAchLAATIM"  style="text-align: center;height: 10px;">
-            <div id="BarAchLAATIM" style="background-color: #008C3F;color: transparent;height: 10px;"></div>
-        </div>   
-        <h2>Super Geoffrey Bros :</h2>
-        <div id="ProgressAchSGB"  style="text-align: center;height: 10px;">
-          <div id="BarAchSGB" style="background-color: #FBCF08;color: transparent;height: 10px;"></div>
-      </div>  
-      <h2>SansNom Réédition : </h2>
-      <div id="ProgressAchSNRE"  style="text-align: center;height: 10px;">
-        <div id="BarAchSNRE" style="background-color: #6FC4A9;color: transparent;height: 10px;"></div>
-    </div>   
-        <div style="padding-top: 2%;"></div>
-          <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-              <table>
-                  <tr>
-                      <td>
-                          <div class="box-3">
-                              <a onclick="document.getElementById('achpopup').style.display='none'">
-                                  <div class="btn btn-three">
-                                      <span>Back</span>
-                                  </div>
-                              </a>
-                          </div>
-                      </td>
-                  </tr>
-              </table>
-          </div>
       </div>
+    </a>
+  </div>
+  <div id="achpopup" class="modal">
+
+    <div class="modal-content animate" style="text-align: center;">
+      <h1>Achievements :</h1>
+      <h2>Legend Adventure and the Infernal Maze : </h2>
+      <div id="ProgressAchLAATIM" style="text-align: center;height: 10px;">
+        <div id="BarAchLAATIM" style="background-color: #008C3F;color: transparent;height: 10px;"></div>
+      </div>
+      <h2>Super Geoffrey Bros :</h2>
+      <div id="ProgressAchSGB" style="text-align: center;height: 10px;">
+        <div id="BarAchSGB" style="background-color: #FBCF08;color: transparent;height: 10px;"></div>
+      </div>
+      <h2>SansNom Réédition : </h2>
+      <div id="ProgressAchSNRE" style="text-align: center;height: 10px;">
+        <div id="BarAchSNRE" style="background-color: #6FC4A9;color: transparent;height: 10px;"></div>
+      </div>
+      <div style="padding-top: 2%;"></div>
+      <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
+        <table>
+          <tr>
+            <td>
+              <div class="box-3">
+                <a onclick="document.getElementById('achpopup').style.display='none'">
+                  <div class="btn btn-three">
+                    <span>Back</span>
+                  </div>
+                </a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
   <script>
     // Get the modal
@@ -139,12 +173,13 @@
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
     }
     LoadAchivements()
 
-</script>
+  </script>
 </body>
+
 </html>

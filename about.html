@@ -10,14 +10,23 @@
     <title>Settings -- Nytuo Launcher</title>
 </head>
 <header>
+    <script>
+        function gohome() {
+            if (navigator.onLine == true) {
+                window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+            } else {
+                window.location.href = "index.html"
+            }
+        }
 
+    </script>
     <nav id="nav">
         <ul style="padding: auto;">
             <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo"
                 style="text-align:left;width: 15%;">
             <div style="float: right;">
                 <li><a href="about.html">Settings</a></li>
-                <li><a href="index.html">Games</a>
+                <li><a onclick="gohome()" style="cursor: pointer;">Games</a>
                 <li>
                 <li><a href="news.html">News</a></li>
             </div>

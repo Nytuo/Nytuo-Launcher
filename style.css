@@ -1,3 +1,6 @@
+body{
+    animation : fadeIn 0.5s;
+}
 .progressBarLAATIM {
     text-align: center;
 }
@@ -151,7 +154,7 @@
     font-size: 30px;
     margin-top: -80px;
     height: 40px;
-}
+  }
 
 .card:hover {
     transform: scale(0.9, 0.9);
@@ -167,7 +170,26 @@
 }
 
 /*#endregion*/
-
+@-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+  }
 /*#region Overlay*/
 
 #overlay {
@@ -214,7 +236,7 @@
 }
 
 .spaceX2 {
-    margin-top: 150px;
+    margin-top: 160px;
     text-align: center;
 }
 

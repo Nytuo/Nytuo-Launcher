@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, ipcRenderer, webContents, dialog } = require('electron')
+const { app, BrowserWindow, ipcMain, ipcRenderer, webContents, dialog, session } = require('electron')
 const { download } = require('electron-dl')
 const path = require('path')
 var fs = require('fs')
@@ -8,13 +8,14 @@ var parentfolder2 = require('path').dirname(parentfolder1);
 var parentfolder3 = require('path').dirname(parentfolder2);
 
 
-   if(process.platform !=="linux" && process.platform !== "win32"){
-        app.exit();
-    }
+if (process.platform !== "linux" && process.platform !== "win32") {
+    app.exit();
+}
 
 
 function createWindow() {
     let win = new BrowserWindow({
+
         backgroundColor: 212121,
         minWidth: 1280,
         minHeight: 720,
@@ -22,12 +23,14 @@ function createWindow() {
         height: 720,
         icon: path.join(__dirname, 'Ressources/logoexp.png'),
         webPreferences: {
+            webSecurity: false,
             nodeIntegration: true
         },
 
     })
     win.loadFile('Loading.html');
- 
+    
+
     console.log(app.getPath("documents"));
     if (process.platform == "linux") {
         if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data") === false) {
@@ -91,6 +94,27 @@ function createWindow() {
     }
 
 
+
+    const dns = require("dns");
+
+
+    dns.resolve("www.google.com", function (err, addr) {
+        if (err) {
+            if (process.platform == 'linux'){
+                fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'false');
+            }else{
+                fs.writeFileSync(__dirname + '/connected.txt', 'false');
+            }
+            
+        } else {
+            if (process.platform == 'linux'){
+                fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'true');
+            }else{
+                fs.writeFileSync(__dirname + '/connected.txt', 'true');
+            }
+            
+        }
+    });
     if (!fs.existsSync(gamelocation + '/Games')) fs.mkdirSync(gamelocation + '/Games', { recursive: true });
     if (!fs.existsSync(gamelocation + '/Games/AE')) fs.mkdirSync(gamelocation + '/Games/AE', { recursive: true });
     if (!fs.existsSync(gamelocation + '/Games/SNRE')) fs.mkdirSync(gamelocation + '/Games/SNRE', { recursive: true });
@@ -104,7 +128,7 @@ function createWindow() {
     if (!fs.existsSync(gamelocation + '/Games/VITF')) fs.mkdirSync(gamelocation + '/Games/VITF', { recursive: true });
     if (!fs.existsSync(gamelocation + '/Games/WR')) fs.mkdirSync(gamelocation + '/Games/WR', { recursive: true });
     if (process.platform == 'linux') {
-        
+
         if (!fs.existsSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles')) fs.mkdirSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles', { recursive: true });
         if (!fs.existsSync(app.getPath("documents") + '/nytuolauncher_data/BetaAccess.txt')) {
             fs.writeFileSync(app.getPath("documents") + '/nytuolauncher_data/BetaAccess.txt', 'False');
@@ -115,8 +139,8 @@ function createWindow() {
             fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt', 'False');
         }
     }
-    
-    
+
+
 
 
 }

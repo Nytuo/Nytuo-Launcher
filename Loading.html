@@ -42,6 +42,7 @@
             <script type="text/javascript">
                 const alertOnlineStatus = () => {
                     document.write(navigator.onLine ? "" : "Disconnected from the internet")
+
                 }
                 window.addEventListener('online', alertOnlineStatus)
                 window.addEventListener('offline', alertOnlineStatus)

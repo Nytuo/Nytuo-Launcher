@@ -10,15 +10,25 @@
     <title>SansNom Classic & Réédition -- Nytuo Launcher</title>
 </head>
 <header>
+    <script>
+        function gohome() {
+            if (navigator.onLine == true) {
+                window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+            } else {
+                window.location.href = "index.html"
+            }
+        }
 
+    </script>
     <nav id="nav">
         <ul style="padding: auto;">
-            <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+            <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo"
+                style="text-align:left;width: 15%;">
             <div style="float: right;">
                 <li><a href="about.html">Settings</a></li>
-                <li><a href="index.html">Games</a>
-                    <li>
-                        <li><a href="news.html">News</a></li>
+                <li><a onclick="gohome()" style="cursor: pointer;">Games</a>
+                <li>
+                <li><a href="news.html">News</a></li>
             </div>
         </ul>
     </nav>
@@ -40,7 +50,9 @@
         </div>
     </div>
     <!--Detection de la version et remplacement du text de version en conséquence-->
-    <iframe onload="detect('SNRE','SNRE_Version.txt','SNRE_Version.txt','Sans Nom Réédition','versiontxtsn','https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D')" src="javascript:void(0)" style="display: none;"></iframe>
+    <iframe
+        onload="detect('SNRE','SNRE_Version.txt','SNRE_Version.txt','Sans Nom Réédition','versiontxtsn','https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D')"
+        src="javascript:void(0)" style="display: none;"></iframe>
     <!--Placement du titre du jeu, du text version et de l'affiche-->
     <div style="padding-top: 8%;"></div>
     <table style="width: 100%;">
@@ -67,7 +79,8 @@
                     <td>
                         <div class="box-3">
 
-                            <a onclick="document.getElementById('ConfirmDL').style.display='block';" href="javascript:void(0)">
+                            <a onclick="document.getElementById('ConfirmDL').style.display='block';"
+                                href="javascript:void(0)">
                                 <div class="btn btn-three">
                                     <span id="SNREbutton1">PLAY</span>
                                 </div>
@@ -79,7 +92,8 @@
                     <td>
                         <div class="box-3">
 
-                            <a onclick="document.getElementById('ConfirmOL').style.display='block';" href="javascript:void(0)">
+                            <a onclick="document.getElementById('ConfirmOL').style.display='block';"
+                                href="javascript:void(0)">
                                 <div class="btn btn-three">
                                     <span>Play Online</span>
                                 </div>
@@ -91,7 +105,8 @@
                     <td>
                         <div class="box-3">
 
-                            <a onclick="document.getElementById('ConfirmOL1').style.display='block';" href="javascript:void(0)">
+                            <a onclick="document.getElementById('ConfirmOL1').style.display='block';"
+                                href="javascript:void(0)">
                                 <div class="btn btn-three">
                                     <span>Play Online at SansNom : Classic</span>
                                 </div>
@@ -113,7 +128,8 @@
                 <tr>
                     <td>
                         <div class="box-3">
-                            <a id="SNREbutton3" onclick="document.getElementById('id01').style.display='block'" href="javascript:void(0)">
+                            <a id="SNREbutton3" onclick="document.getElementById('id01').style.display='block'"
+                                href="javascript:void(0)">
                                 <div class="btn btn-three">
                                     <span id="SNREbutton3">Settings</span>
                                 </div>
@@ -130,7 +146,8 @@
         <div class="modal-content animate" style="text-align: center;">
             <h1>Confirmation :</h1>
             <h2>You are about to DELETE SansNom Réédition</h2>
-            <h3>This action can't be undone.</br>If you search to repair the game is not here.</br>All the data ( like saves and achievements) may be loose (You can eventually do a manual backup)</h3>
+            <h3>This action can't be undone.</br>If you search to repair the game is not here.</br>All the data ( like
+                saves and achievements) may be loose (You can eventually do a manual backup)</h3>
             <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
                 <table>
                     <tr>
@@ -178,7 +195,8 @@
                         </td>
                         <td>
                             <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmOL').style.display='none';RunWithoutInstall('https://itch.io/embed-upload/1889077?color=303030');">
+                                <a
+                                    onclick="document.getElementById('ConfirmOL').style.display='none';RunWithoutInstall('https://itch.io/embed-upload/1889077?color=303030');">
                                     <div class="btn btn-three">
                                         <span>Yes</span>
                                     </div>
@@ -211,7 +229,8 @@
                         </td>
                         <td>
                             <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmOL1').style.display='none';RunWithoutInstall('http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414');">
+                                <a
+                                    onclick="document.getElementById('ConfirmOL1').style.display='none';RunWithoutInstall('http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414');">
                                     <div class="btn btn-three">
                                         <span>Yes</span>
                                     </div>
@@ -244,7 +263,8 @@
                         </td>
                         <td>
                             <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmUP').style.display='none';document.getElementById('id02').style.display='block';repair('https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D','SNRE','SN.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJpie9qVRQt7SeDbPA?e=CovaHD','https://1drv.ws/u/s!AkkqGntQc7Y5hJphlk_l4IVAusN0Xg?e=aagdu7')">
+                                <a
+                                    onclick="document.getElementById('ConfirmUP').style.display='none';document.getElementById('id02').style.display='block';repair('https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D','SNRE','SN.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJpie9qVRQt7SeDbPA?e=CovaHD','https://1drv.ws/u/s!AkkqGntQc7Y5hJphlk_l4IVAusN0Xg?e=aagdu7')">
                                     <div class="btn btn-three">
                                         <span>Yes</span>
                                     </div>
@@ -268,7 +288,8 @@
                     <tr>
                         <td style="text-align: center;">
                             <div class="box-3">
-                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUP').style.display='block';" href="javascript:void(0)">
+                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUP').style.display='block';"
+                                    href="javascript:void(0)">
                                     <div class="btn btn-three">
                                         <span>Repair</span>
                                     </div>
@@ -279,7 +300,8 @@
                     <tr>
                         <td>
                             <div class="box-3">
-                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUN').style.display='block';" href="javascript:void(0)">
+                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUN').style.display='block';"
+                                    href="javascript:void(0)">
                                     <div class="btn btn-three">
                                         <span>Uninstall</span>
                                     </div>
@@ -301,7 +323,8 @@
                     <tr>
                         <td>
                             <div class="box-3">
-                                <a onclick="createlink(gamelocation+'/Games/SNRE/nw.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)">
+                                <a onclick="createlink(gamelocation+'/Games/SNRE/nw.exe',require('path').join(require('os').homedir(),'Desktop'))"
+                                    href="javascript:void(0)">
                                     <div class="btn btn-three">
                                         <span>ShortCut</span>
                                     </div>
@@ -417,20 +440,40 @@
                             <div class="box-3">
                                 <a onclick="whattodo()">
                                     <script>
+                                        var fs = require('fs');
+                                        function connectest() {
+                                            if (process.platform == "linux") {
+                                                return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt");
+                                            } else {
+                                                return fs.readFileSync(__dirname + "/connected.txt");
+                                            }
+
+                                        }
+                                        var connectedtointernet = connectest();
                                         function whattodo() {
-                                            if (document.getElementById('SNREbutton1').innerHTML === "Install") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                document.getElementById('id02').style.display = 'block';
-                                                Do('SNRE', 'SNRE_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D', 'SN.zip', 'SNRE_Version.txt', 'nw.exe', 'Sans Nom : Réédition', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpie9qVRQt7SeDbPA?e=CovaHD', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJphlk_l4IVAusN0Xg?e=aagdu7');
-                                            }
-                                            if (document.getElementById('SNREbutton1').innerHTML === "Update") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                document.getElementById('id02').style.display = 'block';
-                                                Do('SNRE', 'SNRE_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D', 'SN.zip', 'SNRE_Version.txt', 'nw.exe', 'Sans Nom : Réédition', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpie9qVRQt7SeDbPA?e=CovaHD', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJphlk_l4IVAusN0Xg?e=aagdu7');
-                                            }
-                                            if (document.getElementById('SNREbutton1').innerHTML === "Play") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                Do('SNRE', 'SNRE_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D', 'SN.zip', 'SNRE_Version.txt', 'nw.exe', 'Sans Nom : Réédition', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpie9qVRQt7SeDbPA?e=CovaHD', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJphlk_l4IVAusN0Xg?e=aagdu7');
+                                            if (connectedtointernet == "true") {
+                                                if (document.getElementById('SNREbutton1').innerHTML === "Install") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    document.getElementById('id02').style.display = 'block';
+                                                    Do('SNRE', 'SNRE_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D', 'SN.zip', 'SNRE_Version.txt', 'nw.exe', 'Sans Nom : Réédition', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpie9qVRQt7SeDbPA?e=CovaHD', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJphlk_l4IVAusN0Xg?e=aagdu7');
+                                                }
+                                                if (document.getElementById('SNREbutton1').innerHTML === "Update") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    document.getElementById('id02').style.display = 'block';
+                                                    Do('SNRE', 'SNRE_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D', 'SN.zip', 'SNRE_Version.txt', 'nw.exe', 'Sans Nom : Réédition', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpie9qVRQt7SeDbPA?e=CovaHD', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJphlk_l4IVAusN0Xg?e=aagdu7');
+                                                }
+                                                if (document.getElementById('SNREbutton1').innerHTML === "Play") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    Do('SNRE', 'SNRE_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D', 'SN.zip', 'SNRE_Version.txt', 'nw.exe', 'Sans Nom : Réédition', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpie9qVRQt7SeDbPA?e=CovaHD', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJphlk_l4IVAusN0Xg?e=aagdu7');
+                                                }
+                                            } else {
+                                                if (document.getElementById('SNREbutton1').innerHTML === "Play") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    Do('SNRE', 'SNRE_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpghoWFNZQhB7ByHQ?e=i6gk1D', 'SN.zip', 'SNRE_Version.txt', 'nw.exe', 'Sans Nom : Réédition', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpie9qVRQt7SeDbPA?e=CovaHD', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJphlk_l4IVAusN0Xg?e=aagdu7');
+                                                }
+                                                else {
+                                                    alert("You\'re not connected to the internet, please restart the launcher with an internet connection")
+                                                }
                                             }
                                         }
                                     </script>
@@ -458,7 +501,7 @@
                 var modal7 = document.getElementById('ConfirmOL1');
 
                 // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function(event) {
+                window.onclick = function (event) {
                     if (event.target == modal) {
                         modal.style.display = "none";
                     }

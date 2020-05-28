@@ -15,6 +15,9 @@ var parentfolder2 = require('path').dirname(parentfolder1);
 var parentfolder3 = require('path').dirname(parentfolder2);
 var gamelocation = gameloc();
 const { execSync } = require('child_process');
+
+var connectedtointernet = connectest();
+
 function gameloc() {
     if (process.platform == "linux") {
 
@@ -48,6 +51,15 @@ function gameloc() {
     }
 
 }
+function connectest(){
+    if (process.platform == "linux"){
+        return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt");
+    }else{
+        return fs.readFileSync(__dirname + "/connected.txt");
+    }
+    
+}
+
 function changegameloc() {
     if (process.platform == "linux") {
         fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt", "");
@@ -60,6 +72,7 @@ function changegameloc() {
     }
 
 }
+
 function gamelocsettings() {
     if (process.platform == "linux") {
         document.getElementById("gameloc").innerHTML = " Games folder location: " + fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt")
@@ -68,6 +81,7 @@ function gamelocsettings() {
     }
 
 }
+
 function achivement() {
 
     const remote = require('electron').remote;
@@ -100,6 +114,7 @@ function achivement() {
 function Open(dossierdujeu, filename) {
     shell.openItem(gamelocation + "/Games/" + dossierdujeu + "/" + filename);
 }
+
 function OpenforLinux(gameloc, dossierdujeu, filename) {
     execSync("cd " + gameloc + "/Games/" + dossierdujeu + ";" + " chmod a+x ./" + filename + ";" + " ./" + filename)
 
@@ -325,7 +340,12 @@ function deletefile(file2delete) {
             refresh();
         } else {
             turnoffOverlay()
-            window.location.href = "./index.html"
+            if (navigator.onLine == true) {
+                window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+            } else {
+                window.location.href = "index.html"
+            }
+
         }
     }, 2000);
 
@@ -531,35 +551,21 @@ function get_filesize(url, callback) {
 }
 
 function detectforWin(dossierdujeu, versiontxt, versionlcl, gamename, txtVID, url) {
-    if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt) === false) {
+    if (connectedtointernet == 'true') {
         if (process.platform === "win32") {
-            document.getElementById(dossierdujeu + "button1").innerHTML = "Install";
-            CalculSize(url, gamename, 'Download');
+            if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt) === false) {
+                document.getElementById(dossierdujeu + "button1").innerHTML = "Install";
+                CalculSize(url, gamename, 'Download');
 
-            document.getElementById(txtVID).innerHTML = "Version : ?";
-            if (!!document.getElementById(dossierdujeu + "button2") === true) {
-                document.getElementById(dossierdujeu + "button2").onclick = 0;
-                document.getElementById(dossierdujeu + "button2").innerHTML = "";
+                document.getElementById(txtVID).innerHTML = "Version : ?";
+                if (!!document.getElementById(dossierdujeu + "button2") === true) {
+                    document.getElementById(dossierdujeu + "button2").onclick = 0;
+                    document.getElementById(dossierdujeu + "button2").innerHTML = "";
+                }
+
+                document.getElementById(dossierdujeu + "button3").onclick = 0;
+                document.getElementById(dossierdujeu + "button3").innerHTML = "";
             }
-
-            document.getElementById(dossierdujeu + "button3").onclick = 0;
-            document.getElementById(dossierdujeu + "button3").innerHTML = "";
-        }
-        if (process.platform !== "win32") {
-            document.getElementById(dossierdujeu + "button1").innerHTML = "Unavailable";
-            document.getElementById(txtVID).innerHTML = "This game is not available for your platform";
-            if (!!document.getElementById(dossierdujeu + "button2") === true) {
-                document.getElementById(dossierdujeu + "button2").onclick = 0;
-                document.getElementById(dossierdujeu + "button2").innerHTML = "";
-            }
-            document.getElementById(dossierdujeu + "button1").onclick = 0;
-            document.getElementById(dossierdujeu + "button3").onclick = 0;
-            document.getElementById(dossierdujeu + "button1").innerHTML = "";
-            document.getElementById(dossierdujeu + "button3").innerHTML = "";
-
-        }
-    } else {
-        if (process.platform === "win32") {
             if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString() === fs.readFileSync(__dirname + '/VersionsFiles/' + versionlcl).toString()) {
                 document.getElementById(dossierdujeu + "button1").innerHTML = "Play";
                 document.getElementById('resultofcalculsize').innerHTML = "You are about to Play : " + gamename;
@@ -605,142 +611,143 @@ function detectforWin(dossierdujeu, versiontxt, versionlcl, gamename, txtVID, ur
                 fs.writeFileSync(__dirname + "/Ach_Notif_TXT.txt", "An Update for " + gamename + " is available ! \n" + logo + ".png");
                 achivement();
             }
-        }
-        if (process.platform !== "win32") {
-            document.getElementById(txtVID).innerHTML = "This game is not available for your platform.";
-            if (!!document.getElementById(dossierdujeu + "button2") == true) {
-                document.getElementById(dossierdujeu + "button2").onclick = 0;
-                document.getElementById(dossierdujeu + "button2").innerHTML = "";
-            }
-            document.getElementById(dossierdujeu + "button1").onclick = 0;
-            document.getElementById(dossierdujeu + "button3").onclick = 0;
-            document.getElementById(dossierdujeu + "button1").innerHTML = "";
-            document.getElementById(dossierdujeu + "button3").innerHTML = "";
+        } else {
+            if (process.platform !== "win32") {
+                document.getElementById(txtVID).innerHTML = "This game is not available for your platform";
+                if (!!document.getElementById(dossierdujeu + "button2") === true) {
+                    document.getElementById(dossierdujeu + "button2").onclick = 0;
+                    document.getElementById(dossierdujeu + "button2").innerHTML = "";
+                }
+                document.getElementById(dossierdujeu + "button1").onclick = 0;
+                document.getElementById(dossierdujeu + "button3").onclick = 0;
+                document.getElementById(dossierdujeu + "button1").innerHTML = "Unavailable";
+                document.getElementById(dossierdujeu + "button3").innerHTML = "";
 
+            }
+        }
+    } else {
+        if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt) === true) {
+            document.getElementById(dossierdujeu + "button1").innerHTML = "Play";
+            document.getElementById('resultofcalculsize').innerHTML = "You are about to Play : " + gamename;
+            document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString();
+        } else {
+            alert('Download the game when you are online to play it when you are offline!')
         }
     }
 }
 
 function detect(dossierdujeu, versiontxt, versionlcl, gamename, txtVID, url) {
     console.log(parentfolder3)
-    if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt) === false) {
+    if (connectedtointernet == "true") {
         if (process.platform === "win32" || process.platform === "linux") {
-            document.getElementById(dossierdujeu + "button1").innerHTML = "Install";
-            CalculSize(url, gamename, 'Download');
-            document.getElementById(txtVID).innerHTML = "Version : ?";
-            if (!!document.getElementById(dossierdujeu + "button2") === true) {
-                document.getElementById(dossierdujeu + "button2").onclick = 0;
-                document.getElementById(dossierdujeu + "button2").innerHTML = "";
-            }
-
-            document.getElementById(dossierdujeu + "button3").onclick = 0;
-
-            document.getElementById(dossierdujeu + "button3").innerHTML = "";
-        } else {
-            document.getElementById(txtVID).innerHTML = "This Game is not available for this platform.";
-            if (!!document.getElementById(dossierdujeu + "button2") === true) {
-                document.getElementById(dossierdujeu + "button2").onclick = 0;
-                document.getElementById(dossierdujeu + "button2").innerHTML = "";
-            }
-            document.getElementById(dossierdujeu + "button1").onclick = 0;
-            document.getElementById(dossierdujeu + "button3").onclick = 0;
-            document.getElementById(dossierdujeu + "button1").innerHTML = "";
-            document.getElementById(dossierdujeu + "button3").innerHTML = "";
-        }
-    } else {
-        if (process.platform === "win32" || process.platform === "linux") {
-            if (process.platform == "linux") {
-                if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString() === fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/' + versionlcl).toString()) {
-                    document.getElementById(dossierdujeu + "button1").innerHTML = "Play";
-                    document.getElementById('resultofcalculsize').innerHTML = "You are about to Play : " + gamename;
-                    document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString();
-                } else {
-                    document.getElementById(dossierdujeu + "button1").innerHTML = "Update";
-                    CalculSize(url, gamename, 'Update');
-                    document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString() + " (Update available)";
-                    var logo;
-                    if (gamename === "Lutin Adventure") {
-                        logo = "LogoLA"
-                    }
-                    if (gamename === "ShootFighter") {
-                        logo = "LogoSF"
-                    }
-                    if (gamename === "Super Geoffrey Bros") {
-                        logo = "SGB1"
-                    }
-                    if (gamename === "Legend Adventure and the Infernal Maze") {
-                        logo = "LogoLAATIM"
-                    }
-                    if (gamename === "Vincent In The Forest") {
-                        logo = "LogoVITF"
-                    }
-                    if (gamename === "The Tardis Defender") {
-                        logo = "LogoTTD"
-                    }
-                    if (gamename === "FireWall Defender") {
-                        logo = "LogoFWD"
-                    }
-                    if (gamename === "TanksBattle") {
-                        logo = "LogoTB"
-                    }
-                    if (gamename === "WinRun") {
-                        logo = "LogoWR"
-                    }
-                    if (gamename === "AsteroidEscape") {
-                        logo = "LogoAE"
-                    }
-                    if (gamename === "SansNom Réédition") {
-                        logo = "LogoSN"
-                    }
-                    fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/Ach_Notif_TXT.txt", "An Update for " + gamename + " is available \n" + logo + ".png");
-                    achivement();
+            if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt) === false) {
+                document.getElementById(dossierdujeu + "button1").innerHTML = "Install";
+                CalculSize(url, gamename, 'Download');
+                document.getElementById(txtVID).innerHTML = "Version : ?";
+                if (!!document.getElementById(dossierdujeu + "button2") === true) {
+                    document.getElementById(dossierdujeu + "button2").onclick = 0;
+                    document.getElementById(dossierdujeu + "button2").innerHTML = "";
                 }
+
+                document.getElementById(dossierdujeu + "button3").onclick = 0;
+
+                document.getElementById(dossierdujeu + "button3").innerHTML = "";
             } else {
-                if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString() === fs.readFileSync(__dirname + '/VersionsFiles/' + versionlcl).toString()) {
-                    document.getElementById(dossierdujeu + "button1").innerHTML = "Play";
-                    document.getElementById('resultofcalculsize').innerHTML = "You are about to Play : " + gamename;
-                    document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString();
+                if (process.platform == "linux") {
+                    if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString() === fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/' + versionlcl).toString()) {
+                        document.getElementById(dossierdujeu + "button1").innerHTML = "Play";
+                        document.getElementById('resultofcalculsize').innerHTML = "You are about to Play : " + gamename;
+                        document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString();
+                    } else {
+                        document.getElementById(dossierdujeu + "button1").innerHTML = "Update";
+                        CalculSize(url, gamename, 'Update');
+                        document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString() + " (Update available)";
+                        var logo;
+                        if (gamename === "Lutin Adventure") {
+                            logo = "LogoLA"
+                        }
+                        if (gamename === "ShootFighter") {
+                            logo = "LogoSF"
+                        }
+                        if (gamename === "Super Geoffrey Bros") {
+                            logo = "SGB1"
+                        }
+                        if (gamename === "Legend Adventure and the Infernal Maze") {
+                            logo = "LogoLAATIM"
+                        }
+                        if (gamename === "Vincent In The Forest") {
+                            logo = "LogoVITF"
+                        }
+                        if (gamename === "The Tardis Defender") {
+                            logo = "LogoTTD"
+                        }
+                        if (gamename === "FireWall Defender") {
+                            logo = "LogoFWD"
+                        }
+                        if (gamename === "TanksBattle") {
+                            logo = "LogoTB"
+                        }
+                        if (gamename === "WinRun") {
+                            logo = "LogoWR"
+                        }
+                        if (gamename === "AsteroidEscape") {
+                            logo = "LogoAE"
+                        }
+                        if (gamename === "SansNom Réédition") {
+                            logo = "LogoSN"
+                        }
+                        fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/Ach_Notif_TXT.txt", "An Update for " + gamename + " is available \n" + logo + ".png");
+                        achivement();
+                    }
                 } else {
-                    document.getElementById(dossierdujeu + "button1").innerHTML = "Update";
-                    CalculSize(url, gamename, 'Update');
-                    document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString() + " (Update available)";
-                    var logo;
-                    if (gamename === "Lutin Adventure") {
-                        logo = "LogoLA"
+                    if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString() === fs.readFileSync(__dirname + '/VersionsFiles/' + versionlcl).toString()) {
+                        document.getElementById(dossierdujeu + "button1").innerHTML = "Play";
+                        document.getElementById('resultofcalculsize').innerHTML = "You are about to Play : " + gamename;
+                        document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString();
+                    } else {
+                        document.getElementById(dossierdujeu + "button1").innerHTML = "Update";
+                        CalculSize(url, gamename, 'Update');
+                        document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString() + " (Update available)";
+                        var logo;
+                        if (gamename === "Lutin Adventure") {
+                            logo = "LogoLA"
+                        }
+                        if (gamename === "ShootFighter") {
+                            logo = "LogoSF"
+                        }
+                        if (gamename === "Super Geoffrey Bros") {
+                            logo = "SGB1"
+                        }
+                        if (gamename === "Legend Adventure and the Infernal Maze") {
+                            logo = "LogoLAATIM"
+                        }
+                        if (gamename === "Vincent In The Forest") {
+                            logo = "LogoVITF"
+                        }
+                        if (gamename === "The Tardis Defender") {
+                            logo = "LogoTTD"
+                        }
+                        if (gamename === "FireWall Defender") {
+                            logo = "LogoFWD"
+                        }
+                        if (gamename === "TanksBattle") {
+                            logo = "LogoTB"
+                        }
+                        if (gamename === "WinRun") {
+                            logo = "LogoWR"
+                        }
+                        if (gamename === "AsteroidEscape") {
+                            logo = "LogoAE"
+                        }
+                        if (gamename === "SansNom Réédition") {
+                            logo = "LogoSN"
+                        }
+                        fs.writeFileSync(__dirname + "/Ach_Notif_TXT.txt", "An Update for " + gamename + " is available \n" + logo + ".png");
+                        achivement();
                     }
-                    if (gamename === "ShootFighter") {
-                        logo = "LogoSF"
-                    }
-                    if (gamename === "Super Geoffrey Bros") {
-                        logo = "SGB1"
-                    }
-                    if (gamename === "Legend Adventure and the Infernal Maze") {
-                        logo = "LogoLAATIM"
-                    }
-                    if (gamename === "Vincent In The Forest") {
-                        logo = "LogoVITF"
-                    }
-                    if (gamename === "The Tardis Defender") {
-                        logo = "LogoTTD"
-                    }
-                    if (gamename === "FireWall Defender") {
-                        logo = "LogoFWD"
-                    }
-                    if (gamename === "TanksBattle") {
-                        logo = "LogoTB"
-                    }
-                    if (gamename === "WinRun") {
-                        logo = "LogoWR"
-                    }
-                    if (gamename === "AsteroidEscape") {
-                        logo = "LogoAE"
-                    }
-                    if (gamename === "SansNom Réédition") {
-                        logo = "LogoSN"
-                    }
-                    fs.writeFileSync(__dirname + "/Ach_Notif_TXT.txt", "An Update for " + gamename + " is available \n" + logo + ".png");
-                    achivement();
                 }
+
+
             }
 
         } else {
@@ -751,8 +758,25 @@ function detect(dossierdujeu, versiontxt, versionlcl, gamename, txtVID, url) {
             }
             document.getElementById(dossierdujeu + "button1").onclick = 0;
             document.getElementById(dossierdujeu + "button3").onclick = 0;
-            document.getElementById(dossierdujeu + "button1").innerHTML = "";
+            document.getElementById(dossierdujeu + "button1").innerHTML = "Unavailable";
             document.getElementById(dossierdujeu + "button3").innerHTML = "";
+        }
+    }
+    else {
+        if (process.platform = "linux") {
+            if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt)== true) {
+                document.getElementById(dossierdujeu + "button1").innerHTML = "Play";
+                document.getElementById('resultofcalculsize').innerHTML = "You are about to Play : " + gamename;
+                document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString();
+            }
+        } else if (process.platform = "win32") {
+            if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt) == true) {
+                document.getElementById(dossierdujeu + "button1").innerHTML = "Play";
+                document.getElementById('resultofcalculsize').innerHTML = "You are about to Play : " + gamename;
+                document.getElementById(txtVID).innerHTML = "Version : " + fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt).toString();
+            }
+        } else {
+            alert("This platform is not supported by the Nytuo Launcher or by the game.")
         }
     }
 }
@@ -868,25 +892,36 @@ function DLVersions() {
 function DoforWin(dossierdujeu, versiontxt, URL, zipname, versionlcl, nomexe, gamename) {
 
     if (process.platform === "win32") {
-        if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt) === false) {
-            DL(URL, dossierdujeu, zipname);
-        } else {
-            if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt).toString() === fs.readFileSync(__dirname + '/VersionsFiles/' + versionlcl).toString()) {
-                turnonOverlay();
-                Open(dossierdujeu, nomexe);
-                setTimeout(function () {
-                    turnoffOverlay();
-                }, 1000);
-
-
+        if (connectedtointernet == "true") {
+            if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt) === false) {
+                DL(URL, dossierdujeu, zipname);
             } else {
-                deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
-                setTimeout(function () {
-                    DL(URL, dossierdujeu, zipname);
-                }, 5000);
+                if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt).toString() === fs.readFileSync(__dirname + '/VersionsFiles/' + versionlcl).toString()) {
+                    turnonOverlay();
+                    Open(dossierdujeu, nomexe);
+                    setTimeout(function () {
+                        turnoffOverlay();
+                    }, 1000);
 
+
+                } else {
+                    deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
+                    setTimeout(function () {
+                        DL(URL, dossierdujeu, zipname);
+                    }, 5000);
+
+                }
             }
+        } else if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt) === true) {
+            turnonOverlay();
+            Open(dossierdujeu, nomexe);
+            setTimeout(function () {
+                turnoffOverlay();
+            }, 1000);
+        } else {
+            alert("You\'re not connected to the internet, please restart the launcher with an internet connection")
         }
+
     }
     if (process.platform !== "win32") {
         alert(gamename + " is not available for your operating system")
@@ -895,63 +930,87 @@ function DoforWin(dossierdujeu, versiontxt, URL, zipname, versionlcl, nomexe, ga
 
 function Do(dossierdujeu, versiontxt, URLwin, zipname, versionlcl, nomexe, gamename, linuxexe, macosexe, URLinux, URLmac) {
     if (process.platform === "win32") {
-        if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt) === false) {
-            DL(URLwin, dossierdujeu, zipname);
-        } else {
-            if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt).toString() === fs.readFileSync(__dirname + '/VersionsFiles/' + versionlcl).toString()) {
-                turnonOverlay();
-                Open(dossierdujeu, nomexe);
-                setTimeout(function () {
-                    turnoffOverlay()
-                }, 1000)
-
+        if (connectedtointernet == "true") {
+            if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt) === false) {
+                DL(URLwin, dossierdujeu, zipname);
             } else {
-                deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
-                setTimeout(function () {
-                    DL(URLwin, dossierdujeu, zipname);
-                }, 5000);
+                if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt).toString() === fs.readFileSync(__dirname + '/VersionsFiles/' + versionlcl).toString()) {
+                    turnonOverlay();
+                    Open(dossierdujeu, nomexe);
+                    setTimeout(function () {
+                        turnoffOverlay()
+                    }, 1000)
 
+                } else {
+                    deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
+                    setTimeout(function () {
+                        DL(URLwin, dossierdujeu, zipname);
+                    }, 5000);
+
+                }
             }
+        } else if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt) === true) {
+            turnonOverlay();
+            Open(dossierdujeu, nomexe);
+            setTimeout(function () {
+                turnoffOverlay()
+            }, 1000)
+        } else {
+            alert('You\'re not connected to the internet, please restart the launcher with an internet connection')
         }
+
     }
     if (process.platform === "linux") {
-        if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt) === false) {
-            DL(URLinux, dossierdujeu, zipname);
-        } else {
-            if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt).toString() === fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/' + versionlcl).toString()) {
-                turnonOverlay();
-                OpenforLinux(gamelocation, dossierdujeu, linuxexe);
-                setTimeout(function () {
-                    turnoffOverlay()
-                }, 1000)
+        if (connectedtointernet == "true") {
+            if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + '/' + versiontxt) === false) {
+                DL(URLinux, dossierdujeu, zipname);
             } else {
-                deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
-                setTimeout(function () {
-                    DL(URLinux, dossierdujeu, zipname);
-                }, 5000);
+                if (fs.readFileSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt).toString() === fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/' + versionlcl).toString()) {
+                    turnonOverlay();
+                    OpenforLinux(gamelocation, dossierdujeu, linuxexe);
+                    setTimeout(function () {
+                        turnoffOverlay()
+                    }, 1000)
+                } else {
+                    deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
+                    setTimeout(function () {
+                        DL(URLinux, dossierdujeu, zipname);
+                    }, 5000);
 
+                }
             }
+
+        } else if (fs.existsSync(gamelocation + '/Games/' + dossierdujeu + "/" + versiontxt) === true) {
+            turnonOverlay();
+            OpenforLinux(gamelocation, dossierdujeu, linuxexe);
+            setTimeout(function () {
+                turnoffOverlay()
+            }, 1000)
+        } else {
+            alert('You\'re not connected to the internet, please restart the launcher with an internet connection')
         }
+
     }
     if (process.platform != "linux" && process.platform != "win32") {
-        alert("Your platform is not compatible with the game (You're not supposed to view this message, if you do please report the error with code #0220)")
+        alert("Your platform is not compatible with the game (You're not supposed to view this message, if you view it please report the error with code #0220)")
     }
 }
 
 function achivementtxt() {
-    if (process.platform == 'linux'){
+    if (process.platform == 'linux') {
         var txt = require('fs').readFileSync(app.getPath("documents") + '/nytuolauncher_data/Ach_Notif_TXT.txt', 'utf-8')
-        .split('\n');
-    }else{
+            .split('\n');
+    } else {
         var txt = require('fs').readFileSync(__dirname + '/Ach_Notif_TXT.txt', 'utf-8')
-        .split('\n');
+            .split('\n');
     }
-    
+
     var AchTxtTemp = txt[0];
     var img = txt[1];
     document.getElementById("ach-txt").innerHTML = AchTxtTemp;
     document.getElementById("ach-img").src = __dirname + "/Ressources/" + img
 }
+
 function refresh() {
     document.location.reload(true);
 }
@@ -1058,7 +1117,7 @@ var update = (function () {
                         if (!!document.getElementById('updateview') === true) {
                             document.getElementById('updateview').style.display = "block";
                         }
-                        DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversionbeta + '/Nytuo-Launcher-Setup-'+launcherversionbeta+'.exe', parentfolder3 + "/nytuolauncher_data/win64UpdateBeta.exe");
+                        DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversionbeta + '/Nytuo-Launcher-Setup-' + launcherversionbeta + '.exe', parentfolder3 + "/nytuolauncher_data/win64UpdateBeta.exe");
                     }
                 } else {
                     if (process.platform == "linux") {
@@ -1084,7 +1143,7 @@ var update = (function () {
                             if (!!document.getElementById('updateview') === true) {
                                 document.getElementById('updateview').style.display = "block";
                             }
-                            DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-'+launcherversion+'.appimage', app.getPath("documents") + "/nytuolauncher_data/linuxUpdate.appimage");
+                            DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.appimage', app.getPath("documents") + "/nytuolauncher_data/linuxUpdate.appimage");
 
 
                         }
@@ -1113,7 +1172,7 @@ var update = (function () {
                             }
                             if (process.platform == 'win32') {
 
-                                DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-'+launcherversion+'.exe', parentfolder3 + "/nytuolauncher_data/win64Update.exe");
+                                DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.exe', parentfolder3 + "/nytuolauncher_data/win64Update.exe");
                             }
 
                         }
@@ -1287,8 +1346,11 @@ function verif_gameVersionLoading() {
 
                 }
             }
-
-            window.location.href = "./index.html"
+            if (navigator.onLine == true) {
+                window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+            } else {
+                window.location.href = "index.html"
+            }
         }, 4000);
     }
 }
@@ -1308,9 +1370,9 @@ function LoadAchivements() {
     console.log(homedir)
     var path = window.location.pathname;
     var page = path.split("/").pop();
-    if (page === "SGBAch.html" || page === "index.html" || page === "sgb.html") {
+    if (page === "SGBAch.html" || page === "index.html" || page === "profile.php" || page === "sgb.html") {
         var AchlistSGB = require('fs').readFileSync(__dirname + '/Achievements/SGB/AllAchievements.txt', 'utf-8').split('\n');
-        let AchListSGBDone2 = require('fs').readFileSync(app.getPath("documents") + "/Nytuo/Achievements/SGB/AchDone.txt", 'utf-8').split('\n');
+        let AchListSGBDone2 = require('fs').readFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", 'utf-8').split('\n');
         console.log(AchListSGBDone2);
         let temp = AchListSGBDone2.sort();
         let AchListSGBDone = Array.from(new Set(temp));
@@ -1340,7 +1402,7 @@ function LoadAchivements() {
             }
         }
     }
-    if (page === "LAATIMAch.html" || page === "index.html" || page === "laatim.html") {
+    if (page === "LAATIMAch.html" || page === "index.html" || page === "profile.php" || page === "laatim.html") {
         var AchlistLAATIM = require('fs').readFileSync(__dirname + '/Achievements/LAATIM/AllAchievements.txt', 'utf-8').split('\n');
         let AchListLAATIMDone2 = require('fs').readFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", 'utf-8').split('\n');
         console.log(AchListLAATIMDone2);
@@ -1372,9 +1434,9 @@ function LoadAchivements() {
             }
         }
     }
-    if (page === "SNREAch.html" || page === "index.html" || page === "sn.html") {
+    if (page === "SNREAch.html" || page === "profile.php" || page === "index.html" || page === "sn.html") {
         var AchlistSNRE = require('fs').readFileSync(__dirname + '/Achievements/SNRE/AllAchievements.txt', 'utf-8').split('\n');
-        let AchListSNREDone2 = require('fs').readFileSync(app.getPath("documents") + "/Nytuo/Achievements/SNRE/AchDone.txt", 'utf-8').split('\n');
+        let AchListSNREDone2 = require('fs').readFileSync(gamelocation + "Games/SNRE/Achievements/AchDone.txt", 'utf-8').split('\n');
         console.log(AchListSNREDone2);
         let temp = AchListSNREDone2.sort();
         let AchListSNREDone = Array.from(new Set(temp));
@@ -1450,4 +1512,10 @@ function turnonOverlay() {
 
 function turnoffOverlay() {
     document.getElementById("overlay").style.display = "none";
+}
+function gameUsername(username){
+    fs.writeFileSync(gamelocation+"/Games/Username.txt",username)
+}
+function passwordtxt(password){
+    fs.writeFileSync(parentfolder3+"/nytuolauncher_data/Password.txt",password)
 }

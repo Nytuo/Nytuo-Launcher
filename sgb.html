@@ -10,7 +10,16 @@
     <title>Super Geoffrey Bros -- Nytuo Launcher</title>
 </head>
 <header>
+    <script>
+        function gohome() {
+            if (navigator.onLine == true) {
+                window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+            } else {
+                window.location.href = "index.html"
+            }
+        }
 
+    </script>
     <nav id="nav">
         <ul style="padding: auto;">
             <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo"
@@ -18,7 +27,7 @@
             <div style="float: right;">
                 <li><a href="about.html">Settings</a></li>
 
-                <li><a href="index.html">Games</a>
+                <li><a onclick="gohome()" style="cursor: pointer;">Games</a>
                 <li>
                 <li><a href="news.html">News</a></li>
             </div>
@@ -119,7 +128,7 @@
             </table>
         </div>
     </div>
-    
+
 
     <!--Confirmation de déinstallation-->
     <div id="ConfirmUN" class="modal">
@@ -387,20 +396,40 @@
                             <div class="box-3">
                                 <a onclick="whattodo()">
                                     <script>
+                                        var fs = require('fs');
+                                        function connectest() {
+                                            if (process.platform == "linux") {
+                                                return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt");
+                                            } else {
+                                                return fs.readFileSync(__dirname + "/connected.txt");
+                                            }
+
+                                        }
+                                        var connectedtointernet = connectest();
                                         function whattodo() {
-                                            if (document.getElementById('SGBbutton1').innerHTML === "Install") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                document.getElementById('id02').style.display = 'block';
-                                                Do('SGB', 'SGB_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hIVjIheY_aPr1832Gg?e=bQLmFz', 'SGB.zip', 'SGB_Version.txt', 'nw.exe', 'Super Geoffrey Bros', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=9JoMti', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=pbdjt4');
-                                            }
-                                            if (document.getElementById('SGBbutton1').innerHTML === "Update") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                document.getElementById('id02').style.display = 'block';
-                                                Do('SGB', 'SGB_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hIVjIheY_aPr1832Gg?e=bQLmFz', 'SGB.zip', 'SGB_Version.txt', 'nw.exe', 'Super Geoffrey Bros', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=9JoMti', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=pbdjt4');
-                                            }
-                                            if (document.getElementById('SGBbutton1').innerHTML === "Play") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                Do('SGB', 'SGB_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hIVjIheY_aPr1832Gg?e=bQLmFz', 'SGB.zip', 'SGB_Version.txt', 'nw.exe', 'Super Geoffrey Bros', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=9JoMti', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=pbdjt4');
+                                            if (connectedtointernet == "true") {
+                                                if (document.getElementById('SGBbutton1').innerHTML === "Install") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    document.getElementById('id02').style.display = 'block';
+                                                    Do('SGB', 'SGB_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hIVjIheY_aPr1832Gg?e=bQLmFz', 'SGB.zip', 'SGB_Version.txt', 'nw.exe', 'Super Geoffrey Bros', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=9JoMti', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=pbdjt4');
+                                                }
+                                                if (document.getElementById('SGBbutton1').innerHTML === "Update") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    document.getElementById('id02').style.display = 'block';
+                                                    Do('SGB', 'SGB_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hIVjIheY_aPr1832Gg?e=bQLmFz', 'SGB.zip', 'SGB_Version.txt', 'nw.exe', 'Super Geoffrey Bros', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=9JoMti', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=pbdjt4');
+                                                }
+                                                if (document.getElementById('SGBbutton1').innerHTML === "Play") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    Do('SGB', 'SGB_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hIVjIheY_aPr1832Gg?e=bQLmFz', 'SGB.zip', 'SGB_Version.txt', 'nw.exe', 'Super Geoffrey Bros', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=9JoMti', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=pbdjt4');
+                                                }
+                                            } else {
+                                                if (document.getElementById('SGBbutton1').innerHTML === "Play") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    Do('SGB', 'SGB_Version.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5hIVjIheY_aPr1832Gg?e=bQLmFz', 'SGB.zip', 'SGB_Version.txt', 'nw.exe', 'Super Geoffrey Bros', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJoopV-SOJfhLYFSvA?e=9JoMti', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJopCrrDVVHteOUoaw?e=pbdjt4');
+                                                }
+                                                else {
+                                                    alert("You\'re not connected to the internet, please restart the launcher with an internet connection")
+                                                }
                                             }
                                         }
                                     </script>

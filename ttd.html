@@ -10,15 +10,25 @@
     <title>The Tardis Defender -- Nytuo Launcher</title>
 </head>
 <header>
+    <script>
+        function gohome() {
+            if (navigator.onLine == true) {
+                window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+            } else {
+                window.location.href = "index.html"
+            }
+        }
 
+    </script>
     <nav id="nav">
         <ul style="padding: auto;">
-            <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+            <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo"
+                style="text-align:left;width: 15%;">
             <div style="float: right;">
                 <li><a href="about.html">Settings</a></li>
-                <li><a href="index.html">Games</a>
-                    <li>
-                        <li><a href="news.html">News</a></li>
+                <li><a onclick="gohome()" style="cursor: pointer;">Games</a>
+                <li>
+                <li><a href="news.html">News</a></li>
             </div>
         </ul>
     </nav>
@@ -40,7 +50,9 @@
         </div>
     </div>
     <!--Detection de la version et remplacement du text de version en conséquence-->
-    <iframe onload="detect('TTD','VersionTTD.txt','TTD_Version.txt','The tardis Defender','versiontxtttd','https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa')" src="javascript:void(0)" style="display: none;"></iframe>
+    <iframe
+        onload="detect('TTD','VersionTTD.txt','TTD_Version.txt','The tardis Defender','versiontxtttd','https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa')"
+        src="javascript:void(0)" style="display: none;"></iframe>
     <!--Placement du titre du jeu, du text version et de l'affiche-->
     <div style="padding-top: 8%;"></div>
     <table style="width: 100%;">
@@ -67,7 +79,8 @@
                     <td>
                         <div class="box-3">
 
-                            <a onclick="document.getElementById('ConfirmDL').style.display='block';" href="javascript:void(0)">
+                            <a onclick="document.getElementById('ConfirmDL').style.display='block';"
+                                href="javascript:void(0)">
                                 <div class="btn btn-three">
                                     <span id="TTDbutton1">PLAY</span>
                                 </div>
@@ -78,7 +91,8 @@
                 <tr>
                     <td>
                         <div class="box-3">
-                            <a id="TTDbutton3" onclick="document.getElementById('id01').style.display='block'" href="javascript:void(0)">
+                            <a id="TTDbutton3" onclick="document.getElementById('id01').style.display='block'"
+                                href="javascript:void(0)">
                                 <div class="btn btn-three">
                                     <span id="TTDbutton3">Settings</span>
                                 </div>
@@ -143,7 +157,8 @@
                         </td>
                         <td>
                             <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmUP').style.display='none';document.getElementById('id02').style.display='block';repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa','TTD','TTD.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJpYqu8b1UTHQ3r2cg?e=F2btID','https://1drv.ws/u/s!AkkqGntQc7Y5hJpXK3f2XSnNaHCR5g?e=jlmCPJ')">
+                                <a
+                                    onclick="document.getElementById('ConfirmUP').style.display='none';document.getElementById('id02').style.display='block';repair('https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa','TTD','TTD.zip','https://1drv.ws/u/s!AkkqGntQc7Y5hJpYqu8b1UTHQ3r2cg?e=F2btID','https://1drv.ws/u/s!AkkqGntQc7Y5hJpXK3f2XSnNaHCR5g?e=jlmCPJ')">
                                     <div class="btn btn-three">
                                         <span>Yes</span>
                                     </div>
@@ -167,7 +182,8 @@
                     <tr>
                         <td style="text-align: center;">
                             <div class="box-3">
-                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUP').style.display='block';" href="javascript:void(0)">
+                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUP').style.display='block';"
+                                    href="javascript:void(0)">
                                     <div class="btn btn-three">
                                         <span>Repair</span>
                                     </div>
@@ -178,7 +194,8 @@
                     <tr>
                         <td>
                             <div class="box-3">
-                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUN').style.display='block';" href="javascript:void(0)">
+                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUN').style.display='block';"
+                                    href="javascript:void(0)">
                                     <div class="btn btn-three">
                                         <span>Uninstall</span>
                                     </div>
@@ -200,7 +217,8 @@
                     <tr>
                         <td>
                             <div class="box-3">
-                                <a onclick="createlink(gamelocation+'/Games/TTD/nw.exe',require('path').join(require('os').homedir(),'Desktop'))" href="javascript:void(0)">
+                                <a onclick="createlink(gamelocation+'/Games/TTD/nw.exe',require('path').join(require('os').homedir(),'Desktop'))"
+                                    href="javascript:void(0)">
                                     <div class="btn btn-three">
                                         <span>ShortCut</span>
                                     </div>
@@ -280,21 +298,41 @@
                             <div class="box-3">
                                 <a onclick="whattodo()">
                                     <script>
+                                        var fs = require('fs');
+                                        function connectest() {
+                                            if (process.platform == "linux") {
+                                                return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt");
+                                            } else {
+                                                return fs.readFileSync(__dirname + "/connected.txt");
+                                            }
+
+                                        }
+                                        var connectedtointernet = connectest();
                                         function whattodo() {
-                                            console.log(document.getElementById('TTDbutton1').innerHTML);
-                                            if (document.getElementById('TTDbutton1').innerHTML === "Install") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                document.getElementById('id02').style.display = 'block';
-                                                Do('TTD', 'VersionTTD.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa', 'TTD.zip', 'TTD_Version.txt', 'nw.exe', 'The tardis Defender', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpYqu8b1UTHQ3r2cg?e=F2btID', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpXK3f2XSnNaHCR5g?e=jlmCPJ');
-                                            }
-                                            if (document.getElementById('TTDbutton1').innerHTML === "Update") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                document.getElementById('id02').style.display = 'block';
-                                                Do('TTD', 'VersionTTD.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa', 'TTD.zip', 'TTD_Version.txt', 'nw.exe', 'The tardis Defender', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpYqu8b1UTHQ3r2cg?e=F2btID', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpXK3f2XSnNaHCR5g?e=jlmCPJ');
-                                            }
-                                            if (document.getElementById('TTDbutton1').innerHTML === "Play") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                Do('TTD', 'VersionTTD.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa', 'TTD.zip', 'TTD_Version.txt', 'nw.exe', 'The tardis Defender', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpYqu8b1UTHQ3r2cg?e=F2btID', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpXK3f2XSnNaHCR5g?e=jlmCPJ');
+                                            if (connectedtointernet == "true") {
+                                                console.log(document.getElementById('TTDbutton1').innerHTML);
+                                                if (document.getElementById('TTDbutton1').innerHTML === "Install") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    document.getElementById('id02').style.display = 'block';
+                                                    Do('TTD', 'VersionTTD.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa', 'TTD.zip', 'TTD_Version.txt', 'nw.exe', 'The tardis Defender', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpYqu8b1UTHQ3r2cg?e=F2btID', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpXK3f2XSnNaHCR5g?e=jlmCPJ');
+                                                }
+                                                if (document.getElementById('TTDbutton1').innerHTML === "Update") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    document.getElementById('id02').style.display = 'block';
+                                                    Do('TTD', 'VersionTTD.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa', 'TTD.zip', 'TTD_Version.txt', 'nw.exe', 'The tardis Defender', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpYqu8b1UTHQ3r2cg?e=F2btID', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpXK3f2XSnNaHCR5g?e=jlmCPJ');
+                                                }
+                                                if (document.getElementById('TTDbutton1').innerHTML === "Play") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    Do('TTD', 'VersionTTD.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa', 'TTD.zip', 'TTD_Version.txt', 'nw.exe', 'The tardis Defender', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpYqu8b1UTHQ3r2cg?e=F2btID', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpXK3f2XSnNaHCR5g?e=jlmCPJ');
+                                                }
+                                            } else {
+                                                if (document.getElementById('TTDbutton1').innerHTML === "Play") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    Do('TTD', 'VersionTTD.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_IAVV80IqTrwqCkNg?e=xpAgxa', 'TTD.zip', 'TTD_Version.txt', 'nw.exe', 'The tardis Defender', 'nw', 'nwjs.app', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpYqu8b1UTHQ3r2cg?e=F2btID', 'https://1drv.ws/u/s!AkkqGntQc7Y5hJpXK3f2XSnNaHCR5g?e=jlmCPJ');
+                                                }
+                                                else {
+                                                    alert("You\'re not connected to the internet, please restart the launcher with an internet connection")
+                                                }
                                             }
                                         }
                                     </script>
@@ -320,7 +358,7 @@
                 var modal5 = document.getElementById('ConfirmUN');
 
                 // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function(event) {
+                window.onclick = function (event) {
                     if (event.target == modal) {
                         modal.style.display = "none";
                     }

@@ -10,14 +10,23 @@
     <title>ShootFighter -- Nytuo Launcher</title>
 </head>
 <header>
+    <script>
+        function gohome() {
+            if (navigator.onLine == true) {
+                window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+            } else {
+                window.location.href = "index.html"
+            }
+        }
 
+    </script>
     <nav id="nav">
         <ul style="padding: auto;">
             <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo"
                 style="text-align:left;width: 15%;">
             <div style="float: right;">
                 <li><a href="about.html">Settings</a></li>
-                <li><a href="index.html">Games</a>
+                <li><a onclick="gohome()" style="cursor: pointer;">Games</a>
                 <li>
                 <li><a href="news.html">News</a></li>
             </div>
@@ -41,7 +50,8 @@
         </div>
     </div>
     <!--Detection de la version et remplacement du text de version en conséquence-->
-    <iframe onload="detectforWin('SF','VersionSF.txt','SF_Version.txt','ShootFighter','versiontxtsf','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N')"
+    <iframe
+        onload="detectforWin('SF','VersionSF.txt','SF_Version.txt','ShootFighter','versiontxtsf','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N')"
         src="javascript:void(0)" style="display: none;"></iframe>
     <!--Placement du titre du jeu, du text version et de l'affiche-->
     <div style="padding-top: 8%;"></div>
@@ -53,7 +63,7 @@
                     <div class="card_title title-white">
                         <img src="Ressources/LogoSF.png" style="z-index: 1; width: 30%;top: 35%;left: 40%">
                     </div>
-                  </div>
+                </div>
             </td>
             <td>
                 <h1 class="paraTXTSF">ShootFighter</h1>
@@ -99,7 +109,8 @@
         <div class="modal-content animate" style="text-align: center;">
             <h1>Confirmation :</h1>
             <h2>You are about to DELETE ShootFighter</h2>
-            <h3>This action can't be undone.</br>If you search to repair the game is not here.</br>All the data (like saves) may be loose (You can eventually do a manual backup)</h3>
+            <h3>This action can't be undone.</br>If you search to repair the game is not here.</br>All the data (like
+                saves) may be loose (You can eventually do a manual backup)</h3>
             <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
                 <table>
                     <tr>
@@ -289,21 +300,42 @@
                             <div class="box-3">
                                 <a onclick="whattodo()">
                                     <script>
+                                        var fs = require('fs');
+                                        function connectest() {
+                                            if (process.platform == "linux") {
+                                                return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt");
+                                            } else {
+                                                return fs.readFileSync(__dirname + "/connected.txt");
+                                            }
+
+                                        }
+                                        var connectedtointernet = connectest();
                                         function whattodo() {
-                                            if (document.getElementById('SFbutton1').innerHTML === "Install") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                document.getElementById('id02').style.display = 'block';
-                                                DoforWin('SF','VersionSF.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF.zip','SF_Version.txt','ShootFighter.exe','Shoot Fighter');
+                                            if (connectedtointernet == "true") {
+                                                if (document.getElementById('SFbutton1').innerHTML === "Install") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    document.getElementById('id02').style.display = 'block';
+                                                    DoforWin('SF', 'VersionSF.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N', 'SF.zip', 'SF_Version.txt', 'ShootFighter.exe', 'Shoot Fighter');
+                                                }
+                                                if (document.getElementById('SFbutton1').innerHTML === "Update") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    document.getElementById('id02').style.display = 'block';
+                                                    DoforWin('SF', 'VersionSF.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N', 'SF.zip', 'SF_Version.txt', 'ShootFighter.exe', 'Shoot Fighter');
+                                                }
+                                                if (document.getElementById('SFbutton1').innerHTML === "Play") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    DoforWin('SF', 'VersionSF.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N', 'SF.zip', 'SF_Version.txt', 'ShootFighter.exe', 'Shoot Fighter');
+                                                }
+                                            } else {
+                                                if (document.getElementById('SFbutton1').innerHTML === "Play") {
+                                                    document.getElementById('ConfirmDL').style.display = 'none';
+                                                    DoforWin('SF', 'VersionSF.txt', 'https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N', 'SF.zip', 'SF_Version.txt', 'ShootFighter.exe', 'Shoot Fighter');
+                                                }
+                                                else {
+                                                    alert("You\'re not connected to the internet, please restart the launcher with an internet connection")
+                                                }
                                             }
-                                            if (document.getElementById('SFbutton1').innerHTML === "Update") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                document.getElementById('id02').style.display = 'block';
-                                                DoforWin('SF','VersionSF.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF.zip','SF_Version.txt','ShootFighter.exe','Shoot Fighter');
-                                            }
-                                            if (document.getElementById('SFbutton1').innerHTML === "Play") {
-                                                document.getElementById('ConfirmDL').style.display = 'none';
-                                                DoforWin('SF','VersionSF.txt','https://1drv.ws/u/s!AkkqGntQc7Y5g_I2LkrpytSs0dZC_g?e=ZLqh0N','SF.zip','SF_Version.txt','ShootFighter.exe','Shoot Fighter');
-                                            }
+
                                         }
                                     </script>
                                     <div class="btn btn-three">
