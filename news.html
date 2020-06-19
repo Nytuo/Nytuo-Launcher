@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="Ressources/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js.js"></script>
+    <title>News -- Nytuo Launcher</title>
+</head>
+<style>
+    .container {
+      position: relative;
+      width: 100%;
+    }
+    .image {
+      display: block;
+      width: 100%;
+    }
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.712);
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      transition: .5s ease;
+    }
+    .container:hover .overlay {
+      height: 100%;
+    }
+    .text {
+        font-family: 'Oswald',sans-serif;
+      color: white;
+      font-size: 34px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    @media only screen and (max-width: 1680px){
+        .text{
+            font-size: 24px;
+        }
+    }
+    </style>
+<header>
+
+    <nav id="nav">
+        <ul style="padding: auto;">
+            <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+            <div style="float: right;">
+                <li><a href="about.html">Settings</a></li>
+                <li><a href="https://launcher.nytuo.yo.fr/profile.php">Games</a><li>
+                <li><a href="news.html">News</a></li>
+            </div>
+        </ul>
+    </nav>
+</header>
+<body>
+    <div style="padding-top: 120px;">
+    </div>
+    <h1>News :</h1>
+    <h2>Last version : 2.9.1</h2>
+<table style="height: 20%;overflow: hidden;box-sizing: border-box;">
+    <tr >
+        <td>
+            <div class="container" style="display: block;">
+                <img src="Ressources/IMGSN.png" alt="Avatar" class="image">
+                <div class="overlay">
+                  <div class="text">-- The last Game -- </br> SansNom Réédition <br/>Rebuild of my first game made in 2016 ! </div> 
+                </div>
+              </div>   
+        </td>
+        <td>
+            <div class="container">
+                <img src="Ressources/logoNL.png" alt="Avatar" class="image">
+                <div class="overlay">
+                  <div class="text">-- Launcher (Version 2.9.X) -- </br> Gif and animate Logo at launch, portable version, One adaptive game page.<br/>This is the Nytuo Launcher 2.9.X ! </div> 
+                </div>
+              </div>   
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="container">
+                <img src="Ressources/LogoEA.png" alt="Avatar" class="image">
+                <div class="overlay">
+                  <div class="text">-- Early Access -- </br> No games in Early Access </div> 
+                </div>
+              </div>   
+        </td>
+        <td>
+            <div class="container">
+                <img src="Ressources/thorthanos.gif" class="image">
+                <div class="overlay">
+                  <div class="text">-- Gif at launch -- </br> Add some Gifs at launch according to the loading message because Gif is cool !.</div> 
+                </div>
+              </div>   
+        </td>
+    </tr>
+</table>
+    <h1>Best Games (With compare beetween Itch.io and Gamejolt) :</h1>
+    <div class="cards-list">
+        <a href="laatim.html"> <div class="card 1">
+            <div class="card_image"> <img src="Ressources/IMGLAATIM.png" /> </div>
+            <div class="card_title title-white">
+              <img src="Ressources/LogoLAATIM.png"  style="z-index: 1; width: 25%;top: 2%;left: 75%">
+            </div>
+          </div> </a>
+          <a href="sgb.html"><div class="card 1">
+              <div class="card_image"> <img src="Ressources/SGB2.png" /> </div>
+              <div class="card_title title-white">
+                  <img src="Ressources/SGB1.png" style="z-index: 1; width: 45%;top: 40%;left: 35%">
+              </div>
+            </div></a>
+            <a href="tb.html"><div class="card 1">
+                <div class="card_image"> <img src="Ressources/IMGTB.png" /> </div>
+                <div class="card_title title-white">
+                    <img src="Ressources/LogoTB.png" style="z-index: 1; width: 36%;top: 25%;left: 35%">
+                </div>
+              </div></a>
+    </div>
+    
+    <h1>Early Access : </h1>
+    <p>No games currently in early access</p>
+    <h1>ChangesLog (Since 2.9.0, <a href="https://nytuo.yo.fr/nlcl.html">More here</a>): </h1>
+        <p><span class="fixed">Delete</span>All games pages</p>
+        <p><span class="new">New</span>Global game page who can adapt to the cible game.</p>
+        <p><span class="enhanced">Enhanced</span>NSIS Assisted installer updated to launch the launcher after finish installing/upgrading.</p>
+        <p><span class="enhanced">Enhanced</span>Rename of the Notification system in the code (nothings change for user)</p>
+        <p><span class="enhanced">Enhanced</span>The Loading page now have a Nytuo logo Animation and a gif play according to the loading message. </p>
+        <p><span class="enhanced">Enhanced</span>The Download system now show the speed, time remaining and the size downloaded of the total size.</p>
+        <p><span class="new">New</span>Portable version.</p>
+</body>
+</html>
