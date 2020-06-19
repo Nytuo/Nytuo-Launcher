@@ -1556,7 +1556,7 @@ function RunWithoutInstall(url, gamejolt) {
         minWidth: 720,
         height: 480,
         width: 720,
-        icon: path.join(__dirname, 'Ressources/favicon.ico')
+        icon: path.join(__dirname, 'Ressources/logoexp.png')
     });
     win.loadURL(url);
     if (gamejolt === 'true') {

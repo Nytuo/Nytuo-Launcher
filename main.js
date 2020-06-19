@@ -24,7 +24,25 @@ if (process.platform !== "linux" && process.platform !== "win32") {
 
 //create the main window
 function createWindow() {
-    let win = new BrowserWindow({
+    if (process.platform == "linux"){
+        let win = new BrowserWindow({
+
+            backgroundColor: 212121,
+            minWidth: 1280,
+            minHeight: 720,
+            width: 1280,
+            height: 720,
+            icon: path.join(__dirname, 'Ressources/logoexp.png'),
+            webPreferences: {
+                webSecurity: false,
+                nodeIntegration: true,
+                enableRemoteModule: true
+            },
+    
+    
+        })
+    }else if(process.platform=="win32"){
+        let win = new BrowserWindow({
 
         backgroundColor: 212121,
         minWidth: 1280,
@@ -40,6 +58,8 @@ function createWindow() {
 
 
     })
+    }
+    
     //load the loading page
     win.loadFile('Loading.html');
 
