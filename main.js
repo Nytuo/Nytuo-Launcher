@@ -24,7 +24,7 @@ if (process.platform !== "linux" && process.platform !== "win32") {
 
 //create the main window
 function createWindow() {
-    if (process.platform == "linux"){
+    if (process.platform == "linux") {
         let win = new BrowserWindow({
 
             backgroundColor: 212121,
@@ -38,30 +38,33 @@ function createWindow() {
                 nodeIntegration: true,
                 enableRemoteModule: true
             },
-    
-    
+
+
         })
-    }else if(process.platform=="win32"){
+        //load the loading page
+        win.loadFile('Loading.html');
+    } else if (process.platform == "win32") {
         let win = new BrowserWindow({
 
-        backgroundColor: 212121,
-        minWidth: 1280,
-        minHeight: 720,
-        width: 1280,
-        height: 720,
-        icon: path.join(__dirname, 'Ressources/favicon.ico'),
-        webPreferences: {
-            webSecurity: false,
-            nodeIntegration: true,
-            enableRemoteModule: true
-        },
+            backgroundColor: 212121,
+            minWidth: 1280,
+            minHeight: 720,
+            width: 1280,
+            height: 720,
+            icon: path.join(__dirname, 'Ressources/favicon.ico'),
+            webPreferences: {
+                webSecurity: false,
+                nodeIntegration: true,
+                enableRemoteModule: true
+            },
 
 
-    })
+        })
+        //load the loading page
+        win.loadFile('Loading.html');
     }
-    
-    //load the loading page
-    win.loadFile('Loading.html');
+
+
 
 
     if (portable == true) {
