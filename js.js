@@ -246,7 +246,7 @@ function DownlaodFileUpdate(file_url, targetPath, dossierdujeu) {
         // Update the received bytes
         received_bytes += chunk.length;
 
-        showProgress(received_bytes, total_bytes, stater);
+        showProgress(received_bytes, total_bytes, state);
     });
     req.on('end', function () {
         turnonOverlay();
