@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta charset="utf-8" />
+    <link rel="icon" href="Ressources/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js.js"></script>
+    <title>Nytuo Launcher -- Notifycation</title>
+</head>
+<style>
+:root,
+:host,
+html,
+body {
+  /* changing and setting default styles */
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --color: dodgerblue;
+  overflow: hidden;
+}
+
+.alert {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 350px;
+  height: 100px;
+  background: #212121;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: 1fr 0px;
+
+}
+.alert-icon {
+  display: grid;
+  margin: auto;
+  place-items: center;
+  place-content: center;
+  width: 30px;
+  height: 30px;
+}
+.alert-message {
+  width: 90%;
+  color: white;
+  max-width: 400px;
+  margin: auto;
+  border-left: 2px solid var(--color);
+  padding-left: 1rem;
+}
+
+</style>
+<div class="alert" >
+	<div class="alert-icon">
+        <img id="ach-img" src="Ressources/logoexp.png" style="width: 200%;">
+	</div>
+
+	<p class="alert-message" id="ach-txt">
+	</p>
+</div>
+
+  <img style="width: 10%;" src="Ressources/LogoLauncher.png" id="ach-img">
+        <h2 id="ach-game"></h2>
+<h2 id="ach-txt"></h2>
+<script>
+    notiftxt();
+    setTimeout(function (){
+    close()
+},6000)
+    function close(){
+        const remote = require('electron').remote;
+    var window = remote.getCurrentWindow();
+    window.close();
+    }
+</script>
+</html>

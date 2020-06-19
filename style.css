@@ -517,11 +517,41 @@ ul, li {
     clear: both;
     display: table;
 }
-
+/*#region BG*/
 .IMGBGLAATIM {
     background-image: url("Ressources/IMGLAATIM.png");
 }
-
+.IMGBGSGB{
+    background-image:url("Ressources/SGB2.png");
+}
+.IMGBGWR{
+    background-image: url("Ressources/IMGWR.png");
+}
+.IMGBGVITF{
+    background-image: url("Ressources/IMGVITF.png");
+}
+.IMGBGTTD{
+    background-image: url("Ressources/IMGTTD.png");
+}
+.IMGBGTB{
+    background-image: url("Ressources/IMGTB.png");
+}
+.IMGBGSN{
+    background-image: url("Ressources/IMGSN.png");
+}
+.IMGBGSF{
+    background-image: url("Ressources/IMGSF.png");
+}
+.IMGBGLA{
+    background-image: url("Ressources/IMGLA.png");
+}
+.IMGBGFWD{
+    background-image: url("Ressources/IMGFWD.png");
+}
+.IMGBGAE{
+    background-image: url("Ressources/IMGAE.png");
+}
+/*#endregion*/
 @media only screen and (max-width: 1680px) {
     .progressBarLAATIM {
         text-align: center;
@@ -784,7 +814,7 @@ div[class*=box] {
 
 .modal-content {
     background-color: #212121;
-    margin: 5% auto 15% auto;
+    margin: 10% auto 15% auto;
     /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #212121;
     width: 80%;

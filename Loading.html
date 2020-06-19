@@ -12,46 +12,33 @@
 </head>
 
 <body>
-    <div id="overlay">
-        <div style="text-align: center;margin-top: 20%;">
-            <div class="lds-roller">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
+    
+    
+    <div style="text-align: center;">
+        <video id="myVideo" style="width: 50%;">
+        <source id="mp4_src" src="Ressources/Introclean-1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <img id="gif" src="Ressources/thanos.gif">
     </div>
-    <div style="text-align: center;margin-top: 15%;">
-        <div class="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <h2 id="loadertxt">Loading...</h2>
-        <p>
-            <script type="text/javascript">
-                const alertOnlineStatus = () => {
-                    document.write(navigator.onLine ? "" : "Disconnected from the internet")
+    <script>
+        var vid = document.getElementById("myVideo").play();
+    </script>
+    <h2 id="loadertxt">Loading...</h2>
+    <p>
+        <script type="text/javascript">
+            const alertOnlineStatus = () => {
+                document.write(navigator.onLine ? "" : "Disconnected from the internet")
 
-                }
-                window.addEventListener('online', alertOnlineStatus)
-                window.addEventListener('offline', alertOnlineStatus)
-                alertOnlineStatus();
-            </script>
-        </p>
-        <p id="updatetext1"> </p>
+            }
+            window.addEventListener('online', alertOnlineStatus)
+            window.addEventListener('offline', alertOnlineStatus)
+            alertOnlineStatus();
+        </script>
+    </p>
+    <p id="updatetext1"> </p>
     </div>
-    <div style="text-align: center; padding-top: 20%;">
+    <div style="text-align: center; padding-top: 10%;">
 
         <h2>Created by Nytuo (Arnaud BEUX)</p>
     </div>
