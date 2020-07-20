@@ -11,7 +11,7 @@ const app = require('electron').remote.app;
 const ws = require('windows-shortcuts');
 var updatedownloaded = false;
 const path = require('path');
-
+var isInUpdate = false;
 var parentfolder1 = require('path').dirname(__dirname);
 var parentfolder2 = require('path').dirname(parentfolder1);
 var parentfolder3 = require('path').dirname(parentfolder2);
@@ -171,7 +171,7 @@ function NotificationSystem() {
     let display = remote.screen.getPrimaryDisplay();
     let width = display.bounds.width;
     let height = display.bounds.height;
-    const ach = new BrowserWindow({
+    const notifer = new BrowserWindow({
         frame: false,
         resizable: false,
         height: 100,
@@ -187,9 +187,9 @@ function NotificationSystem() {
         },
     });
 
-    ach.loadFile("./notif.html");
-    ach.setAlwaysOnTop(true, "floating", 1);
-    ach.setVisibleOnAllWorkspaces(true);
+    notifer.loadFile("./notif.html");
+    notifer.setAlwaysOnTop(true, "floating", 1);
+    notifer.setVisibleOnAllWorkspaces(true);
 }
 //Open any type of file or folder 
 function Open(dossierdujeu, filename) {
@@ -568,7 +568,7 @@ function deletefile(file2delete) {
 
         }
     }, 2000);
-
+    ACH_RECUP();
 }
 //Open the emplacement of games
 function OpenEmpl(emplacement) {
@@ -1364,6 +1364,7 @@ function DoforWin(dossierdujeu, versiontxt, URL, zipname, versionlcl, nomexe, ga
 
 
                 } else {
+                    isInUpdate = true;
                     deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
                     setTimeout(function () {
                         DL(URL, dossierdujeu, zipname);
@@ -1385,6 +1386,7 @@ function DoforWin(dossierdujeu, versiontxt, URL, zipname, versionlcl, nomexe, ga
     if (process.platform !== "win32") {
         alert(gamename + " is not available for your operating system")
     }
+    ACH_SAVER();
 }
 //execute action for games
 function Do(dossierdujeu, versiontxt, URLwin, zipname, versionlcl, nomexe, gamename, linuxexe, macosexe, URLinux, URLmac) {
@@ -1401,6 +1403,7 @@ function Do(dossierdujeu, versiontxt, URLwin, zipname, versionlcl, nomexe, gamen
                     }, 1000)
 
                 } else {
+                    isInUpdate = true;
                     deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
                     setTimeout(function () {
                         DL(URLwin, dossierdujeu, zipname);
@@ -1432,6 +1435,7 @@ function Do(dossierdujeu, versiontxt, URLwin, zipname, versionlcl, nomexe, gamen
                             turnoffOverlay()
                         }, 1000)
                     } else {
+                        isInUpdate = true;
                         deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
                         setTimeout(function () {
                             DL(URLinux, dossierdujeu, zipname);
@@ -1446,6 +1450,7 @@ function Do(dossierdujeu, versiontxt, URLwin, zipname, versionlcl, nomexe, gamen
                             turnoffOverlay()
                         }, 1000)
                     } else {
+                        isInUpdate = true;
                         deletefolderforrepair(gamelocation + '/Games/' + dossierdujeu);
                         setTimeout(function () {
                             DL(URLinux, dossierdujeu, zipname);
@@ -1470,6 +1475,7 @@ function Do(dossierdujeu, versiontxt, URLwin, zipname, versionlcl, nomexe, gamen
     if (process.platform != "linux" && process.platform != "win32") {
         alert("Your platform is not compatible with the game (You're not supposed to view this message, if you view it please report the error with code #0220)")
     }
+    ACH_SAVER();
 }
 //notification 
 function notiftxt() {
@@ -2109,7 +2115,7 @@ function compare(array1, array2) {
 function LoadAchivements() {
     console.log(homedir)
     var page = window.location.href;
-    if (page === "file:///" + dirnamew + "/Games.html?sgb" || page === "index.html" || page === "profile.php" || page === "sgb.html") {
+    if (page === "file:///" + dirnamew + "/Games.html?sgb" || page === "index.html" || page === "profile.php" || page === "/sgb.html") {
         var AchlistSGB = require('fs').readFileSync(__dirname + '/Achievements/SGB/AllAchievements.txt', 'utf-8').split('\n');
         if (fs.existsSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt")) {
             let AchListSGBDone2 = require('fs').readFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", 'utf-8').split('\n');
@@ -2128,7 +2134,7 @@ function LoadAchivements() {
             elem.innerHTML = percentage.toFixed() + "%";
             var AchListSGBTab = AchListSGBDone.slice(1, (AchListSGBDone.length));
             var AchListSGBTXT = AchListSGBTab.toString().split(",").join("<br/>");
-            if (page === "Games.html?sgb" || page === "sgb.html") {
+            if (page === "file:///" + dirnamew + "/Games.html?sgb" || page === "sgb.html") {
                 document.getElementById('achDone').innerHTML = AchListSGBTXT.toString();
                 var SGBLock = compare(AchlistSGB, AchListSGBDone);
 
@@ -2166,7 +2172,7 @@ function LoadAchivements() {
             elem.innerHTML = percentage.toFixed() + "%";
             var AchListLAATIMTab = AchListLAATIMDone.slice(1, (AchListLAATIMDone.length));
             var AchListLAATIMTXT = AchListLAATIMTab.toString().split(",").join("<br/>");
-            if (page === "Games.html?laatim" || page === "laatim.html") {
+            if (page === "file:///" + dirnamew + "/Games.html?laatim" || page === "laatim.html") {
                 document.getElementById('achDone').innerHTML = AchListLAATIMTXT.toString();
                 var LAATIMLock = compare(AchlistLAATIM, AchListLAATIMDone);
 
@@ -2204,7 +2210,7 @@ function LoadAchivements() {
             elem.innerHTML = percentage.toFixed() + "%";
             var AchListSNRETab = AchListSNREDone.slice(1, (AchListSNREDone.length));
             var AchListSNRETXT = AchListSNRETab.toString().split(",").join("<br/>");
-            if (page === "Games.html?sn" || page === "sn.html") {
+            if (page === "file:///" + dirnamew + "/Games.html?sn" || page === "sn.html") {
                 document.getElementById('achDone').innerHTML = AchListSNRETXT.toString();
                 var SNRELock = compare(AchlistSNRE, AchListSNREDone);
 
@@ -3533,8 +3539,58 @@ function REPAIR_DETECT() {
 
 
 }
+function MANIFEST_GENERATOR(dossiertomanifest) {
+    const getAllFiles = function (dirPath, arrayOfFiles) {
+        files = fs.readdirSync(dirPath)
+
+
+        arrayOfFiles = arrayOfFiles || []
+        var BlackList = ["AchDone.txt"]
+
+        files.forEach(function (file) {
+            if (BlackList.includes(file) == false) {
+                if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+                    arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
+                } else {
+
+                    arrayOfFiles.push(file + " " + fs.statSync(dirPath + "/" + file).size)
+                }
+            } else {
+                console.log("The file : " + file + " is in the BlackList and is not write into the manifest!")
+                console.log(file + " is in : '" + BlackList.toString() + "'")
+            }
+
+        })
+        return arrayOfFiles;
+
+    }
+
+    var output = getAllFiles(dossiertomanifest).toString();
+    //output = output.replace(/-/g, "")
+    //output = output.replace(/\./g, "")
+    //output = output.replace(/_/g, "")
+    output = output.split(",")
+    output = output.sort()
+    output = output.toString().replace(/,/g, " ")
+    if (portable == true) {
+        if (process.platform == "linux") {
+             fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/Manifest_temp.txt", output, "utf-8");
+        } else {
+            fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/Manifest_temp.txt", output, "utf-8");
+        }
+    } else {
+        if (process.platform == "linux") {
+            fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/Manifest_temp.txt", output, "utf-8");
+        } else {
+            fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/Manifest_temp.txt", output, "utf-8");
+        }
+    }
+
+
+}
 //get manifest of the game in onedrive and download it, compare for difference and choose if re-install the game or pass throw.
 function MANIFEST(GameName, URLMANIFEST, URLMANIFESTLINUX) {
+    MANIFEST_GENERATOR(gamelocation + "/Games/" + GameName)
     if (portable == true) {
         if (process.platform == "linux") {
             DownlaodVersion(URLMANIFESTLINUX, parentfolder3 + '/nytuolauncher_data/VersionsFiles/' + GameName + "_MANIFEST.txt");
@@ -3554,10 +3610,14 @@ function MANIFEST(GameName, URLMANIFEST, URLMANIFESTLINUX) {
         if (portable == true) {
             if (process.platform == "linux") {
                 var readmanifestlcl = fs.readFileSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles/' + GameName + "_MANIFEST.txt", 'utf-8');
-                var readmanifest = fs.readFileSync(gamelocation + "/Games/" + GameName + "/" + GameName + " -- Manifest_LINUX.txt", 'utf-8');
+                var listoflclmanifest = readmanifestlcl.split(',');
+                listoflclmanifest = listoflclmanifest.sort();
+                readmanifestlcl = listoflclmanifest.toString().replace(/,/g, " ");
+                var readmanifest = fs.readFileSync(parentfolder3 + '/nytuolauncher_data/Manifest_temp.txt', 'utf-8');
+
                 console.log(readmanifestlcl)
                 console.log(readmanifest)
-                if (readmanifest != readmanifestlcl) {
+                if (readmanifestlcl !== readmanifest) {
                     turnoffOverlay();
                     fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/Notif_TXT.txt', GameName + " not pass the repair check, it will be re-installed ! \nLogoexp.png");
                     NotificationSystem();
@@ -3569,10 +3629,14 @@ function MANIFEST(GameName, URLMANIFEST, URLMANIFESTLINUX) {
                 }
             } else {
                 var readmanifestlcl = fs.readFileSync(__dirname + "/VersionsFiles/" + GameName + "_MANIFEST.txt", 'utf-8');
-                var readmanifest = fs.readFileSync(gamelocation + "/Games/" + GameName + "/" + GameName + " -- Manifest.txt", 'utf-8');
+                var listoflclmanifest = readmanifestlcl.split(',');
+                listoflclmanifest = listoflclmanifest.sort();
+                readmanifestlcl = listoflclmanifest.toString().replace(/,/g, " ");
+                var readmanifest = fs.readFileSync(parentfolder3 + '/nytuolauncher_data/Manifest_temp.txt', 'utf-8');
+
                 console.log(readmanifestlcl)
                 console.log(readmanifest)
-                if (readmanifest != readmanifestlcl) {
+                if (readmanifestlcl !== readmanifest) {
                     turnoffOverlay();
                     fs.writeFileSync(__dirname + "/Notif_TXT.txt", GameName + " not pass the repair check, it will be re-installed ! \nLogoexp.png");
                     NotificationSystem();
@@ -3586,10 +3650,14 @@ function MANIFEST(GameName, URLMANIFEST, URLMANIFESTLINUX) {
         } else {
             if (process.platform == "linux") {
                 var readmanifestlcl = fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/' + GameName + "_MANIFEST.txt", 'utf-8');
-                var readmanifest = fs.readFileSync(gamelocation + "/Games/" + GameName + "/" + GameName + " -- Manifest_LINUX.txt", 'utf-8');
+                var listoflclmanifest = readmanifestlcl.split(',');
+                listoflclmanifest = listoflclmanifest.sort();
+                readmanifestlcl = listoflclmanifest.toString().replace(/,/g, " ");
+                var readmanifest = fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/Manifest_temp.txt', 'utf-8');
+
                 console.log(readmanifestlcl)
                 console.log(readmanifest)
-                if (readmanifest != readmanifestlcl) {
+                if (readmanifestlcl !== readmanifest) {
                     turnoffOverlay();
                     fs.writeFileSync(app.getPath("documents") + '/nytuolauncher_data/Notif_TXT.txt', GameName + " not pass the repair check, it will be re-installed ! \nLogoexp.png");
                     NotificationSystem();
@@ -3601,10 +3669,14 @@ function MANIFEST(GameName, URLMANIFEST, URLMANIFESTLINUX) {
                 }
             } else {
                 var readmanifestlcl = fs.readFileSync(__dirname + "/VersionsFiles/" + GameName + "_MANIFEST.txt", 'utf-8');
-                var readmanifest = fs.readFileSync(gamelocation + "/Games/" + GameName + "/" + GameName + " -- Manifest.txt", 'utf-8');
+                var listoflclmanifest = readmanifestlcl.split(',');
+                listoflclmanifest = listoflclmanifest.sort();
+                readmanifestlcl = listoflclmanifest.toString().replace(/,/g, " ");
+                var readmanifest = fs.readFileSync(parentfolder3 + '/nytuolauncher_data/Manifest_temp.txt', 'utf-8');
+
                 console.log(readmanifestlcl)
                 console.log(readmanifest)
-                if (readmanifest != readmanifestlcl) {
+                if (readmanifestlcl !== readmanifest) {
                     turnoffOverlay();
                     fs.writeFileSync(__dirname + "/Notif_TXT.txt", GameName + " not pass the repair check, it will be re-installed ! \nLogoexp.png");
                     NotificationSystem();
@@ -3617,4 +3689,53 @@ function MANIFEST(GameName, URLMANIFEST, URLMANIFESTLINUX) {
             }
         }
     }, 5000);
+}
+
+
+function ACH_SAVER() {
+    //savegarde les achievements dans le nytuolauncher_data
+    if (portable == true) {
+        if (process.platform == "linux") {
+            fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
+            fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
+            fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+        } else {
+            fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
+            fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
+            fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+        }
+    } else {
+        if (process.platform == "linux") {
+            fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
+            fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
+            fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+        } else {
+            fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
+            fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
+            fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+        }
+    }
+
+
+}
+function ACH_RECUP() {
+    if (isInUpdate) {
+        if (portable == true) {
+            if (process.platform == "linux") {
+                fs.copyFileSync(parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt", gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt")
+                fs.copyFileSync(parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt", gamelocation + "/Games/SNRE/Achievements/AchDone.txt")
+                fs.copyFileSync(parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt", gamelocation + "/Games/SGB/Achievements/AchDone.txt")
+            }
+        } else {
+            if (process.platform == "linux") {
+                fs.copyFileSync(app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt", gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt")
+                fs.copyFileSync(app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt", gamelocation + "/Games/SNRE/Achievements/AchDone.txt")
+                fs.copyFileSync(app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt", gamelocation + "/Games/SGB/Achievements/AchDone.txt")
+            } else {
+                fs.copyFileSync(parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt", gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt")
+                fs.copyFileSync(parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt", gamelocation + "/Games/SNRE/Achievements/AchDone.txt")
+                fs.copyFileSync(parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt", gamelocation + "/Games/SGB/Achievements/AchDone.txt")
+            }
+        }
+    }
 }

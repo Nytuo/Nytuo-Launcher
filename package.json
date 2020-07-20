@@ -10,9 +10,7 @@
     "nsis": {
       "oneClick": false,
       "runAfterFinish": true,
-      "createDesktopShortcut":"always"
-
-
+      "createDesktopShortcut": "always"
     },
     "publish": [
       {
@@ -42,7 +40,7 @@
       "icon": "Ressources/logoexp.png"
     }
   },
-  "version": "2.9.1",
+  "version": "2.9.2",
   "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
   "main": "main.js",
   "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
@@ -57,7 +55,7 @@
   "author": "Nytuo",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^9.0.3",
+    "electron": "^9.1.0",
     "electron-builder": "^22.7.0"
   },
   "dependencies": {
@@ -68,6 +66,7 @@
     "extract-zip": "^1.6.7",
     "fs": "^0.0.1-security",
     "nodejs": "^0.0.0",
+    "office-ui-fabric-core": "^11.0.0",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "rimraf": "^3.0.2",
