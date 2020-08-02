@@ -1,5 +1,4 @@
 const { app, BrowserWindow, ipcMain, ipcRenderer, webContents, dialog, session } = require('electron')
-const { download } = require('electron-dl')
 const path = require('path')
 var fs = require('fs')
 var request = require('request')
@@ -21,17 +20,59 @@ function portable_check() {
 if (process.platform !== "linux" && process.platform !== "win32") {
     app.exit();
 }
+//the the launcher as default nytuo reference for browser
+app.setAsDefaultProtocolClient('nytuo', process.execPath)
+//detect internet conenction
+const dns = require("dns");
 
+
+dns.resolve("www.google.com", function (err, addr) {
+    if (portable == true) {
+        if (err) {
+            if (process.platform == 'linux') {
+                fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/connected.txt', 'false');
+            } else {
+                fs.writeFileSync(__dirname + '/connected.txt', 'false');
+            }
+
+        } else {
+            if (process.platform == 'linux') {
+                fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/connected.txt', 'true');
+            } else {
+                fs.writeFileSync(__dirname + '/connected.txt', 'true');
+            }
+
+        }
+    } else {
+        if (err) {
+            if (process.platform == 'linux') {
+                fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'false');
+            } else {
+                fs.writeFileSync(__dirname + '/connected.txt', 'false');
+            }
+
+        } else {
+            if (process.platform == 'linux') {
+                fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'true');
+            } else {
+                fs.writeFileSync(__dirname + '/connected.txt', 'true');
+            }
+
+        }
+    }
+
+});
 //create the main window
 function createWindow() {
     if (process.platform == "linux") {
         let win = new BrowserWindow({
 
             backgroundColor: 212121,
-            minWidth: 1280,
-            minHeight: 720,
-            width: 1280,
-            height: 720,
+            resizable:false,
+            alwaysOnTop:true,
+            frame:false,
+            width: 480,
+            height: 240,
             icon: path.join(__dirname, 'Ressources/logoexp.png'),
             webPreferences: {
                 webSecurity: false,
@@ -41,16 +82,47 @@ function createWindow() {
 
 
         })
-        //load the loading page
-        win.loadFile('Loading.html');
+        var linkbrowser = process.argv[1];
+        
+        if (linkbrowser != null) {
+
+            if (linkbrowser == "nytuo://launchid/sgb") {
+                win.loadURL(__dirname + '/Loading.html?sgb')
+            } else if (linkbrowser == "nytuo://launchid/laatim") {
+                win.loadURL(__dirname + '/Loading.html?laatim')
+            } else if (linkbrowser == "nytuo://launchid/sf") {
+                win.loadURL(__dirname + '/Loading.html?sf')
+            } else if (linkbrowser == "nytuo://launchid/la") {
+                win.loadURL(__dirname + '/Loading.html?la')
+            } else if (linkbrowser == "nytuo://launchid/vitf") {
+                win.loadURL(__dirname + '/Loading.html?vitf')
+            } else if (linkbrowser == "nytuo://launchid/ttd") {
+                win.loadURL(__dirname + '/Loading.html?ttd')
+            } else if (linkbrowser == "nytuo://launchid/fwd") {
+                win.loadURL(__dirname + '/Loading.html?fwd')
+            } else if (linkbrowser == "nytuo://launchid/tb") {
+                win.loadURL(__dirname + '/Loading.html?tb')
+            } else if (linkbrowser == "nytuo://launchid/wr") {
+                win.loadURL(__dirname + '/Loading.html?wr')
+            } else if (linkbrowser == "nytuo://launchid/sn") {
+                win.loadURL(__dirname + '/Loading.html?sn')
+            } else {
+                win.loadFile('Loading.html');
+            }
+
+
+        } else {
+            win.loadFile('Loading.html');
+        }
     } else if (process.platform == "win32") {
         let win = new BrowserWindow({
 
             backgroundColor: 212121,
-            minWidth: 1280,
-            minHeight: 720,
-            width: 1280,
-            height: 720,
+            resizable:false,
+            alwaysOnTop:true,
+            frame:false,
+            width: 480,
+            height: 240,
             icon: path.join(__dirname, 'Ressources/favicon.ico'),
             webPreferences: {
                 webSecurity: false,
@@ -60,8 +132,39 @@ function createWindow() {
 
 
         })
-        //load the loading page
-        win.loadFile('Loading.html');
+        var linkbrowser = process.argv[1];
+
+        if (linkbrowser != null) {
+            if (linkbrowser == "nytuo://launchid/sgb") {
+                win.loadURL(__dirname + '/Loading.html?sgb')
+            } else if (linkbrowser == "nytuo://launchid/laatim") {
+                win.loadURL(__dirname + '/Loading.html?laatim')
+            } else if (linkbrowser == "nytuo://launchid/sf") {
+                win.loadURL(__dirname + '/Loading.html?sf')
+            } else if (linkbrowser == "nytuo://launchid/la") {
+                win.loadURL(__dirname + '/Loading.html?la')
+            } else if (linkbrowser == "nytuo://launchid/vitf") {
+                win.loadURL(__dirname + '/Loading.html?vitf')
+            } else if (linkbrowser == "nytuo://launchid/ttd") {
+                win.loadURL(__dirname + '/Loading.html?ttd')
+            } else if (linkbrowser == "nytuo://launchid/fwd") {
+                win.loadURL(__dirname + '/Loading.html?fwd')
+            } else if (linkbrowser == "nytuo://launchid/tb") {
+                win.loadURL(__dirname + '/Loading.html?tb')
+            } else if (linkbrowser == "nytuo://launchid/wr") {
+                win.loadURL(__dirname + '/Loading.html?wr')
+            } else if (linkbrowser == "nytuo://launchid/sn") {
+                win.loadURL(__dirname + '/Loading.html?sn')
+            } else {
+                win.loadFile('Loading.html');
+            }
+
+
+        } else {
+            win.loadFile('Loading.html');
+
+        }
+
     }
 
 
@@ -156,46 +259,7 @@ function createWindow() {
 
 
 
-    //detect internet conenction
-    const dns = require("dns");
-
-
-    dns.resolve("www.google.com", function (err, addr) {
-        if (portable == true) {
-            if (err) {
-                if (process.platform == 'linux') {
-                    fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/connected.txt', 'false');
-                } else {
-                    fs.writeFileSync(__dirname + '/connected.txt', 'false');
-                }
-
-            } else {
-                if (process.platform == 'linux') {
-                    fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/connected.txt', 'true');
-                } else {
-                    fs.writeFileSync(__dirname + '/connected.txt', 'true');
-                }
-
-            }
-        } else {
-            if (err) {
-                if (process.platform == 'linux') {
-                    fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'false');
-                } else {
-                    fs.writeFileSync(__dirname + '/connected.txt', 'false');
-                }
-
-            } else {
-                if (process.platform == 'linux') {
-                    fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'true');
-                } else {
-                    fs.writeFileSync(__dirname + '/connected.txt', 'true');
-                }
-
-            }
-        }
-
-    });
+    
     //create games folder tree
     if (!fs.existsSync(gamelocation + '/Games')) fs.mkdirSync(gamelocation + '/Games', { recursive: true });
     if (!fs.existsSync(gamelocation + '/Games/AE')) fs.mkdirSync(gamelocation + '/Games/AE', { recursive: true });
@@ -264,41 +328,102 @@ function createWindow() {
 
 
 }
-function ACH_SAVER(achpath) {
+function ACH_SAVER() {
     //savegarde les achievements dans le nytuolauncher_data
     if (portable == true) {
         if (process.platform == "linux") {
-            fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
-            fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
-            fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+            try {
+                fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
+            } catch (error) {
+                console.log(error)
+            }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
+
+
         } else {
-            fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
-            fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
-            fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+            try {
+                fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
+            } catch (error) {
+                console.log(error)
+            }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
+
+
+
         }
     } else {
         if (process.platform == "linux") {
-            fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
-            fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
-            fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+            try {
+                fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
+            } catch (error) {
+                console.log(error)
+            }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
+
+
+
         } else {
-            fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
-            fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
-            fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+            try {
+                fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
+            } catch (error) {
+                console.log(error)
+            }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SNRE/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SGB/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
+
+
+
         }
     }
 
 
 }
-//console the version
+
+
+//console the version and save the achievements
 app.on('ready', createWindow, function () {
     ACH_SAVER();
     console.log(app.getVersion())
 
 })
-//the the launcher as default nytuo reference for browser
-app.setAsDefaultProtocolClient('nytuo', process.execPath)
+
 //correcly close the launcher
-app.on('before-quit', () => { 
+app.on('before-quit', () => {
     ACH_SAVER();
-    ipcRenderer.removeAllListeners('close'); });
+    ipcRenderer.removeAllListeners('close');
+});
