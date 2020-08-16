@@ -243,6 +243,7 @@ function DownlaodFile(file_url, targetPath, dossierdujeu) {
 //download Update for Launcher 
 function DownlaodFileUpdate(file_url, targetPath, dossierdujeu) {
 
+    console.log("DL phase 2")
     var received_bytes = 0;
     var total_bytes = 0;
     var req = request({
@@ -251,6 +252,7 @@ function DownlaodFileUpdate(file_url, targetPath, dossierdujeu) {
     });
     var out = fs.createWriteStream(targetPath);
     var starte = new Date().getTime();
+    console.log("DL phase 3")
     req.pipe(out);
     req.on('response', function (data) {
         total_bytes = parseInt(data.headers['content-length']);
@@ -259,6 +261,7 @@ function DownlaodFileUpdate(file_url, targetPath, dossierdujeu) {
     req.on('data', function (chunk) {
         // Update the received bytes
         received_bytes += chunk.length;
+
 
         showProgressUpdate(received_bytes, total_bytes, starte);
     });
@@ -287,6 +290,7 @@ function DownlaodFileUpdate(file_url, targetPath, dossierdujeu) {
 
     });
 }
+
 //Show the progress of download
 function showProgress(received, total, starttime) {
 
@@ -319,8 +323,8 @@ function showProgressUpdate(received, total, starttime) {
 
 
     var percentage = (received * 100) / total;
-    //var elem = document.getElementById("myBar");
-    //var width = 0;
+
+
     var end = new Date().getTime();
     var duration = (end - starttime) / 1000;
     var bps = received.toFixed() / duration;
@@ -331,9 +335,14 @@ function showProgressUpdate(received, total, starttime) {
     var minutes = time / 60;
     seconds = Math.floor(seconds);
     minutes = Math.floor(minutes);
-    //width++;
-    //elem.style.width = percentage + "%";
-    //elem.innerHTML = percentage.toFixed() + "%";
+
+
+
+    /*var elem = document.getElementById("myBar");
+    var width = 0;
+    width++;
+    elem.style.width = percentage + "%";
+    elem.innerHTML = percentage.toFixed() + "%";*/
 
     document.getElementById("MyBartxt").innerHTML = percentage.toFixed() + "% -- " + bytesToSize(bps) + "/s -- " + bytesToSize(received) + "/" + bytesToSize(total);
     console.log(percentage.toFixed() + "% | " + received.toFixed() + " bytes out of " + total.toFixed() + " bytes.");
@@ -905,13 +914,13 @@ function deleteall() {
     }, 5000);
 }
 //create shortcut
-function createlink(gameid, path2link,desc,iconpath) {
+function createlink(gameid, path2link, desc, iconpath) {
     turnonOverlay();
 
-    ws.create(path2link,{
+    ws.create(path2link, {
         target: 'nytuo://launchid/' + gameid.toString().toLowerCase(),
         icon: iconpath,
-        desc:desc
+        desc: desc
     });
     setTimeout(function () {
 
@@ -1584,202 +1593,310 @@ function RunWithoutInstall(url, gamejolt) {
 }
 //the update system
 var isUp2date = true;
-var update = (function () {
-    var executed = false;
-    return function () {
-        if (!executed) {
-            setTimeout(function () {
-                executed = true;
-                console.log(window.require('electron').remote.app.getVersion().toString());
-                if (portable == true) {
-                    if (process.platform == "linux") {
-                        var launcherversion = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt");
-                        var launcherversionbeta = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt");
-                    } else {
-                        var launcherversion = fs.readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt");
-                        var launcherversionbeta = fs.readFileSync(__dirname + "/VersionsFiles/LauncherBetaVersion.txt");
-                    }
+function update() {
+    setTimeout(function () {
+        console.log(window.require('electron').remote.app.getVersion().toString());
+        if (portable == true) {
+            if (process.platform == "linux") {
+                var launcherversion = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt");
+                var launcherversionbeta = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt");
+            } else {
+                var launcherversion = fs.readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt");
+                var launcherversionbeta = fs.readFileSync(__dirname + "/VersionsFiles/LauncherBetaVersion.txt");
+            }
 
-                } else {
-                    if (process.platform == "linux") {
-                        var launcherversion = fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt");
-                        var launcherversionbeta = fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt");
-                    } else {
-                        var launcherversion = fs.readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt");
-                        var launcherversionbeta = fs.readFileSync(__dirname + "/VersionsFiles/LauncherBetaVersion.txt");
-                    }
+        } else {
+            if (process.platform == "linux") {
+                var launcherversion = fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt");
+                var launcherversionbeta = fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt");
+            } else {
+                var launcherversion = fs.readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt");
+                var launcherversionbeta = fs.readFileSync(__dirname + "/VersionsFiles/LauncherBetaVersion.txt");
+            }
+        }
+
+
+
+        console.log(parentfolder2);
+        console.log(fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString());
+        if (process.platform == 'win32' && fs.existsSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt') == true && fs.readFileSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt') == 'True' && fs.readFileSync(__dirname + '/VersionsFiles/b_Beta.txt') == 'True') {
+
+
+            if (fs.existsSync(parentfolder3 + '/nytuolauncher_data/forceUpdate.txt') && fs.readFileSync(parentfolder3 + '/nytuolauncher_data/forceUpdate.txt') == '1') {
+                fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/forceUpdate.txt", "0");
+
+                fs.writeFileSync(__dirname + "/Notif_TXT.txt", "Start Downloading \nLogoexp.png");
+                NotificationSystem();
+                console.log("You have to update the launcher !")
+                isUp2date = false;
+            } else {
+                if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(__dirname + '/VersionsFiles/LauncherBetaVersion.txt').toString()) {
+                    fs.writeFileSync(__dirname + "/Notif_TXT.txt", "An update for the Nytuo Launcher Beta is available \nLogoexp.png");
+                    NotificationSystem();
+                    console.log("You have to update the launcher !")
+                    isUp2date = false;
+                }
+                if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(__dirname + '/VersionsFiles/LauncherBetaVersion.txt').toString()) {
+                    console.log("Very UpToDate")
+                    console.log(app.getAppPath())
+                    verif_gameVersionLoading();
+                }
+                if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(__dirname + '/VersionsFiles/LauncherBetaVersion.txt').toString()) {
+                    console.log("UpToDate")
+                    verif_gameVersionLoading();
                 }
 
+            }
+            if (isUp2date === false) {
+                if (portable == true) {
+                    alert("Update Available but your on a Portable Edition so automatic update doesn't work. Refer to my website (nytuo.yo.fr) in the help page to update the portable version of the launcher")
+                } else {
+                    if (!!document.getElementById('updateview') === true) {
+                        document.getElementById('updateview').style.display = "block";
+                    }
+                    DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversionbeta + '/Nytuo-Launcher-Setup-' + launcherversionbeta + '.exe', parentfolder3 + "/nytuolauncher_data/win64UpdateBeta.exe");
+                }
 
-                console.log(parentfolder2);
-                console.log(fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString());
-                if (process.platform == 'win32' && fs.existsSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt') == true && fs.readFileSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt') == 'True' && fs.readFileSync(__dirname + '/VersionsFiles/b_Beta.txt') == 'True') {
+            }
 
 
-                    if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(__dirname + '/VersionsFiles/LauncherBetaVersion.txt').toString()) {
-                        fs.writeFileSync(__dirname + "/Notif_TXT.txt", "An update for the Nytuo Launcher Beta is available \nLogoexp.png");
+
+
+        } else {
+            if (portable == true) {
+                if (process.platform == "linux") {
+                    if (fs.existsSync(parentfolder3 + '/nytuolauncher_data/forceUpdate.txt') && fs.readFileSync(parentfolder3 + '/nytuolauncher_data/forceUpdate.txt') == '1') {
+                        fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/forceUpdate.txt", "0");
+
+                        fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/Notif_TXT.txt", "Start Downloading \nLogoexp.png");
                         NotificationSystem();
-                        console.log("You have to update the launcher !")
+                        console.log("You have to update the launcher !");
                         isUp2date = false;
+                    } else {
+                        if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
+                            fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/Notif_TXT.txt", "An update for the Nytuo Launcher is available \nLogoexp.png");
+                            NotificationSystem();
+                            console.log("You have to update the launcher !");
+                            isUp2date = false;
+                        }
+                        if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
+                            console.log("Very UpToDate");
+                            console.log(app.getAppPath());
+                            verif_gameVersionLoading();
+                        }
+                        if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
+                            console.log("UpToDate");
+                            verif_gameVersionLoading();
+                        }
                     }
-                    if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(__dirname + '/VersionsFiles/LauncherBetaVersion.txt').toString()) {
-                        console.log("Very UpToDate")
-                        console.log(app.getAppPath())
-                        verif_gameVersionLoading();
-                    }
-                    if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(__dirname + '/VersionsFiles/LauncherBetaVersion.txt').toString()) {
-                        console.log("UpToDate")
-                        verif_gameVersionLoading();
-                    }
+
+
                     if (isUp2date === false) {
+                        //DL bonne version
+                        //Lance le programme
+                        //Ferme celui là
                         if (portable == true) {
                             alert("Update Available but your on a Portable Edition so automatic update doesn't work. Refer to my website (nytuo.yo.fr) in the help page to update the portable version of the launcher")
                         } else {
                             if (!!document.getElementById('updateview') === true) {
                                 document.getElementById('updateview').style.display = "block";
                             }
-                            DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversionbeta + '/Nytuo-Launcher-Setup-' + launcherversionbeta + '.exe', parentfolder3 + "/nytuolauncher_data/win64UpdateBeta.exe");
+                            DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.appimage', app.getPath("documents") + "/nytuolauncher_data/linuxUpdate.appimage");
                         }
+
+
 
                     }
                 } else {
-                    if (portable == true) {
-                        if (process.platform == "linux") {
-                            if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
-                                fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/Notif_TXT.txt", "An update for the Nytuo Launcher is available \nLogoexp.png");
-                                NotificationSystem();
-                                console.log("You have to update the launcher !");
-                                isUp2date = false;
-                            }
-                            if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
-                                console.log("Very UpToDate");
-                                console.log(app.getAppPath());
-                                verif_gameVersionLoading();
-                            }
-                            if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
-                                console.log("UpToDate");
-                                verif_gameVersionLoading();
-                            }
-                            if (isUp2date === false) {
-                                //DL bonne version
-                                //Lance le programme
-                                //Ferme celui là
-                                if (portable == true) {
-                                    alert("Update Available but your on a Portable Edition so automatic update doesn't work. Refer to my website (nytuo.yo.fr) in the help page to update the portable version of the launcher")
-                                } else {
-                                    if (!!document.getElementById('updateview') === true) {
-                                        document.getElementById('updateview').style.display = "block";
-                                    }
-                                    DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.appimage', app.getPath("documents") + "/nytuolauncher_data/linuxUpdate.appimage");
-                                }
+                    if (fs.existsSync(parentfolder3 + '/nytuolauncher_data/forceUpdate.txt') && fs.readFileSync(parentfolder3 + '/nytuolauncher_data/forceUpdate.txt') == '1') {
+                        fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/forceUpdate.txt", "0");
 
-
-
-                            }
-                        } else {
-                            if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
-                                fs.writeFileSync(__dirname + "/Notif_TXT.txt", "An update for the Nytuo Launcher is available \nLogoexp.png");
-                                NotificationSystem();
-                                console.log("You have to update the launcher !")
-                                isUp2date = false;
-                            }
-                            if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
-                                console.log("Very UpToDate")
-                                console.log(app.getAppPath())
-                                verif_gameVersionLoading();
-                            }
-                            if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
-                                console.log("UpToDate")
-                                verif_gameVersionLoading();
-                            }
-                            if (isUp2date === false) {
-                                //DL bonne version
-                                //Lance le programme
-                                //Ferme celui là
-                                if (portable == true) {
-                                    alert("Update Available but your on a Portable Edition so automatic update doesn't work. Refer to my website (nytuo.yo.fr) in the help page to update the portable version of the launcher")
-                                } else {
-                                    if (!!document.getElementById('updateview') === true) {
-                                        document.getElementById('updateview').style.display = "block";
-                                    }
-                                    if (process.platform == 'win32') {
-
-                                        DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.exe', parentfolder3 + "/nytuolauncher_data/win64Update.exe");
-                                    }
-                                }
-
-
-                            }
-                        }
+                        fs.writeFileSync(__dirname + "/Notif_TXT.txt", "Start Downloading \nLogoexp.png");
+                        NotificationSystem();
+                        console.log("You have to update the launcher !")
+                        isUp2date = false;
                     } else {
-                        if (process.platform == "linux") {
-                            if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
-                                fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/Notif_TXT.txt", "An update for the Nytuo Launcher is available \nLogoexp.png");
-                                NotificationSystem();
-                                console.log("You have to update the launcher !");
-                                isUp2date = false;
-                            }
-                            if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
-                                console.log("Very UpToDate");
-                                console.log(app.getAppPath());
-                                verif_gameVersionLoading();
-                            }
-                            if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
-                                console.log("UpToDate");
-                                verif_gameVersionLoading();
-                            }
-                            if (isUp2date === false) {
-                                //DL bonne version
-                                //Lance le programme
-                                //Ferme celui là
-                                if (!!document.getElementById('updateview') === true) {
-                                    document.getElementById('updateview').style.display = "block";
-                                }
-                                DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.appimage', app.getPath("documents") + "/nytuolauncher_data/linuxUpdate.appimage");
-
-
-                            }
-                        } else {
-                            if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
-                                fs.writeFileSync(__dirname + "/Notif_TXT.txt", "An update for the Nytuo Launcher is available \nLogoexp.png");
-                                NotificationSystem();
-                                console.log("You have to update the launcher !")
-                                isUp2date = false;
-                            }
-                            if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
-                                console.log("Very UpToDate")
-                                console.log(app.getAppPath())
-                                verif_gameVersionLoading();
-                            }
-                            if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
-                                console.log("UpToDate")
-                                verif_gameVersionLoading();
-                            }
-                            if (isUp2date === false) {
-                                //DL bonne version
-                                //Lance le programme
-                                //Ferme celui là
-                                if (!!document.getElementById('updateview') === true) {
-                                    document.getElementById('updateview').style.display = "block";
-                                }
-                                if (process.platform == 'win32') {
-
-                                    DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.exe', parentfolder3 + "/nytuolauncher_data/win64Update.exe");
-                                }
-
-                            }
+                        if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
+                            fs.writeFileSync(__dirname + "/Notif_TXT.txt", "An update for the Nytuo Launcher is available \nLogoexp.png");
+                            NotificationSystem();
+                            console.log("You have to update the launcher !")
+                            isUp2date = false;
+                        }
+                        if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
+                            console.log("Very UpToDate")
+                            console.log(app.getAppPath())
+                            verif_gameVersionLoading();
+                        }
+                        if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
+                            console.log("UpToDate")
+                            verif_gameVersionLoading();
                         }
                     }
 
+                    if (isUp2date === false) {
+                        //DL bonne version
+                        //Lance le programme
+                        //Ferme celui là
+                        if (portable == true) {
+                            alert("Update Available but your on a Portable Edition so automatic update doesn't work. Refer to my website (nytuo.yo.fr) in the help page to update the portable version of the launcher")
+                        } else {
+                            if (!!document.getElementById('updateview') === true) {
+                                document.getElementById('updateview').style.display = "block";
+                            }
+                            if (process.platform == 'win32') {
+
+                                DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.exe', parentfolder3 + "/nytuolauncher_data/win64Update.exe");
+                            }
+                        }
 
 
+                    }
                 }
+            } else {
+                if (process.platform == "linux") {
+                    if (fs.existsSync(app.getPath("documents") + '/nytuolauncher_data/forceUpdate.txt') && fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/forceUpdate.txt') == '1') {
+                        fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/forceUpdate.txt", "0");
+
+                        fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/Notif_TXT.txt", "Start Downloading \nLogoexp.png");
+                        NotificationSystem();
+                        console.log("You have to update the launcher !");
+                        isUp2date = false;
+                    } else {
+                        if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
+                            fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/Notif_TXT.txt", "An update for the Nytuo Launcher is available \nLogoexp.png");
+                            NotificationSystem();
+                            console.log("You have to update the launcher !");
+                            isUp2date = false;
+                        }
+                        if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
+                            console.log("Very UpToDate");
+                            console.log(app.getAppPath());
+                            verif_gameVersionLoading();
+                        }
+                        if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt').toString()) {
+                            console.log("UpToDate");
+                            verif_gameVersionLoading();
+                        }
+                    }
+
+                    if (isUp2date === false) {
+                        //DL bonne version
+                        //Lance le programme
+                        //Ferme celui là
+                        if (!!document.getElementById('updateview') === true) {
+                            document.getElementById('updateview').style.display = "block";
+                        }
+                        DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.appimage', app.getPath("documents") + "/nytuolauncher_data/linuxUpdate.appimage");
 
 
-            }, 5000)
+                    }
+                } else {
+                    if (fs.existsSync(parentfolder3 + '/nytuolauncher_data/forceUpdate.txt') && fs.readFileSync(parentfolder3 + '/nytuolauncher_data/forceUpdate.txt') == '1') {
+                        fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/forceUpdate.txt", "0");
+
+                        fs.writeFileSync(__dirname + "/Notif_TXT.txt", "Start Downloading \nLogoexp.png");
+                        NotificationSystem();
+                        console.log("You have to update the launcher !")
+                        isUp2date = false;
+                    } else {
+                        if (window.require('electron').remote.app.getVersion().toString() < fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
+                            fs.writeFileSync(__dirname + "/Notif_TXT.txt", "An update for the Nytuo Launcher is available \nLogoexp.png");
+                            NotificationSystem();
+                            console.log("You have to update the launcher !")
+                            isUp2date = false;
+                        }
+                        if (window.require('electron').remote.app.getVersion().toString() > fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
+                            console.log("Very UpToDate")
+                            console.log(app.getAppPath())
+                            verif_gameVersionLoading();
+                        }
+                        if (window.require('electron').remote.app.getVersion().toString() === fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString()) {
+                            console.log("UpToDate")
+                            verif_gameVersionLoading();
+                        }
+                    }
+
+                    if (isUp2date === false) {
+                        //DL bonne version
+                        //Lance le programme
+                        //Ferme celui là
+                        if (!!document.getElementById('updateview') === true) {
+                            document.getElementById('updateview').style.display = "block";
+                        }
+                        if (process.platform == 'win32') {
+
+                            DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.exe', parentfolder3 + "/nytuolauncher_data/win64Update.exe");
+                        }
+
+                    }
+                }
+            }
+
+
+
         }
+
+
+    }, 5000)
+}
+function forceUpdate() {
+    if (process.platform == 'linux') {
+        fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/forceUpdate.txt", "1");
+
+    } else {
+        fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/forceUpdate.txt", "1");
+
+
     }
-})();
+    const remote = require('electron').remote;
+    const BrowserWindow = remote.BrowserWindow;
+    const path = require('path')
+    if (process.platform == "linux") {
+        let win = new BrowserWindow({
+
+            backgroundColor: 212121,
+            resizable: false,
+            alwaysOnTop: true,
+            frame: false,
+            width: 480,
+            height: 240,
+            icon: path.join(__dirname, 'Ressources/logoexp.png'),
+            webPreferences: {
+                webSecurity: false,
+                nodeIntegration: true,
+                enableRemoteModule: true
+            },
+
+
+        })
+
+        win.loadFile('Loading.html');
+
+    } else if (process.platform == "win32") {
+        let win = new BrowserWindow({
+
+            backgroundColor: 212121,
+            resizable: false,
+            alwaysOnTop: true,
+            frame: false,
+            width: 480,
+            height: 240,
+            icon: path.join(__dirname, 'Ressources/favicon.ico'),
+            webPreferences: {
+                webSecurity: false,
+                nodeIntegration: true,
+                enableRemoteModule: true
+            },
+
+
+        })
+
+        win.loadFile('Loading.html');
+
+
+    }
+    window.close()
+}
 //verif games update at launch
 //modify to add games
 function verif_gameVersionLoading() {
@@ -2148,7 +2265,12 @@ function verif_gameVersionLoading() {
             }
             LaunchWindowLauncher()
             close()
+
         }, 4000);
+
+
+
+
     }
 }
 //compare achievements
@@ -2712,7 +2834,7 @@ function detectgamepage() {
             //document.getElementById("button2").innerHTML = "";
             //  document.getElementById("SAVES").onclick = 0;
             // document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sf") {
@@ -2740,7 +2862,7 @@ function detectgamepage() {
             document.getElementById("button2").innerHTML = "";
             document.getElementById("SAVES").onclick = 0;
             document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?la") {
@@ -2768,7 +2890,7 @@ function detectgamepage() {
             document.getElementById("button2").innerHTML = "";
             document.getElementById("SAVES").onclick = 0;
             document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?vitf") {
@@ -2796,7 +2918,7 @@ function detectgamepage() {
             document.getElementById("button2").innerHTML = "";
             document.getElementById("SAVES").onclick = 0;
             document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?ttd") {
@@ -2824,7 +2946,7 @@ function detectgamepage() {
             document.getElementById("button2").innerHTML = "";
             //    document.getElementById("SAVES").onclick = 0;
             //    document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?fwd") {
@@ -2852,7 +2974,7 @@ function detectgamepage() {
             document.getElementById("button2").innerHTML = "";
             document.getElementById("SAVES").onclick = 0;
             document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?tb") {
@@ -2880,7 +3002,7 @@ function detectgamepage() {
             document.getElementById("button2").innerHTML = "";
             document.getElementById("SAVES").onclick = 0;
             document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?wr") {
@@ -2908,7 +3030,7 @@ function detectgamepage() {
             document.getElementById("button2").innerHTML = "";
             document.getElementById("SAVES").onclick = 0;
             document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?ae") {
@@ -2936,7 +3058,7 @@ function detectgamepage() {
             document.getElementById("button2").innerHTML = "";
             document.getElementById("SAVES").onclick = 0;
             document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sn") {
@@ -2964,7 +3086,7 @@ function detectgamepage() {
             //document.getElementById("button2").innerHTML = "";
             //  document.getElementById("SAVES").onclick = 0;
             //  document.getElementById("SAVES").innerHTML = "";
-              //document.getElementById("shortcuts").onclick = 0;
+            //document.getElementById("shortcuts").onclick = 0;
             //document.getElementById("shortcuts").innerHTML = "";
         }
     }
@@ -3221,36 +3343,36 @@ function SHORTCUT_DETECT() {
         alert("This is not available for your platform : Linux")
     } else {
         if (window.location.href == "file:///" + dirnamew + "/Games.html?laatim") {
-            createlink('LAATIM', require('path').join(require('os').homedir(), 'Desktop/Legend Adventure and the Infernal Maze.lnk'),"Launch Legend Adventure and the Infernal Maze",__dirname+'/Ressources/LAATIM.ico')
+            createlink('LAATIM', require('path').join(require('os').homedir(), 'Desktop/Legend Adventure and the Infernal Maze.lnk'), "Launch Legend Adventure and the Infernal Maze", __dirname + '/Ressources/LAATIM.ico')
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sgb") {
-            createlink("SGB", require('path').join(require('os').homedir(), 'Desktop/Super Geoffrey Bros.lnk'),"Launch Super Geoffrey Bros",__dirname+"/Ressources/SGB.ico")
+            createlink("SGB", require('path').join(require('os').homedir(), 'Desktop/Super Geoffrey Bros.lnk'), "Launch Super Geoffrey Bros", __dirname + "/Ressources/SGB.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sf") {
-            createlink("SF", require('path').join(require('os').homedir(), 'Desktop/Shootfighter.lnk'),"Launch ShootFighter",__dirname+"/Ressources/SF.ico")
+            createlink("SF", require('path').join(require('os').homedir(), 'Desktop/Shootfighter.lnk'), "Launch ShootFighter", __dirname + "/Ressources/SF.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?la") {
-            createlink("LA", require('path').join(require('os').homedir(), 'Desktop/Lutin Adventure.lnk'),"Launch Lutin Adventure",__dirname+"/Ressources/LA.ico")
+            createlink("LA", require('path').join(require('os').homedir(), 'Desktop/Lutin Adventure.lnk'), "Launch Lutin Adventure", __dirname + "/Ressources/LA.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?vitf") {
-            createlink("VITF", require('path').join(require('os').homedir(), 'Desktop/Vincent In The Forest.lnk'),"Launch Vincent In The Forest",__dirname+"/Ressources/VITF.ico")
+            createlink("VITF", require('path').join(require('os').homedir(), 'Desktop/Vincent In The Forest.lnk'), "Launch Vincent In The Forest", __dirname + "/Ressources/VITF.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?ttd") {
-            createlink("TTD", require('path').join(require('os').homedir(), 'Desktop/The Tardis Defender.lnk'),"Launch The Tardis Defender",__dirname+"/Ressources/TTD.ico")
+            createlink("TTD", require('path').join(require('os').homedir(), 'Desktop/The Tardis Defender.lnk'), "Launch The Tardis Defender", __dirname + "/Ressources/TTD.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?fwd") {
-            createlink("FWD", require('path').join(require('os').homedir(), 'Desktop/FireWall Defender.lnk'),"Launch FireWall Defender",__dirname+"/Ressources/FWD.ico")
+            createlink("FWD", require('path').join(require('os').homedir(), 'Desktop/FireWall Defender.lnk'), "Launch FireWall Defender", __dirname + "/Ressources/FWD.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?tb") {
-            createlink("TB", require('path').join(require('os').homedir(), 'Desktop/TanksBattle.lnk'),"Launch TanksBattle",__dirname+"/Ressources/TB.ico")
+            createlink("TB", require('path').join(require('os').homedir(), 'Desktop/TanksBattle.lnk'), "Launch TanksBattle", __dirname + "/Ressources/TB.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?wr") {
-            createlink("WR", require('path').join(require('os').homedir(), 'Desktop/WinRun.lnk'),"Launch WinRun",__dirname+"/Ressources/WR.ico")
+            createlink("WR", require('path').join(require('os').homedir(), 'Desktop/WinRun.lnk'), "Launch WinRun", __dirname + "/Ressources/WR.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?ae") {
-            createlink("AE", require('path').join(require('os').homedir(), 'Desktop/Asteroid Escape.lnk'),"Launch AsteroidEscape",__dirname+"/Ressources/AE.ico")
+            createlink("AE", require('path').join(require('os').homedir(), 'Desktop/Asteroid Escape.lnk'), "Launch AsteroidEscape", __dirname + "/Ressources/AE.ico")
         } if (window.location.href == "file:///" + dirnamew + "/Games.html?sn") {
-            createlink("SNRE", require('path').join(require('os').homedir(), 'Desktop/Sans Nom Rééditon.lnk'),"Launch SansNom Réédition",__dirname+"/Ressources/SNRE.ico")
+            createlink("SNRE", require('path').join(require('os').homedir(), 'Desktop/Sans Nom Rééditon.lnk'), "Launch SansNom Réédition", __dirname + "/Ressources/SNRE.ico")
         }
     }
 
@@ -3937,7 +4059,7 @@ function LaunchGame(gameid) {
         height: 240,
         frame: false,
         resizable: false,
-        alwaysOnTop:true,
+        alwaysOnTop: true,
 
         icon: path.join(__dirname, 'Ressources/favicon.ico'),
         webPreferences: {
