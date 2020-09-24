@@ -17,7 +17,7 @@ function portable_check() {
     }
 }
 //exit if platform not supported
-if (process.platform !== "linux" && process.platform !== "win32") {
+if (process.platform !== "linux" && process.platform !== "win32" && process.platform !== "darwin") {
     app.exit();
 }
 //the the launcher as default nytuo reference for browser
@@ -34,6 +34,7 @@ dns.resolve("www.google.com", function (err, addr) {
             } else {
                 fs.writeFileSync(__dirname + '/connected.txt', 'false');
             }
+            
 
         } else {
             if (process.platform == 'linux') {
@@ -68,9 +69,9 @@ function createWindow() {
         let win = new BrowserWindow({
 
             backgroundColor: 212121,
-            resizable:false,
-            alwaysOnTop:true,
-            frame:false,
+            resizable: false,
+            alwaysOnTop: true,
+            frame: false,
             width: 480,
             height: 240,
             icon: path.join(__dirname, 'Ressources/logoexp.png'),
@@ -83,7 +84,7 @@ function createWindow() {
 
         })
         var linkbrowser = process.argv[1];
-        
+
         if (linkbrowser != null) {
 
             if (linkbrowser == "nytuo://launchid/sgb") {
@@ -106,6 +107,8 @@ function createWindow() {
                 win.loadURL(__dirname + '/Loading.html?wr')
             } else if (linkbrowser == "nytuo://launchid/sn") {
                 win.loadURL(__dirname + '/Loading.html?sn')
+            } else if (linkbrowser == "nytuo://launchid/sfo") {
+                win.loadURL(__dirname + '/Loading.html?sfo')
             } else {
                 win.loadFile('Loading.html');
             }
@@ -118,9 +121,9 @@ function createWindow() {
         let win = new BrowserWindow({
 
             backgroundColor: 212121,
-            resizable:false,
-            alwaysOnTop:true,
-            frame:false,
+            resizable: false,
+            alwaysOnTop: true,
+            frame: false,
             width: 480,
             height: 240,
             icon: path.join(__dirname, 'Ressources/favicon.ico'),
@@ -155,6 +158,8 @@ function createWindow() {
                 win.loadURL(__dirname + '/Loading.html?wr')
             } else if (linkbrowser == "nytuo://launchid/sn") {
                 win.loadURL(__dirname + '/Loading.html?sn')
+            } else if (linkbrowser == "nytuo://launchid/sfo") {
+                win.loadURL(__dirname + '/Loading.html?sfo')
             } else {
                 win.loadFile('Loading.html');
             }
@@ -259,7 +264,7 @@ function createWindow() {
 
 
 
-    
+
     //create games folder tree
     if (!fs.existsSync(gamelocation + '/Games')) fs.mkdirSync(gamelocation + '/Games', { recursive: true });
     if (!fs.existsSync(gamelocation + '/Games/AE')) fs.mkdirSync(gamelocation + '/Games/AE', { recursive: true });
@@ -273,6 +278,8 @@ function createWindow() {
     if (!fs.existsSync(gamelocation + '/Games/FWD')) fs.mkdirSync(gamelocation + '/Games/FWD', { recursive: true });
     if (!fs.existsSync(gamelocation + '/Games/VITF')) fs.mkdirSync(gamelocation + '/Games/VITF', { recursive: true });
     if (!fs.existsSync(gamelocation + '/Games/WR')) fs.mkdirSync(gamelocation + '/Games/WR', { recursive: true });
+    if (!fs.existsSync(gamelocation + '/Games/SFO')) fs.mkdirSync(gamelocation + '/Games/SFO', { recursive: true });
+
     if (portable == true) {
         if (process.platform == 'linux') {
             //create linux beta files
@@ -347,6 +354,11 @@ function ACH_SAVER() {
             } catch (error) {
                 console.log(error)
             }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SFO/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SFO/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
 
 
         } else {
@@ -365,6 +377,12 @@ function ACH_SAVER() {
             } catch (error) {
                 console.log(error)
             }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SFO/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SFO/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
+
 
 
 
@@ -386,6 +404,11 @@ function ACH_SAVER() {
             } catch (error) {
                 console.log(error)
             }
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SFO/Achievements/AchDone.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/SFO/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
 
 
 
@@ -405,7 +428,11 @@ function ACH_SAVER() {
             } catch (error) {
                 console.log(error)
             }
-
+            try {
+                fs.copyFileSync(gamelocation + "/Games/SFO/Achievements/AchDone.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/SFO/AchDone.txt")
+            } catch (error) {
+                console.log(error)
+            }
 
 
         }

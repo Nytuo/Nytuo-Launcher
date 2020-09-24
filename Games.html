@@ -62,14 +62,11 @@
     <table style="width: 100%;">
         <tr>
             <td style="float: left;">
-                <div class="card 1">
-                    <div class="card_image"> <img id="IMGCARD" src="Ressources/logoexp.png" /> </div>
-                    <div class="card_title title-white">
+                
                         <img id="LOGOCARD" src="" style="z-index: 1;">
-                    </div>
-                </div>
+            
             </td>
-            <td>
+            <td style="float: right;">
                 <h1 id="NAME" class="paraTXTFWD">Game Name</h1>
                 <h2 class="paraTXTFWD" id="versiontxt"> Game Version </h2>
             </td>
@@ -144,7 +141,7 @@
                 </tr>
             </table>
         </div>
-    </div>!
+    </div>
     <!--Confirmation de déinstallation-->
     <div id="ConfirmUN" class="modal">
 
@@ -565,6 +562,9 @@
                     LoadAchivements();
                 }
                 if (window.location.href == "file:///" + dirnamew + "/Games.html?sn") {
+                    LoadAchivements();
+                }
+                if (window.location.href == "file:///" + dirnamew + "/Games.html?sfo") {
                     LoadAchivements();
                 }
             </script>

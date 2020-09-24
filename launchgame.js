@@ -131,6 +131,12 @@ function OpenforLinux(gameloc, dossierdujeu, filename) {
 
 function detectgamepage() {
     if (process.platform == 'linux') {
+        if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFO") {
+            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGSFO2.png)";
+            document.getElementById("TXTLOAD").innerHTML = "Launching ShootFighter Origins";
+            document.getElementById("IMGLOAD").src = "Ressources/LogoSFO2.png";
+            document.getElementById("IMGLOAD").style.width = '35%';
+        }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?LAATIM") {
             document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGLAATIM.png)";
             document.getElementById("TXTLOAD").innerHTML = "Launching Legend Adventure and the Infernal Maze";
@@ -198,6 +204,12 @@ function detectgamepage() {
             document.getElementById("IMGLOAD").style.width = '17%';
         }
     } else {
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SFO") {
+            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGSFO2.png)";
+            document.getElementById("TXTLOAD").innerHTML = "Launching ShootFighter Origins";
+            document.getElementById("IMGLOAD").src = "Ressources/LogoSFO2.png";
+            document.getElementById("IMGLOAD").style.width = '35%';
+        }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?LAATIM") {
             document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGLAATIM.png)";
             document.getElementById("TXTLOAD").innerHTML = "Launching Legend Adventure and the Infernal Maze";
@@ -272,7 +284,15 @@ function detectgamepage() {
 //modify to add games
 function LAUNCH() {
     if (process.platform == "linux") {
+        if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFO") {
+            setTimeout(() => {
+                OpenforLinux(gamelocation, 'SFO', 'nw')
+                setTimeout(() => {
+                    app.quit()
+                }, 500);
 
+            }, 2000);
+        }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?LAATIM") {
             alert("Game not available on Linux")
         }
@@ -340,6 +360,17 @@ function LAUNCH() {
             alert('Game not available on Linux')
         }
     } else {
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SFO") {
+
+            setTimeout(() => {
+                Open('SFO', 'nw.exe')
+                setTimeout(() => {
+                    app.quit()
+                }, 500);
+
+            }, 2000);
+
+        }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?LAATIM") {
 
             setTimeout(() => {
