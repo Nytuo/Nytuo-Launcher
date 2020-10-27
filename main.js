@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, ipcRenderer, webContents, dialog, session } = require('electron')
+const { app, BrowserWindow, ipcMain, ipcRenderer, webContents, dialog, session, Menu } = require('electron')
 const path = require('path')
 var fs = require('fs')
 var request = require('request')
@@ -17,7 +17,7 @@ function portable_check() {
     }
 }
 //exit if platform not supported
-if (process.platform !== "linux" && process.platform !== "win32" && process.platform !== "darwin") {
+if (process.platform !== "linux" && process.platform !== "win32") {
     app.exit();
 }
 //the the launcher as default nytuo reference for browser
@@ -29,15 +29,15 @@ const dns = require("dns");
 dns.resolve("www.google.com", function (err, addr) {
     if (portable == true) {
         if (err) {
-            if (process.platform == 'linux') {
+            if (process.platform == 'linux' || process.platform == 'darwin') {
                 fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/connected.txt', 'false');
             } else {
                 fs.writeFileSync(__dirname + '/connected.txt', 'false');
             }
-            
+
 
         } else {
-            if (process.platform == 'linux') {
+            if (process.platform == 'linux' || process.platform == 'darwin') {
                 fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/connected.txt', 'true');
             } else {
                 fs.writeFileSync(__dirname + '/connected.txt', 'true');
@@ -46,14 +46,14 @@ dns.resolve("www.google.com", function (err, addr) {
         }
     } else {
         if (err) {
-            if (process.platform == 'linux') {
+            if (process.platform == 'linux' || process.platform == 'darwin') {
                 fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'false');
             } else {
                 fs.writeFileSync(__dirname + '/connected.txt', 'false');
             }
 
         } else {
-            if (process.platform == 'linux') {
+            if (process.platform == 'linux' || process.platform == 'darwin') {
                 fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'true');
             } else {
                 fs.writeFileSync(__dirname + '/connected.txt', 'true');
@@ -65,7 +65,7 @@ dns.resolve("www.google.com", function (err, addr) {
 });
 //create the main window
 function createWindow() {
-    if (process.platform == "linux") {
+    if (process.platform == "linux" || process.platform == 'darwin') {
         let win = new BrowserWindow({
 
             backgroundColor: 212121,
@@ -74,6 +74,7 @@ function createWindow() {
             frame: false,
             width: 480,
             height: 240,
+
             icon: path.join(__dirname, 'Ressources/logoexp.png'),
             webPreferences: {
                 webSecurity: false,
@@ -178,7 +179,7 @@ function createWindow() {
     if (portable == true) {
         console.log(app.getPath("documents"));
         //linux folder tree creation
-        if (process.platform == "linux") {
+        if (process.platform == "linux" || process.platform == 'darwin') {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data") === false) {
                 fs.mkdirSync(parentfolder3 + "/nytuolauncher_data");
             }
@@ -192,7 +193,7 @@ function createWindow() {
     } else {
         console.log(app.getPath("documents"));
         //linux folder tree creation
-        if (process.platform == "linux") {
+        if (process.platform == "linux" || process.platform == 'darwin') {
             if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data") === false) {
                 fs.mkdirSync(app.getPath("documents") + "/nytuolauncher_data");
             }
@@ -211,7 +212,7 @@ function createWindow() {
         fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt", parentfolder3 + "/nytuolauncher_games");
         gamelocation = parentfolder3 + "/nytuolauncher_games";
     } else {
-        if (process.platform == "linux") {
+        if (process.platform == "linux" || process.platform == 'darwin') {
             if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
                 if (fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt").length == 0) {
                     let folder = dialog.showOpenDialogSync({
@@ -281,12 +282,13 @@ function createWindow() {
     if (!fs.existsSync(gamelocation + '/Games/SFO')) fs.mkdirSync(gamelocation + '/Games/SFO', { recursive: true });
 
     if (portable == true) {
-        if (process.platform == 'linux') {
+        if (process.platform == 'linux' || process.platform == 'darwin') {
             //create linux beta files
             if (!fs.existsSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles')) fs.mkdirSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles', { recursive: true });
             if (!fs.existsSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt')) {
                 fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt', 'False');
             }
+
         }
         //create windows beta files
         else {
@@ -294,41 +296,29 @@ function createWindow() {
             if (!fs.existsSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt')) {
                 fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt', 'False');
             }
+
         }
     } else {
-        if (portable == true) {
-            if (process.platform == 'linux') {
-                //create linux beta files
-                if (!fs.existsSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles')) fs.mkdirSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles', { recursive: true });
-                if (!fs.existsSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt')) {
-                    fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt', 'False');
-                }
+        if (process.platform == 'linux' || process.platform == 'darwin') {
+            //create linux beta files
+            if (!fs.existsSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles')) fs.mkdirSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles', { recursive: true });
+            if (!fs.existsSync(app.getPath("documents") + '/nytuolauncher_data/BetaAccess.txt')) {
+                fs.writeFileSync(app.getPath("documents") + '/nytuolauncher_data/BetaAccess.txt', 'False');
             }
-            //create windows beta files
-            else {
-                if (!fs.existsSync(__dirname + '/VersionsFiles')) fs.mkdirSync(__dirname + '/VersionsFiles', { recursive: true });
-                if (!fs.existsSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt')) {
-                    fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt', 'False');
-                }
+            
+        }
+        //create windows beta files
+        else {
+            if (!fs.existsSync(__dirname + '/VersionsFiles')) fs.mkdirSync(__dirname + '/VersionsFiles', { recursive: true });
+            if (!fs.existsSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt')) {
+                fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt', 'False');
             }
-        } else {
-            if (process.platform == 'linux') {
-                //create linux beta files
-                if (!fs.existsSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles')) fs.mkdirSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles', { recursive: true });
-                if (!fs.existsSync(app.getPath("documents") + '/nytuolauncher_data/BetaAccess.txt')) {
-                    fs.writeFileSync(app.getPath("documents") + '/nytuolauncher_data/BetaAccess.txt', 'False');
-                }
-            }
-            //create windows beta files
-            else {
-                if (!fs.existsSync(__dirname + '/VersionsFiles')) fs.mkdirSync(__dirname + '/VersionsFiles', { recursive: true });
-                if (!fs.existsSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt')) {
-                    fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/BetaAccess.txt', 'False');
-                }
-            }
+          
         }
 
+
     }
+    
 
 
 
@@ -338,7 +328,7 @@ function createWindow() {
 function ACH_SAVER() {
     //savegarde les achievements dans le nytuolauncher_data
     if (portable == true) {
-        if (process.platform == "linux") {
+        if (process.platform == "linux" || process.platform == 'darwin') {
             try {
                 fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", parentfolder3 + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
             } catch (error) {
@@ -388,7 +378,7 @@ function ACH_SAVER() {
 
         }
     } else {
-        if (process.platform == "linux") {
+        if (process.platform == "linux" || process.platform == 'darwin') {
             try {
                 fs.copyFileSync(gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt", app.getPath("documents") + "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt")
             } catch (error) {

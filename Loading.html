@@ -8,6 +8,8 @@
     <link rel="icon" href="Ressources/favicon.ico" />
     <link rel="stylesheet" href="animate.min.css" />
     <script type="text/javascript" src="js.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
     <title>Nytuo Launcher -- Loading</title>
 </head>
 <style>
@@ -72,7 +74,7 @@
     <!-- <div id="myProgress" style="text-align: center; ">
         <div id="myBar" style="background-color: dodgerblue;color: white;"></div>
     </div>-->
-    <div style="padding-top: 41%;">
+    <div style="padding-top: 38%;">
         <h2 id="MyBartxt"
             style="font-size: 18px;text-align: left;float: left;font-family: Roboto Condensed, sans-serif;">
             Loading...
@@ -86,17 +88,30 @@
                 alertOnlineStatus();
             </script>
         </h2>
-        <!--Download-->
 
-        <div style="text-align: right;float: right;padding-top: 3%;">
-            <div class="lds-ring">
+        <div style="text-align: right;float: right;padding-top: 3%;margin-right: 5px;">
+            <!--<div class="lds-ring">
                 <div></div>
                 <div></div>
                 <div></div>
                 <div></div>
 
+            </div>-->
+            <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
 </body>
 

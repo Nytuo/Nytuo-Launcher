@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="Ressources/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="js.js"></script>
+  <title>News -- Nytuo Launcher</title>
+</head>
+<style>
+  .a{
+    font-family: 'Oswald', sans-serif;
+    color: dodgerblue;
+    font-size: 34px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .container {
+    position: relative;
+    width: 100%;
+  }
+
+  .image {
+    display: block;
+    width: 100%;
+  }
+
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.712);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+  }
+
+  .container:hover .overlay {
+    height: 100%;
+  }
+
+  .text {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 34px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 1680px) {
+    .text {
+      font-size: 24px;
+    }
+  }
+</style>
+<header>
+
+  <nav id="nav">
+    <ul style="padding: auto;">
+      <img src="Ressources/logoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
+      <div style="float: right;">
+        <li><a href="about.html">Settings</a></li>
+        <li><a href="https://launcher.nytuo.yo.fr/profile.php">Games</a>
+        <li>
+        <li><a href="news.html">News</a></li>
+      </div>
+    </ul>
+  </nav>
+</header>
+
+<body>
+  <div style="padding-top: 120px;">
+  </div>
+  <h1>News :</h1>
+  <h2>Last version : 2.010.002</h2>
+  <h3 style="color:red">For update from 2.9.2 to 2.010.000 (formerly 2.10.0), please update manually (by redownload the exe or appimage (or zip for portable) from Github.</h3>
+  <table style="height: 20%;overflow: hidden;box-sizing: border-box;">
+    <tr>
+      <td>
+        <div class="container" style="display: block;">
+          <img src="Ressources/IMGSN.png" alt="Avatar" class="image">
+          <div class="overlay">
+            <div class="text">-- The last Game -- </br> ShootFighter Origins <br />Kill zombies by waves !
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="container">
+          <img src="Ressources/NytuoLauncher.png" alt="Avatar" class="image">
+          <div class="overlay">
+            <div class="text">-- Launcher (Version 2.10.X) -- </br> URL Shortcuts (windows Only) with custom icon and launching direcly your games, auto connect to your account, launching Launcher & games review <br />This is the Nytuo Launcher 2.10.X ! </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <h1>ChangesLog (Since 2.10.0, <a style="font-family: 'Oswald', sans-serif;color: dodgerblue;font-size: 34px;" href="https://nytuo.yo.fr/nlcl.html">More here</a>): </h1>
+  <h2>2.010.002</h2>
+    <p><span class="new">New</span>ShootFighter Origins game added</p>
+    <p><span class="enhanced">Enhanced</span>Game Update loop issue</p>
+    <p><span class="enhanced">Enhanced</span>Game page look (logo instead of cover in the game page)</p>
+  <h2>2.010.001</h2>
+  <p><span class="new">New</span>The Launcher can now force the update (update manually by redownload the latest installer or appimage)</p>
+  <p><span class="updated">Updated</span>"Check For Update" Button is now "Force Update"</p>
+  <h2>2.010.000 :</h2>
+  <p><span class="enhanced">Enhanced</span>Windows Shortcuts now launch the Launcher before launch the game.</p>
+  <p><span class="enhanced">Enhanced</span>Windows Shortcuts are now in URL Format instead of the path to the game.</p>
+  <p><span class="updated">Updated</span>Connection form now support auto-connection to your account</p>
+  <p><span class="fixed">Fixed</span>Some bugs on Linux and Windows</p>
+  <p><span class="new">New</span>Dedicated Launching window for Launcher load and games load.</p>
+   <p><span class="new">New</span>News page have now a music playing in background</p>
+</body>
+
+</html>

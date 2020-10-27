@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="Ressources/favicon.ico" />
     <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="W3CustomCss.css" />
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <script type="text/javascript" src="js.js"></script>
     <title>Nytuo Launcher</title>
 </head>
@@ -22,8 +26,9 @@
             }
         }
 
+
     </script>
-    <nav id="nav">
+    <!--    <nav id="nav">
         <ul style="padding: auto;">
             <img src="Ressources/LogoLauncher.png" class="logonav" title="Logo de Nytuo"
                 style="text-align:left;width: 15%;">
@@ -34,540 +39,250 @@
                 <li><a href="news.html">News</a></li>
             </div>
         </ul>
-    </nav>
+    </nav>-->
 </header>
 <!--Contents of page-->
 
-<body class="ms-Fabric">
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large blue">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating waves-effect waves-light blue" onclick="gohome()"><i class="material-icons">home</i></a></li>
+      <li><a class="btn-floating waves-effect waves-light blue" href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i></a></li>
+      <li><a class="btn-floating waves-effect waves-light blue" href="about.html"><i class="material-icons">settings</i></a></li>
+    </ul>
+  </div>
 
-    <!--Loading Overlay-->
-    <div id="overlay">
-        <div style="text-align: center;margin-top: 20%;">
-            <div class="lds-roller">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, options);
+  });
+  
+
+</script>
+
+
+<body>
     <!--Detection de la version et remplacement du text de version en conséquence-->
     <iframe id="DETECTION" src="javascript:void(0)" style="display: none;"></iframe>
     <!--Placement du titre du jeu, du text version et de l'affiche-->
-    <div style="padding-top: 8%;"></div>
-    <table style="width: 100%;">
-        <tr>
-            <td style="float: left;">
-                
-                        <img id="LOGOCARD" src="" style="z-index: 1;">
-            
-            </td>
-            <td style="float: right;">
-                <h1 id="NAME" class="paraTXTFWD">Game Name</h1>
-                <h2 class="paraTXTFWD" id="versiontxt"> Game Version </h2>
-            </td>
-        </tr>
-    </table>
+    <div style="text-align: center">
+        <img id="LOGOCARD" src="" style="z-index: 1;">
+        <h1 id="NAME">Game Name</h1>
+        <h2 id="versiontxt"> Game Version </h2>
+    </div>
 
     <!--Buttons-->
-    <div style="text-align: center;width: 100%;">
-        <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-            <table style="text-align: center;">
-                <tr>
-                    <td>
-                        <div class="box-3">
+    <div style="text-align: center;">
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal8"
+            style="background-color:dodgerblue;margin-top: 10px;" id="button1">PLAY</a>
+        <div id="ONLINEPLAY">
 
-                            <a onclick="document.getElementById('ConfirmDL').style.display='block';"
-                                href="javascript:void(0)">
-                                <div class="btn btn-three">
-                                    <span id="button1">PLAY</span>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal4"
+                style="background-color:#1e90ff;margin-top: 10px;">Play Online</a></div>
+        <div id="SNCLASSIC">
 
-                <tr>
-                    <td>
-                        <div class="box-3">
-                            <a id="ONLINEPLAY" onclick="document.getElementById('ConfirmOL').style.display='block'"
-                                href="javascript:void(0)">
-                                <div class="btn btn-three">
-                                    <span id="ONLINEPLAY">Play Online</span>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="box-3">
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal5"
+                style="background-color:dodgerblue;margin-top: 10px;">Play SansNom Classic</a></div>
+        <div id="button2">
 
-                            <a id="SNCLASSIC" onclick="document.getElementById('ConfirmOL1').style.display='block';"
-                                href="javascript:void(0)">
-                                <div class="btn btn-three">
-                                    <span id="SNCLASSIC">Play Online at SansNom : Classic</span>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="box-3">
-                            <a id="button2" onclick="document.getElementById('id03').style.display='block'">
-                                <div class="btn btn-three">
-                                    <span id="button2">Achievements</span>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="box-3">
-                            <a id="button3" onclick="document.getElementById('id01').style.display='block'"
-                                href="javascript:void(0)">
-                                <div class="btn btn-three">
-                                    <span id="button3">Settings</span>
-                                </div>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal6"
+                style="background-color:dodgerblue;margin-top: 10px;">Achievements</a></div>
+        <div id="button3">
+
+            <!-- Dropdown Trigger -->
+            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'
+                style="background-color:dodgerblue;margin-top: 10px;">Settings</a>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a class="modal-trigger" href="#modal3">Repair</a></li>
+                <li><a class="modal-trigger" href="#modal2">Re-install</a></li>
+                <li><a class="modal-trigger" href="#modal1">Uninstall</a></li>
+                <li><a onclick="OPEN_GAMELOC_DETECT()">Open Game location</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <div id="SAVES">
+                    <li><a onclick="OPEN_GAMESAVE()" href="javascript:void(0)">Saved Games</a></li>
+                </div>
+                <div id="shortcuts">
+                    <li><a onclick="SHORTCUT_DETECT()" href="javascript:void(0)">Shortcut</a></li>
+                </div>
+            </ul>
+            <script type="text/JavaScript">
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.dropdown-trigger');
+                    var instances = M.Dropdown.init(elems, options);
+                  });
+            </script>
         </div>
     </div>
+
     <!--Confirmation de déinstallation-->
-    <div id="ConfirmUN" class="modal">
 
-        <div class="modal-content animate" style="text-align: center;">
-            <h1>Confirmation :</h1>
-            <h2>You are about to DELETE </h2>
-            <h2 id="NAME3"></h2>
-            <h3>This action can't be undone.</br>If you search to repair the game is not here.</br>All the data will be
-                loose (You can eventually do a manual backup)</h3>
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmUN').style.display='none'">
-                                    <div class="btn btn-three">
-                                        <span>No</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="DELETE_DETECT();">
-                                    <div class="btn btn-three">
-                                        <span>Yes</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal" style="background-color: #222222;">
+        <div class="modal-content">
+            <h4>Confirmation: </h4>
+            <p>You are about to DELETE </p>
+            <p id="NAME3"></p>
+            <p>This action can't be undone.</br>If you search to repair the game is not here.</br>All the data will
+                be
+                loose (You can eventually do a manual backup)</p>
+        </div>
+        <div class="modal-footer" style="background-color: #222222;">
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a onclick="DELETE_DETECT();" style="color:white" class="modal-close waves-effect waves-green btn-flat">Yes,
+                Delete that shit</a>
+
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, options);
+        });
+    </script>
     <!--Confirmation de réinstallation-->
-    <div id="ConfirmUP" class="modal">
 
-        <div class="modal-content animate" style="text-align: center;">
-            <h1>Confirmation :</h1>
-            <h2>You are about to Re-install </h2>
-            <h2 id="NAME4"></h2>
-            <h3>All your data will be loose, please do a manual backup</h3>
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmUP').style.display='none'">
-                                    <div class="btn btn-three">
-                                        <span>No</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="REINSTALL_DETECT();">
-                                    <div class="btn btn-three">
-                                        <span>Yes</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal" style="background-color: #222222;">
+        <div class="modal-content">
+            <h4>Confirmation: </h4>
+            <p>You are about to re-install</p>
+            <p id="NAME4"></p>
+            <p>All your data will be loose, please do a manual backup</p>
+        </div>
+        <div class="modal-footer" style="background-color: #222222;">
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a onclick="REINSTALL_DETECT();" class="modal-close waves-effect waves-green btn-flat modal-trigger"
+                style="color:white" href="#modal8">Yes, reinstall it!</a>
         </div>
     </div>
-    <!--Confirmation de réparation-->
-    <div id="ConfirmRE" class="modal">
 
-        <div class="modal-content animate" style="text-align: center;">
-            <h1>Confirmation :</h1>
-            <h2>You are about to repair </h2>
-            <h2 id="NAME5"></h2>
-            <h3>Data may be delete, please do a backup, just in case...</h3>
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmRE').style.display='none'">
-                                    <div class="btn btn-three">
-                                        <span>No</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="REPAIR_DETECT();">
-                                    <div class="btn btn-three">
-                                        <span>Yes</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+    <!--Confirmation de réparation-->
+
+    <div id="modal3" class="modal" style="background-color: #222222;">
+        <div class="modal-content">
+            <h4>Confirmation: </h4>
+            <p>You are about to repair</p>
+            <p id="NAME5"></p>
+            <p>Data may be delete, please do a backup, just in case...</p>
+        </div>
+        <div class="modal-footer" style="background-color: #222222;">
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a onclick="REPAIR_DETECT();" class="modal-close waves-effect waves-green btn-flat modal-trigger" style="color:white" href="#modal8">Yes,
+                repair it!</a>
         </div>
     </div>
     <!--Confirmation de Online play-->
-    <div id="ConfirmOL" class="modal">
 
-        <div class="modal-content animate" style="text-align: center;">
-            <h1>Confirmation :</h1>
-            <h2>You are about to play </h2>
-            <h2 id="NAME2"></h2>
-            <h2>Online</h2>
-            <h3 id="GAMEJOLT">You will be redirected to the GameJolt page of the game, to launch click on play under the
+
+    <div id="modal4" class="modal" style="background-color: #222222;">
+        <div class="modal-content">
+            <h4>Confirmation: </h4>
+            <p>You are about to play</p>
+            <p id="NAME2"></p>
+            <p>Online</p>
+            <h3 id="GAMEJOLT">You will be redirected to the GameJolt page of the game, to launch click on play under
+                the
                 picture</h3>
-
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="ONLINE_LINK_DETECT();">
-                                    <div class="btn btn-three">
-                                        <span>Play Online</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmOL').style.display='none'">
-                                    <div class="btn btn-three">
-                                        <span>Back</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+        </div>
+        <div class="modal-footer" style="background-color: #222222;">
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a onclick="ONLINE_LINK_DETECT();" class="modal-close waves-effect waves-green btn-flat"
+                style="color:white">Yes,
+                play it!</a>
         </div>
     </div>
+
     <!--Confirmation : PlayOnlineSNCLASSIC-->
-    <div id="ConfirmOL1" class="modal">
 
-        <div class="modal-content animate" style="text-align: center;">
-            <h1>Confirmation :</h1>
-            <h2>You are about to Play SansNom : Classic Online</h2>
-            <h3>SansNom Classic is available only online.</h3>
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmOL1').style.display='none'">
-                                    <div class="btn btn-three">
-                                        <span>No</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="box-3">
-                                <a
-                                    onclick="document.getElementById('ConfirmOL1').style.display='none';RunWithoutInstall('http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414');">
-                                    <div class="btn btn-three">
-                                        <span>Yes</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+    <div id="modal5" class="modal" style="background-color: #222222;">
+        <div class="modal-content">
+            <h4>Confirmation: </h4>
+            <p>You are about to play SansNom : Classic Online<br />SansNom classic is available only online.</p>
+        </div>
+        <div class="modal-footer" style="background-color: #222222;">
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a onclick="RunWithoutInstall('http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414');"
+                class="modal-close waves-effect waves-green btn-flat" style="color:white">Yes,
+                play it!</a>
         </div>
     </div>
-    <!--Game Settings-->
-    <div id="id01" class="modal">
 
-        <div class="modal-content animate" style="text-align: center;">
-            <div class="imgcontainer">
-                <h1>Game Settings</h1>
-            </div>
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <table>
-                    <tr>
-                        <td style="text-align: center;">
-                            <div class="box-3">
-                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmRE').style.display='block';"
-                                    href="javascript:void(0)">
-                                    <div class="btn btn-three">
-                                        <span>Repair</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center;">
-                            <div class="box-3">
-                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUP').style.display='block';"
-                                    href="javascript:void(0)">
-                                    <div class="btn btn-three">
-                                        <span>Re-install</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="document.getElementById('id01').style.display='none';document.getElementById('ConfirmUN').style.display='block';"
-                                    href="javascript:void(0)">
-                                    <div class="btn btn-three">
-                                        <span>Uninstall</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="OPEN_GAMELOC_DETECT()">
-                                    <div class="btn btn-three">
-                                        <span>Open Game Location</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a id="SAVES" onclick="OPEN_GAMESAVE()" href="javascript:void(0)">
-                                    <div class="btn btn-three">
-                                        <span>Saved Games</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a id="shortcuts" onclick="SHORTCUT_DETECT()" href="javascript:void(0)">
-                                    <div class="btn btn-three">
-                                        <span>ShortCut</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <div style="padding-top: 2%;"></div>
-                <table>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="document.getElementById('id01').style.display='none'">
-                                    <div class="btn btn-three">
-                                        <span>Back</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!--Download-->
-    <div id="id02" class="modal">
-
-        <div class="modal-content animate" style="text-align: center;">
-            <div class="imgcontainer">
-                <h1 id="DLTEXT">Downloading... </h1>
-            </div>
-            <div class="progressBarLAATIM">
-                <div id="myProgress" style="text-align: center; ">
-                    <div id="myBar" style="background-color: #008C3F;
-                    color: black;"></div>
-                    
-                </div>
-            </div>
-            <h2 id="MyBartxt"></h2>
-            <div style="padding-top: 2%;"></div>
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="refresh()">
-                                    <div class="btn btn-three">
-                                        <span>Cancel</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
     <!--Achievements-->
-    <div id="id03" class="modal">
 
-        <div class="modal-content animate" style="text-align: center;">
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="document.getElementById('id03').style.display='none'">
-                                    <div class="btn btn-three">
-                                        <span>Back</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="imgcontainer">
-                <h1>Achievements</h1>
-            </div>
 
-            <div id="ProgressAchLAATIM" style="text-align: center;">
-                <div id="BarAch"></div>
+    <div id="modal6" class="modal" style="background-color: #222222;">
+        <div class="modal-content">
+            <h4>Achievements: </h4>
+            <div id="ProgressAchLAATIM" class="progress">
+                <div id="BarAch" class="determinate"></div>
+            </div>
+            <div style="text-align: center;">
+                <div></div>
             </div>
             <h1 style="padding-left: 20px;">Achievements unlocked : </h1>
 
             <p id="achDone"></p>
             <h1 style="padding-left: 20px;">Achievements locked : </h1>
             <p id="ach"></p>
-
+        </div>
+        <div class="modal-footer" style="background-color: #222222;">
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Back</a>
         </div>
     </div>
+
+
     <!--Confirmation de téléchargement-->
-    <div id="ConfirmDL" class="modal">
-
-        <div class="modal-content animate" style="text-align: center;">
-            <h1>Confirmation :</h1>
-            <h2 id="resultofcalculsize">Wait a moment ...</h2>
-            <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="box-3">
-                                <a onclick="document.getElementById('ConfirmDL').style.display='none'">
-                                    <div class="btn btn-three">
-                                        <span>No</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="box-3">
-
-                                <a  onclick="WHATTODO_DETECT()">
 
 
 
 
-                                    <div class="btn btn-three">
-                                        <span>Yes</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+
+    <div id="modal8" class="modal" style="background-color: #222222;">
+        <div class="modal-content">
+            <h4 id="DLTEXT">Confirmation: </h4>
+            <p id="resultofcalculsize">Wait a moment ...</p>
+            <div id="pgrs" class="progress" style="display: none; ">
+                <div class="indeterminate" id="myBar"></div>
             </div>
+            <p id="MyBartxt"></p>
+        </div>
+        <div class="modal-footer" style="background-color: #222222;">
+            <a id="downloadbtn2" onclick="refresh()" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a id="downloadbtn" onclick="WHATTODO_DETECT()" class="waves-effect waves-green btn-flat" style="color:white">Yes,
+                do it!</a>
+        </div>
+    </div>
 
-<script>
-    detectgamepage();
-</script>
+    <script>
+        detectgamepage();
+    </script>
 
-            <!--Script-->
-            <script>
-                // Get the modal
-                var modal = document.getElementById('id01');
-                var modal2 = document.getElementById('id02');
-                var modal3 = document.getElementById('id03');
-                var modal4 = document.getElementById('ConfirmDL');
-                var modal5 = document.getElementById('ConfirmUN');
-                var modal6 = document.getElementById('ConfirmOL');
-                var modal7 = document.getElementById('ConfirmOL1');
 
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                    if (event.target == modal3) {
-                        modal3.style.display = "none";
-                    }
-                    if (event.target == modal4) {
-                        modal4.style.display = "none";
-                    }
-                    if (event.target == modal5) {
-                        modal5.style.display = "none";
-                    }
-                    if (event.target == modal6) {
-                        modal6.style.display = "none";
-                    }
-                    if (event.target == modal7) {
-                        modal7.style.display = "none";
-                    }
-                }
-                if (window.location.href == "file:///" + dirnamew + "/Games.html?laatim") {
-                    LoadAchivements();
-                }
-                if (window.location.href == "file:///" + dirnamew + "/Games.html?sgb") {
-                    LoadAchivements();
-                }
-                if (window.location.href == "file:///" + dirnamew + "/Games.html?sn") {
-                    LoadAchivements();
-                }
-                if (window.location.href == "file:///" + dirnamew + "/Games.html?sfo") {
-                    LoadAchivements();
-                }
-            </script>
+
+
+
+    <!--Script-->
+    <script>
+
+        if (window.location.href == "file:///" + dirnamew + "/Games.html?laatim") {
+            LoadAchivements();
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Games.html?sgb") {
+            LoadAchivements();
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Games.html?sn") {
+            LoadAchivements();
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Games.html?sfo") {
+            LoadAchivements();
+        }
+
+    </script>
 </body>
 
 

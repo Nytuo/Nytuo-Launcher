@@ -50,6 +50,21 @@ function gameloc() {
                 alert("Linux Gameloc error, default path used (Documents), cause : check file don't exist");
                 return parentfolder3;
             }
+        }else if (process.platform == "darwin") {
+
+            if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
+                if (fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
+                    return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt");
+                } else {
+                    alert("MacOS gameloc error, default path used (Documents), cause : check file empty");
+                    return parentfolder3;
+
+                }
+
+            } else {
+                alert("MacOS Gameloc error, default path used (Documents), cause : check file don't exist");
+                return parentfolder3;
+            }
         } else {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
                 if (fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
@@ -81,6 +96,21 @@ function gameloc() {
                 alert("Linux Gameloc error, default path used (Documents), cause : check file don't exist");
                 return app.getPath("documents");
             }
+        }else if (process.platform == "darwin") {
+
+            if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
+                if (fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
+                    return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt");
+                } else {
+                    alert("MacOS gameloc error, default path used (Documents), cause : check file empty");
+                    return app.getPath("documents");
+
+                }
+
+            } else {
+                alert("MacOS Gameloc error, default path used (Documents), cause : check file don't exist");
+                return app.getPath("documents");
+            }
         } else {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
                 if (fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
@@ -103,13 +133,13 @@ function gameloc() {
 //Internet connexion test
 function connectest() {
     if (portable == true) {
-        if (process.platform == "linux") {
+        if (process.platform == "linux" || process.platform == "darwin") {
             return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt");
         } else {
             return fs.readFileSync(__dirname + "/connected.txt");
         }
     } else {
-        if (process.platform == "linux") {
+        if (process.platform == "linux" || process.platform == "darwin") {
             return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt");
         } else {
             return fs.readFileSync(__dirname + "/connected.txt");
@@ -130,7 +160,7 @@ function OpenforLinux(gameloc, dossierdujeu, filename) {
 
 
 function detectgamepage() {
-    if (process.platform == 'linux') {
+    if (process.platform == 'linux' || process.platform == "darwin") {
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFO") {
             document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGSFO2.png)";
             document.getElementById("TXTLOAD").innerHTML = "Launching ShootFighter Origins";
@@ -321,7 +351,8 @@ function LAUNCH() {
                     app.quit()
                 }, 500);
 
-            }, 2000);        }
+            }, 2000);
+        }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SNRE") {
             setTimeout(() => {
                 OpenforLinux(gamelocation, 'SNRE', 'nw')
@@ -329,7 +360,8 @@ function LAUNCH() {
                     app.quit()
                 }, 500);
 
-            }, 2000);        }
+            }, 2000);
+        }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?FWD") {
             setTimeout(() => {
                 OpenforLinux(gamelocation, 'FWD', 'nw')
@@ -337,7 +369,8 @@ function LAUNCH() {
                     app.quit()
                 }, 500);
 
-            }, 2000);        }
+            }, 2000);
+        }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?TB") {
             setTimeout(() => {
                 OpenforLinux(gamelocation, 'TB', 'nw')
@@ -359,7 +392,7 @@ function LAUNCH() {
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?AE") {
             alert('Game not available on Linux')
         }
-    } else {
+    } else if (process.platform == "win32"){
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SFO") {
 
             setTimeout(() => {
@@ -474,5 +507,88 @@ function LAUNCH() {
         }
 
 
+    }else{
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SFO") {
+
+            setTimeout(() => {
+                Open('SFO', 'shootfighterorigins.app')
+                setTimeout(() => {
+                    app.quit()
+                }, 500);
+
+            }, 2000);
+
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?LAATIM") {
+
+            alert('Game not supported on this platform')
+
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SGB") {
+            setTimeout(() => {
+                Open('SuperGeoffreyBros', 'supergeoffreybros.app')
+                setTimeout(() => {
+                    app.quit()
+                }, 500);
+
+            }, 2000);
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SF") {
+            alert('Game not supported on this platform')
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?LA") {
+            alert('Game not supported on this platform')
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?VITF") {
+            alert('Game not supported on this platform')
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?TTD") {
+            setTimeout(() => {
+                Open('TTD', 'thetardisdefender.app')
+                setTimeout(() => {
+                    app.quit()
+                }, 500);
+
+            }, 2000);
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SNRE") {
+            setTimeout(() => {
+                Open('SNRE', 'sansnomreedition.app')
+                setTimeout(() => {
+                    app.quit()
+                }, 500);
+
+            }, 2000);
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?FWD") {
+            setTimeout(() => {
+                Open('FWD', 'firewalldefender.app')
+                setTimeout(() => {
+                    app.quit()
+                }, 500);
+
+            }, 2000);
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?TB") {
+            setTimeout(() => {
+                Open('TB', 'tanksbattle.app')
+                setTimeout(() => {
+                    app.quit()
+                }, 500);
+
+            }, 2000);
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?WR") {
+            setTimeout(() => {
+                Open('WR', 'winrun.app')
+                setTimeout(() => {
+                    app.quit()
+                }, 500);
+
+            }, 2000);
+        }
+        if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?AE") {
+            alert('Game not supported on this platform')
+        }
     }
 }

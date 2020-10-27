@@ -7,6 +7,10 @@
     <link rel="icon" href="Ressources/favicon.ico" />
     <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
     <script type="text/javascript" src="js.js"></script>
+    <link rel="stylesheet" href="W3CustomCss.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <title>Settings -- Nytuo Launcher</title>
 </head>
 <header>
@@ -20,7 +24,7 @@
         }
 
     </script>
-    <nav id="nav">
+    <!-- <nav id="nav">
         <ul style="padding: auto;">
             <img src="Ressources/LogoLauncher.png" class="logonav" title="Logo de Nytuo"
                 style="text-align:left;width: 15%;">
@@ -31,120 +35,84 @@
                 <li><a href="news.html">News</a></li>
             </div>
         </ul>
-    </nav>
+    </nav>-->
 </header>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large blue">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating waves-effect waves-light blue" onclick="gohome()"><i class="material-icons">home</i></a></li>
+      <li><a class="btn-floating waves-effect waves-light blue" href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i></a></li>
+      <li><a class="btn-floating waves-effect waves-light blue" href="about.html"><i class="material-icons">settings</i></a></li>
+    </ul>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, options);
+  });
+  
+
+</script>
+
 
 <body>
-    <div class="spaceX2" style="text-align: center;"></div>
-    <iframe
-    onload="gamelocsettings();"
-    src="javascript:void(0)" style="display: none;"></iframe>
-    <div class="paralaxparam">
-        <h1>Settings</h1>
-        <p>About : <br />Nytuo Launcher Version :
-            <script type="text/javascript">
-                document.write(window.require('electron').remote.app.getVersion())
-            </script>
-            <br />Created and coded by : Nytuo (Arnaud BEUX)<br />Created in HTML/CSS/JS<br />with Electron version :
-            <script type="text/javascript">
-                document.write(process.versions.electron)
-            </script><br /> and Node version :
-            <script type="text/javascript">document.write(process.versions.node);</script><br />and Chromium :
-            <script type="text/javascript">document.write(process.versions.chrome)</script><br />Launcher :
-            <script type="text/javascript">
-                const alertOnlineStatus = () => {
-                    document.write(navigator.onLine ? "Connected to the internet" : "Disconnected from the internet")
-                }
-                window.addEventListener('online', alertOnlineStatus)
-                window.addEventListener('offline', alertOnlineStatus)
-                alertOnlineStatus();</script><br />On platform :
-            <script type="text/javascript">document.write(process.platform)</script><br /></p>
-            <p id="gameloc">
-               
-            </p>
-        
-        <div style="padding-bottom: 2%;"></div>
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <div class="box-3">
-                        <a onclick="OpenEmpl(parentfolder3+'/')" href="javascript:void(0)">
-                            <div class="btn btn-three">
-                                <span>Open the Nytuo Launcher folder</span>
-                            </div>
-                        </a>
-                    </div>
-                </td>
-                <td>
-                    <div class="box-3">
-                        <a onclick="deleteall()" href="javascript:void(0)">
-                            <div class="btn btn-three">
-                                <span>Uninstall all games</span>
-                            </div>
-                        </a>
-                    </div>
-                </td>
-                <td>
-                    <div class="box-3">
-                        <a onclick="window.open('https://nytuo.yo.fr')" href="javascript:void(0)">
-                            <div class="btn btn-three">
-                                <span>Open WebSite</span>
-                            </div>
-                        </a>
-                    </div>
-                </td>
-                <td>
-                    <div class="box-3">
-                        <a onclick="forceUpdate()" href="javascript:void(0)">
-                            <div class="btn btn-three">
-                                <span>Force Update</span>
-                            </div>
-                        </a>
-                    </div>
-                </td>
-                
-            </tr>
-            <tr>
-                <td>
-                    <div class="box-3">
-                        <a onclick="changegameloc()" href="javascript:void(0)">
-                            <div class="btn btn-three">
-                                <span>Change Games Folder</span>
-                            </div>
-                        </a>
-                    </div>
-                </td>
-                <td>
-                    <div class="box-3">
-                        <a onclick="validate()" href="javascript:void(0)">
-                            <div class="btn btn-three">
-                                <span>Beta Toggle</span>
-                            </div>
-                        </a>
-                    </div>
-                </td>
-                <td>
-                    <div class="box-3">
-                        <a onclick="window.open('https://github.com/Nytuo/Nytuo-launcher/')" href="javascript:void(0)">
-                            <div class="btn btn-three">
-                                <span>GitHub</span>
-                            </div>
-                        </a>
-                    </div>
-                </td>
-                <td>
-                    <div class="box-3">
-                        <a onclick="window.open('https://discord.gg/FPPfSSF')" href="javascript:void(0)">
-                            <div class="btn btn-three">
-                                <span>Join the Discord</span>
-                            </div>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <iframe onload="gamelocsettings();" src="javascript:void(0)" style="display: none;"></iframe>
+    <h1>Settings</h1>
+    <p>About : <br />Nytuo Launcher Version :
+        <script type="text/javascript">
+            document.write(window.require('electron').remote.app.getVersion())
+        </script>
+        <br />Created and coded by : Nytuo (Arnaud BEUX)<br />Created in HTML/CSS/JS<br />with Electron
+        version :
+        <script type="text/javascript">
+            document.write(process.versions.electron)
+        </script><br /> and Node version :
+        <script type="text/javascript">document.write(process.versions.node);</script><br />and Chromium :
+        <script type="text/javascript">document.write(process.versions.chrome)</script><br />Launcher :
+        <script type="text/javascript">
+            const alertOnlineStatus = () => {
+                document.write(navigator.onLine ? "Connected to the internet" : "Disconnected from the internet")
+            }
+            window.addEventListener('online', alertOnlineStatus)
+            window.addEventListener('offline', alertOnlineStatus)
+            alertOnlineStatus();</script><br />On platform :
+        <script type="text/javascript">document.write(process.platform)</script><br /></p>
+    <p id="gameloc">
 
+    </p>
+
+    <div style="padding-bottom: 2%;"></div>
+    <div style="text-align:center;">
+        <a class="waves-effect waves-light btn" onclick="OpenEmpl(parentfolder3+'/')" href="javascript:void(0)"
+            style="background-color:dodgerblue">Open the Nytuo Launcher folder</a>
+
+        <a class="waves-effect waves-light btn" onclick="deleteall()" href="javascript:void(0)"
+            style="background-color:dodgerblue">Uninstall all games</a>
+
+        <a class="waves-effect waves-light btn" onclick="window.open('https://nytuo.yo.fr')" href="javascript:void(0)"
+            style="background-color:dodgerblue">Open WebSite</a>
+
+        <a class="waves-effect waves-light btn" onclick="forceUpdate()" href="javascript:void(0)"
+            style="background-color:dodgerblue">Force Update</a>
+
+        <a class="waves-effect waves-light btn" onclick="changegameloc()" href="javascript:void(0)"
+            style="background-color:dodgerblue">Change Games Folder</a>
+
+        <a class="waves-effect waves-light btn" onclick="validate()" href="javascript:void(0)"
+            style="background-color:dodgerblue">Beta Toggle</a>
+
+        <a class="waves-effect waves-light btn" onclick="window.open('https://github.com/Nytuo/Nytuo-launcher/')"
+            href="javascript:void(0)" style="background-color:dodgerblue">GitHub</a>
+
+        <a class="waves-effect waves-light btn" onclick="window.open('https://discord.gg/FPPfSSF')"
+            href="javascript:void(0)" style="background-color:dodgerblue">Join the Discord</a>
+
+        <a class="waves-effect waves-light btn" onclick="redm()" href="javascript:void(0)"
+            style="background-color:dodgerblue;">Restart</a>
+    </div>
 </body>
+
 
 </html>

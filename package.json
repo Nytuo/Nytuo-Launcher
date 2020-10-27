@@ -16,7 +16,8 @@
       {
         "provider": "github",
         "repo": "Nytuo-Launcher",
-        "owner": "Nytuo"
+        "owner": "Nytuo",
+        "token": "b40eac1b4381fb95fcbd346a96c77a455ae54328"
       }
     ],
     "win": {
@@ -40,7 +41,7 @@
       "icon": "Ressources/logoexp.png"
     }
   },
-  "version": "2.010.002",
+  "version": "2.011.000",
   "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
   "main": "main.js",
   "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
@@ -64,6 +65,7 @@
     "electron-simple-updater": "^2.0.8",
     "extract-zip": "^1.6.7",
     "fs": "^0.0.1-security",
+    "materialize-css": "^1.0.0-rc.2",
     "nodejs": "^0.0.0",
     "office-ui-fabric-core": "^11.0.0",
     "path": "^0.12.7",
