@@ -1,0 +1,166 @@
+Tu ve a jugar
+Jugar
+Poner al día
+Instalar en pc
+Jugar en línea
+configuraciones
+Éxito
+Reparar
+Reinstalar
+Desinstalar
+Ubicación del juego abierto
+Abrir carpeta de respaldo
+Acortado
+Confirmación
+Estás a punto de desinstalar
+Esta acción no se puede deshacer. Repair puede ayudarlo manteniendo copias de seguridad. Se perderán todos los datos (se recomienda una copia de seguridad manual).
+anular
+Sí, eliminar
+Logros desbloqueados:
+Logros bloqueados:
+Regreso
+Éxito:
+No se han desbloqueado logros para este juego
+Todos los logros están desbloqueados para este juego.
+Error de ubicación del juego, almacenamiento en la carpeta predeterminada (documentos). Causa: el archivo de ubicación no existe.
+Error de ubicación del juego, almacenamiento en la carpeta predeterminada (documentos). Causa: archivo de ubicación vacío.
+Error de ubicación del juego, almacenamiento en la carpeta predeterminada (antes de la carpeta de inicio). Causa: el archivo de ubicación no existe.
+Error de ubicación del juego, almacenamiento en la carpeta predeterminada (antes de la carpeta de inicio). Causa: archivo de ubicación vacío.
+Ubicación de la carpeta de juegos:
+Extracción...
+Estamos revisando el juego, puede llevar un tiempo.
+Descargar ...
+Estamos descargando el juego, espera
+minutos y
+segundos restantes.
+¡Error al vaciar la caché!
+¡ShootFighter Origins ahora se puede jugar!
+¡Legend Adventure And The Infernal Maze ahora se puede jugar!
+¡ShootFighter ahora se puede jugar!
+¡Lutin Adventure ahora se puede jugar!
+¡Asteroids Escape ahora se puede jugar!
+¡SansName Reissue ahora se puede jugar!
+¡Super Geoffrey Bros ahora se puede jugar!
+¡El Defensor de TARDIS ahora se puede jugar!
+¡TanksBattle ahora se puede jugar!
+¡FireWall Defender ahora se puede jugar!
+¡Vincent In The Forest ahora es jugable!
+¡WinRun ahora se puede jugar!
+¡Legend Adventure And The Infernal Maze ahora está eliminado!
+¡ShootFighter Origins ahora está eliminado!
+¡ShootFighter ahora está eliminado!
+¡Leprechaun Adventure ahora está eliminado!
+¡Asteroids Escape ahora está eliminado!
+¡SansName Reissue ahora está eliminado!
+¡Super Geoffrey Bros ahora está eliminando!
+¡El TARDIS Defender ahora está eliminado!
+¡TanksBattle ahora está eliminado!
+¡FireWall Defender ahora está eliminado!
+¡Vincent In The Forest ahora está eliminado!
+¡WinRun ahora está eliminado!
+¡Todos los juegos han sido eliminados!
+Versión:?
+Versión:
+(Actualización disponible)
+Una actualización para:
+¡está disponible!
+¡Este juego no está disponible para tu plataforma!
+Indisponible
+¡Descarga el juego en línea para jugarlo cuando no estés conectado!
+Se requiere actualización manual: visite el sitio web para obtener más información.
+No está conectado a Internet, reinicie el lanzador con una conexión a Internet.
+ no está disponible para su sistema operativo
+Inicio de descarga
+Actualización beta disponible
+Las actualizaciones automáticas están desactivadas en la versión portátil, consulte la sección de ayuda del sitio web para conocer el procedimiento de actualización.
+¡Hay disponible una actualización!
+¡Hay disponible una actualización para Legend Adventure And The Infernal Maze!
+¡Hay disponible una actualización para ShootFighter!
+¡Hay una actualización para Lutin Adventure disponible!
+¡Hay disponible una actualización para Asteroids Escape!
+¡Hay disponible una actualización para SansName Reissue!
+¡Hay disponible una actualización para Super Geoffrey Bros!
+¡Hay disponible una actualización para The TARDIS Defender!
+¡Hay disponible una actualización para TanksBattle!
+¡Hay disponible una actualización para FireWall Defender!
+¡Una actualización para Vincent In The Forest disponible!
+¡Hay una actualización para WinRun disponible!
+¡Hay disponible una actualización para ShootFighter Origins!
+Su plataforma no es compatible con el programa beta.
+Ya no estás en el programa beta (pero mantienes las actualizaciones ya instaladas, haz una actualización forzada después de un reinicio para volver al canal estable).
+¡Estás en el programa beta de Nytuo Launcher! (Si hay una actualización beta disponible, se descargará la próxima vez que se inicie el lanzador).
+ pasó la prueba, nada que cambiar.
+ no pasó la prueba, se reinstalará.
+Verificación...
+Comprobamos los archivos del juego
+Eliminación ...
+Estamos eliminando el juego ...
+La versión en línea es la misma que la versión de descarga. Pero los logros no están disponibles.
+Tú repararas
+Se eliminarán todos los datos, haga una copia de seguridad manual si desea mantener su progreso.
+¡Vamonos!
+Confirmación...
+¡Sí, juega!
+Estás a punto de jugar SansName Classic, que solo está disponible en línea.
+Estás a punto de jugar online en
+¡Sí, reparación!
+¡Sí, reinstalar!
+Estás a punto de reinstalar
+Juega SansName Classic
+Cargando...
+Lanzamiento de ShootFighter Origins ...
+Lanzamiento de Legend Adventure y The Infernal Maze ...
+Lanzamiento de Super Geoffrey Bros ...
+Lanzamiento de ShootFighter ...
+Lanzamiento de Lutin Adventure ...
+Lanzamiento de Vincent In The Forest ...
+Lanzamiento de The TARDIS Defender ...
+Lanzamiento de FireWall Defender ...
+Lanzamiento de TanksBattle ...
+Iniciando WinRun ...
+Lanzamiento de Asteroids Escape ...
+Lanzamiento de SansNom Reissue ...
+Comprobando actualizaciones ...
+Nytuo Launcher utiliza comandos en un CMD (símbolo del sistema) para iniciar el actualizador. No cierre esta ventana, el procedimiento es automático ...
+Descargar archivos de versión
+Lanzamiento de Nytuo Launcher (sin conexión) ...
+Lanzamiento del Lanzador Nytuo ...
+Iniciando el juego ...
+Buscando actualizaciones del juego ...
+Descargando la actualización ...
+¡No se necesita actualización!
+¡Actualizacion encontrada!
+Actualización forzada!
+Portátil: no se puede actualizar
+Descargando la actualización beta ...
+Eliminando el sistema de actualización ...
+Comprobación de la carpeta de juegos ...
+Portable: Escribiendo la ruta ...
+Seleccione una carpeta (vacía) para juegos ...
+Escribiendo el camino ...
+Guardando operaciones de rescate ...
+Ahorro 1/4
+Ahorro 2/4
+Ahorro de rescates 3/4
+4/4 rescate
+Error de copia de seguridad
+Creación de la carpeta de datos ...
+Creación de la carpeta de juegos ...
+Verificando el acceso beta ...
+Prelanzamiento completado
+Noticias
+Juegos
+A proposito:
+Creado, codificado y desarrollado por Nytuo (Arnaud BEUX) en HTML / CSS / JS / PHP.
+Abra la carpeta de inicio
+Desinstalar todos los juegos
+Abrir sitio web
+Forzar actualización
+Cambiar la carpeta de juegos
+Cambiar estado Beta
+GitHub
+Únete a la discordia
+Para reiniciar
+Cambiar idioma (reiniciar)
+descargado
+Por favor, seleccionar una carpeta vacía para almacenar los juegos

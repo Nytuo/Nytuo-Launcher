@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
-<html id="BG"
-    style="background-image: url(Ressources/LogoLauncher.png);background-size: contain;background-repeat: no-repeat;background-size: 100%;">
+<html id="BG">
 <!--initialization of external page-->
 
 <head>
@@ -62,10 +61,20 @@
         }
     }
 </style>
-<div style="text-align: left;">
-    <img src="Ressources/logoexp.png" alt="" id="IMGLOAD">
+
+<div style="text-align: center">
+    <img src="Ressources/LogoLauncher.png" id="IMGLOAD">
+    <div style="padding-top:20%">
+    <h2 id="TXTLOAD" style="font-size: 20px;font-family: Roboto Condensed, sans-serif;margin-top: 10px;">
+        Loading...</h2>
+
+    <div class="progress">
+        <div class="indeterminate" style="background-color:dodgerblue"></div>
+    </div>
+    </div>  
 </div>
-<div style="padding-top: 18%;">
+
+<!--<div style="padding-top: 18%;">
     <h2 id="TXTLOAD" style="font-size: 18px;text-align: left;float: left;font-family: Roboto Condensed, sans-serif;">
         lancement de jeu
         avec lequelle je vais jouer</h2>
@@ -84,7 +93,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 <script>
     detectgamepage();
 </script>

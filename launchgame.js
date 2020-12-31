@@ -16,12 +16,124 @@ var parentfolder1 = require('path').dirname(__dirname);
 var parentfolder2 = require('path').dirname(parentfolder1);
 var parentfolder3 = require('path').dirname(parentfolder2);
 var portable = portable_check();
+const currentLanguage =language()
+
 var gamelocation = gameloc();
 const { execSync } = require('child_process');
 const { start } = require('repl');
 var dirnamew = __dirname.replace(/\\/g, "/")
 
 var connectedtointernet = connectest();
+
+function language() {
+    if (portable == true) {
+        if (process.platform == 'linux') {
+            if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
+
+                LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
+
+                if (fs.existsSync(__dirname + '/Languages') == true) {
+
+                    if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
+
+                        let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
+                        let t1 = Array.from(new Set(t));
+                        return t1
+                    }
+                    else {
+                        return [];
+                    }
+                }
+                else {
+                    return []
+                }
+            }
+            else {
+                return []
+            }
+
+        }
+        else if (process.platform == 'win32') {
+            if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
+
+                LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
+
+                if (fs.existsSync(__dirname + '/Languages') == true) {
+
+                    if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
+
+                        let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
+                        let t1 = Array.from(new Set(t));
+                        return t1
+                    }
+                    else {
+                        return [];
+                    }
+                }
+                else {
+                    return []
+                }
+            }
+            else {
+                return []
+            }
+        }
+    } else {
+        if (process.platform == 'linux') {
+            if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")) {
+
+                LID = fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt").toString()
+
+                if (fs.existsSync(__dirname + '/Languages') == true) {
+
+                    if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
+
+                        let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
+                        let t1 = Array.from(new Set(t));
+                        return t1
+                    }
+                    else {
+                        return [];
+                    }
+                }
+                else {
+                    return []
+                }
+            }
+            else {
+                return []
+            }
+        }
+        else if (process.platform == 'win32') {
+            if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
+
+                LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
+
+                if (fs.existsSync(__dirname + '/Languages') == true) {
+
+                    if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
+
+                        let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
+                        let t1 = Array.from(new Set(t));
+                        return t1
+                    }
+                    else {
+                        return [];
+                    }
+                }
+                else {
+                    return []
+                }
+            }
+            else {
+                return []
+            }
+        }
+    }
+
+
+}
+
 //portable switch of launcher
 function portable_check() {
     if (fs.existsSync(__dirname + "/portable.txt")) {
@@ -41,28 +153,13 @@ function gameloc() {
                 if (fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
                     return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt");
                 } else {
-                    alert("Linux gameloc error, default path used (Documents), cause : check file empty");
+                    alert(currentLanguage[26]);
                     return parentfolder3;
 
                 }
 
             } else {
-                alert("Linux Gameloc error, default path used (Documents), cause : check file don't exist");
-                return parentfolder3;
-            }
-        }else if (process.platform == "darwin") {
-
-            if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
-                if (fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
-                    return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt");
-                } else {
-                    alert("MacOS gameloc error, default path used (Documents), cause : check file empty");
-                    return parentfolder3;
-
-                }
-
-            } else {
-                alert("MacOS Gameloc error, default path used (Documents), cause : check file don't exist");
+                alert(currentLanguage[27]);
                 return parentfolder3;
             }
         } else {
@@ -70,13 +167,13 @@ function gameloc() {
                 if (fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
                     return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt");
                 } else {
-                    alert("Windows gameloc error, default path used (same as nytuolauncher_data, before the launcher main folder), cause : check file empty");
+                    alert(currentLanguage[26]);
                     return parentfolder3;
 
                 }
 
             } else {
-                alert("Windows gameloc error, default path used (same as nytuolauncher_data, before the launcher main folder), cause : check file don't exist");
+                alert(currentLanguage[27]);
                 return parentfolder3;
             }
         }
@@ -87,42 +184,28 @@ function gameloc() {
                 if (fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
                     return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt");
                 } else {
-                    alert("Linux gameloc error, default path used (Documents), cause : check file empty");
+                    alert(currentLanguage[24]);
                     return app.getPath("documents");
 
                 }
 
             } else {
-                alert("Linux Gameloc error, default path used (Documents), cause : check file don't exist");
+                alert(currentLanguage[25]);
                 return app.getPath("documents");
             }
-        }else if (process.platform == "darwin") {
-
-            if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
-                if (fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
-                    return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt");
-                } else {
-                    alert("MacOS gameloc error, default path used (Documents), cause : check file empty");
-                    return app.getPath("documents");
-
-                }
-
-            } else {
-                alert("MacOS Gameloc error, default path used (Documents), cause : check file don't exist");
-                return app.getPath("documents");
-            }
-        } else {
+        }
+        else {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
                 if (fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
                     return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt");
                 } else {
-                    alert("Windows gameloc error, default path used (same as nytuolauncher_data, before the launcher main folder), cause : check file empty");
+                    alert(currentLanguage[26]);
                     return parentfolder3;
 
                 }
 
             } else {
-                alert("Windows gameloc error, default path used (same as nytuolauncher_data, before the launcher main folder), cause : check file don't exist");
+                alert(currentLanguage[27]);
                 return parentfolder3;
             }
         }
@@ -162,147 +245,123 @@ function OpenforLinux(gameloc, dossierdujeu, filename) {
 function detectgamepage() {
     if (process.platform == 'linux' || process.platform == "darwin") {
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFO") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGSFO2.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching ShootFighter Origins";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[110];
             document.getElementById("IMGLOAD").src = "Ressources/LogoSFO2.png";
             document.getElementById("IMGLOAD").style.width = '35%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?LAATIM") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGLAATIM.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching Legend Adventure and the Infernal Maze";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[111];
             document.getElementById("IMGLOAD").src = "Ressources/LogoLAATIM.png";
             document.getElementById("IMGLOAD").style.width = '20%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SGB") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/SGB2.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching Super Geoffrey Bros";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[112];
             document.getElementById("IMGLOAD").src = "Ressources/SGB1.png";
             document.getElementById("IMGLOAD").style.width = '40%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SF") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGSF.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching ShootFighter";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[113];
             document.getElementById("IMGLOAD").src = "Ressources/LogoSF.png";
             document.getElementById("IMGLOAD").style.width = '20%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?LA") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGLA.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching Lutin Adventure";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[114];
             document.getElementById("IMGLOAD").src = "Ressources/LogoLA.png";
             document.getElementById("IMGLOAD").style.width = '35%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?VITF") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGVITF.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching Vincent In The Forest";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[115];
             document.getElementById("IMGLOAD").src = "Ressources/LogoVITF.png";
             document.getElementById("IMGLOAD").style.width = '50%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?TTD") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGTTD.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching The Tardis Defender";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[116];
             document.getElementById("IMGLOAD").src = "Ressources/LogoTTD.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?FWD") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGFWD.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching FireWall Defender";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[117];
             document.getElementById("IMGLOAD").src = "Ressources/LogoFWD.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?TB") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGTB.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching TanksBattle";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[118];
             document.getElementById("IMGLOAD").src = "Ressources/LogoTB.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?WR") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGWR.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching WinRun";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[119];
             document.getElementById("IMGLOAD").src = "Ressources/LogoWR.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?AE") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGAE.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching AsteroidEscape";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[120];
             document.getElementById("IMGLOAD").src = "Ressources/LogoAE.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SNRE") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGSN.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching SansNom Réédition";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[121];
             document.getElementById("IMGLOAD").src = "Ressources/LogoSN.png";
             document.getElementById("IMGLOAD").style.width = '17%';
         }
     } else {
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SFO") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGSFO2.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching ShootFighter Origins";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[110];
             document.getElementById("IMGLOAD").src = "Ressources/LogoSFO2.png";
             document.getElementById("IMGLOAD").style.width = '35%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?LAATIM") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGLAATIM.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching Legend Adventure and the Infernal Maze";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[111];
             document.getElementById("IMGLOAD").src = "Ressources/LogoLAATIM.png";
             document.getElementById("IMGLOAD").style.width = '20%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SGB") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/SGB2.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching Super Geoffrey Bros";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[112];
             document.getElementById("IMGLOAD").src = "Ressources/SGB1.png";
             document.getElementById("IMGLOAD").style.width = '40%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SF") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGSF.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching ShootFighter";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[113];
             document.getElementById("IMGLOAD").src = "Ressources/LogoSF.png";
             document.getElementById("IMGLOAD").style.width = '20%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?LA") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGLA.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching Lutin Adventure";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[114];
             document.getElementById("IMGLOAD").src = "Ressources/LogoLA.png";
             document.getElementById("IMGLOAD").style.width = '35%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?VITF") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGVITF.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching Vincent In The Forest";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[115];
             document.getElementById("IMGLOAD").src = "Ressources/LogoVITF.png";
             document.getElementById("IMGLOAD").style.width = '50%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?TTD") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGTTD.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching The Tardis Defender";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[116];
             document.getElementById("IMGLOAD").src = "Ressources/LogoTTD.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?FWD") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGFWD.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching FireWall Defender";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[117];
             document.getElementById("IMGLOAD").src = "Ressources/LogoFWD.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?TB") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGTB.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching TanksBattle";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[118];
             document.getElementById("IMGLOAD").src = "Ressources/LogoTB.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?WR") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGWR.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching WinRun";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[119];
             document.getElementById("IMGLOAD").src = "Ressources/LogoWR.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?AE") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGAE.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching AsteroidEscape";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[120];
             document.getElementById("IMGLOAD").src = "Ressources/LogoAE.png";
             document.getElementById("IMGLOAD").style.width = '25%';
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SNRE") {
-            document.getElementById("BG").style.backgroundImage = "url(Ressources/IMGSN.png)";
-            document.getElementById("TXTLOAD").innerHTML = "Launching SansNom Réédition";
+            document.getElementById("TXTLOAD").innerHTML = currentLanguage[121];
             document.getElementById("IMGLOAD").src = "Ressources/LogoSN.png";
             document.getElementById("IMGLOAD").style.width = '17%';
         }

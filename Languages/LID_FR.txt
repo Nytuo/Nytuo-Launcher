@@ -1,0 +1,166 @@
+Vous aller jouer à
+Jouer
+Mettre à jour
+Installer
+Jouer en ligne
+Paramètres
+Succès
+Réparer
+Ré Installer
+Déinstaller
+Ouvrir l'emplacement du jeu
+Ouvrir dossier sauvegarde
+Raccourcie
+Confirmation
+Vous êtes sur le point de déinstaller
+Cette action ne peut pas être défaite. La réparation peut vous aider en conservant les sauvegardes. Toutes données vont être perdu (Sauvegarde manuelle conseillé).
+Annuler
+Oui, Supprimer
+Succès Débloqués:
+Succès Bloqués:
+Retour
+Succès:
+Aucun Succès Débloqués pour ce jeu
+Touts les succès sont débloqués pour ce jeu
+Erreur emplacement des jeux, Stockage dans le dossier par défaut (Documents). Cause: fichier d'emplacement inexistant.
+Erreur emplacement des jeux, Stockage dans le dossier par défaut (Documents). Cause: fichier d'emplacement vide.
+Erreur emplacement des jeux, Stockage dans le dossier par défaut (avant le dossier du launcher). Cause: fichier d'emplacement inexistant.
+Erreur emplacement des jeux, Stockage dans le dossier par défaut (avant le dossier du launcher). Cause: fichier d'emplacement vide.
+Emplacement du dossier des jeux:
+Extraction...
+Nous sommes en train d'extraire le jeu, cela peut prendre du temps
+Téléchargement...
+Nous téléchargeons le jeu, veuillez patientez
+minutes et
+secondes restantes.
+Erreur lors du vidage du cache!
+ShootFighter Origins est maintenant jouable!
+Legend Adventure And The Infernal Maze est maintenant jouable!
+ShootFighter est maintenant jouable!
+Lutin Adventure est maintenant jouable!
+Asteroids Escape est maintenant jouable!
+SansNom Réédition est maintenant jouable!
+Super Geoffrey Bros est maintenant jouable!
+The TARDIS Defender est maintenant jouable!
+TanksBattle est maintenant jouable!
+FireWall Defender est maintenant jouable!
+Vincent In The Forest est maintenant jouable!
+WinRun est maintenant jouable!
+Legend Adventure And The Infernal Maze est maintenant supprimer!
+ShootFighter Origins est maintenant supprimer!
+ShootFighter est maintenant supprimer!
+Lutin Adventure est maintenant supprimer!
+Asteroids Escape est maintenant supprimer!
+SansNom Réédition est maintenant supprimer!
+Super Geoffrey Bros est maintenant supprimer!
+The TARDIS Defender est maintenant supprimer!
+TanksBattle est maintenant supprimer!
+FireWall Defender est maintenant supprimer!
+Vincent In The Forest est maintenant supprimer!
+WinRun est maintenant supprimer!
+Touts les jeux ont été supprimer!
+Version: ?
+Version:
+(Mise à jour disponible)
+Une mise à jour pour:
+est disponible!
+Ce jeu n'est pas disponible pour votre plateforme!
+Indisponible
+Télécharger le jeu en ligne pour y jouer quand vous êtes hors-ligne!
+Mise à jour manuelle requise : visiter le site internet pour plus d'info.
+Vous n'êtes pas connecter à l'internet, rédemarrer le launcher avec une connexion internet.
+ n'est pas disponible pour votre système d'exploitation
+Début du téléchargement
+Mise à jour beta disponible
+Les mises à jour automatique sont déssactiver ne version portable, merci de vous réferer au site internet rubrique aide pour connaitre la procédure de mise à jour.
+Une mise à jour est disponible!
+Une mise à jour pour Legend Adventure And The Infernal Maze est disponible!
+Une mise à jour pour ShootFighter est disponible!
+Une mise à jour pour Lutin Adventure est disponible!
+Une mise à jour pour Asteroids Escape est disponible!
+Une mise à jour pour SansNom Réédition est disponible!
+Une mise à jour pour Super Geoffrey Bros est disponible!
+Une mise à jour pour The TARDIS Defender est disponible!
+Une mise à jour pour TanksBattle est disponible!
+Une mise à jour pour FireWall Defender est disponible!
+Une mise à jour pour Vincent In The Forest disponible!
+Une mise à jour pour WinRun est disponible!
+Une mise à jour pour ShootFighter Origins est disponible!
+Votre plateforme ne supporte pas le programme beta.
+Vous n'êtes plus dans le programme beta (mais vous conservez les mises à jour déjà installer, faite une mise à jour forcer après un redémarrage pour revenir dans le canal stable).
+Vous êtes dans le programme beta du Nytuo Launcher! (Si une mise à jour beta est disponible, elle sera téléchargé au prochain démarrage du launcher.).
+ a passé le test, rien à changer.
+ n'a pas passé le test, il va être réinstaller.
+Vérification...
+Nous vérifions les fichiers du jeu
+Suppression...
+Nous supprimons le jeu...
+La version en ligne est la même que la version téléchargeable. Mais les succès ne sont pas disponible.
+Vous allez réparer
+Toutes les données vont être supprimées, faite une sauvegarde manuelle si vous voulez conserver votre progression.
+Allons-y!
+Confirmation...
+Oui, jouer!
+Vous êtes sur le point de jouer à SansNom Classique, qui est disponible uniquement en ligne.
+Vous êtes sur le point de jouer en ligne à
+Oui, réparer!
+Oui, réinstaller!
+Vous êtes sur le point de réinstaller
+Jouer à SansNom Classique
+Chargement...
+Lancement de ShootFighter Origins...
+Lancement de Legend Adventure And The Infernal Maze...
+Lancement de Super Geoffrey Bros...
+Lancement de ShootFighter...
+Lancement de Lutin Adventure...
+Lancement de Vincent In The Forest...
+Lancement de The TARDIS Defender...
+Lancement de FireWall Defender...
+Lancement de TanksBattle...
+Lancement de WinRun...
+Lancement de Asteroids Escape...
+Lancement de SansNom Réédition...
+Vérification des mises à jour...
+Le Nytuo Launcher utilise des commandes dans un CMD (invite de commandes) pour lancer le programme de mise à jour. Merci de ne pas fermer cette fenêtre, la procédure est automatique...
+Téléchargement des fichiers de versions
+Lancement du Nytuo Launcher (Offline)...
+Lancement du Nytuo Launcher...
+Lancement du jeu...
+Vérification des mises à jour des jeux...
+Téléchargement de la mise à jour...
+Pas de mise à jour nécessaire!
+Mise à jour trouvé!
+Mise à jour forcé!
+Portable : Mise à jour impossible
+Téléchargement de la mise à jour beta...
+Suppréssion du système de mise à jour...
+Vérification du dossier des jeux...
+Portable : Ecriture du chemin...
+Séléctionner un dossier (vide) pour les jeux...
+Ecriture du chemin...
+Sauvegarde des sauvardes...
+Sauvegarde des sauvardes 1/4
+Sauvegarde des sauvardes 2/4
+Sauvegarde des sauvardes 3/4
+Sauvegarde des sauvardes 4/4
+Erreur de sauvegarde des sauvegardes
+Création du dossier de data...
+Création du dossier des jeux...
+Vérification de l'accès à la beta...
+Prélancement completé
+Actualités
+Jeux
+A propos:
+Créé, codé et développé par Nytuo (Arnaud BEUX) in HTML/CSS/JS/PHP.
+Ouvrir le dossier du launcher
+Déinstaller tout les Jeux
+Ouvrir le site internet
+Forcer la mise à jour
+Changer le dossier des Jeux
+Changer Status Beta
+GitHub
+Rejoindre le Discord
+Redémarrer
+Changer la langue (redémarrage)
+téléchargé
+Merci de sélectionner un dossier vide pour y stocker les jeux

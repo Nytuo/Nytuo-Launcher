@@ -1,0 +1,166 @@
+You are going to play at
+Play
+Update
+Install
+Play online
+Settings
+Achievements
+Repair
+ReInstall
+Uninstall
+Open game folder
+Open game's save folder
+Shortcut
+Confirmation
+You are going to uninstall
+This action can't be undone. The repair system can help you if the game is broken(and keep save). All data will be loose.
+Abort
+Yes, Delete that shit!
+Unlocked achievements:
+Locked achievements:
+Back
+Achievements:
+No achievements unlock at this time.
+All achievements are unlocked ! GG!!
+Error game location, default folder will be used (Documents). File doens't exist.
+Error game location, default folder will be used (Documents). File is empty.
+Error game location, default folder will be used (before the launcher folder). File doens't exist.
+Error game location, default folder will be used (before the launcher folder). File is empty.
+Location of the game folder:
+Extraction...
+We are extracting the game, this can take several minutes
+Downloading...
+We are downloading the game, please wait...
+minutes and 
+seconds remaining.
+Error when wipe the cash
+Shootfighter Origins is now playable!
+Legend Adventure And The Infernal Maze is now playable!
+Shootfighter is now playable!
+Lutin Adventure is now playable!
+Asteroids Escape is now playable!
+SansNom Réédition is now playable!
+Super Geoffrey Bros is now playable!
+The TARDIS Defender is now playable!
+TanksBattle is now playable!
+FireWall Defender is now playable!
+Vincent In The Forest is now playable!
+WinRun is now playable!
+Shootfighter Origins is now deleted!
+Legend Adventure And The Infernal Maze is now deleted!
+Shootfighter is now deleted!
+Lutin Adventure is now deleted!
+Asteroids Escape is now deleted!
+SansNom Réédition is now deleted!
+Super Geoffrey Bros is now deleted!
+The TARDIS Defender is now deleted!
+TanksBattle is now deleted!
+FireWall Defender is now deleted!
+Vincent In The Forest is now deleted!
+WinRun is now deleted!
+All games are now deleted!
+Version: ?
+Version:
+(Update available)
+Update for:
+is available
+This game is not available for your platform!
+Unavailable
+Download the game when you are online to play it when you are offline!
+Manual Update needed: go to the help on the website(nytuo.yo.fr) for more information.
+You are not connected to the internet, restart the launcher with one to access to this.
+ Is not available for your operating system
+Beging Downloading
+Beta Update available!
+Automatic updates are disabled for the launcher in portable mode, for update the launcher manuelly, please refer to the website(nytuo.yo.fr)
+Update available!
+Update available for Legend Adventure And The Infernal Maze!
+Update available for ShootFighter!
+Update available for Lutin Adventure!
+Update available for Asteroids Escape!
+Update available for SansNom Réédition!
+Update available for Super Geoffrey Bros!
+Update available for The TARDIS Defender!
+Update available for TanksBattle!
+Update available for FireWall Defender!
+Update available for Vincent In The Forest!
+Update available for WinRun!
+Update available for shootFighter Origins!
+Your platform do not support beta program.
+You are no more on the beta program for the Nytuo Launcher (But you keep the update until the next release)
+You are on the Beta Program of the Nytuo Launcher (If a beta update is available, you will download it the next time you launch the Launcher)
+ pass the test, nothing to change!
+ do not pass the test, it will be redownloaded!
+Checking...
+We are checking the game files
+Deleting...
+We are deleting the game...
+The online version is the same as the downloadable one but the achievements will not be saved.
+You are going to Repair
+All the data will be deleted, manual save recommended.
+DO IT, JUST DO IT!
+Confirmation...
+Yes, play!
+You are going to play at SansNom Classic online (they're not other way).
+You are going to play online at
+Yes, repair!
+Yes, Reinstall!
+You are going to reisntall 
+Play at SansNom classic
+Loading...
+launching ShootFighter Origins...
+launching Legend Adventure And The Infernal Maze...
+launching Super Geoffrey Bros...
+launching ShootFighter...
+launching Lutin Adventure...
+launching Vincent In The Forest...
+launching The TARDIS Defender...
+launching FireWall Defender...
+launching TanksBattle...
+launching WinRun...
+launching Asteroids Escape...
+launching SansNom Réédition...
+Checking updates...
+The Nytuo Launcher use CMD commands to lanch the update program. Please, keep it open, all is automatic.
+Downloading version files
+Launching Nytuo Launcher (Offline)...
+Launching Nytuo Launcher...
+Launching the game...
+Checking for games updates...
+Downloading update...
+No update needed!
+Update found!
+Update forced!
+Portable: Update not possible!
+Downloading beta update...
+Cleaning Up...
+Checking games folder...
+Portable: writting path...
+Select a empty directory for the games...
+Writting path...
+Saving saves...
+Saving saves 1/4...
+Saving saves 2/4...
+Saving saves 3/4...
+Saving saves 4/4...
+Error when saving the saves
+Creating data folder...
+Creating games folder...
+Checking Beta access...
+Prelaunch Complete with success!
+News
+Games
+About:
+Create, coded, developed by Nytuo (Arnaud BEUX) in HTML/CSS/JS/PHP.
+Open the Launcher folder
+Uninstall all games
+Open website
+Force Update
+Change the Games folder
+Beta Toggle
+GitHub
+Join the Discord
+Restart
+Change the language
+download
+Please, select an empty folder to contain all the games...

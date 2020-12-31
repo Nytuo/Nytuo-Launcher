@@ -10,9 +10,15 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="W3CustomCss.css" />
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <script type="text/javascript" src="js.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="js/Variables.js"></script>
+    <script type="text/javascript" src="js/Commons.js"></script>
+    <script type="text/javascript" src="js/GamesManager.js"></script>
+    <script type="text/javascript" src="js/Ach.js"></script>
+
+
+
+
     <title>Nytuo Launcher</title>
 </head>
 <!--Menu-->
@@ -20,7 +26,27 @@
     <script>
         function gohome() {
             if (navigator.onLine == true) {
-                window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+                if (portable == true) {
+                    if (process.platform == 'linux') {
+                        LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
+                        window.location.href = "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
+
+                    }
+                    else if (process.platform == 'win32') {
+                        LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
+                        window.location.href = "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
+                    }
+                } else {
+                    if (process.platform == 'linux') {
+                        LID = fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt").toString()
+                        window.location.href = "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
+                    }
+                    else if (process.platform == 'win32') {
+                        LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
+                        window.location.href = "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
+                    }
+                }
+
             } else {
                 window.location.href = "index.html"
             }
@@ -45,21 +71,26 @@
 
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large blue">
-      <i class="large material-icons">menu</i>
+        <i class="large material-icons">menu</i>
     </a>
     <ul>
-      <li><a class="btn-floating waves-effect waves-light blue" onclick="gohome()"><i class="material-icons">home</i></a></li>
-      <li><a class="btn-floating waves-effect waves-light blue" href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i></a></li>
-      <li><a class="btn-floating waves-effect waves-light blue" href="about.html"><i class="material-icons">settings</i></a></li>
+        <li><a class="btn-floating waves-effect waves-light blue" onclick="LaunchExternally()" id="WEB"><i
+                    class="material-icons">language</i></a></li>
+        <li><a class="btn-floating waves-effect waves-light blue" onclick="gohome()"><i
+                    class="material-icons">home</i></a></li>
+        <li><a class="btn-floating waves-effect waves-light blue" href="https://launcher.nytuo.yo.fr/news.html"><i
+                    class="material-icons">info</i></a></li>
+        <li><a class="btn-floating waves-effect waves-light blue" href="about.html"><i
+                    class="material-icons">settings</i></a></li>
     </ul>
-  </div>
+</div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, options);
-  });
-  
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, options);
+    });
+
 
 </script>
 
@@ -81,33 +112,36 @@
         <div id="ONLINEPLAY">
 
             <a class="waves-effect waves-light btn modal-trigger" href="#modal4"
-                style="background-color:#1e90ff;margin-top: 10px;">Play Online</a></div>
+                style="background-color:#1e90ff;margin-top: 10px;" id="ONLINEPLAYTXT">Play Online</a>
+        </div>
         <div id="SNCLASSIC">
 
             <a class="waves-effect waves-light btn modal-trigger" href="#modal5"
-                style="background-color:dodgerblue;margin-top: 10px;">Play SansNom Classic</a></div>
+                style="background-color:dodgerblue;margin-top: 10px;" id="SNCTXT">Play SansNom Classic</a>
+        </div>
         <div id="button2">
 
             <a class="waves-effect waves-light btn modal-trigger" href="#modal6"
-                style="background-color:dodgerblue;margin-top: 10px;">Achievements</a></div>
+                style="background-color:dodgerblue;margin-top: 10px;" id="ACHIEVEMENTSTXT">Achievements</a>
+        </div>
         <div id="button3">
 
             <!-- Dropdown Trigger -->
             <a class='dropdown-trigger btn' href='#' data-target='dropdown1'
-                style="background-color:dodgerblue;margin-top: 10px;">Settings</a>
+                style="background-color:dodgerblue;margin-top: 10px;" id="SETTINGSTXT">Settings</a>
 
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>
-                <li><a class="modal-trigger" href="#modal3">Repair</a></li>
-                <li><a class="modal-trigger" href="#modal2">Re-install</a></li>
-                <li><a class="modal-trigger" href="#modal1">Uninstall</a></li>
-                <li><a onclick="OPEN_GAMELOC_DETECT()">Open Game location</a></li>
+                <li><a class="modal-trigger" href="#modal3" id="REPAIRTXT">Repair</a></li>
+                <li><a class="modal-trigger" href="#modal2" id="REINSTALLTXT">Re-install</a></li>
+                <li><a class="modal-trigger" href="#modal1" id="UNINSTALLTXT">Uninstall</a></li>
+                <li><a onclick="OPEN_GAMELOC_DETECT()" id="OGLTXT">Open Game location</a></li>
                 <li class="divider" tabindex="-1"></li>
                 <div id="SAVES">
-                    <li><a onclick="OPEN_GAMESAVE()" href="javascript:void(0)">Saved Games</a></li>
+                    <li><a onclick="OPEN_GAMESAVE()" href="javascript:void(0)" id="SVTXT">Saved Games</a></li>
                 </div>
                 <div id="shortcuts">
-                    <li><a onclick="SHORTCUT_DETECT()" href="javascript:void(0)">Shortcut</a></li>
+                    <li><a onclick="SHORTCUT_DETECT()" href="javascript:void(0)" id="SHORTTXT">Shortcut</a></li>
                 </div>
             </ul>
             <script type="text/JavaScript">
@@ -124,16 +158,19 @@
     <!-- Modal Structure -->
     <div id="modal1" class="modal" style="background-color: #222222;">
         <div class="modal-content">
-            <h4>Confirmation: </h4>
-            <p>You are about to DELETE </p>
+            <h4 id="CONFIRM">Confirmation: </h4>
+            <p id="DELETE">You are about to DELETE </p>
             <p id="NAME3"></p>
-            <p>This action can't be undone.</br>If you search to repair the game is not here.</br>All the data will
+            <p id="ACTIONUNDONE">This action can't be undone.</br>If you search to repair the game is not here.</br>All
+                the data will
                 be
                 loose (You can eventually do a manual backup)</p>
         </div>
         <div class="modal-footer" style="background-color: #222222;">
-            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a onclick="DELETE_DETECT();" style="color:white" class="modal-close waves-effect waves-green btn-flat">Yes,
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat"
+                id="CANCELTXT">Cancel</a>
+            <a onclick="DELETE_DETECT();" style="color:white" class="modal-close waves-effect waves-green btn-flat"
+                id="AGREETXT">Yes,
                 Delete that shit</a>
 
         </div>
@@ -141,6 +178,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.modal');
+            var options = {
+                'dismissible': false
+            }
             var instances = M.Modal.init(elems, options);
         });
     </script>
@@ -149,15 +189,16 @@
     <!-- Modal Structure -->
     <div id="modal2" class="modal" style="background-color: #222222;">
         <div class="modal-content">
-            <h4>Confirmation: </h4>
-            <p>You are about to re-install</p>
+            <h4 id="CONFIRM">Confirmation: </h4>
+            <p id="REINSTALLTXT2">You are about to re-install</p>
             <p id="NAME4"></p>
-            <p>All your data will be loose, please do a manual backup</p>
+            <p id="DATALOSS">All your data will be loose, please do a manual backup</p>
         </div>
         <div class="modal-footer" style="background-color: #222222;">
-            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat"
+                id="CANCELTXT2">Cancel</a>
             <a onclick="REINSTALL_DETECT();" class="modal-close waves-effect waves-green btn-flat modal-trigger"
-                style="color:white" href="#modal8">Yes, reinstall it!</a>
+                style="color:white" href="#modal8" id="AGREEREI">Yes, reinstall it!</a>
         </div>
     </div>
 
@@ -165,14 +206,16 @@
 
     <div id="modal3" class="modal" style="background-color: #222222;">
         <div class="modal-content">
-            <h4>Confirmation: </h4>
-            <p>You are about to repair</p>
+            <h4 id="CONFIRM">Confirmation: </h4>
+            <p id="REPAIRTXT2">You are about to repair</p>
             <p id="NAME5"></p>
-            <p>Data may be delete, please do a backup, just in case...</p>
+            <p id="DATALOSS2">Data may be delete, please do a backup, just in case...</p>
         </div>
         <div class="modal-footer" style="background-color: #222222;">
-            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a onclick="REPAIR_DETECT();" class="modal-close waves-effect waves-green btn-flat modal-trigger" style="color:white" href="#modal8">Yes,
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat"
+                id="CANCELTXT3">Cancel</a>
+            <a onclick="REPAIR_DETECT();" class="modal-close waves-effect waves-green btn-flat modal-trigger"
+                style="color:white" href="#modal8" id="AGREEREPAIR">Yes,
                 repair it!</a>
         </div>
     </div>
@@ -181,18 +224,18 @@
 
     <div id="modal4" class="modal" style="background-color: #222222;">
         <div class="modal-content">
-            <h4>Confirmation: </h4>
-            <p>You are about to play</p>
+            <h4 id="CONFIRM">Confirmation: </h4>
+            <p id="ABOUTPLAY">You are about to play Online at</p>
             <p id="NAME2"></p>
-            <p>Online</p>
-            <h3 id="GAMEJOLT">You will be redirected to the GameJolt page of the game, to launch click on play under
+            <p id="GAMEJOLT">You will be redirected to the GameJolt page of the game, to launch click on play under
                 the
-                picture</h3>
+                picture</p>
         </div>
         <div class="modal-footer" style="background-color: #222222;">
-            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a onclick="ONLINE_LINK_DETECT();" class="modal-close waves-effect waves-green btn-flat"
-                style="color:white">Yes,
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat"
+                id="CANCELTXT4">Cancel</a>
+            <a onclick="ONLINE_LINK_DETECT();" class="modal-close waves-effect waves-green btn-flat" style="color:white"
+                id="AGREEPO">Yes,
                 play it!</a>
         </div>
     </div>
@@ -201,13 +244,15 @@
 
     <div id="modal5" class="modal" style="background-color: #222222;">
         <div class="modal-content">
-            <h4>Confirmation: </h4>
-            <p>You are about to play SansNom : Classic Online<br />SansNom classic is available only online.</p>
+            <h4 id="CONFIRM">Confirmation: </h4>
+            <p id="SNCTXT2">You are about to play SansNom : Classic Online<br />SansNom classic is available only
+                online.</p>
         </div>
         <div class="modal-footer" style="background-color: #222222;">
-            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat"
+                id="CANCELTXT5">Cancel</a>
             <a onclick="RunWithoutInstall('http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414');"
-                class="modal-close waves-effect waves-green btn-flat" style="color:white">Yes,
+                class="modal-close waves-effect waves-green btn-flat" style="color:white" id="AGREEPO2">Yes,
                 play it!</a>
         </div>
     </div>
@@ -217,21 +262,21 @@
 
     <div id="modal6" class="modal" style="background-color: #222222;">
         <div class="modal-content">
-            <h4>Achievements: </h4>
+            <h4 id="ACHTXT">Achievements: </h4>
             <div id="ProgressAchLAATIM" class="progress">
                 <div id="BarAch" class="determinate"></div>
             </div>
             <div style="text-align: center;">
                 <div></div>
             </div>
-            <h1 style="padding-left: 20px;">Achievements unlocked : </h1>
+            <h1 style="padding-left: 20px;" id="ACHTXTU">Achievements unlocked : </h1>
 
             <p id="achDone"></p>
-            <h1 style="padding-left: 20px;">Achievements locked : </h1>
+            <h1 style="padding-left: 20px;" id="ACHTXTL">Achievements locked : </h1>
             <p id="ach"></p>
         </div>
         <div class="modal-footer" style="background-color: #222222;">
-            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat">Back</a>
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="ACHBACK">Back</a>
         </div>
     </div>
 
@@ -252,8 +297,10 @@
             <p id="MyBartxt"></p>
         </div>
         <div class="modal-footer" style="background-color: #222222;">
-            <a id="downloadbtn2" onclick="refresh()" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a id="downloadbtn" onclick="WHATTODO_DETECT()" class="waves-effect waves-green btn-flat" style="color:white">Yes,
+            <a id="downloadbtn2" onclick="DetectTheCancel()" style="color:white"
+                class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a id="downloadbtn" onclick="WHATTODO_DETECT()" class="waves-effect waves-green btn-flat"
+                style="color:white">Yes,
                 do it!</a>
         </div>
     </div>

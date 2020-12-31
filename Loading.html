@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" id="BG" style="background-image: url(Ressources/NytuoLauncher480.png);background-repeat: no-repeat;">
+<html lang="en" id="BG" ><!--style="background-image: url(Ressources/NytuoLauncher480.png);background-repeat: no-repeat;">-->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="Ressources/favicon.ico" />
-    <link rel="stylesheet" href="animate.min.css" />
-    <script type="text/javascript" src="js.js"></script>
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 
     <title>Nytuo Launcher -- Loading</title>
@@ -74,11 +72,13 @@
     <!-- <div id="myProgress" style="text-align: center; ">
         <div id="myBar" style="background-color: dodgerblue;color: white;"></div>
     </div>-->
-    <div style="padding-top: 38%;">
+
+    <div style="text-align: center">
+        <img src="Ressources/LogoLauncher.png" style="width:60%;">
         <h2 id="MyBartxt"
-            style="font-size: 18px;text-align: left;float: left;font-family: Roboto Condensed, sans-serif;">
-            Loading...
-            <script type="text/javascript">
+            style="font-size: 20px;font-family: Roboto Condensed, sans-serif;margin-top: 10px;">
+            Loading...</h2>
+            <!--<script type="text/javascript">
                 const alertOnlineStatus = () => {
                     document.write(navigator.onLine ? "" : "(Offline)")
 
@@ -86,17 +86,17 @@
                 window.addEventListener('online', alertOnlineStatus)
                 window.addEventListener('offline', alertOnlineStatus)
                 alertOnlineStatus();
-            </script>
-        </h2>
+            </script>-->
+        
 
-        <div style="text-align: right;float: right;padding-top: 3%;margin-right: 5px;">
-            <!--<div class="lds-ring">
+        <!--<div style="text-align: right;float: right;padding-top: 3%;margin-right: 5px;">
+            <div class="lds-ring">
                 <div></div>
                 <div></div>
                 <div></div>
                 <div></div>
 
-            </div>-->
+            </div>
             <div class="preloader-wrapper small active">
                 <div class="spinner-layer spinner-blue-only">
                     <div class="circle-clipper left">
@@ -110,13 +110,17 @@
                     </div>
                 </div>
             </div>
+        </div>-->
+        <div class="progress" >
+            <div id="prgs" class="indeterminate" style="background-color:dodgerblue"></div>
         </div>
-
     </div>
 </body>
+<script type="text/javascript" src="js/Loading.js"></script>
+<script type="text/javascript" src="js/Update.js"></script>
 
 <script>
-
+    //SetLanguages();
     //gameloc();
     //choose();
 
@@ -124,5 +128,4 @@
     update();
 
 </script>
-
 </html>

@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="Ressources/favicon.ico" />
     <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="js.js"></script>
+    <!--<script type="text/javascript" src="js.js"></script>-->
+    <script type="text/javascript" src="js/Variables.js"></script>
+    <script type="text/javascript" src="js/Commons.js"></script>
+    <script type="text/javascript" src="js/Settings.js"></script>
     <link rel="stylesheet" href="W3CustomCss.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <title>Settings -- Nytuo Launcher</title>
 </head>
@@ -17,7 +19,26 @@
     <script>
         function gohome() {
             if (navigator.onLine == true) {
-                window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
+                if (portable == true) {
+                    if (process.platform == 'linux') {
+                        LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
+                        window.location.href = "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
+
+                    }
+                    else if (process.platform == 'win32') {
+                        LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
+                        window.location.href = "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
+                    }
+                } else {
+                    if (process.platform == 'linux') {
+                        LID = fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt").toString()
+                        window.location.href = "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
+                    }
+                    else if (process.platform == 'win32') {
+                        LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
+                        window.location.href = "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
+                    }
+                }
             } else {
                 window.location.href = "index.html"
             }
@@ -37,82 +58,73 @@
         </ul>
     </nav>-->
 </header>
-<div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue">
-      <i class="large material-icons">menu</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating waves-effect waves-light blue" onclick="gohome()"><i class="material-icons">home</i></a></li>
-      <li><a class="btn-floating waves-effect waves-light blue" href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i></a></li>
-      <li><a class="btn-floating waves-effect waves-light blue" href="about.html"><i class="material-icons">settings</i></a></li>
-    </ul>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, options);
-  });
-  
-
-</script>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center"><img src="Ressources/LogoLauncher.png" class="logonav"
+                title="Logo de Nytuo"></a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="https://nytuo.yo.fr/news.html" id="NEWS">News</a></li>
+            <li><a onclick="gohome()" id="GAMES">Games</a></li>
+            <li><a href="about.html" id="STE">Settings</a></li>
+        </ul>
+    </div>
+</nav>
+<div style="padding-top:20px"></div>
 
 
 <body>
     <iframe onload="gamelocsettings();" src="javascript:void(0)" style="display: none;"></iframe>
-    <h1>Settings</h1>
-    <p>About : <br />Nytuo Launcher Version :
+    <h1 id="SETTINGS">Settings</h1>
+    <p id="ABOUTTXT">About : </p>
+    <p id="DEV">Created, coded, developed by Nytuo (Arnaud BEUX) in HTML/CSS/JS/PHP</p>
+    <p>Nytuo Launcher :
         <script type="text/javascript">
             document.write(window.require('electron').remote.app.getVersion())
         </script>
-        <br />Created and coded by : Nytuo (Arnaud BEUX)<br />Created in HTML/CSS/JS<br />with Electron
-        version :
+        / Electron :
         <script type="text/javascript">
             document.write(process.versions.electron)
-        </script><br /> and Node version :
-        <script type="text/javascript">document.write(process.versions.node);</script><br />and Chromium :
-        <script type="text/javascript">document.write(process.versions.chrome)</script><br />Launcher :
-        <script type="text/javascript">
-            const alertOnlineStatus = () => {
-                document.write(navigator.onLine ? "Connected to the internet" : "Disconnected from the internet")
-            }
-            window.addEventListener('online', alertOnlineStatus)
-            window.addEventListener('offline', alertOnlineStatus)
-            alertOnlineStatus();</script><br />On platform :
-        <script type="text/javascript">document.write(process.platform)</script><br /></p>
-    <p id="gameloc">
-
+        </script>
+        / Node.js :
+        <script type="text/javascript">document.write(process.versions.node);</script>
+        / Chromium :
+        <script type="text/javascript">document.write(process.versions.chrome)</script>
     </p>
+    <p id="gameloc"></p>
 
     <div style="padding-bottom: 2%;"></div>
     <div style="text-align:center;">
         <a class="waves-effect waves-light btn" onclick="OpenEmpl(parentfolder3+'/')" href="javascript:void(0)"
-            style="background-color:dodgerblue">Open the Nytuo Launcher folder</a>
+            style="background-color:dodgerblue" id="ONLFTXT">Open the Nytuo Launcher folder</a>
 
         <a class="waves-effect waves-light btn" onclick="deleteall()" href="javascript:void(0)"
-            style="background-color:dodgerblue">Uninstall all games</a>
+            style="background-color:dodgerblue" id="UAGTXT">Uninstall all games</a>
 
         <a class="waves-effect waves-light btn" onclick="window.open('https://nytuo.yo.fr')" href="javascript:void(0)"
-            style="background-color:dodgerblue">Open WebSite</a>
+            style="background-color:dodgerblue" id="OWTXT">Open WebSite</a>
 
         <a class="waves-effect waves-light btn" onclick="forceUpdate()" href="javascript:void(0)"
-            style="background-color:dodgerblue">Force Update</a>
+            style="background-color:dodgerblue" id="FUTXT">Force Update</a>
 
         <a class="waves-effect waves-light btn" onclick="changegameloc()" href="javascript:void(0)"
-            style="background-color:dodgerblue">Change Games Folder</a>
+            style="background-color:dodgerblue" id="CGFTXT">Change Games Folder</a>
 
         <a class="waves-effect waves-light btn" onclick="validate()" href="javascript:void(0)"
-            style="background-color:dodgerblue">Beta Toggle</a>
+            style="background-color:dodgerblue" id="BTTXT">Beta Toggle</a>
 
         <a class="waves-effect waves-light btn" onclick="window.open('https://github.com/Nytuo/Nytuo-launcher/')"
-            href="javascript:void(0)" style="background-color:dodgerblue">GitHub</a>
+            href="javascript:void(0)" style="background-color:dodgerblue" id="GHTXT">GitHub</a>
 
         <a class="waves-effect waves-light btn" onclick="window.open('https://discord.gg/FPPfSSF')"
-            href="javascript:void(0)" style="background-color:dodgerblue">Join the Discord</a>
+            href="javascript:void(0)" style="background-color:dodgerblue" id="JTDTXT">Join the Discord</a>
 
         <a class="waves-effect waves-light btn" onclick="redm()" href="javascript:void(0)"
-            style="background-color:dodgerblue;">Restart</a>
+            style="background-color:dodgerblue;" id="RESETTXT">Restart</a>
+
+        <a class="waves-effect waves-light btn" onclick="LANGCHANGE()" href="javascript:void(0)"
+            style="background-color:dodgerblue;" id="LANGTXT">Change the Language</a>
     </div>
 </body>
-
+<script type="text/javascript" src="js/Settings.lang.js"></script>
 
 </html>
