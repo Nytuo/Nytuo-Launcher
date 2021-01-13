@@ -1148,7 +1148,7 @@ function RunWithoutInstall(url, gamejolt) {
         minWidth: 720,
         height: 480,
         width: 720,
-        icon: path.join(__dirname, 'Ressources/logoexp.png')
+        icon: path.join(__dirname, 'Resources/logoexp.png')
     });
     win.loadURL(url);
     if (gamejolt === 'true') {
@@ -2031,7 +2031,7 @@ function detectgamepage() {
     if (process.platform == 'linux') {
         if (window.location.href == "file://" + dirnamew + "/Games.html?sfo") {
             document.getElementById("BG").className = "IMGBGSFO";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoSFO3.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoSFO3.png";
 
             document.getElementById("NAME").innerHTML = "ShootFighter Origins";
             document.getElementById("NAME2").innerHTML = "ShootFighter Origins";
@@ -2063,7 +2063,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?laatim") {
             document.getElementById("BG").className = "IMGBGLAATIM";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoLAATIM2.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoLAATIM2.png";
 
             document.getElementById("NAME").innerHTML = "Legend Adventure And The Infernal Maze";
             document.getElementById("NAME2").innerHTML = "Legend Adventure And The Infernal Maze";
@@ -2089,7 +2089,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?sgb") {
             document.getElementById("BG").className = "IMGBGSGB";
-            document.getElementById("LOGOCARD").src = "Ressources/SGB3.png";
+            document.getElementById("LOGOCARD").src = "Resources/SGB3.png";
 
             document.getElementById("NAME").innerHTML = "Super Geoffrey Bros";
             document.getElementById("NAME2").innerHTML = "Super Geoffrey Bros";
@@ -2121,7 +2121,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?sf") {
             document.getElementById("BG").className = "IMGBGSF";
-            document.getElementById("LOGOCARD").src = "Ressources/sflogo.png";
+            document.getElementById("LOGOCARD").src = "Resources/sflogo.png";
 
             document.getElementById("NAME").innerHTML = "ShootFighter";
             document.getElementById("NAME2").innerHTML = "ShootFighter";
@@ -2145,7 +2145,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?la") {
             document.getElementById("BG").className = "IMGBGLA";
-            document.getElementById("LOGOCARD").src = "Ressources/LA_logo.png";
+            document.getElementById("LOGOCARD").src = "Resources/LA_logo.png";
 
             document.getElementById("NAME").innerHTML = "Lutin Adventure";
             document.getElementById("NAME2").innerHTML = "Lutin Adventure";
@@ -2169,7 +2169,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?vitf") {
             document.getElementById("BG").className = "IMGBGVITF";
-            document.getElementById("LOGOCARD").src = "Ressources/VITF_Logo.png";
+            document.getElementById("LOGOCARD").src = "Resources/VITF_Logo.png";
 
             document.getElementById("NAME").innerHTML = "Vincent In The Forest";
             document.getElementById("NAME2").innerHTML = "Vincent In The Forest";
@@ -2193,7 +2193,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?ttd") {
             document.getElementById("BG").className = "IMGBGTTD";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoTTD.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoTTD.png";
 
             document.getElementById("NAME").innerHTML = "The TARDIS Defender";
             document.getElementById("NAME2").innerHTML = "The TARDIS Defender";
@@ -2223,7 +2223,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?fwd") {
             document.getElementById("BG").className = "IMGBGFWD";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoFWD.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoFWD.png";
 
             document.getElementById("NAME").innerHTML = "FireWall Defender";
             document.getElementById("NAME5").innerHTML = "FireWall Defender";
@@ -2254,7 +2254,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?tb") {
             document.getElementById("BG").className = "IMGBGTB";
-            document.getElementById("LOGOCARD").src = "Ressources/tbvertLogo.png";
+            document.getElementById("LOGOCARD").src = "Resources/tbvertLogo.png";
 
             document.getElementById("NAME").innerHTML = "TanksBattle";
             document.getElementById("NAME2").innerHTML = "TanksBattle";
@@ -2283,7 +2283,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?wr") {
             document.getElementById("BG").className = "IMGBGWR";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoWR.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoWR.png";
 
             document.getElementById("NAME").innerHTML = "WinRun";
             document.getElementById("NAME2").innerHTML = "WinRun";
@@ -2312,7 +2312,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?ae") {
             document.getElementById("BG").className = "IMGBGAE";
-            document.getElementById("LOGOCARD").src = "Ressources/AELogo.png";
+            document.getElementById("LOGOCARD").src = "Resources/AELogo.png";
 
             document.getElementById("NAME").innerHTML = "Asteroid Escape";
             document.getElementById("NAME2").innerHTML = "Asteroid Escape";
@@ -2336,7 +2336,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file://" + dirnamew + "/Games.html?sn") {
             document.getElementById("BG").className = "IMGBGSN";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoSNRE.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoSNRE.png";
 
             document.getElementById("NAME").innerHTML = "SansNom Réédition";
             document.getElementById("NAME2").innerHTML = "SansNom Réédition";
@@ -2373,7 +2373,7 @@ function detectgamepage() {
     } else {
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sfo") {
             document.getElementById("BG").className = "IMGBGSFO";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoSFO3.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoSFO3.png";
             document.getElementById("NAME").innerHTML = "ShootFighter Origins";
             document.getElementById("NAME2").innerHTML = "ShootFighter Origins";
             document.getElementById("NAME3").innerHTML = "ShootFighter Origins";
@@ -2407,7 +2407,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?laatim") {
             document.getElementById("BG").className = "IMGBGLAATIM";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoLAATIM2.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoLAATIM2.png";
             document.getElementById("NAME").innerHTML = "Legend Adventure And The Infernal Maze";
             document.getElementById("NAME2").innerHTML = "Legend Adventure And The Infernal Maze";
             document.getElementById("NAME3").innerHTML = "Legend Adventure And The Infernal Maze";
@@ -2438,7 +2438,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sgb") {
             document.getElementById("BG").className = "IMGBGSGB";
-            document.getElementById("LOGOCARD").src = "Ressources/SGB3.png";
+            document.getElementById("LOGOCARD").src = "Resources/SGB3.png";
             document.getElementById("NAME").innerHTML = "Super Geoffrey Bros";
             document.getElementById("NAME2").innerHTML = "Super Geoffrey Bros";
             document.getElementById("NAME3").innerHTML = "Super Geoffrey Bros";
@@ -2471,7 +2471,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sf") {
             document.getElementById("BG").className = "IMGBGSF";
-            document.getElementById("LOGOCARD").src = "Ressources/sflogo.png";
+            document.getElementById("LOGOCARD").src = "Resources/sflogo.png";
 
             document.getElementById("NAME").innerHTML = "ShootFighter";
             document.getElementById("NAME2").innerHTML = "ShootFighter";
@@ -2501,7 +2501,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?la") {
             document.getElementById("BG").className = "IMGBGLA";
-            document.getElementById("LOGOCARD").src = "Ressources/LA_logo.png";
+            document.getElementById("LOGOCARD").src = "Resources/LA_logo.png";
 
             document.getElementById("NAME").innerHTML = "Lutin Adventure";
             document.getElementById("NAME2").innerHTML = "Lutin Adventure";
@@ -2531,7 +2531,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?vitf") {
             document.getElementById("BG").className = "IMGBGVITF";
-            document.getElementById("LOGOCARD").src = "Ressources/VITF_Logo.png";
+            document.getElementById("LOGOCARD").src = "Resources/VITF_Logo.png";
 
             document.getElementById("NAME").innerHTML = "Vincent In The Forest";
             document.getElementById("NAME2").innerHTML = "Vincent In The Forest";
@@ -2561,7 +2561,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?ttd") {
             document.getElementById("BG").className = "IMGBGTTD";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoTTD.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoTTD.png";
 
             document.getElementById("NAME").innerHTML = "The TARDIS Defender";
             document.getElementById("NAME2").innerHTML = "The TARDIS Defender";
@@ -2592,7 +2592,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?fwd") {
             document.getElementById("BG").className = "IMGBGFWD";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoFWD.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoFWD.png";
 
             document.getElementById("NAME").innerHTML = "FireWall Defender";
             document.getElementById("NAME5").innerHTML = "FireWall Defender";
@@ -2624,7 +2624,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?tb") {
             document.getElementById("BG").className = "IMGBGTB";
-            document.getElementById("LOGOCARD").src = "Ressources/tbvertLogo.png";
+            document.getElementById("LOGOCARD").src = "Resources/tbvertLogo.png";
 
             document.getElementById("NAME").innerHTML = "TanksBattle";
             document.getElementById("NAME2").innerHTML = "TanksBattle";
@@ -2654,7 +2654,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?wr") {
             document.getElementById("BG").className = "IMGBGWR";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoWR.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoWR.png";
 
             document.getElementById("NAME").innerHTML = "WinRun";
             document.getElementById("NAME2").innerHTML = "WinRun";
@@ -2684,7 +2684,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?ae") {
             document.getElementById("BG").className = "IMGBGAE";
-            document.getElementById("LOGOCARD").src = "Ressources/AELogo.png";
+            document.getElementById("LOGOCARD").src = "Resources/AELogo.png";
 
             document.getElementById("NAME").innerHTML = "Asteroid Escape";
             document.getElementById("NAME2").innerHTML = "Asteroid Escape";
@@ -2715,7 +2715,7 @@ function detectgamepage() {
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sn") {
             document.getElementById("BG").className = "IMGBGSN";
-            document.getElementById("LOGOCARD").src = "Ressources/LogoSNRE.png";
+            document.getElementById("LOGOCARD").src = "Resources/LogoSNRE.png";
 
             document.getElementById("NAME").innerHTML = "SansNom Réédition";
             document.getElementById("NAME2").innerHTML = "SansNom Réédition";
@@ -3124,39 +3124,39 @@ function SHORTCUT_DETECT() {
         Toastifycation("This is not available for your platform : Linux")
     } else {
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sfo") {
-            createlink('SFO', require('path').join(require('os').homedir(), 'Desktop/ShootFighter Origins.lnk'), "Launch ShootFighter Origins", __dirname + '/Ressources/LogoSFO.ico')
+            createlink('SFO', require('path').join(require('os').homedir(), 'Desktop/ShootFighter Origins.lnk'), "Launch ShootFighter Origins", __dirname + '/Resources/LogoSFO.ico')
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?laatim") {
-            createlink('LAATIM', require('path').join(require('os').homedir(), 'Desktop/Legend Adventure and the Infernal Maze.lnk'), "Launch Legend Adventure and the Infernal Maze", __dirname + '/Ressources/LAATIM.ico')
+            createlink('LAATIM', require('path').join(require('os').homedir(), 'Desktop/Legend Adventure and the Infernal Maze.lnk'), "Launch Legend Adventure and the Infernal Maze", __dirname + '/Resources/LAATIM.ico')
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sgb") {
-            createlink("SGB", require('path').join(require('os').homedir(), 'Desktop/Super Geoffrey Bros.lnk'), "Launch Super Geoffrey Bros", __dirname + "/Ressources/SGB.ico")
+            createlink("SGB", require('path').join(require('os').homedir(), 'Desktop/Super Geoffrey Bros.lnk'), "Launch Super Geoffrey Bros", __dirname + "/Resources/SGB.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?sf") {
-            createlink("SF", require('path').join(require('os').homedir(), 'Desktop/Shootfighter.lnk'), "Launch ShootFighter", __dirname + "/Ressources/SF.ico")
+            createlink("SF", require('path').join(require('os').homedir(), 'Desktop/Shootfighter.lnk'), "Launch ShootFighter", __dirname + "/Resources/SF.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?la") {
-            createlink("LA", require('path').join(require('os').homedir(), 'Desktop/Lutin Adventure.lnk'), "Launch Lutin Adventure", __dirname + "/Ressources/LA.ico")
+            createlink("LA", require('path').join(require('os').homedir(), 'Desktop/Lutin Adventure.lnk'), "Launch Lutin Adventure", __dirname + "/Resources/LA.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?vitf") {
-            createlink("VITF", require('path').join(require('os').homedir(), 'Desktop/Vincent In The Forest.lnk'), "Launch Vincent In The Forest", __dirname + "/Ressources/VITF.ico")
+            createlink("VITF", require('path').join(require('os').homedir(), 'Desktop/Vincent In The Forest.lnk'), "Launch Vincent In The Forest", __dirname + "/Resources/VITF.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?ttd") {
-            createlink("TTD", require('path').join(require('os').homedir(), 'Desktop/The Tardis Defender.lnk'), "Launch The Tardis Defender", __dirname + "/Ressources/TTD.ico")
+            createlink("TTD", require('path').join(require('os').homedir(), 'Desktop/The Tardis Defender.lnk'), "Launch The Tardis Defender", __dirname + "/Resources/TTD.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?fwd") {
-            createlink("FWD", require('path').join(require('os').homedir(), 'Desktop/FireWall Defender.lnk'), "Launch FireWall Defender", __dirname + "/Ressources/FWD.ico")
+            createlink("FWD", require('path').join(require('os').homedir(), 'Desktop/FireWall Defender.lnk'), "Launch FireWall Defender", __dirname + "/Resources/FWD.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?tb") {
-            createlink("TB", require('path').join(require('os').homedir(), 'Desktop/TanksBattle.lnk'), "Launch TanksBattle", __dirname + "/Ressources/TB.ico")
+            createlink("TB", require('path').join(require('os').homedir(), 'Desktop/TanksBattle.lnk'), "Launch TanksBattle", __dirname + "/Resources/TB.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?wr") {
-            createlink("WR", require('path').join(require('os').homedir(), 'Desktop/WinRun.lnk'), "Launch WinRun", __dirname + "/Ressources/WR.ico")
+            createlink("WR", require('path').join(require('os').homedir(), 'Desktop/WinRun.lnk'), "Launch WinRun", __dirname + "/Resources/WR.ico")
         }
         if (window.location.href == "file:///" + dirnamew + "/Games.html?ae") {
-            createlink("AE", require('path').join(require('os').homedir(), 'Desktop/Asteroid Escape.lnk'), "Launch AsteroidEscape", __dirname + "/Ressources/AE.ico")
+            createlink("AE", require('path').join(require('os').homedir(), 'Desktop/Asteroid Escape.lnk'), "Launch AsteroidEscape", __dirname + "/Resources/AE.ico")
         } if (window.location.href == "file:///" + dirnamew + "/Games.html?sn") {
-            createlink("SNRE", require('path').join(require('os').homedir(), 'Desktop/Sans Nom Rééditon.lnk'), "Launch SansNom Réédition", __dirname + "/Ressources/SNRE.ico")
+            createlink("SNRE", require('path').join(require('os').homedir(), 'Desktop/Sans Nom Rééditon.lnk'), "Launch SansNom Réédition", __dirname + "/Resources/SNRE.ico")
         }
     }
 
@@ -3731,7 +3731,7 @@ function LaunchGame(gameid) {
         resizable: false,
         alwaysOnTop: true,
 
-        icon: path.join(__dirname, 'Ressources/favicon.ico'),
+        icon: path.join(__dirname, 'Resources/favicon.ico'),
         webPreferences: {
             webSecurity: false,
             nodeIntegration: true,
@@ -3756,7 +3756,7 @@ function LaunchWindowLauncher() {
             minHeight: 720,
             width: 1280,
             height: 720,
-            icon: path.join(__dirname, 'Ressources/logoexp.png'),
+            icon: path.join(__dirname, 'Resources/logoexp.png'),
             webPreferences: {
                 webSecurity: false,
                 nodeIntegration: true,
@@ -3779,7 +3779,7 @@ function LaunchWindowLauncher() {
             minHeight: 720,
             width: 1280,
             height: 720,
-            icon: path.join(__dirname, 'Ressources/favicon.ico'),
+            icon: path.join(__dirname, 'Resources/favicon.ico'),
             webPreferences: {
                 webSecurity: false,
                 nodeIntegration: true,

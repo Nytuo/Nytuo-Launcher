@@ -1,193 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html class="sidebarpad">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="Ressources/favicon.ico" />
-  <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <script type="text/javascript" src="js.js"></script>
-  <title>Nytuo Launcher - Games (OFFLINE USE)</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="Resources/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <script type="text/javascript" src="js/Variables.js"></script>
+    <script type="text/javascript" src="js/Commons.js"></script>
+    <script type="text/javascript" src="js/LogOut.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <title>Nytuo Launcher</title>
 </head>
-<header>
-  <script>
-    function gohome() {
-        if (navigator.onLine == true) {
-            window.location.href = "https://launcher.nytuo.yo.fr/profile.php"
-        } else {
-            window.location.href = "index.html"
-        }
-    }
-
-</script>
-  <nav id="nav">
-    <ul>
-      <img src="Ressources/LogoLauncher.png" class="logonav" title="Logo de Nytuo" style="text-align:left;width: 15%;">
-      <div style="float: right;">
-        <li><a href="about.html">Settings</a></li>
-        <li><a onclick="document.getElementById('achpopup').style.display='block'"
-            style="cursor:pointer;">Achievements</a></li>
-        <li><a onclick="gohome()" style="cursor: pointer;">Games</a>
-        <li>
-        <li><a href="https://launcher.nytuo.yo.fr/news.html">News</a></li>
-
-      </div>
-    </ul>
-  </nav>
-</header>
 
 <body>
+    <div style="padding-top:20%;text-align:center">
+        <img src="Resources/LogoLauncher.png" class="animate__animated animate__fadeInDown" alt=""></div>
+    <div style="text-align:center" class="animate__animated animate__fadeInUp">
 
-
-
-  <div style="padding-top: 150px;"></div>
-
-  <div class="cards-list">
-    <a href="Games.html?sfo">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/IMGSFO.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoSFO2.png" style="z-index: 1; width: 65%;top: 35%;left: 40%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?laatim">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/IMGLAATIM.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoLAATIM.png" style="z-index: 1; width: 25%;top: 35%;left: 40%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?sgb">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/SGB2.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/SGB1.png" style="z-index: 1; width: 55%;top: 40%;left: 35%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?sf">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/IMGSF.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoSF.png" style="z-index: 1; width: 30%;top: 35%;left: 40%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?la">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/IMGLA.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoLA.png" style="z-index: 1; width: 45%;top: 45%;left: 32%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?vitf">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/IMGVITF.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoVITF.png" style="z-index: 1; width:60%;top: 35%;left: 35%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?ttd">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/IMGTTD.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoTTD.png" style="z-index: 1; width: 40%;top: 25%;left: 32%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?fwd">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/JFWD.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoFWD.png" style="z-index: 1; width: 38%;top: 30%;left: 35%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?tb">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/JFWD.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoTB.png" style="z-index: 1; width: 40%;top: 25%;left: 35%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?wr">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/IMGWR.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoWR.png" style="z-index: 1; width: 40%;top: 30%;left: 35%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?ae">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/IMGAE.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoAE.png" style="z-index: 1; width: 40%;top: 30%;left: 35%">
-        </div>
-      </div>
-    </a>
-    <a href="Games.html?sn">
-      <div class="card 1">
-        <div class="card_image"> <img src="Ressources/IMGSN.png" /> </div>
-        <div class="card_title title-white">
-          <img src="Ressources/LogoSN.png" style="z-index: 1; width:25%;top: 35%;left: 40%">
-        </div>
-      </div>
-    </a>
-  </div>
-  <div id="achpopup" class="modal">
-
-    <div class="modal-content animate" style="text-align: center;">
-      <h1>Achievements :</h1>
-      <h2>Legend Adventure and the Infernal Maze : </h2>
-      <div id="ProgressAchLAATIM" style="text-align: center;height: 10px;">
-        <div id="BarAchLAATIM" style="background-color: #008C3F;color: transparent;height: 10px;"></div>
-      </div>
-      <h2>Super Geoffrey Bros :</h2>
-      <div id="ProgressAchSGB" style="text-align: center;height: 10px;">
-        <div id="BarAchSGB" style="background-color: #FBCF08;color: transparent;height: 10px;"></div>
-      </div>
-      <h2>SansNom Réédition : </h2>
-      <div id="ProgressAchSNRE" style="text-align: center;height: 10px;">
-        <div id="BarAchSNRE" style="background-color: #6FC4A9;color: transparent;height: 10px;"></div>
-      </div>
-      <div style="padding-top: 2%;"></div>
-      <div style="display: flex;flex-direction: column;flex-wrap: wrap;">
-        <table>
-          <tr>
-            <td>
-              <div class="box-3">
-                <a onclick="document.getElementById('achpopup').style.display='none'">
-                  <div class="btn btn-three">
-                    <span>Back</span>
-                  </div>
-                </a>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
+        <a class="waves-effect waves-light btn" style="background-color: dodgerblue;" id="USRTXT" onclick="shell.openExternal('https://nytuo.yo.fr/changeUsername.php')">Change Username</a>
+        <a class="waves-effect waves-light btn" style="background-color: dodgerblue;" id="PPTXT" onclick="shell.openExternal('https://nytuo.yo.fr/uploadForm.php')">Change Profile Picture</a>
+        <a class="waves-effect waves-light btn" style="background-color: dodgerblue;" id="PWDTXT" onclick="shell.openExternal('https://nytuo.yo.fr/reset-password.php')">Change Password</a>
+        <a class="waves-effect waves-light btn" style="background-color: dodgerblue;" id='KEYTXT' onclick="shell.openExternal('https://nytuo.yo.fr/activate.php')">Activate a game (using a key)</a>
     </div>
-  </div>
-  <script>
-    // Get the modal
-    var modal = document.getElementById('achpopup');
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-    LoadAchivements()
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+        <div class="animate__animated animate__slideInLeft">
 
-  </script>
+            <li>
+                <div class="user-view">
+
+                    <a><img id="PP" class="circle" src=""></a>
+
+                    <a><span class="white-text name" id="NameTxt">
+
+                </span></a>
+                    <a><span class="white-text email" id=emailtxt></span></a>
+                </div>
+            </li>
+            <li><a href="" onclick="LogOut()"><i class="material-icons">exit_to_app</i><span id="LOGOUTTXT">Logout</a></span>
+            </li>
+
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a href="#" onclick="window.open('https://nytuo.yo.fr')"><i class="material-icons">language</i><span id="WEBTXT">Website</a></span>
+            </li>
+            <li><a href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i><span id="NEWSTXT">News</a></span>
+            </li>
+            <li><a href="index.html"><i class="material-icons">home</i><span id="HOMETXT">Home</a></span>
+            </li>
+            <li><a href="about.html"><i class="material-icons">settings</i><span id="SETTINGTXT">Settings</a></span>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+
+            <li id="sfol"><a href="Games.html?sfo">ShootFighter Origins</a></li>
+            <li id="laatiml"><a href="Games.html?laatim">Lutin Adventure And The Infernal Maze</a></li>
+            <li id="sgbl"><a href="Games.html?sgb">Super Geoffrey Bros</a></li>
+            <li id="sfl"><a href="Games.html?sf">ShootFighter</a></li>
+            <li id="lal"><a href="Games.html?la">Lutin Adventure</a></li>
+            <li id="vitfl"><a href="Games.html?vitf">Vincent In The Forest</a></li>
+            <li id="ttdl"><a href="Games.html?ttd">The Tardis Defender</a></li>
+            <li id="fwdl"><a href="Games.html?fwd">FireWall Defender</a></li>
+            <li id="tbl"><a href="Games.html?tb">TanksBattle</a></li>
+            <li id="wrl"><a href="Games.html?wr">WinRun</a></li>
+            <li id="ael"><a href="Games.html?ae">AsteroidEscape</a></li>
+            <li id="snl"><a href="Games.html?sn">SansNom Réédition & Classic</a></li>
+    </ul>
+    </div>
+
+    <script type="text/javascript" src="js/Sidenav.js"></script>
+    <script type="text/javascript" src="js/index.lang.js"></script>
+    <script type="text/javascript" src="js/sidebar.lang.js"></script>
 </body>
 
 </html>

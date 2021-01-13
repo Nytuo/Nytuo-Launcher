@@ -15,8 +15,9 @@ var isInUpdate = false;
 var parentfolder1 = require('path').dirname(__dirname);
 var parentfolder2 = require('path').dirname(parentfolder1);
 var parentfolder3 = require('path').dirname(parentfolder2);
+const CryptoJS = require('crypto-js')
 var portable = portable_check();
-const currentLanguage =language()
+const currentLanguage = language()
 
 var gamelocation = gameloc();
 const { execSync } = require('child_process');
@@ -39,21 +40,17 @@ function language() {
                         let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
                         let t1 = Array.from(new Set(t));
                         return t1
-                    }
-                    else {
+                    } else {
                         return [];
                     }
-                }
-                else {
+                } else {
                     return []
                 }
-            }
-            else {
+            } else {
                 return []
             }
 
-        }
-        else if (process.platform == 'win32') {
+        } else if (process.platform == 'win32') {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
 
                 LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
@@ -65,16 +62,13 @@ function language() {
                         let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
                         let t1 = Array.from(new Set(t));
                         return t1
-                    }
-                    else {
+                    } else {
                         return [];
                     }
-                }
-                else {
+                } else {
                     return []
                 }
-            }
-            else {
+            } else {
                 return []
             }
         }
@@ -91,20 +85,16 @@ function language() {
                         let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
                         let t1 = Array.from(new Set(t));
                         return t1
-                    }
-                    else {
+                    } else {
                         return [];
                     }
-                }
-                else {
+                } else {
                     return []
                 }
-            }
-            else {
+            } else {
                 return []
             }
-        }
-        else if (process.platform == 'win32') {
+        } else if (process.platform == 'win32') {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
 
                 LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
@@ -116,16 +106,13 @@ function language() {
                         let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
                         let t1 = Array.from(new Set(t));
                         return t1
-                    }
-                    else {
+                    } else {
                         return [];
                     }
-                }
-                else {
+                } else {
                     return []
                 }
-            }
-            else {
+            } else {
                 return []
             }
         }
@@ -193,8 +180,7 @@ function gameloc() {
                 alert(currentLanguage[25]);
                 return app.getPath("documents");
             }
-        }
-        else {
+        } else {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
                 if (fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") !== "") {
                     return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt");
@@ -217,15 +203,16 @@ function gameloc() {
 function connectest() {
     if (portable == true) {
         if (process.platform == "linux" || process.platform == "darwin") {
-            return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt");
+            return CryptoJS.enc.Latin1.stringify(CryptoJS.AES.decrypt(fs.readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt").toString(), "connection system"))
         } else {
-            return fs.readFileSync(__dirname + "/connected.txt");
+            return CryptoJS.enc.Latin1.stringify(CryptoJS.AES.decrypt(fs.readFileSync(__dirname + "/connected.txt").toString(), "connection system"))
         }
     } else {
         if (process.platform == "linux" || process.platform == "darwin") {
-            return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt");
+            return CryptoJS.enc.Latin1.stringify(CryptoJS.AES.decrypt(fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt").toString(), "connection system"))
         } else {
-            return fs.readFileSync(__dirname + "/connected.txt");
+            return CryptoJS.enc.Latin1.stringify(CryptoJS.AES.decrypt(fs.readFileSync(__dirname + "/connected.txt").toString(), "connection system"))
+
         }
     }
 
@@ -246,124 +233,171 @@ function detectgamepage() {
     if (process.platform == 'linux' || process.platform == "darwin") {
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFO") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[110];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoSFO2.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoSFO2.png";
             document.getElementById("IMGLOAD").style.width = '35%';
+            document.getElementById("BG").className = "IMGBGSFO";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?LAATIM") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[111];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoLAATIM.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoLAATIM.png";
             document.getElementById("IMGLOAD").style.width = '20%';
+            document.getElementById("BG").className = "IMGBGLAATIM";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SGB") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[112];
-            document.getElementById("IMGLOAD").src = "Ressources/SGB1.png";
+            document.getElementById("IMGLOAD").src = "Resources/SGB1.png";
             document.getElementById("IMGLOAD").style.width = '40%';
+            document.getElementById("BG").className = "IMGBGSGB";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SF") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[113];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoSF.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoSF.png";
             document.getElementById("IMGLOAD").style.width = '20%';
+            document.getElementById("BG").className = "IMGBGSF";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?LA") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[114];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoLA.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoLA.png";
             document.getElementById("IMGLOAD").style.width = '35%';
+            document.getElementById("BG").className = "IMGBGLA";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?VITF") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[115];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoVITF.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoVITF.png";
             document.getElementById("IMGLOAD").style.width = '50%';
+            document.getElementById("BG").className = "IMGBGVITF";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?TTD") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[116];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoTTD.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoTTD.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGTTD";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?FWD") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[117];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoFWD.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoFWD.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGFWD";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?TB") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[118];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoTB.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoTB.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGTB";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?WR") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[119];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoWR.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoWR.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGWR";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?AE") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[120];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoAE.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoAE.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGAE";
+
         }
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SNRE") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[121];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoSN.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoSN.png";
             document.getElementById("IMGLOAD").style.width = '17%';
+            document.getElementById("BG").className = "IMGBGSNRE";
+
         }
     } else {
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SFO") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[110];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoSFO2.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoSFO2.png";
             document.getElementById("IMGLOAD").style.width = '35%';
+            document.getElementById("BG").className = "IMGBGSFO";
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?LAATIM") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[111];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoLAATIM.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoLAATIM.png";
             document.getElementById("IMGLOAD").style.width = '20%';
+            document.getElementById("BG").className = "IMGBGLAATIM";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SGB") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[112];
-            document.getElementById("IMGLOAD").src = "Ressources/SGB1.png";
+            document.getElementById("IMGLOAD").src = "Resources/SGB1.png";
             document.getElementById("IMGLOAD").style.width = '40%';
+            document.getElementById("BG").className = "IMGBGSGB";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SF") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[113];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoSF.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoSF.png";
             document.getElementById("IMGLOAD").style.width = '20%';
+            document.getElementById("BG").className = "IMGBGSF";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?LA") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[114];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoLA.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoLA.png";
             document.getElementById("IMGLOAD").style.width = '35%';
+            document.getElementById("BG").className = "IMGBGLA";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?VITF") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[115];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoVITF.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoVITF.png";
             document.getElementById("IMGLOAD").style.width = '50%';
+            document.getElementById("BG").className = "IMGBGVITF";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?TTD") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[116];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoTTD.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoTTD.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGTTD";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?FWD") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[117];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoFWD.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoFWD.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGFWD";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?TB") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[118];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoTB.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoTB.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGTB";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?WR") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[119];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoWR.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoWR.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGWR";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?AE") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[120];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoAE.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoAE.png";
             document.getElementById("IMGLOAD").style.width = '25%';
+            document.getElementById("BG").className = "IMGBGAE";
+
         }
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SNRE") {
             document.getElementById("TXTLOAD").innerHTML = currentLanguage[121];
-            document.getElementById("IMGLOAD").src = "Ressources/LogoSN.png";
+            document.getElementById("IMGLOAD").src = "Resources/LogoSN.png";
             document.getElementById("IMGLOAD").style.width = '17%';
+            document.getElementById("BG").className = "IMGBGSNRE";
+
         }
     }
     LAUNCH()
@@ -451,7 +485,7 @@ function LAUNCH() {
         if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?AE") {
             alert('Game not available on Linux')
         }
-    } else if (process.platform == "win32"){
+    } else if (process.platform == "win32") {
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SFO") {
 
             setTimeout(() => {
@@ -566,7 +600,7 @@ function LAUNCH() {
         }
 
 
-    }else{
+    } else {
         if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SFO") {
 
             setTimeout(() => {

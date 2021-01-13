@@ -5,6 +5,7 @@ var request = require('request')
 var parentfolder1 = require('path').dirname(__dirname);
 var parentfolder2 = require('path').dirname(parentfolder1);
 var parentfolder3 = require('path').dirname(parentfolder2);
+const CryptoJS = require('crypto-js');
 var portable = portable_check();
 const currentLanguage = language()
 
@@ -19,6 +20,7 @@ function portable_check() {
         }
     }
 }
+
 function language() {
     if (portable == true) {
         if (process.platform == 'linux') {
@@ -33,21 +35,17 @@ function language() {
                         let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
                         let t1 = Array.from(new Set(t));
                         return t1
-                    }
-                    else {
+                    } else {
                         return [];
                     }
-                }
-                else {
+                } else {
                     return []
                 }
-            }
-            else {
+            } else {
                 return []
             }
 
-        }
-        else if (process.platform == 'win32') {
+        } else if (process.platform == 'win32') {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
 
                 LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
@@ -59,16 +57,13 @@ function language() {
                         let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
                         let t1 = Array.from(new Set(t));
                         return t1
-                    }
-                    else {
+                    } else {
                         return [];
                     }
-                }
-                else {
+                } else {
                     return []
                 }
-            }
-            else {
+            } else {
                 return []
             }
         }
@@ -85,20 +80,16 @@ function language() {
                         let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
                         let t1 = Array.from(new Set(t));
                         return t1
-                    }
-                    else {
+                    } else {
                         return [];
                     }
-                }
-                else {
+                } else {
                     return []
                 }
-            }
-            else {
+            } else {
                 return []
             }
-        }
-        else if (process.platform == 'win32') {
+        } else if (process.platform == 'win32') {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
 
                 LID = fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt").toString()
@@ -110,16 +101,13 @@ function language() {
                         let t = require('fs').readFileSync(__dirname + "/Languages/LID_" + LID + ".txt", 'utf-8').split('\n');
                         let t1 = Array.from(new Set(t));
                         return t1
-                    }
-                    else {
+                    } else {
                         return [];
                     }
-                }
-                else {
+                } else {
                     return []
                 }
-            }
-            else {
+            } else {
                 return []
             }
         }
@@ -127,6 +115,7 @@ function language() {
 
 
 }
+
 function gameloc() {
     if (portable == true) {
         if (process.platform == "linux") {
@@ -169,8 +158,7 @@ function gameloc() {
             } else {
                 return app.getPath("documents");
             }
-        }
-        else {
+        } else {
             if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") === true) {
                 if (fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt") != "") {
                     return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt");
@@ -276,46 +264,9 @@ if (portable == true) {
 }
 
 //detect internet conenction
-const dns = require("dns");
 
 
-dns.resolve("www.google.com", function (err, addr) {
-    if (portable == true) {
-        if (err) {
-            if (process.platform == 'linux' || process.platform == 'darwin') {
-                fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/connected.txt', 'false');
-            } else {
-                fs.writeFileSync(__dirname + '/connected.txt', 'false');
-            }
 
-
-        } else {
-            if (process.platform == 'linux' || process.platform == 'darwin') {
-                fs.writeFileSync(parentfolder3 + '/nytuolauncher_data/connected.txt', 'true');
-            } else {
-                fs.writeFileSync(__dirname + '/connected.txt', 'true');
-            }
-
-        }
-    } else {
-        if (err) {
-            if (process.platform == 'linux' || process.platform == 'darwin') {
-                fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'false');
-            } else {
-                fs.writeFileSync(__dirname + '/connected.txt', 'false');
-            }
-
-        } else {
-            if (process.platform == 'linux' || process.platform == 'darwin') {
-                fs.writeFileSync(app.getPath('documents') + '/nytuolauncher_data/connected.txt', 'true');
-            } else {
-                fs.writeFileSync(__dirname + '/connected.txt', 'true');
-            }
-
-        }
-    }
-
-});
 //create the main window
 function createWindow() {
     if (process.platform == "linux" || process.platform == 'darwin') {
@@ -328,9 +279,9 @@ function createWindow() {
             width: 520,
             height: 280,
 
-            icon: path.join(__dirname, 'Ressources/logoexp.png'),
+            icon: path.join(__dirname, 'Resources/logoexp.png'),
             webPreferences: {
-                webSecurity: false,
+                webSecurity: true,
                 nodeIntegration: true,
                 enableRemoteModule: true
             },
@@ -373,6 +324,7 @@ function createWindow() {
         } else {
             win.loadFile('Loading.html');
         }
+
     } else if (process.platform == "win32") {
         let win = new BrowserWindow({
 
@@ -382,9 +334,9 @@ function createWindow() {
             frame: false,
             width: 520,
             height: 280,
-            icon: path.join(__dirname, 'Ressources/favicon.ico'),
+            icon: path.join(__dirname, 'Resources/favicon.ico'),
             webPreferences: {
-                webSecurity: false,
+                webSecurity: true,
                 nodeIntegration: true,
                 enableRemoteModule: true
             },
@@ -429,11 +381,12 @@ function createWindow() {
         }
 
     }
+
 }
 
 
 //console the version and save the achievements
-app.on('ready', createWindow, function () {
+app.on('ready', createWindow, function() {
     ACH_SAVER();
     console.log(app.getVersion())
 
@@ -444,17 +397,42 @@ app.on('before-quit', () => {
     if (portable == true) {
         if (process.platform == 'linux') {
             fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt")
+            var GamesIDs = ["SFO", "LAATIM", "SGB", "SF", "LA", "VITF", "TTD", "FWD", "TB", "WR", "AE", "SNRE"]
+            for (let i = 0; i < GamesIDs.length; i++) {
+                if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/CurrentUser/" + GamesIDs[i] + ".txt")) {
+                    fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/CurrentUser/" + GamesIDs[i] + ".txt")
 
+                }
+            }
         } else if (process.platform == 'win32') {
             fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt")
+            var GamesIDs = ["SFO", "LAATIM", "SGB", "SF", "LA", "VITF", "TTD", "FWD", "TB", "WR", "AE", "SNRE"]
+            for (let i = 0; i < GamesIDs.length; i++) {
+                if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/CurrentUser/" + GamesIDs[i] + ".txt")) {
+                    fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/CurrentUser/" + GamesIDs[i] + ".txt")
 
+                }
+            }
         }
     } else {
         if (process.platform == 'linux') {
             fs.unlinkSync(app.getPath("documents") + "/nytuolauncher_data/LID_ONLINE.txt")
+            var GamesIDs = ["SFO", "LAATIM", "SGB", "SF", "LA", "VITF", "TTD", "FWD", "TB", "WR", "AE", "SNRE"]
+            for (let i = 0; i < GamesIDs.length; i++) {
+                if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/CurrentUser/" + GamesIDs[i] + ".txt")) {
+                    fs.unlinkSync(app.getPath("documents") + "/nytuolauncher_data/CurrentUser/" + GamesIDs[i] + ".txt")
 
+                }
+            }
         } else if (process.platform == 'win32') {
             fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt")
+            var GamesIDs = ["SFO", "LAATIM", "SGB", "SF", "LA", "VITF", "TTD", "FWD", "TB", "WR", "AE", "SNRE"]
+            for (let i = 0; i < GamesIDs.length; i++) {
+                if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/CurrentUser/" + GamesIDs[i] + ".txt")) {
+                    fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/CurrentUser/" + GamesIDs[i] + ".txt")
+
+                }
+            }
 
         }
     }

@@ -1,12 +1,34 @@
-body{
-    animation : fadeIn 0.5s;
+body {
+    animation: fadeIn 0.5s;
     margin: 0%;
 }
+
 .progressBarLAATIM {
     text-align: center;
 }
 
+
 /*#region Loading*/
+
+.sidebarpad {
+    padding-left: 300px;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #444444
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #333333
+}
+
+::-webkit-scrollbar-track {
+    background-color: #222222
+}
 
 .lds-roller {
     display: inline-block;
@@ -112,7 +134,9 @@ body{
     }
 }
 
+
 /*#endregion*/
+
 
 /*#region GameCard*/
 
@@ -155,7 +179,7 @@ body{
     font-size: 30px;
     margin-top: -80px;
     height: 40px;
-  }
+}
 
 .card:hover {
     transform: scale(0.9, 0.9);
@@ -170,27 +194,33 @@ body{
     color: black;
 }
 
+
 /*#endregion*/
+
 @-webkit-keyframes fadeIn {
     from {
-      opacity: 0;
+        opacity: 0;
     }
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  }
-  @keyframes fadeIn {
+}
+
+@keyframes fadeIn {
     from {
-      opacity: 0;
+        opacity: 0;
     }
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  }
-  .fadeIn {
+}
+
+.fadeIn {
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
-  }
+}
+
+
 /*#region Overlay*/
 
 #overlay {
@@ -226,13 +256,22 @@ body{
     -ms-transform: translate(-50%, -50%);
 }
 
+
 /*#endregion*/
 
 .container {
     text-align: center;
 }
 
-.paraTXTLA, .paraTXTWR, .paraTXTSF, .paraTXTSGB, .paraTXTSN, .paraTXTTB, .paraTXTLAATIM, .paraTXTTTD, .paraTXTVITF {
+.paraTXTLA,
+.paraTXTWR,
+.paraTXTSF,
+.paraTXTSGB,
+.paraTXTSN,
+.paraTXTTB,
+.paraTXTLAATIM,
+.paraTXTTTD,
+.paraTXTVITF {
     text-align: right;
 }
 
@@ -301,7 +340,6 @@ h4 {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-
 .logonav {
     margin-top: 5px;
     width: 35%;
@@ -336,7 +374,6 @@ h4 {
     transform: scale(1.5);
 }
 
-
 .paraTXTAE {
     text-align: right;
 }
@@ -344,6 +381,7 @@ h4 {
 .paraTXTFWD {
     text-align: right;
 }
+
 
 /*#region ChangesLogs*/
 
@@ -424,6 +462,7 @@ h4 {
     margin-right: 10px;
 }
 
+
 /*#endregion*/
 
 .column {
@@ -450,50 +489,79 @@ h4 {
     clear: both;
     display: table;
 }
+
+
 /*#region BG*/
+
 .IMGBGSFO {
-    background-image: url("Ressources/IMGSFO.png");
+    background-image: url("Resources/IMGSFO.png");
 }
+
 .IMGBGLAATIM {
-    background-image: url("Ressources/IMGLAATIM.png");
+    background-image: url("Resources/IMGLAATIM.png");
+    background-size: 100% auto;
 }
-.IMGBGSGB{
-    background-image:url("Ressources/SGB2.png");
+
+.IMGBGSGB {
+    background-image: url("Resources/SGB2.png");
+    background-size: 100% auto;
 }
-.IMGBGWR{
-    background-image: url("Ressources/IMGWR.png");
+
+.IMGBGWR {
+    background-image: url("Resources/IMGWR.png");
+    background-size: 100% auto;
 }
-.IMGBGVITF{
-    background-image: url("Ressources/IMGVITF.png");
+
+.IMGBGVITF {
+    background-image: url("Resources/IMGVITF.png");
+    background-size: 100% auto;
 }
-.IMGBGTTD{
-    background-image: url("Ressources/IMGTTD.png");
+
+.IMGBGTTD {
+    background-image: url("Resources/IMGTTD.png");
+    background-size: 100% auto;
 }
-.IMGBGTB{
-    background-image: url("Ressources/IMGTB.png");
+
+.IMGBGTB {
+    background-image: url("Resources/IMGTB.png");
+    background-size: 100% auto;
 }
-.IMGBGSN{
-    background-image: url("Ressources/IMGSN.png");
+
+.IMGBGSN {
+    background-image: url("Resources/IMGSN.png");
+    background-size: 100% auto;
 }
-.IMGBGSF{
-    background-image: url("Ressources/IMGSF.png");
+
+.IMGBGSF {
+    background-image: url("Resources/IMGSF.png");
+    background-size: 100% auto;
 }
-.IMGBGLA{
-    background-image: url("Ressources/IMGLA.png");
+
+.IMGBGLA {
+    background-image: url("Resources/IMGLA.png");
+    background-size: 100% auto;
 }
-.IMGBGFWD{
-    background-image: url("Ressources/IMGFWD.png");
+
+.IMGBGFWD {
+    background-image: url("Resources/IMGFWD.png");
+    background-size: 100% auto;
 }
-.IMGBGAE{
-    background-image: url("Ressources/IMGAE.png");
+
+.IMGBGAE {
+    background-image: url("Resources/IMGAE.png");
+    background-size: 100% auto;
 }
+
+
 /*#endregion*/
-.IMGLOADSGB{
-    background-image: url('Ressources/SGB2.png');
+
+.IMGLOADSGB {
+    background-image: url('Resources/SGB2.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-size: 100%;
 }
+
 @media only screen and (max-width: 1680px) {
     .progressBarLAATIM {
         text-align: center;
@@ -504,10 +572,9 @@ h4 {
     .paralaxLAATIM {
         min-height: 50px;
     }
-    .btn{
+    .btn {
         margin-top: 10px;
     }
-    
     /*#region common*/
     a {
         text-decoration: none;
@@ -531,8 +598,8 @@ h4 {
     }
     /*#endregion*/
     /*#region header*/
-    
 }
+
 
 /*#region progress*/
 
@@ -588,7 +655,9 @@ h4 {
     font-family: 'Oswald', sans-serif;
 }
 
+
 /*#endregion*/
+
 
 /*#region button*/
 
@@ -604,8 +673,6 @@ div[class*=box] {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 16px;
     text-transform: uppercase;
-    
-    
 }
 
 .btn-three {
@@ -661,11 +728,11 @@ div[class*=box] {
     cursor: not-allowed;
 }
 
+
 /*#endregion*/
 
+
 /*#region PopUp*/
-
-
 
 
 /* Add Zoom Animation */
@@ -692,5 +759,6 @@ div[class*=box] {
         transform: scale(1)
     }
 }
+
 
 /*#endregion*/

@@ -1,78 +1,79 @@
 {
-  "name": "nytuolauncher",
-  "productName": "Nytuo-Launcher",
-  "build": {
-    "asar": false,
-    "appId": "com.Nytuo.NytuoLauncher",
-    "mac": {
-      "category": "Nytuo.NytuoLauncher.Tool.Games"
+    "name": "nytuo-launcher",
+    "productName": "Nytuo-Launcher",
+    "build": {
+        "asar": false,
+        "appId": "com.Nytuo.NytuoLauncher",
+        "mac": {
+            "category": "Nytuo.NytuoLauncher.Tool.Games"
+        },
+        "nsis": {
+            "oneClick": true,
+            "runAfterFinish": true,
+            "createDesktopShortcut": "always"
+        },
+        "snap": {
+            "confinement": "classic"
+        },
+        "publish": [{
+            "provider": "github",
+            "repo": "Nytuo-Launcher",
+            "owner": "Nytuo",
+            "token": "b40eac1b4381fb95fcbd346a96c77a455ae54328"
+        }],
+        "win": {
+            "publish": [
+                "github"
+            ],
+            "target": [
+                "nsis",
+                "zip"
+            ],
+            "icon": "Resources/favicon.ico"
+        },
+        "linux": {
+            "publish": ["github"],
+            "target": [
+                "appimage",
+                "snap",
+                "zip"
+            ],
+            "icon": "Resources/logoexp.png",
+            "category": "Utility"
+        }
     },
-    "nsis": {
-      "oneClick": true,
-      "runAfterFinish": true,
-      "createDesktopShortcut": "always"
+    "version": "2021.01.13",
+    "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
+    "main": "main.js",
+    "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
+    "scripts": {
+        "postinstall": "electron-builder install-app-deps",
+        "dist": "electron-builder",
+        "build": "electron-packager . --overwrite --all --icon=./Resources/favicon.ico",
+        "gh-publish": "electron-builder --x64 -p always",
+        "builder": "electron-builder --x64",
+        "start": "electron ."
     },
-    "publish": [
-      {
-        "provider": "github",
-        "repo": "Nytuo-Launcher",
-        "owner": "Nytuo",
-        "token": "b40eac1b4381fb95fcbd346a96c77a455ae54328"
-      }
-    ],
-    "win": {
-      "publish": [
-        "github"
-      ],
-      "target": [
-        "nsis",
-        "zip"
-      ],
-      "icon": "Ressources/favicon.ico"
+    "author": "Nytuo",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^11.1.1",
+        "electron-builder": "^22.7.0"
     },
-    "linux": {
-      "publish": [
-        "github"
-      ],
-      "target": [
-        "appimage",
-        "zip"
-      ],
-      "icon": "Ressources/logoexp.png"
+    "dependencies": {
+        "app": "^0.1.0",
+        "crypto-js": "^4.0.0",
+        "electron-packager": "^14.2.0",
+        "extract-zip": "^1.6.7",
+        "fs": "^0.0.1-security",
+        "materialize-css": "^1.0.0-rc.2",
+        "nodejs": "^0.0.0",
+        "office-ui-fabric-core": "^11.0.0",
+        "path": "^0.12.7",
+        "progressbar.js": "^1.1.0",
+        "request": "^2.88.2",
+        "rimraf": "^3.0.2",
+        "shell": "^0.5.0",
+        "windows-shortcuts": "^0.1.6"
     }
-  },
-  "version": "2020.12.31",
-  "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
-  "main": "main.js",
-  "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
-  "scripts": {
-    "postinstall": "electron-builder install-app-deps",
-    "dist": "electron-builder",
-    "build": "electron-packager . --overwrite --all --icon=./Ressources/favicon.ico",
-    "gh-publish": "electron-builder --x64 -p always",
-    "builder": "electron-builder --x64",
-    "start": "electron ."
-  },
-  "author": "Nytuo",
-  "license": "ISC",
-  "devDependencies": {
-    "electron": "^11.1.1",
-    "electron-builder": "^22.7.0"
-  },
-  "dependencies": {
-    "app": "^0.1.0",
-    "electron-packager": "^14.2.0",
-    "electron-simple-updater": "^2.0.8",
-    "extract-zip": "^1.6.7",
-    "fs": "^0.0.1-security",
-    "materialize-css": "^1.0.0-rc.2",
-    "nodejs": "^0.0.0",
-    "office-ui-fabric-core": "^11.0.0",
-    "path": "^0.12.7",
-    "progressbar.js": "^1.1.0",
-    "request": "^2.88.2",
-    "rimraf": "^3.0.2",
-    "shell": "^0.5.0",
-    "windows-shortcuts": "^0.1.6"
-  }
 }

@@ -1,4 +1,4 @@
-Vous aller jouer à
+Vous allez jouer à
 Jouer
 Mettre à jour
 Installer
@@ -149,12 +149,12 @@ Création du dossier des jeux...
 Vérification de l'accès à la beta...
 Prélancement completé
 Actualités
-Jeux
+Accueil
 A propos:
 Créé, codé et développé par Nytuo (Arnaud BEUX) in HTML/CSS/JS/PHP.
 Ouvrir le dossier du launcher
 Déinstaller tout les Jeux
-Ouvrir le site internet
+Site internet
 Forcer la mise à jour
 Changer le dossier des Jeux
 Changer Status Beta
@@ -164,3 +164,11 @@ Redémarrer
 Changer la langue (redémarrage)
 téléchargé
 Merci de sélectionner un dossier vide pour y stocker les jeux
+Se déconnecter
+Mode hors-ligne
+Vous allez
+Activer un jeu (avec une clé)
+Changer de mot de passe
+Changer de photo de Profile
+Changer de nom d'utilisateur
+Voir le jeu sur le site

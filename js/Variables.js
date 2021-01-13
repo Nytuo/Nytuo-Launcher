@@ -14,7 +14,7 @@ var isInUpdate = false;
 var parentfolder1 = require('path').dirname(__dirname);
 var parentfolder2 = require('path').dirname(parentfolder1);
 var parentfolder3 = require('path').dirname(parentfolder2);
-
+const CryptoJS = require('crypto-js')
 var portable = portable_check();
 const currentLanguage = language()
 
@@ -152,15 +152,16 @@ function language() {
 function connectest() {
     if (portable == true) {
         if (process.platform == "linux" || process.platform == "darwin") {
-            return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt");
+            return CryptoJS.enc.Latin1.stringify(CryptoJS.AES.decrypt(fs.readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt").toString(), "connection system"))
         } else {
-            return fs.readFileSync(__dirname + "/connected.txt");
+            return CryptoJS.enc.Latin1.stringify(CryptoJS.AES.decrypt(fs.readFileSync(__dirname + "/connected.txt").toString(), "connection system"))
         }
     } else {
         if (process.platform == "linux" || process.platform == "darwin") {
-            return fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt");
+            return CryptoJS.enc.Latin1.stringify(CryptoJS.AES.decrypt(fs.readFileSync(app.getPath("documents") + "/nytuolauncher_data/connected.txt").toString(), "connection system"))
         } else {
-            return fs.readFileSync(__dirname + "/connected.txt");
+            return CryptoJS.enc.Latin1.stringify(CryptoJS.AES.decrypt(fs.readFileSync(__dirname + "/connected.txt").toString(), "connection system"))
+
         }
     }
 

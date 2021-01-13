@@ -127,3 +127,7 @@ function beta(entry) {
     }
 
 }
+function redm() {
+    app.relaunch()
+    app.exit()
+}

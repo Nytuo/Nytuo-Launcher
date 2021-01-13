@@ -149,12 +149,12 @@ Creación de la carpeta de juegos ...
 Verificando el acceso beta ...
 Prelanzamiento completado
 Noticias
-Juegos
+Casa
 A proposito:
 Creado, codificado y desarrollado por Nytuo (Arnaud BEUX) en HTML / CSS / JS / PHP.
 Abra la carpeta de inicio
 Desinstalar todos los juegos
-Abrir sitio web
+Sitio web
 Forzar actualización
 Cambiar la carpeta de juegos
 Cambiar estado Beta
@@ -164,3 +164,11 @@ Para reiniciar
 Cambiar idioma (reiniciar)
 descargado
 Por favor, seleccionar una carpeta vacía para almacenar los juegos
+se deconnectar
+Sin Internet Modo
+Tu ve a
+Activar un juego (con a llave)
+Cambia la contraseña
+cambiar foto de perfil
+cambie el nombre de usuario
+Ver el juego en el sitio web
