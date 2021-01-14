@@ -17,8 +17,8 @@ All the games may not be downloaded or played on Linux (cause I don't have build
 ## Which file ?
 The Nytuo Launcher can be found as:
 ### For Windows
-- A .exe file for windows (it's a OneClick NSIS Installer (That is used for update as well),(installed as a user program in Users\AppData\Local\Programs\Nytuo-Launcher (That's mean no UAC (Admin Rights))))
-- A .zip file for windows to use it as a portable app (require to modify a file in the resources\app\portable.txt from 'false' to 'true' and vice-versa for reverse)
+- A .exe file for windows (it's a OneClick NSIS Installer (That is used for update as well),(installed as a user program in ```Users\AppData\Local\Programs\Nytuo-Launcher``` (That's mean no UAC (Admin Rights))))
+- A .zip file for windows to use it as a portable app (require to modify a file in the ```resources\app\portable.txt``` from ```'false'``` to ```'true'``` and vice-versa)
 ### For Linux
 - A .appimage for Linux, it can be used anywhere and under all linux distributions. It's stocked in the tmp folder and important file to keep are located on the Documents folder in the nytuolauncher_data folder.
 - A .zip file for linux with the same purpose of the windows version with the same requirement.
