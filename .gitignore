@@ -1,12 +1,13 @@
 /dist/
 /Games/
 electron-builder.yml
-yarn.lock
+/yarn.lock
 /node_modules/
 /VersionsFiles/
-news.html
+/news.html
 /out/
 /.vscode/
 /Nytuo-Launcher-win32-x64/
 /Nytuo-Launcher-linux-x64/
-yarn-error.log
+/yarn-error.log
+/.idea/
