@@ -18,8 +18,7 @@
         "publish": [{
             "provider": "github",
             "repo": "Nytuo-Launcher",
-            "owner": "Nytuo",
-            "token": "b40eac1b4381fb95fcbd346a96c77a455ae54328"
+            "owner": "Nytuo"
         }],
         "win": {
             "publish": [
@@ -55,7 +54,7 @@
         "start": "electron ."
     },
     "author": "Nytuo",
-    "license": "ISC",
+    "license": "GNU General Public License V3 (GNU GPL v3)",
     "devDependencies": {
         "electron": "^11.1.1",
         "electron-builder": "^22.7.0"

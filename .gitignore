@@ -4,8 +4,8 @@ electron-builder.yml
 yarn.lock
 node_modules/
 VersionsFiles/
-news.html
 out/
 .vscode/
 yarn-error.log
 .idea/
+js.js.old
