@@ -15,11 +15,13 @@
         "snap": {
             "confinement": "classic"
         },
-        "publish": [{
-            "provider": "github",
-            "repo": "Nytuo-Launcher",
-            "owner": "Nytuo"
-        }],
+        "publish": [
+            {
+                "provider": "github",
+                "repo": "Nytuo-Launcher",
+                "owner": "Nytuo"
+            }
+        ],
         "win": {
             "publish": [
                 "github"
@@ -31,7 +33,9 @@
             "icon": "Resources/favicon.ico"
         },
         "linux": {
-            "publish": ["github"],
+            "publish": [
+                "github"
+            ],
             "target": [
                 "appimage",
                 "snap",
@@ -41,7 +45,7 @@
             "category": "Utility"
         }
     },
-    "version": "2021.01.13",
+    "version": "2021.01.15",
     "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
     "main": "main.js",
     "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
@@ -54,9 +58,9 @@
         "start": "electron ."
     },
     "author": "Nytuo",
-    "license": "GNU General Public License V3 (GNU GPL v3)",
+    "license": "GPL-3.0-only",
     "devDependencies": {
-        "electron": "^11.1.1",
+        "electron": "^11.2.0",
         "electron-builder": "^22.7.0"
     },
     "dependencies": {
