@@ -1,0 +1,6 @@
+Due to Linux security, the Launcher can't update himself automatically, you have to manually update it by following the instructions:
+1/ When the Launcher has downloaded the update, it will open the folder containing the update.
+2/ Open a terminal in this folder.
+3/ Run the command : 'snap remove nytuo-launcher' to remove the old version of the launcher.
+4/ Run this one to install the new version : 'snap install update.snap --dangerous --classic'.
+5/ You can launch the Nytuo Launcher, updated to the latest version.

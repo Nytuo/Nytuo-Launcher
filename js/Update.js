@@ -270,7 +270,7 @@ function update() {
                                     document.getElementById('updateview').style.display = "block";
                                 }
                                 document.getElementById("MyBartxt").innerHTML = currentLanguage[129]
-                                DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.appimage', app.getPath("documents") + "/nytuolauncher_data/update.appimage");
+                                DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher_' + launcherversion + '_amd64.snap', app.getPath("documents") + "/nytuolauncher_data/update.snap");
                             }
 
 
@@ -359,7 +359,7 @@ function update() {
                                 document.getElementById('updateview').style.display = "block";
                             }
                             document.getElementById("MyBartxt").innerHTML = "Downloading Update"
-                            DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher-Setup-' + launcherversion + '.appimage', app.getPath("documents") + "/nytuolauncher_data/update.appimage");
+                            DownlaodFileUpdate('https://github.com/Nytuo/Nytuo-Launcher/releases/download/v' + launcherversion + '/Nytuo-Launcher_' + launcherversion + '_amd64.snap', app.getPath("documents") + "/nytuolauncher_data/update.snap");
 
 
                         }
@@ -1438,11 +1438,12 @@ function DownlaodFileUpdate(file_url, targetPath, dossierdujeu) {
 
         document.getElementById("prgs").className = "indeterminate"
         if (process.platform == "linux") {
-            fs.rename(targetPath, app.getPath("desktop") + "/Nytuo-Launcher-linux-" + fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString() + ".appimage", (err) => {
-                if (err) throw err;
-            });
-            console.log('Rename complete!');
-            shell.openExternal(app.getPath("desktop") + "/Nytuo-Launcher-linux-" + fs.readFileSync(__dirname + '/VersionsFiles/LauncherVersion.txt').toString() + ".appimage")
+            //open a txt file with instruction
+            //alert the user to follow the instruction in the txt file
+            //close the launcher
+            alert("Please follow the commands in the text file opened after you click OK to update the Nytuo Launcher.")
+            shell.openExternal(__dirname+"/Update_Instruction_Linux.txt")
+            shell.openExternal(app.getPath("documents")+"/nytuolauncher_data/")
             setTimeout(() => {
                 app.exit();
             }, 1000);

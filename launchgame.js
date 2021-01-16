@@ -242,7 +242,6 @@ function Open(dossierdujeu, filename) {
 //Open games in LINUX OS
 function OpenforLinux(gameloc, dossierdujeu, filename) {
     execSync("cd " + gameloc + "/Games/" + dossierdujeu + ";" + " chmod a+x ./" + filename + ";" + " ./" + filename)
-
 }
 
 
