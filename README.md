@@ -20,23 +20,30 @@ The Nytuo Launcher can be found as:
 - A .exe file for windows (it's a OneClick NSIS Installer (That is used for update as well),(installed as a user program in ```Users\AppData\Local\Programs\Nytuo-Launcher``` (That's mean no UAC (Admin Rights))))
 - A .zip file for windows to use it as a portable app (require to modify a file in the ```resources\app\portable.txt``` from ```'false'``` to ```'true'``` and vice-versa)
 ### For Linux
-- You can find the Nytuo Launcher on the SnapStore directly in the app. Or you can do it by using this command on the terminal :
-```
-snap install nytuo-launcher
-```
-- A .snap file, It's the SnapStore file you can install it manually, just follow the steps:
+- A .snap file, you have to install it manually, just follow the steps:
 
-Download the .snap file, then open a terminal on the folder where the file is or ```cd``` to it. And run the following command (where ```<nytuo_launcher_file>``` is modified by the name of the file) :
+Download the .snap file, then open a terminal on the folder where the file is located or ```cd``` to it. And run the following command (where ```<nytuo_launcher_file>``` is the name of the file) :
 
 ```
-snap install <nytuo_launcher_file> --dangerous
+snap install <nytuo_launcher_file> --dangerous --classic
 ```
-
 For example :
 ```
-snap install nytuo-launcher_2021.01.13_amd64.snap --dangerous
+snap install nytuo-launcher_2021.01.13_amd64.snap --dangerous --classic
 ```
+
 - A .zip file with the same purpose of the windows version with the same requirement.
+
+## Update
+### Windows
+For windows, the update is automatically downloaded.
+
+### Linux
+For Linux the update is downloaded automatically but you have to run some commands to update it (where ```<nytuo_launcher_file>``` is the name of the file):
+```
+snap remove nytuo-launcher
+snap install <nytuo_launcher_file> --dangerous --classic
+```
 
 ## Problems, issues, feedback, help, guides, more
 If you encounter a problem please tell me in the issues section of GitHub.
