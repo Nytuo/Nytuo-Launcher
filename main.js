@@ -206,25 +206,38 @@ if (portable == true) {
         if (fs.existsSync(parentfolder3 + "/nytuolauncher_data") === false) {
             fs.mkdirSync(parentfolder3 + "/nytuolauncher_data");
         }
+        if (fs.existsSync(parentfolder3+"/nytuolauncher_data/CurrentUser")===false){
+            fs.mkdirSync(parentfolder3+"/nytuolauncher_data/CurrentUser")
+        }
     }
     //windows folder creation
     else {
         if (fs.existsSync(parentfolder3 + "/nytuolauncher_data") === false) {
             fs.mkdirSync(parentfolder3 + "/nytuolauncher_data");
         }
+        if (fs.existsSync(parentfolder3+"/nytuolauncher_data/CurrentUser")===false){
+            fs.mkdirSync(parentfolder3+"/nytuolauncher_data/CurrentUser")
+        }
     }
+
 } else {
     console.log(app.getPath("documents"));
     //linux folder tree creation
-    if (process.platform == "linux" || process.platform == 'darwin') {
+    if (process.platform === "linux" || process.platform === 'darwin') {
         if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data") === false) {
             fs.mkdirSync(app.getPath("documents") + "/nytuolauncher_data");
+        }
+        if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/CurrentUser")===false){
+            fs.mkdirSync(app.getPath("documents") + "/nytuolauncher_data/CurrentUser")
         }
     }
     //windows folder creation
     else {
         if (fs.existsSync(parentfolder3 + "/nytuolauncher_data") === false) {
             fs.mkdirSync(parentfolder3 + "/nytuolauncher_data");
+        }
+        if (fs.existsSync(parentfolder3+"/nytuolauncher_data/CurrentUser")===false){
+            fs.mkdirSync(parentfolder3+"/nytuolauncher_data/CurrentUser")
         }
     }
 }
