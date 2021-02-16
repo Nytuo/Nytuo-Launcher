@@ -51,7 +51,6 @@
     "scripts": {
         "postinstall": "electron-builder install-app-deps",
         "dist": "electron-builder",
-        "build": "electron-packager . --overwrite --all --icon=./Resources/favicon.ico",
         "gh-publish": "electron-builder --x64 -p always",
         "builder": "electron-builder --x64",
         "start": "electron ."
