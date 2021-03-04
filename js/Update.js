@@ -992,7 +992,6 @@ function ConnectionForm() {
             LaunchWindowLauncherOffline()
         }
     }
-    win.setProgressBar(-1)
     close()
 }
 
@@ -1027,21 +1026,21 @@ function LaunchWindowLauncherOffline() {
         const path = require('path');
         let win = new BrowserWindow({
 
-                backgroundColor: 212121,
-                minWidth: 1280,
-                minHeight: 720,
-                width: 1280,
-                height: 720,
-                icon: path.join(__dirname, 'Resources/favicon.ico'),
-                webPreferences: {
-                    webSecurity: false,
-                    nodeIntegration: true,
-                    enableRemoteModule: true
-                },
+            backgroundColor: 212121,
+            minWidth: 1280,
+            minHeight: 720,
+            width: 1280,
+            height: 720,
+            icon: path.join(__dirname, 'Resources/favicon.ico'),
+            webPreferences: {
+                webSecurity: false,
+                nodeIntegration: true,
+                enableRemoteModule: true
+            },
 
 
-            })
-            //win.removeMenu()
+        })
+        //win.removeMenu()
         ACH_SAVER();
         if (window.location.href == 'file:///' + dirnamew + '/Loading.html?laatim') {
             if (LAATIMU == true) {
@@ -1135,7 +1134,6 @@ function LaunchWindowLauncherOffline() {
         }
 
     }
-    win.setProgressBar(-1)
     close()
 
 }
@@ -1215,18 +1213,18 @@ function DLVersions() {
 
         if (portable == true) {
             if (process.platform == "linux" || process.platform == "darwin") {
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJolpeqR1khuFIbpjA?e=wTgArs", parentfolder3 + '/nytuolauncher_data/VersionsFiles/SNRE_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JUXbjPwj1mBzrOuA?e=wVHkGU", parentfolder3 + '/nytuolauncher_data/VersionsFiles/AE_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JT9OzEaq3ZoNfmnA?e=tR3RtZ", parentfolder3 + '/nytuolauncher_data/VersionsFiles/FWD_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJJHH7sOlvHBfzY_GQ?e=bvxWKA", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LAIM_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IJkzYhtpbSxdBvQw?e=yFnUcs", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LA_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_EtKOdpt4-X1izIug?e=8L7yzS", parentfolder3 + '/nytuolauncher_data/VersionsFiles/SF_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hIVslFrM3BD9n8EIVg?e=rUpNyY", parentfolder3 + '/nytuolauncher_data/VersionsFiles/SGB_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JQY-iX8XEyRi1fKg?e=JjUTjN", parentfolder3 + '/nytuolauncher_data/VersionsFiles/TB_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JS2t-rHXsxRfeY0Q?e=0bzJAo", parentfolder3 + '/nytuolauncher_data/VersionsFiles/TTD_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IKXku5lt0MD19anw?e=r7XGjI", parentfolder3 + '/nytuolauncher_data/VersionsFiles/VITF_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JRLYRM7lR1-I5-4A?e=o4fHof", parentfolder3 + '/nytuolauncher_data/VersionsFiles/WR_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5lPIIxnL-WXmVcbSa-A?e=L1N2vy", parentfolder3 + '/nytuolauncher_data/VersionsFiles/SFO_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SN/master/Linux/SNRE_Version.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/SNRE_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/AE/master/Linux/VersionAE.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/AE_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/FWD/master/Linux/VersionFWD.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/FWD_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LAATIM/master/Linux/LAIM_Version.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LAIM_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LA/master/Linux/VersionLA.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LA_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SF/master/Linux/VersionSF.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/SF_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SGB/master/Linux/SGB_Version.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/SGB_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TB/master/Linux/VersionTB.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/TB_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TTD/master/Linux/VersionTTD.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/TTD_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/VITF/master/Linux/VersionVITF.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/VITF_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/Linux/VersionWR.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/WR_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/Linux/SFO_Version.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/SFO_Version.txt');
 
                 DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt');
                 DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherUpdateType.txt');
@@ -1237,18 +1235,18 @@ function DLVersions() {
                 }
 
             } else {
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJolpeqR1khuFIbpjA?e=wTgArs", __dirname + '/VersionsFiles/SNRE_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JUXbjPwj1mBzrOuA?e=wVHkGU", __dirname + '/VersionsFiles/AE_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JT9OzEaq3ZoNfmnA?e=tR3RtZ", __dirname + '/VersionsFiles/FWD_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJJHH7sOlvHBfzY_GQ?e=bvxWKA", __dirname + '/VersionsFiles/LAIM_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IJkzYhtpbSxdBvQw?e=yFnUcs", __dirname + '/VersionsFiles/LA_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_EtKOdpt4-X1izIug?e=8L7yzS", __dirname + '/VersionsFiles/SF_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hIVslFrM3BD9n8EIVg?e=rUpNyY", __dirname + '/VersionsFiles/SGB_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JQY-iX8XEyRi1fKg?e=JjUTjN", __dirname + '/VersionsFiles/TB_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JS2t-rHXsxRfeY0Q?e=0bzJAo", __dirname + '/VersionsFiles/TTD_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IKXku5lt0MD19anw?e=r7XGjI", __dirname + '/VersionsFiles/VITF_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JRLYRM7lR1-I5-4A?e=o4fHof", __dirname + '/VersionsFiles/WR_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5lPIIxnL-WXmVcbSa-A?e=L1N2vy", __dirname + '/VersionsFiles/SFO_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SN/master/Windows/SNRE_Version.txt", __dirname + '/VersionsFiles/SNRE_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/AE/master/Windows/VersionAE.txt", __dirname + '/VersionsFiles/AE_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/FWD/master/Windows/VersionFWD.txt", __dirname + '/VersionsFiles/FWD_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LAATIM/master/Windows/LAIM_Version.txt", __dirname + '/VersionsFiles/LAIM_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LA/master/Windows/VersionLA.txt", __dirname + '/VersionsFiles/LA_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SF/master/Windows/VersionSF.txt", __dirname + '/VersionsFiles/SF_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SGB/master/Windows/SGB_Version.txt", __dirname + '/VersionsFiles/SGB_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TB/master/Windows/VersionTB.txt", __dirname + '/VersionsFiles/TB_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TTD/master/Windows/VersionTTD.txt", __dirname + '/VersionsFiles/TTD_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/VITF/master/Windows/VersionVITF.txt", __dirname + '/VersionsFiles/VITF_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/Windows/VersionWR.txt", __dirname + '/VersionsFiles/WR_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/Windows/SFO_Version.txt", __dirname + '/VersionsFiles/SFO_Version.txt');
 
                 DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99", __dirname + '/VersionsFiles/LauncherVersion.txt');
                 DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu", __dirname + '/VersionsFiles/LauncherUpdateType.txt');
@@ -1260,18 +1258,18 @@ function DLVersions() {
             }
         } else {
             if (process.platform == "linux" || process.platform == "darwin") {
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJolpeqR1khuFIbpjA?e=wTgArs", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/SNRE_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JUXbjPwj1mBzrOuA?e=wVHkGU", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/AE_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JT9OzEaq3ZoNfmnA?e=tR3RtZ", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/FWD_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJJHH7sOlvHBfzY_GQ?e=bvxWKA", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LAIM_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IJkzYhtpbSxdBvQw?e=yFnUcs", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LA_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_EtKOdpt4-X1izIug?e=8L7yzS", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/SF_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hIVslFrM3BD9n8EIVg?e=rUpNyY", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/SGB_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JQY-iX8XEyRi1fKg?e=JjUTjN", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/TB_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JS2t-rHXsxRfeY0Q?e=0bzJAo", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/TTD_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IKXku5lt0MD19anw?e=r7XGjI", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/VITF_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JRLYRM7lR1-I5-4A?e=o4fHof", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/WR_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5lPIIxnL-WXmVcbSa-A?e=L1N2vy", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/SFO_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SN/master/Linux/SNRE_Version.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/SNRE_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/AE/master/Linux/VersionAE.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/AE_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/FWD/master/Linux/VersionFWD.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/FWD_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LAATIM/master/Linux/LAIM_Version.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LAIM_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LA/master/Linux/VersionLA.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LA_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SF/master/Linux/VersionSF.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/SF_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SGB/master/Linux/SGB_Version.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/SGB_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TB/master/Linux/VersionTB.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/TB_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TTD/master/Linux/VersionTTD.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/TTD_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/VITF/master/Linux/VersionVITF.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/VITF_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/Linux/VersionWR.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/WR_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/Linux/SFO_Version.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/SFO_Version.txt');
 
                 DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt');
                 DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherUpdateType.txt');
@@ -1281,19 +1279,18 @@ function DLVersions() {
                     document.getElementById("MyBartxt").innerHTML = currentLanguage[69]
                 }
             } else {
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJolpeqR1khuFIbpjA?e=wTgArs", __dirname + '/VersionsFiles/SNRE_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JUXbjPwj1mBzrOuA?e=wVHkGU", __dirname + '/VersionsFiles/AE_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JT9OzEaq3ZoNfmnA?e=tR3RtZ", __dirname + '/VersionsFiles/FWD_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJJHH7sOlvHBfzY_GQ?e=bvxWKA", __dirname + '/VersionsFiles/LAIM_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IJkzYhtpbSxdBvQw?e=yFnUcs", __dirname + '/VersionsFiles/LA_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_EtKOdpt4-X1izIug?e=8L7yzS", __dirname + '/VersionsFiles/SF_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hIVslFrM3BD9n8EIVg?e=rUpNyY", __dirname + '/VersionsFiles/SGB_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JQY-iX8XEyRi1fKg?e=JjUTjN", __dirname + '/VersionsFiles/TB_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JS2t-rHXsxRfeY0Q?e=0bzJAo", __dirname + '/VersionsFiles/TTD_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IKXku5lt0MD19anw?e=r7XGjI", __dirname + '/VersionsFiles/VITF_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_JRLYRM7lR1-I5-4A?e=o4fHof", __dirname + '/VersionsFiles/WR_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5lPIIxnL-WXmVcbSa-A?e=L1N2vy", __dirname + '/VersionsFiles/SFO_Version.txt');
-
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SN/master/Windows/SNRE_Version.txt", __dirname + '/VersionsFiles/SNRE_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/AE/master/Windows/VersionAE.txt", __dirname + '/VersionsFiles/AE_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/FWD/master/Windows/VersionFWD.txt", __dirname + '/VersionsFiles/FWD_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LAATIM/master/Windows/LAIM_Version.txt", __dirname + '/VersionsFiles/LAIM_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LA/master/Windows/VersionLA.txt", __dirname + '/VersionsFiles/LA_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SF/master/Windows/VersionSF.txt", __dirname + '/VersionsFiles/SF_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SGB/master/Windows/SGB_Version.txt", __dirname + '/VersionsFiles/SGB_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TB/master/Windows/VersionTB.txt", __dirname + '/VersionsFiles/TB_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TTD/master/Windows/VersionTTD.txt", __dirname + '/VersionsFiles/TTD_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/VITF/master/Windows/VersionVITF.txt", __dirname + '/VersionsFiles/VITF_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/Windows/VersionWR.txt", __dirname + '/VersionsFiles/WR_Version.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/Windows/SFO_Version.txt", __dirname + '/VersionsFiles/SFO_Version.txt');
                 DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99", __dirname + '/VersionsFiles/LauncherVersion.txt');
                 DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu", __dirname + '/VersionsFiles/LauncherUpdateType.txt');
                 DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJxjY60QkNyIaREMlg?e=jn3ykh", __dirname + '/VersionsFiles/LauncherBetaVersion.txt');
@@ -1303,8 +1300,77 @@ function DLVersions() {
                 }
             }
         }
-    } else {
+    }
 
+}
+
+function DLCL() {
+    if (connectedtointernet == 'true') {
+
+        document.getElementById("MyBartxt").innerHTML = "!!!!ChangeLanguages!!!! Downloading ChangesLogs"
+
+        if (portable == true) {
+            if (process.platform == "linux" || process.platform == "darwin") {
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SN/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/SN.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/AE/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/AE.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/FWD/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/FWD.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LAATIM/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/LAATIM.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LA/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/LA.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SF/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/SF.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SGB/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/SGB.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TB/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/TB.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TTD/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/TTD.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/VITF/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/VITF.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/WR.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/ChangesLogs", parentfolder3 + '/nytuolauncher_data/ChangesLogs/SFO.txt');
+
+
+            } else {
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SN/master/ChangesLogs", __dirname + '/ChangesLogs/SN.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/AE/master/ChangesLogs", __dirname + '/ChangesLogs/AE.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/FWD/master/ChangesLogs", __dirname + '/ChangesLogs/FWD.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LAATIM/master/ChangesLogs", __dirname + '/ChangesLogs/LAATIM.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LA/master/ChangesLogs", __dirname + '/ChangesLogs/LA.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SF/master/ChangesLogs", __dirname + '/ChangesLogs/SF.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SGB/master/ChangesLogs", __dirname + '/ChangesLogs/SGB.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TB/master/ChangesLogs", __dirname + '/ChangesLogs/TB.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TTD/master/ChangesLogs", __dirname + '/ChangesLogs/TTD.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/VITF/master/ChangesLogs", __dirname + '/ChangesLogs/VITF.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/ChangesLogs", __dirname + '/ChangesLogs/WR.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/ChangesLogs", __dirname + '/ChangesLogs/SFO.txt');
+
+            }
+        } else {
+            if (process.platform == "linux" || process.platform == "darwin") {
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SN/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/SN.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/AE/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/AE.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/FWD/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/FWD.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LAATIM/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/LAATIM.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LA/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/LA.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SF/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/SF.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SGB/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/SGB.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TB/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/TB.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TTD/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/TTD.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/VITF/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/VITF.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/WR.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/ChangesLogs", app.getPath("documents") + '/nytuolauncher_data/ChangesLogs/SFO.txt');
+
+            } else {
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SN/master/ChangesLogs", __dirname + '/ChangesLogs/SN.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/AE/master/ChangesLogs", __dirname + '/ChangesLogs/AE.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/FWD/master/ChangesLogs", __dirname + '/ChangesLogs/FWD.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LAATIM/master/ChangesLogs", __dirname + '/ChangesLogs/LAATIM.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/LA/master/ChangesLogs", __dirname + '/ChangesLogs/LA.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SF/master/ChangesLogs", __dirname + '/ChangesLogs/SF.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SGB/master/ChangesLogs", __dirname + '/ChangesLogs/SGB.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TB/master/ChangesLogs", __dirname + '/ChangesLogs/TB.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/TTD/master/ChangesLogs", __dirname + '/ChangesLogs/TTD.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/VITF/master/ChangesLogs", __dirname + '/ChangesLogs/VITF.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/ChangesLogs", __dirname + '/ChangesLogs/WR.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/ChangesLogs", __dirname + '/ChangesLogs/SFO.txt');
+
+            }
+        }
     }
 
 }
@@ -1442,8 +1508,8 @@ function DownlaodFileUpdate(file_url, targetPath, dossierdujeu) {
             //alert the user to follow the instruction in the txt file
             //close the launcher
             alert("Please follow the commands in the text file opened after you click OK to update the Nytuo Launcher.")
-            shell.openExternal(__dirname+"/Update_Instruction_Linux.txt")
-            shell.openExternal(app.getPath("documents")+"/nytuolauncher_data/")
+            shell.openExternal(__dirname + "/Update_Instruction_Linux.txt")
+            shell.openExternal(app.getPath("documents") + "/nytuolauncher_data/")
             setTimeout(() => {
                 app.exit();
             }, 1000);
@@ -1548,6 +1614,5 @@ function LaunchGame(gameid) {
         launching.loadURL(__dirname + '/Gamelaunch.html?' + gameid)
 
     }
-    win.setProgressBar(-1)
 
 }

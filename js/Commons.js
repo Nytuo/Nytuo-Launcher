@@ -255,7 +255,8 @@ function Toastifycation(message) {
 
 function DetectTheCancel() {
     if (document.getElementById("pgrs").style.display == "block") {
-        return gohome()
+
+        return window.location.reload()
     }
 
 }

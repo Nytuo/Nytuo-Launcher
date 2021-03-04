@@ -44,7 +44,7 @@
             "category": "Utility"
         }
     },
-    "version": "2021.02.06",
+    "version": "2021.03.04",
     "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
     "main": "main.js",
     "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
@@ -52,7 +52,7 @@
         "postinstall": "electron-builder install-app-deps",
         "dist": "electron-builder",
         "gh-publish": "electron-builder --x64 -p always",
-        "builder": "electron-builder --x64",
+        "devBuild": "electron-builder --x64",
         "start": "electron ."
     },
     "author": "Nytuo",
@@ -75,6 +75,7 @@
         "request": "^2.88.2",
         "rimraf": "^3.0.2",
         "shell": "^0.5.0",
+        "shelljs": "^0.8.4",
         "windows-shortcuts": "^0.1.6"
     }
 }

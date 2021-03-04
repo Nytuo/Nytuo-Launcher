@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
 document.getElementById('NEWSTXT').innerHTML = currentLanguage[150]
 document.getElementById('HOMETXT').innerHTML = currentLanguage[151]
-document.getElementById('SETTINGTXT').innerHTML = currentLanguage[5]
+document.getElementById('SETTINGTXT').innerHTML = currentLanguage[174]
 document.getElementById('LOGOUTTXT').innerHTML = currentLanguage[166]
 document.getElementById('WEBTXT').innerHTML = currentLanguage[156]
 try {

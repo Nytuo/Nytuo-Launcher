@@ -1,10 +1,10 @@
 Vous allez jouer à
-Jouer
-Mettre à jour
-Installer
-Jouer en ligne
-Paramètres
-Succès
+<i class="material-icons left">play_arrow</i>Jouer
+<i class="material-icons left">update</i>Mettre à jour
+<i class="material-icons left">get_app</i>Installer
+<i class="material-icons left">public</i>Jouer en ligne
+<i class="material-icons left">settings</i>Paramètres
+<i class="material-icons left">emoji_events</i>Succès
 Réparer
 Ré Installer
 Déinstaller
@@ -27,10 +27,10 @@ Erreur emplacement des jeux, Stockage dans le dossier par défaut (Documents). C
 Erreur emplacement des jeux, Stockage dans le dossier par défaut (avant le dossier du launcher). Cause: fichier d'emplacement inexistant.
 Erreur emplacement des jeux, Stockage dans le dossier par défaut (avant le dossier du launcher). Cause: fichier d'emplacement vide.
 Emplacement du dossier des jeux:
-Extraction...
-Nous sommes en train d'extraire le jeu, cela peut prendre du temps
+Création de la liste des téléchargements...
+Veuillez patienter
 Téléchargement...
-Nous téléchargeons le jeu, veuillez patientez
+Nous téléchargeons les fichiers du jeu, veuillez patienter...
 minutes et
 secondes restantes.
 Erreur lors du vidage du cache!
@@ -89,12 +89,12 @@ Une mise à jour pour ShootFighter Origins est disponible!
 Votre plateforme ne supporte pas le programme beta.
 Vous n'êtes plus dans le programme beta (mais vous conservez les mises à jour déjà installer, faite une mise à jour forcer après un redémarrage pour revenir dans le canal stable).
 Vous êtes dans le programme beta du Nytuo Launcher! (Si une mise à jour beta est disponible, elle sera téléchargé au prochain démarrage du launcher.).
- a passé le test, rien à changer.
- n'a pas passé le test, il va être réinstaller.
+ est à jour.
+ va être mis à jour.
 Vérification...
 Nous vérifions les fichiers du jeu
 Suppression...
-Nous supprimons le jeu...
+Nous supprimons certains (ou la totalité) des fichiers du jeu...
 La version en ligne est la même que la version téléchargeable. Mais les succès ne sont pas disponible.
 Vous allez réparer
 Toutes les données vont être supprimées, faite une sauvegarde manuelle si vous voulez conserver votre progression.
@@ -106,7 +106,7 @@ Vous êtes sur le point de jouer en ligne à
 Oui, réparer!
 Oui, réinstaller!
 Vous êtes sur le point de réinstaller
-Jouer à SansNom Classique
+<i class="material-icons left">play_arrow</i>Jouer à SansNom Classique
 Chargement...
 Lancement de ShootFighter Origins...
 Lancement de Legend Adventure And The Infernal Maze...
@@ -172,3 +172,8 @@ Changer de mot de passe
 Changer de photo de Profile
 Changer de nom d'utilisateur
 Voir le jeu sur le site
+Paramètres
+Vous allez télécharger
+Pour annuler le téléchargement et l'installation cliquer sur "Annuler" et dans les paramètres du jeu cliquer sur déinstaller pour vider les élements déjà installer
+Finalisation de l'installation...
+Veuillez patienter pendant que nous finalisation l'installation...

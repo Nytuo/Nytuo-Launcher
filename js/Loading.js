@@ -58,7 +58,6 @@ const { platform } = require('process');
 const mat = require("materialize-css")
 const { BrowserWindow } = require('electron').remote;
 let win = BrowserWindow.getFocusedWindow();
-win.setProgressBar(2)
 if (portable == true) {
     if (process.platform == "linux") {
         if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == false || fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == "") {
@@ -291,8 +290,6 @@ function connectest() {
 
         }
     }
-
-
 }
 
 function portable_check() {
@@ -542,6 +539,8 @@ function ACH_SAVER() {
         }
     }
 }
+
+
 document.getElementById("MyBartxt").innerHTML = currentLanguage[146]
 
 

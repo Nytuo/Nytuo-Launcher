@@ -17,8 +17,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
 document.getElementById('NEWS').innerHTML = currentLanguage[150]
 document.getElementById('GAMES').innerHTML = currentLanguage[151]
-document.getElementById('STE').innerHTML = currentLanguage[5]
-document.getElementById('SETTINGS').innerHTML = currentLanguage[5]
+document.getElementById('STE').innerHTML = currentLanguage[174]
+document.getElementById('SETTINGS').innerHTML = currentLanguage[174]
 document.getElementById('ABOUTTXT').innerHTML = currentLanguage[152]
 document.getElementById('DEV').innerHTML = currentLanguage[153]
 document.getElementById('ONLFTXT').innerHTML = currentLanguage[154]

@@ -1,10 +1,10 @@
 Tu ve a jugar
-Jugar
-Poner al día
-Instalar en pc
-Jugar en línea
-configuraciones
-Éxito
+<i class="material-icons left">play_arrow</i>Jugar
+<i class="material-icons left">update</i>Poner al día
+<i class="material-icons left">get_app</i>Instalar en pc
+<i class="material-icons left">public</i>Jugar en línea
+<i class="material-icons left">settings</i>configuraciones
+<i class="material-icons left">emoji_events</i>Triunfo
 Reparar
 Reinstalar
 Desinstalar
@@ -19,7 +19,7 @@ Sí, eliminar
 Logros desbloqueados:
 Logros bloqueados:
 Regreso
-Éxito:
+Triunfo:
 No se han desbloqueado logros para este juego
 Todos los logros están desbloqueados para este juego.
 Error de ubicación del juego, almacenamiento en la carpeta predeterminada (documentos). Causa: el archivo de ubicación no existe.
@@ -27,10 +27,10 @@ Error de ubicación del juego, almacenamiento en la carpeta predeterminada (docu
 Error de ubicación del juego, almacenamiento en la carpeta predeterminada (antes de la carpeta de inicio). Causa: el archivo de ubicación no existe.
 Error de ubicación del juego, almacenamiento en la carpeta predeterminada (antes de la carpeta de inicio). Causa: archivo de ubicación vacío.
 Ubicación de la carpeta de juegos:
-Extracción...
-Estamos revisando el juego, puede llevar un tiempo.
+Creación de la lista de descargas...
+Espere por favor
 Descargar ...
-Estamos descargando el juego, espera
+Estamos descargando los archivos del juego, espera
 minutos y
 segundos restantes.
 ¡Error al vaciar la caché!
@@ -89,12 +89,12 @@ Las actualizaciones automáticas están desactivadas en la versión portátil, c
 Su plataforma no es compatible con el programa beta.
 Ya no estás en el programa beta (pero mantienes las actualizaciones ya instaladas, haz una actualización forzada después de un reinicio para volver al canal estable).
 ¡Estás en el programa beta de Nytuo Launcher! (Si hay una actualización beta disponible, se descargará la próxima vez que se inicie el lanzador).
- pasó la prueba, nada que cambiar.
- no pasó la prueba, se reinstalará.
+ esta actualizado.
+ Sera actualizado.
 Verificación...
 Comprobamos los archivos del juego
 Eliminación ...
-Estamos eliminando el juego ...
+Estamos eliminando los archivos del juego ...
 La versión en línea es la misma que la versión de descarga. Pero los logros no están disponibles.
 Tú repararas
 Se eliminarán todos los datos, haga una copia de seguridad manual si desea mantener su progreso.
@@ -106,7 +106,7 @@ Estás a punto de jugar online en
 ¡Sí, reparación!
 ¡Sí, reinstalar!
 Estás a punto de reinstalar
-Juega SansName Classic
+<i class="material-icons left">play_arrow</i>Juega SansName Classic
 Cargando...
 Lanzamiento de ShootFighter Origins ...
 Lanzamiento de Legend Adventure y The Infernal Maze ...
@@ -172,3 +172,8 @@ Cambia la contraseña
 cambiar foto de perfil
 cambie el nombre de usuario
 Ver el juego en el sitio web
+Configuraciones
+Te descargaras
+Para cancelar la descarga y la instalación haga clic en "Cancelar" y en los parámetros del juego haga clic en desinstalar para vaciar los elementos ya instalados.
+Finalizacion de la instalación
+Espere mientras finalizamos la instalación ...

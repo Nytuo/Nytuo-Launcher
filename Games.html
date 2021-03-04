@@ -95,36 +95,36 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 <div class="animate__animated animate__slideInRight">
 
     <body class="sidebarpad">
-        <!--Detection de la version et remplacement du text de version en conséquence-->
-        <iframe id="DETECTION" src="javascript:void(0)" style="display: none;"></iframe>
-        <!--Placement du titre du jeu, du text version et de l'affiche-->
-        <div style="text-align: center">
-            <img id="LOGOCARD" src="" style="z-index: 1;">
-            <h2 id="NAME">Game Name</h2>
-            <h1 id="versiontxt"> Game Version </h1>
+    <!--Detection de la version et remplacement du text de version en conséquence-->
+    <iframe id="DETECTION" src="javascript:void(0)" style="display: none;"></iframe>
+    <!--Placement du titre du jeu, du text version et de l'affiche-->
+    <div style="text-align: center">
+        <img id="LOGOCARD" src="" style="z-index: 1;">
+        <h2 id="NAME">Game Name</h2>
+        <h1 id="versiontxt"> Game Version </h1>
+    </div>
+
+    <!--Buttons-->
+    <div style="text-align: center;">
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal8" style="background-color:dodgerblue;margin-top: 10px;" id="button1"><i class="material-icons left">play_arrow</i>PLAY</a>
+        <div id="ONLINEPLAY">
+
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal4" style="background-color:#1e90ff;margin-top: 10px;" id="ONLINEPLAYTXT"><i class="material-icons left">public</i>Play Online</a>
         </div>
+        <div id="SNCLASSIC">
 
-        <!--Buttons-->
-        <div style="text-align: center;">
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal8" style="background-color:dodgerblue;margin-top: 10px;" id="button1">PLAY</a>
-            <div id="ONLINEPLAY">
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal5" style="background-color:dodgerblue;margin-top: 10px;" id="SNCTXT"><i class="material-icons left">play_arrow</i>Play SansNom Classic</a>
+        </div>
+        <div id="button2">
 
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal4" style="background-color:#1e90ff;margin-top: 10px;" id="ONLINEPLAYTXT">Play Online</a>
-            </div>
-            <div id="SNCLASSIC">
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal6" style="background-color:dodgerblue;margin-top: 10px;" id="ACHIEVEMENTSTXT"><i class="material-icons left">emoji_event</i>Achievements</a>
+        </div>
+        <div id="button3">
 
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal5" style="background-color:dodgerblue;margin-top: 10px;" id="SNCTXT">Play SansNom Classic</a>
-            </div>
-            <div id="button2">
+            <!-- Dropdown Trigger -->
+            <a class='modal-trigger btn' href='#param' style="background-color:dodgerblue;margin-top: 10px;" id="SETTINGSTXT"><i class="material-icons left">settings</i>Settings</a>
 
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal6" style="background-color:dodgerblue;margin-top: 10px;" id="ACHIEVEMENTSTXT">Achievements</a>
-            </div>
-            <div id="button3">
-
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-trigger btn' href='#' data-target='dropdown1' style="background-color:dodgerblue;margin-top: 10px;" id="SETTINGSTXT">Settings</a>
-
-                <!-- Dropdown Structure -->
+            <!-- Dropdown Structure
                 <ul id='dropdown1' class='dropdown-content'>
                     <li><a class="modal-trigger" href="#modal3" id="REPAIRTXT">Repair</a></li>
                     <li><a class="modal-trigger" href="#modal2" id="REINSTALLTXT">Re-install</a></li>
@@ -140,9 +140,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
                 </ul>
                 <script type="text/JavaScript">
                     document.addEventListener('DOMContentLoaded', function() { var elems = document.querySelectorAll('.dropdown-trigger'); var instances = M.Dropdown.init(elems, options); });
-                </script>
-            </div>
+                </script>-->
         </div>
+    </div>
+        <div style="text-align: center;">
+            <a href="#modalChangesLog" class="waves-effect waves-light btn modal-trigger" style="margin-top:10px;background-color:dodgerblue"><i class="material-icons left">description</i>ChangesLogs</a>
+
+        </div>
+
 </div>
 <!--Confirmation de déinstallation-->
 
@@ -157,7 +162,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <div class="modal-footer" style="background-color: #222222;">
         <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT">Cancel</a>
         <a onclick="DELETE_DETECT();" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="AGREETXT">Yes,
-                Delete that shit</a>
+            Delete that shit</a>
 
     </div>
 </div>
@@ -182,9 +187,28 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     </div>
     <div class="modal-footer" style="background-color: #222222;">
         <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT2">Cancel</a>
-        <a onclick="REINSTALL_DETECT();" class="modal-close waves-effect waves-green btn-flat modal-trigger" style="color:white" href="#modal8" id="AGREEREI">Yes, reinstall it!</a>
+        <a onclick="REINSTALL_DETECT([],[],false);" class="modal-close waves-effect waves-green btn-flat modal-trigger" style="color:white" href="#modal8" id="AGREEREI">Yes, reinstall it!</a>
     </div>
 </div>
+
+<!--ChangesLogs-->
+<div id="modalChangesLog" class="modal bottom-sheet">
+    <div class="modal-content">
+        <div style="text-align: right;">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="color:white;">Back</a>
+
+        </div>
+        <h4 id="ChangelogTXT">ChangesLogs: </h4>
+        <p id="changes"></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="color:white">Back</a>
+    </div>
+</div>
+
+
+
+
 
 <!--Confirmation de réparation-->
 
@@ -198,9 +222,45 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <div class="modal-footer" style="background-color: #222222;">
         <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT3">Cancel</a>
         <a onclick="REPAIR_DETECT();" class="modal-close waves-effect waves-green btn-flat modal-trigger" style="color:white" href="#modal8" id="AGREEREPAIR">Yes,
-                repair it!</a>
+            repair it!</a>
     </div>
 </div>
+
+
+
+<!--Parametres-->
+
+<div id="param" class="modal" style="background-color: #222222;">
+    <div class="modal-content">
+        <h4 id="paramTXT">Parameters: </h4>
+        <div style="text-align:center">
+            <a href="#modal3" id="REPAIRTXT" style="color:white" class="modal-close modal-trigger waves-effect waves-green btn-flat">Repair</a>
+            <br/>
+            <a href="#modal2" id="REINSTALLTXT" style="color:white" class="modal-close modal-trigger waves-effect waves-green btn-flat">Re-install</a>
+            <br/>
+            <a href="#modal1" id="UNINSTALLTXT" style="color:white" class="modal-close modal-trigger waves-effect waves-green btn-flat">Uninstall</a>
+            <br/>
+            <a onclick="OPEN_GAMELOC_DETECT()" id="OGLTXT" style="color:white" class="modal-close waves-effect waves-green btn-flat">Open Game location</a>
+            <br/>
+            <div id="SAVES">
+                <a onclick="OPEN_GAMESAVE()" href="javascript:void(0)" id="SVTXT" style="color:white" class="modal-close waves-effect waves-green btn-flat">Saved Games</a>
+            </div>
+            <div id="shortcuts">
+                <a onclick="SHORTCUT_DETECT()" href="javascript:void(0)" id="SHORTTXT" style="color:white" class="modal-close waves-effect waves-green btn-flat">Shortcut</a>
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color: #222222;">
+
+            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT3">Cancel</a>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
 <!--Confirmation de Online play-->
 
 
@@ -215,7 +275,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <div class="modal-footer" style="background-color: #222222;">
         <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT4">Cancel</a>
         <a onclick="ONLINE_LINK_DETECT();" class="modal-close waves-effect waves-green btn-flat" style="color:white" id="AGREEPO">Yes,
-                play it!</a>
+            play it!</a>
     </div>
 </div>
 
@@ -230,7 +290,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <div class="modal-footer" style="background-color: #222222;">
         <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT5">Cancel</a>
         <a onclick="RunWithoutInstall('http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414');" class="modal-close waves-effect waves-green btn-flat" style="color:white" id="AGREEPO2">Yes,
-                play it!</a>
+            play it!</a>
     </div>
 </div>
 
@@ -267,16 +327,29 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 <div id="modal8" class="modal" style="background-color: #222222;">
     <div class="modal-content">
         <h4 id="DLTEXT">Confirmation: </h4>
-        <p id="resultofcalculsize">Wait a moment ...</p>
+
+
+
+
+        <p id="resultofcalculsize"></p>
+        <div id="pgrs2" class="progress" style="display: none; ">
+            <div class="determinate" id="myBar2"></div>
+        </div>
+        <p id="actualDL"></p>
+
         <div id="pgrs" class="progress" style="display: none; ">
             <div class="indeterminate" id="myBar"></div>
         </div>
+
+
+
         <p id="MyBartxt"></p>
+        <p id="AbortTuto">For cancel the download and installation, click 'Cancel' and uninstall the game by clicking 'Uninstall' under the parameter form.</p>
     </div>
     <div class="modal-footer" style="background-color: #222222;">
         <a id="downloadbtn2" onclick="DetectTheCancel()" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
         <a id="downloadbtn" onclick="WHATTODO_DETECT()" class="waves-effect waves-green btn-flat" style="color:white">Yes,
-                do it!</a>
+            do it!</a>
     </div>
 </div>
 

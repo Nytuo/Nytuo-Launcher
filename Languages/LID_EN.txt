@@ -1,10 +1,10 @@
 You are going to play at
-Play
-Update
-Install
-Play online
-Settings
-Achievements
+<i class="material-icons left">play_arrow</i>Play
+<i class="material-icons left">update</i>Update
+<i class="material-icons left">get_app</i>Install
+<i class="material-icons left">public</i>Play online
+<i class="material-icons left">settings</i>Settings
+<i class="material-icons left">emoji_events</i>Achievements
 Repair
 ReInstall
 Uninstall
@@ -27,10 +27,10 @@ Error game location, default folder will be used (Documents). File is empty.
 Error game location, default folder will be used (before the launcher folder). File doens't exist.
 Error game location, default folder will be used (before the launcher folder). File is empty.
 Location of the game folder:
-Extraction...
-We are extracting the game, this can take several minutes
+Creating the list of files to download...
+Please be patient...
 Downloading...
-We are downloading the game, please wait...
+We are downloading the game files, please wait...
 minutes and 
 seconds remaining.
 Error when wipe the cash
@@ -89,12 +89,12 @@ Update available for shootFighter Origins!
 Your platform do not support beta program.
 You are no more on the beta program for the Nytuo Launcher (But you keep the update until the next release)
 You are on the Beta Program of the Nytuo Launcher (If a beta update is available, you will download it the next time you launch the Launcher)
- pass the test, nothing to change!
- do not pass the test, it will be redownloaded!
+ is update!
+ going to be updated!
 Checking...
 We are checking the game files
 Deleting...
-We are deleting the game...
+We are deleting the game files (partially or totally)...
 The online version is the same as the downloadable one but the achievements will not be saved.
 You are going to Repair
 All the data will be deleted, manual save recommended.
@@ -106,7 +106,7 @@ You are going to play online at
 Yes, repair!
 Yes, Reinstall!
 You are going to reisntall 
-Play at SansNom classic
+<i class="material-icons left">play_arrow</i>Play at SansNom classic
 Loading...
 launching ShootFighter Origins...
 launching Legend Adventure And The Infernal Maze...
@@ -172,3 +172,8 @@ Change password
 Change Profile Picture
 Change Username
 View game on the website
+Settings
+You are going to download
+For cancel the operation, click on "abort" and the game's parameters click on uninstall for wipe all download artifacts.
+Finalizing the installation...
+Please wait until we finalizing the installation process...
