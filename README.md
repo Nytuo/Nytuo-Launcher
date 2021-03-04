@@ -1,4 +1,6 @@
-# Nytuo-Launcher
+# Nytuo-Launcher 
+
+[![Build/release](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/build.yml/badge.svg)](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/build.yml)
 
 ## Introduction
  
