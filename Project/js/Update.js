@@ -1226,10 +1226,10 @@ function DLVersions() {
                 DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/Linux/VersionWR.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/WR_Version.txt');
                 DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/Linux/SFO_Version.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/SFO_Version.txt');
 
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherUpdateType.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJxjY60QkNyIaREMlg?e=jn3ykh", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt');
-                DownlaodVersion('https://1drv.ws/t/s!AkkqGntQc7Y5hqcLm1H1sr4O3eXsfw?e=vR0qax', parentfolder3 + '/nytuolauncher_data/VersionsFiles/b_Beta.txt')
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/Version.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/UpdateType.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherUpdateType.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/BetaVersion.txt", parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt');
+                DownlaodVersion('https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/BetaAvailable.txt', parentfolder3 + '/nytuolauncher_data/VersionsFiles/b_Beta.txt')
                 if (fs.readFileSync(parentfolder3 + '/nytuolauncher_data/VersionsFiles/LauncherUpdateType.txt') === "1") {
                     document.getElementById("MyBartxt").innerHTML = currentLanguage[69]
                 }
@@ -1248,10 +1248,10 @@ function DLVersions() {
                 DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/Windows/VersionWR.txt", __dirname + '/VersionsFiles/WR_Version.txt');
                 DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/Windows/SFO_Version.txt", __dirname + '/VersionsFiles/SFO_Version.txt');
 
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99", __dirname + '/VersionsFiles/LauncherVersion.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu", __dirname + '/VersionsFiles/LauncherUpdateType.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJxjY60QkNyIaREMlg?e=jn3ykh", __dirname + '/VersionsFiles/LauncherBetaVersion.txt');
-                DownlaodVersion('https://1drv.ws/t/s!AkkqGntQc7Y5hqcLm1H1sr4O3eXsfw?e=vR0qax', __dirname + '/VersionsFiles/b_Beta.txt')
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/Version.txt", __dirname + '/VersionsFiles/LauncherVersion.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/UpdateType.txt", __dirname + '/VersionsFiles/LauncherUpdateType.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/BetaVersion.txt", __dirname + '/VersionsFiles/LauncherBetaVersion.txt');
+                DownlaodVersion('https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/BetaAvailable.txt', __dirname + '/VersionsFiles/b_Beta.txt')
                 if (fs.readFileSync(__dirname + '/VersionsFiles/LauncherUpdateType.txt') === "1") {
                     document.getElementById("MyBartxt").innerHTML = currentLanguage[69]
                 }
@@ -1271,10 +1271,10 @@ function DLVersions() {
                 DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/Linux/VersionWR.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/WR_Version.txt');
                 DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/Linux/SFO_Version.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/SFO_Version.txt');
 
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherUpdateType.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJxjY60QkNyIaREMlg?e=jn3ykh", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt');
-                DownlaodVersion('https://1drv.ws/t/s!AkkqGntQc7Y5hqcLm1H1sr4O3eXsfw?e=vR0qax', app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/b_Beta.txt')
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/Version.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherVersion.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/UpdateType.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherUpdateType.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/BetaVersion.txt", app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt');
+                DownlaodVersion('https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/BetaAvailable.txt', app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/b_Beta.txt')
                 if (fs.readFileSync(app.getPath("documents") + '/nytuolauncher_data/VersionsFiles/LauncherUpdateType.txt') === "1") {
                     document.getElementById("MyBartxt").innerHTML = currentLanguage[69]
                 }
@@ -1291,10 +1291,10 @@ function DLVersions() {
                 DownlaodVersion("https://raw.githubusercontent.com/Nytuo/VITF/master/Windows/VersionVITF.txt", __dirname + '/VersionsFiles/VITF_Version.txt');
                 DownlaodVersion("https://raw.githubusercontent.com/Nytuo/WR/master/Windows/VersionWR.txt", __dirname + '/VersionsFiles/WR_Version.txt');
                 DownlaodVersion("https://raw.githubusercontent.com/Nytuo/SFO/master/Windows/SFO_Version.txt", __dirname + '/VersionsFiles/SFO_Version.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5g_IImCSAtlZSG31pPg?e=92fd99", __dirname + '/VersionsFiles/LauncherVersion.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJp0was2tokc6t75-w?e=jrD2Nu", __dirname + '/VersionsFiles/LauncherUpdateType.txt');
-                DownlaodVersion("https://1drv.ws/t/s!AkkqGntQc7Y5hJxjY60QkNyIaREMlg?e=jn3ykh", __dirname + '/VersionsFiles/LauncherBetaVersion.txt');
-                DownlaodVersion('https://1drv.ws/t/s!AkkqGntQc7Y5hqcLm1H1sr4O3eXsfw?e=vR0qax', __dirname + '/VersionsFiles/b_Beta.txt')
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/Version.txt", __dirname + '/VersionsFiles/LauncherVersion.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/UpdateType.txt", __dirname + '/VersionsFiles/LauncherUpdateType.txt');
+                DownlaodVersion("https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/BetaVersion.txt", __dirname + '/VersionsFiles/LauncherBetaVersion.txt');
+                DownlaodVersion('https://raw.githubusercontent.com/Nytuo/Nytuo-Launcher/master/BetaAvailable.txt', __dirname + '/VersionsFiles/b_Beta.txt')
                 if (fs.readFileSync(__dirname + '/VersionsFiles/LauncherUpdateType.txt') === "1") {
                     document.getElementById("MyBartxt").innerHTML = currentLanguage[69]
                 }
