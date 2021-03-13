@@ -15,20 +15,20 @@ GNU General Public License for more details.
     You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
-document.getElementById('NEWS').innerHTML = currentLanguage[150]
-document.getElementById('GAMES').innerHTML = currentLanguage[151]
-document.getElementById('STE').innerHTML = currentLanguage[174]
-document.getElementById('SETTINGS').innerHTML = currentLanguage[174]
-document.getElementById('ABOUTTXT').innerHTML = currentLanguage[152]
-document.getElementById('DEV').innerHTML = currentLanguage[153]
-document.getElementById('ONLFTXT').innerHTML = currentLanguage[154]
-document.getElementById('UAGTXT').innerHTML = currentLanguage[155]
-document.getElementById('OWTXT').innerHTML = currentLanguage[156]
-document.getElementById('FUTXT').innerHTML = currentLanguage[157]
-document.getElementById('CGFTXT').innerHTML = currentLanguage[158]
-document.getElementById('BTTXT').innerHTML = currentLanguage[159]
-document.getElementById('GHTXT').innerHTML = currentLanguage[160]
-document.getElementById('JTDTXT').innerHTML = currentLanguage[161]
-document.getElementById('RESETTXT').innerHTML = currentLanguage[162]
-document.getElementById('LANGTXT').innerHTML = currentLanguage[163]
-document.getElementById('LogOutTXT').innerHTML = currentLanguage[166]
+document.getElementById("NEWS").innerHTML = currentLanguage[150];
+document.getElementById("GAMES").innerHTML = currentLanguage[151];
+document.getElementById("STE").innerHTML = currentLanguage[174];
+document.getElementById("SETTINGS").innerHTML = currentLanguage[174];
+document.getElementById("ABOUTTXT").innerHTML = currentLanguage[152];
+document.getElementById("DEV").innerHTML = currentLanguage[153];
+document.getElementById("ONLFTXT").innerHTML = currentLanguage[154];
+document.getElementById("UAGTXT").innerHTML = currentLanguage[155];
+document.getElementById("OWTXT").innerHTML = currentLanguage[156];
+document.getElementById("FUTXT").innerHTML = currentLanguage[157];
+document.getElementById("CGFTXT").innerHTML = currentLanguage[158];
+document.getElementById("BTTXT").innerHTML = currentLanguage[159];
+document.getElementById("GHTXT").innerHTML = currentLanguage[160];
+document.getElementById("JTDTXT").innerHTML = currentLanguage[161];
+document.getElementById("RESETTXT").innerHTML = currentLanguage[162];
+document.getElementById("LANGTXT").innerHTML = currentLanguage[163];
+document.getElementById("LogOutTXT").innerHTML = currentLanguage[166];

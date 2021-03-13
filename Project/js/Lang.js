@@ -15,140 +15,184 @@ GNU General Public License for more details.
     You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
-var fs = require('fs');
-var dirnamew = __dirname.replace(/\\/g, "/")
+var fs = require("fs");
+var dirnamew = __dirname.replace(/\\/g, "/");
 
-if (window.location.href == 'file:///' + dirnamew + '/SelectLang.html?reload') {
-    window.location.href = 'SelectLang.html';
+if (window.location.href == "file:///" + dirnamew + "/SelectLang.html?reload") {
+  window.location.href = "SelectLang.html";
 }
 
-
 function Lang_continu() {
-    const result = document.querySelectorAll('input[name="group1"]')
-    let selected
-    for (const res of result) {
-        if (res.checked) {
-            selected = res.value
-        }
-
+  const result = document.querySelectorAll('input[name="group1"]');
+  let selected;
+  for (const res of result) {
+    if (res.checked) {
+      selected = res.value;
     }
-    if (portable == true) {
-        if (process.platform === 'linux') {
-            console.log(selected);
-            if (selected == "FR") {
-                console.log("Set FR")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "FR", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else if (selected == "EN") {
-                console.log("Set EN")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "EN", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else if (selected == "ES") {
-                console.log("Set ES")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "ES", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else {
-                console.log("Set EN")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "EN", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            }
-            window.location.href = "Loading.html"
-        } else {
-            console.log(selected);
-            if (selected == "FR") {
-                console.log("Set FR")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "FR", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else if (selected == "EN") {
-                console.log("Set EN")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "EN", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else if (selected == "ES") {
-                console.log("Set ES")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "ES", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else {
-                console.log("Set EN")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "EN", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            }
-            window.location.href = "Loading.html"
-        }
+  }
+  if (portable == true) {
+    if (process.platform === "linux") {
+      console.log(selected);
+      if (selected == "FR") {
+        console.log("Set FR");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "FR",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else if (selected == "EN") {
+        console.log("Set EN");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "EN",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else if (selected == "ES") {
+        console.log("Set ES");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "ES",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else {
+        console.log("Set EN");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "EN",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      }
+      window.location.href = "Loading.html";
     } else {
-        if (process.platform === 'linux') {
-            console.log(selected);
-            if (selected == "FR") {
-                console.log("Set FR")
-                fs.writeFile(app.getPath("documents") + "/nytuolauncher_data/LID.txt", "FR", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else if (selected == "EN") {
-                console.log("Set EN")
-                fs.writeFile(app.getPath("documents") + "/nytuolauncher_data/LID.txt", "EN", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else if (selected == "ES") {
-                console.log("Set ES")
-                fs.writeFile(app.getPath("documents") + "/nytuolauncher_data/LID.txt", "ES", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else {
-                console.log("Set EN")
-                fs.writeFile(app.getPath("documents") + "/nytuolauncher_data/LID.txt", "EN", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            }
-            window.location.href = "Loading.html"
-        } else {
-            console.log(selected);
-            if (selected == "FR") {
-                console.log("Set FR")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "FR", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else if (selected == "EN") {
-                console.log("Set EN")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "EN", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else if (selected == "ES") {
-                console.log("Set ES")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "ES", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            } else {
-                console.log("Set EN")
-                fs.writeFile(parentfolder3 + "/nytuolauncher_data/LID.txt", "EN", function(err, result) {
-                    if (err) console.log(err)
-                })
-
-            }
-            window.location.href = "Loading.html"
-        }
+      console.log(selected);
+      if (selected == "FR") {
+        console.log("Set FR");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "FR",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else if (selected == "EN") {
+        console.log("Set EN");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "EN",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else if (selected == "ES") {
+        console.log("Set ES");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "ES",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else {
+        console.log("Set EN");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "EN",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      }
+      window.location.href = "Loading.html";
     }
-
-
+  } else {
+    if (process.platform === "linux") {
+      console.log(selected);
+      if (selected == "FR") {
+        console.log("Set FR");
+        fs.writeFile(
+          app.getPath("documents") + "/nytuolauncher_data/LID.txt",
+          "FR",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else if (selected == "EN") {
+        console.log("Set EN");
+        fs.writeFile(
+          app.getPath("documents") + "/nytuolauncher_data/LID.txt",
+          "EN",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else if (selected == "ES") {
+        console.log("Set ES");
+        fs.writeFile(
+          app.getPath("documents") + "/nytuolauncher_data/LID.txt",
+          "ES",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else {
+        console.log("Set EN");
+        fs.writeFile(
+          app.getPath("documents") + "/nytuolauncher_data/LID.txt",
+          "EN",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      }
+      window.location.href = "Loading.html";
+    } else {
+      console.log(selected);
+      if (selected == "FR") {
+        console.log("Set FR");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "FR",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else if (selected == "EN") {
+        console.log("Set EN");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "EN",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else if (selected == "ES") {
+        console.log("Set ES");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "ES",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      } else {
+        console.log("Set EN");
+        fs.writeFile(
+          parentfolder3 + "/nytuolauncher_data/LID.txt",
+          "EN",
+          function (err, result) {
+            if (err) console.log(err);
+          }
+        );
+      }
+      window.location.href = "Loading.html";
+    }
+  }
 }

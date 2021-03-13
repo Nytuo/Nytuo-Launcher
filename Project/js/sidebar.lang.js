@@ -15,15 +15,13 @@ GNU General Public License for more details.
     You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
-document.getElementById('NEWSTXT').innerHTML = currentLanguage[150]
-document.getElementById('HOMETXT').innerHTML = currentLanguage[151]
-document.getElementById('SETTINGTXT').innerHTML = currentLanguage[174]
-document.getElementById('LOGOUTTXT').innerHTML = currentLanguage[166]
-document.getElementById('WEBTXT').innerHTML = currentLanguage[156]
+document.getElementById("NEWSTXT").innerHTML = currentLanguage[150];
+document.getElementById("HOMETXT").innerHTML = currentLanguage[151];
+document.getElementById("SETTINGTXT").innerHTML = currentLanguage[174];
+document.getElementById("LOGOUTTXT").innerHTML = currentLanguage[166];
+document.getElementById("WEBTXT").innerHTML = currentLanguage[156];
 try {
-    document.getElementById('WEBGTXT').innerHTML = currentLanguage[173]
-
-}catch(e){
-    console.log("Not loaded:",e)
+  document.getElementById("WEBGTXT").innerHTML = currentLanguage[173];
+} catch (e) {
+  console.log("Not loaded:", e);
 }
-
