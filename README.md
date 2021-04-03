@@ -66,7 +66,7 @@ snap install <nytuo_launcher_file> --dangerous --classic
 
 If you encounter a problem please tell me in the issues section of GitHub.
 I publish new updates frequently like for example bugs correction, new features and new look.
-Please refers to https://nytuo.yo.fr/aide.html for informations, guides and more.
+Please refers to https://www.nytuo.yo.fr/help for informations, guides and more.
 
 ## Note
 
