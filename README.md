@@ -1,6 +1,8 @@
 # Nytuo-Launcher
 
 [![Build/release](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/build.yml/badge.svg)](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/build.yml)
+[![Prettier](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/prettier.yml/badge.svg)](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/prettier.yml)
+[![CodeQL](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/codeql-analysis.yml)
 
 ## Introduction
 
