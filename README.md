@@ -68,6 +68,10 @@ If you encounter a problem please tell me in the issues section of GitHub.
 I publish new updates frequently like for example bugs correction, new features and new look.
 Please refers to https://www.nytuo.yo.fr/help for informations, guides and more.
 
+## Got an idea of something could be added or enhanced ?
+
+If you have an idea of something I could add to my launcher, well tell me by opening an issues and I will think about add it to the Launcher.
+
 ## Note
 
 I upload the code after the release of the Launcher so, the source code in the "release" section is not the correct code for the version.You can view the changes in the commit section.
