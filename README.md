@@ -67,7 +67,7 @@ snap install <nytuo_launcher_file> --dangerous --classic
 
 For windows, a Batch file (CMD) will appears and clean all cookies and StoredCache/data automatically after the NytuoLauncher is closed.
 
-###Linux
+### Linux
 
 For Linux, it is a little more complicated, in fact you will be prompted to open a terminal and type the 2 following commands in the right order after the Launcher close off:
 
