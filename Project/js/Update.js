@@ -1506,8 +1506,7 @@ function ConnectionForm() {
       LID = fs
         .readFileSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
         .toString();
-        win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+      win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
     }
   } else {
     //launch basic window
@@ -1529,7 +1528,7 @@ function ConnectionForm() {
           webSecurity: true,
           nodeIntegration: false,
           enableRemoteModule: false,
-          nativeWindowOpen: true
+          nativeWindowOpen: true,
         },
       });
       fs.writeFileSync(
@@ -1579,8 +1578,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1599,8 +1597,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1619,8 +1616,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1639,8 +1635,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1659,8 +1654,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1679,8 +1673,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1699,8 +1692,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1719,8 +1711,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1739,8 +1730,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1759,8 +1749,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1779,8 +1768,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else if (
           window.location.href ==
@@ -1799,8 +1787,7 @@ function ConnectionForm() {
             LID = fs
               .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
               .toString();
-              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
-
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
           }
         } else {
           document.getElementById("MyBartxt").innerHTML = currentLanguage[126];

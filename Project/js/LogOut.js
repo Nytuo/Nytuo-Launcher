@@ -16,15 +16,17 @@ GNU General Public License for more details.
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
 function LogOut() {
-  
-
   if (process.platform == "linux" || process.platform == "darwin") {
-    alert("In order to complete the logout, please open a terminal and type the 2 following commands (press OK for see the next command):");
-    alert("cd ~/snap/nytuo-launcher/x1/.config\n(press OK for see the next command)")
-    alert("rm -rf Nytuo-Launcher\n(press OK for see the next command)")
-  setTimeout(() => {
-    app.exit();
-  }, 1000);
+    alert(
+      "In order to complete the logout, please open a terminal and type the 2 following commands (press OK for see the next command):"
+    );
+    alert(
+      "cd ~/snap/nytuo-launcher/x1/.config\n(press OK for see the next command)"
+    );
+    alert("rm -rf Nytuo-Launcher\n(press OK for see the next command)");
+    setTimeout(() => {
+      app.exit();
+    }, 1000);
     /*const remote = require("electron").remote;
       const BrowserWindow = remote.BrowserWindow;
       const path = require("path");
@@ -56,9 +58,9 @@ function LogOut() {
     /*win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?out");*/
   } else {
     shell.openPath(__dirname + "/batch_sh_files/deleteCookies.bat");
-  setTimeout(() => {
-    app.exit();
-  }, 1000);
+    setTimeout(() => {
+      app.exit();
+    }, 1000);
     /*const remote = require("electron").remote;
       const BrowserWindow = remote.BrowserWindow;
       const path = require("path");

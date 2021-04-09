@@ -260,7 +260,9 @@ if (portable == true) {
     if (fs.existsSync(parentfolder3 + "/nytuolauncher_data") === false) {
       fs.mkdirSync(parentfolder3 + "/nytuolauncher_data");
     }
-    if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/ChangesLogs") === false){
+    if (
+      fs.existsSync(parentfolder3 + "/nytuolauncher_data/ChangesLogs") === false
+    ) {
       fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/ChangesLogs");
     }
     if (
@@ -289,8 +291,14 @@ if (portable == true) {
     ) {
       fs.mkdirSync(app.getPath("documents") + "/nytuolauncher_data");
     }
-    if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/ChangesLogs") === false){
-      fs.mkdirSync(app.getPath("documents") + "/nytuolauncher_data/ChangesLogs");
+    if (
+      fs.existsSync(
+        app.getPath("documents") + "/nytuolauncher_data/ChangesLogs"
+      ) === false
+    ) {
+      fs.mkdirSync(
+        app.getPath("documents") + "/nytuolauncher_data/ChangesLogs"
+      );
     }
     if (
       fs.existsSync(
@@ -403,13 +411,23 @@ if (portable == true) {
 }
 
 //create file for loginSystem
-if (process.platform == "linux"){
-  if (!fs.existsSync(app.getPath("documents")+ "/nytuolauncher_data/LoginSecu.txt")){
-    fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/LoginSecu.txt","false")
+if (process.platform == "linux") {
+  if (
+    !fs.existsSync(
+      app.getPath("documents") + "/nytuolauncher_data/LoginSecu.txt"
+    )
+  ) {
+    fs.writeFileSync(
+      app.getPath("documents") + "/nytuolauncher_data/LoginSecu.txt",
+      "false"
+    );
   }
-}else{
-  if (!fs.existsSync(parentfolder3+ "/nytuolauncher_data/LoginSecu.txt")){
-    fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt","false")
+} else {
+  if (!fs.existsSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt")) {
+    fs.writeFileSync(
+      parentfolder3 + "/nytuolauncher_data/LoginSecu.txt",
+      "false"
+    );
   }
 }
 //create the main window
@@ -659,4 +677,5 @@ app.on("before-quit", () => {
   ACH_SAVER();
   ipcRenderer.removeAllListeners("close");
 });
-app.userAgentFallback = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:70.0) Gecko/20100101 Firefox/70.0"
+app.userAgentFallback =
+  "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:70.0) Gecko/20100101 Firefox/70.0";
