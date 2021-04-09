@@ -61,6 +61,7 @@ For Linux the update is downloaded automatically but you have to run some comman
 snap remove nytuo-launcher
 snap install <nytuo_launcher_file> --dangerous --classic
 ```
+
 ## LogOut
 
 ### Windows
@@ -75,6 +76,7 @@ For Linux, it is a little more complicated, in fact you will be prompted to open
 cd ~/snap/nytuo-launcher/x1/.config
 rm -rf Nytuo-Launcher
 ```
+
 With that done, normally the cookies, storageCache/Data will be cleaned. Note that if you uninstall the Nytuo-Launcher of your system, cookies are automatically deleted.
 
 ## Problems, issues, feedback, help, guides, more
