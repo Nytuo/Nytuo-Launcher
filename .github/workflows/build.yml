@@ -26,6 +26,7 @@ jobs:
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
           package_root: "Project/"
+          args: "--x64 -p always"
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
