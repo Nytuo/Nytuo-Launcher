@@ -260,10 +260,13 @@ if (portable == true) {
     if (fs.existsSync(parentfolder3 + "/nytuolauncher_data") === false) {
       fs.mkdirSync(parentfolder3 + "/nytuolauncher_data");
     }
+    if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/ChangesLogs") === false){
+      fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/ChangesLogs");
+    }
     if (
-      fs.existsSync(parentfolder3 + "/nytuolauncher_data/CurrentUser") === false
+      fs.existsSync(parentfolder3 + "/nytuolauncher_data/currentUser") === false
     ) {
-      fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/CurrentUser");
+      fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/currentUser");
     }
   }
   //windows folder creation
@@ -272,9 +275,9 @@ if (portable == true) {
       fs.mkdirSync(parentfolder3 + "/nytuolauncher_data");
     }
     if (
-      fs.existsSync(parentfolder3 + "/nytuolauncher_data/CurrentUser") === false
+      fs.existsSync(parentfolder3 + "/nytuolauncher_data/currentUser") === false
     ) {
-      fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/CurrentUser");
+      fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/currentUser");
     }
   }
 } else {
@@ -286,13 +289,16 @@ if (portable == true) {
     ) {
       fs.mkdirSync(app.getPath("documents") + "/nytuolauncher_data");
     }
+    if (fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/ChangesLogs") === false){
+      fs.mkdirSync(app.getPath("documents") + "/nytuolauncher_data/ChangesLogs");
+    }
     if (
       fs.existsSync(
-        app.getPath("documents") + "/nytuolauncher_data/CurrentUser"
+        app.getPath("documents") + "/nytuolauncher_data/currentUser"
       ) === false
     ) {
       fs.mkdirSync(
-        app.getPath("documents") + "/nytuolauncher_data/CurrentUser"
+        app.getPath("documents") + "/nytuolauncher_data/currentUser"
       );
     }
   }
@@ -302,9 +308,9 @@ if (portable == true) {
       fs.mkdirSync(parentfolder3 + "/nytuolauncher_data");
     }
     if (
-      fs.existsSync(parentfolder3 + "/nytuolauncher_data/CurrentUser") === false
+      fs.existsSync(parentfolder3 + "/nytuolauncher_data/currentUser") === false
     ) {
-      fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/CurrentUser");
+      fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/currentUser");
     }
   }
 }
@@ -396,8 +402,16 @@ if (portable == true) {
   }
 }
 
-//detect internet conenction
-
+//create file for loginSystem
+if (process.platform == "linux"){
+  if (!fs.existsSync(app.getPath("documents")+ "/nytuolauncher_data/LoginSecu.txt")){
+    fs.writeFileSync(app.getPath("documents") + "/nytuolauncher_data/LoginSecu.txt","false")
+  }
+}else{
+  if (!fs.existsSync(parentfolder3+ "/nytuolauncher_data/LoginSecu.txt")){
+    fs.writeFileSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt","false")
+  }
+}
 //create the main window
 function createWindow() {
   if (process.platform == "linux" || process.platform == "darwin") {
@@ -510,7 +524,6 @@ app.on("ready", createWindow, function () {
 app.on("before-quit", () => {
   if (portable == true) {
     if (process.platform == "linux") {
-      fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt");
       var GamesIDs = [
         "SFO",
         "LAATIM",
@@ -529,21 +542,20 @@ app.on("before-quit", () => {
         if (
           fs.existsSync(
             parentfolder3 +
-              "/nytuolauncher_data/CurrentUser/" +
+              "/nytuolauncher_data/currentUser/" +
               GamesIDs[i] +
               ".txt"
           )
         ) {
           fs.unlinkSync(
             parentfolder3 +
-              "/nytuolauncher_data/CurrentUser/" +
+              "/nytuolauncher_data/currentUser/" +
               GamesIDs[i] +
               ".txt"
           );
         }
       }
     } else if (process.platform == "win32") {
-      fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt");
       var GamesIDs = [
         "SFO",
         "LAATIM",
@@ -562,14 +574,14 @@ app.on("before-quit", () => {
         if (
           fs.existsSync(
             parentfolder3 +
-              "/nytuolauncher_data/CurrentUser/" +
+              "/nytuolauncher_data/currentUser/" +
               GamesIDs[i] +
               ".txt"
           )
         ) {
           fs.unlinkSync(
             parentfolder3 +
-              "/nytuolauncher_data/CurrentUser/" +
+              "/nytuolauncher_data/currentUser/" +
               GamesIDs[i] +
               ".txt"
           );
@@ -578,9 +590,6 @@ app.on("before-quit", () => {
     }
   } else {
     if (process.platform == "linux") {
-      fs.unlinkSync(
-        app.getPath("documents") + "/nytuolauncher_data/LID_ONLINE.txt"
-      );
       var GamesIDs = [
         "SFO",
         "LAATIM",
@@ -599,21 +608,20 @@ app.on("before-quit", () => {
         if (
           fs.existsSync(
             app.getPath("documents") +
-              "/nytuolauncher_data/CurrentUser/" +
+              "/nytuolauncher_data/currentUser/" +
               GamesIDs[i] +
               ".txt"
           )
         ) {
           fs.unlinkSync(
             app.getPath("documents") +
-              "/nytuolauncher_data/CurrentUser/" +
+              "/nytuolauncher_data/currentUser/" +
               GamesIDs[i] +
               ".txt"
           );
         }
       }
     } else if (process.platform == "win32") {
-      fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt");
       var GamesIDs = [
         "SFO",
         "LAATIM",
@@ -632,14 +640,14 @@ app.on("before-quit", () => {
         if (
           fs.existsSync(
             parentfolder3 +
-              "/nytuolauncher_data/CurrentUser/" +
+              "/nytuolauncher_data/currentUser/" +
               GamesIDs[i] +
               ".txt"
           )
         ) {
           fs.unlinkSync(
             parentfolder3 +
-              "/nytuolauncher_data/CurrentUser/" +
+              "/nytuolauncher_data/currentUser/" +
               GamesIDs[i] +
               ".txt"
           );
@@ -651,3 +659,4 @@ app.on("before-quit", () => {
   ACH_SAVER();
   ipcRenderer.removeAllListeners("close");
 });
+app.userAgentFallback = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:70.0) Gecko/20100101 Firefox/70.0"

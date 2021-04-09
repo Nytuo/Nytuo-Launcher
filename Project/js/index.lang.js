@@ -16,6 +16,5 @@ GNU General Public License for more details.
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
 document.getElementById("USRTXT").innerHTML = currentLanguage[172];
-document.getElementById("PPTXT").innerHTML = currentLanguage[171];
-document.getElementById("PWDTXT").innerHTML = currentLanguage[170];
+
 document.getElementById("KEYTXT").innerHTML = currentLanguage[169];

@@ -246,11 +246,6 @@ function update() {
       }
 
       console.log(parentfolder2);
-      console.log(
-        fs
-          .readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt")
-          .toString()
-      );
       if (
         process.platform == "win32" &&
         fs.existsSync(parentfolder3 + "/nytuolauncher_data/BetaAccess.txt") ==
@@ -1461,296 +1456,368 @@ function verif_gameVersionLoading() {
 
 function ConnectionForm() {
   if (process.platform == "linux" || process.platform == "darwin") {
-    const remote = require("electron").remote;
-    const BrowserWindow = remote.BrowserWindow;
-    const path = require("path");
-    let win = new BrowserWindow({
-      backgroundColor: 212121,
-      minWidth: 500,
-      minHeight: 720,
-      width: 500,
-      height: 720,
-      frame: false,
-      icon: path.join(__dirname, "Resources/logoexp.png"),
-      webPreferences: {
-        webSecurity: false,
-        nodeIntegration: true,
-        enableRemoteModule: true,
-      },
-    });
-    win.removeMenu();
-    ACH_SAVER();
-    LID = fs
-      .readFileSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
-      .toString();
-    win.loadURL(
-      "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-    );
+    if (
+      fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt") ==
+      "false"
+    ) {
+      const remote = require("electron").remote;
+      const BrowserWindow = remote.BrowserWindow;
+      const path = require("path");
+      let win = new BrowserWindow({
+        backgroundColor: 212121,
+        minWidth: 500,
+        minHeight: 720,
+        width: 500,
+        height: 720,
+        icon: path.join(__dirname, "Resources/favicon.ico"),
+        webPreferences: {
+          webSecurity: true,
+          nodeIntegration: false,
+          enableRemoteModule: false,
+        },
+      });
+      fs.writeFileSync(
+        parentfolder3 + "/nytuolauncher_data/LoginSecu.txt",
+        "true"
+      );
+      win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?1");
+    } else if (
+      fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt") ==
+      "true"
+    ) {
+      const remote = require("electron").remote;
+      const BrowserWindow = remote.BrowserWindow;
+      const path = require("path");
+      let win = new BrowserWindow({
+        backgroundColor: 212121,
+        minWidth: 500,
+        minHeight: 720,
+        width: 500,
+        height: 720,
+        icon: path.join(__dirname, "Resources/logoexp.png"),
+        webPreferences: {
+          webSecurity: false,
+          nodeIntegration: true,
+          enableRemoteModule: true,
+        },
+      });
+      win.removeMenu();
+      ACH_SAVER();
+      LID = fs
+        .readFileSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
+        .toString();
+        win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+    }
   } else {
-    const remote = require("electron").remote;
-    const BrowserWindow = remote.BrowserWindow;
-    const path = require("path");
-    let win = new BrowserWindow({
-      backgroundColor: 212121,
-      minWidth: 500,
-      minHeight: 720,
-      width: 500,
-      height: 720,
-      frame: false,
-      icon: path.join(__dirname, "Resources/favicon.ico"),
-      webPreferences: {
-        webSecurity: false,
-        nodeIntegration: true,
-        enableRemoteModule: true,
-      },
-    });
-    ACH_SAVER();
-    win.removeMenu();
-    if (connectedtointernet == "true") {
-      if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?laatim"
-      ) {
-        if (LAATIMU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
+    //launch basic window
+    if (
+      fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt") ==
+      "false"
+    ) {
+      const remote = require("electron").remote;
+      const BrowserWindow = remote.BrowserWindow;
+      const path = require("path");
+      let win = new BrowserWindow({
+        backgroundColor: 212121,
+        minWidth: 500,
+        minHeight: 720,
+        width: 500,
+        height: 720,
+        icon: path.join(__dirname, "Resources/favicon.ico"),
+        webPreferences: {
+          webSecurity: true,
+          nodeIntegration: false,
+          enableRemoteModule: false,
+          nativeWindowOpen: true
+        },
+      });
+      fs.writeFileSync(
+        parentfolder3 + "/nytuolauncher_data/LoginSecu.txt",
+        "true"
+      );
+      win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?1");
+    } else if (
+      fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt") ==
+      "true"
+    ) {
+      //launch custo window
 
-          LaunchGame("LAATIM");
+      const remote = require("electron").remote;
+      const BrowserWindow = remote.BrowserWindow;
+      const path = require("path");
+      let win = new BrowserWindow({
+        backgroundColor: 212121,
+        minWidth: 500,
+        minHeight: 720,
+        width: 500,
+        height: 720,
+        icon: path.join(__dirname, "Resources/favicon.ico"),
+        webPreferences: {
+          webSecurity: false,
+          nodeIntegration: true,
+          enableRemoteModule: true,
+        },
+      });
+      ACH_SAVER();
+      if (connectedtointernet == "true") {
+        if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?laatim"
+        ) {
+          if (LAATIMU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
 
-          win.close();
+            LaunchGame("LAATIM");
+
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?sfo"
+        ) {
+          if (SFOU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("SFO");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?sf"
+        ) {
+          if (SFU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("SF");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?la"
+        ) {
+          if (LAU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("LA");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?sgb"
+        ) {
+          if (SGBU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("SGB");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?fwd"
+        ) {
+          if (FWDU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("FWD");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?ttd"
+        ) {
+          if (TTDU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("TTD");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?tb"
+        ) {
+          if (TBU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("TB");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?ae"
+        ) {
+          if (AEU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("AE");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?wr"
+        ) {
+          if (WRU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("WR");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?sn"
+        ) {
+          if (SNU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("SNRE");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
+        } else if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Loading.html?vitf"
+        ) {
+          if (VITFU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[127];
+
+            LaunchGame("VITF");
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+              currentLanguage[126];
+
+            LID = fs
+              .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+              .toString();
+              win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+
+          }
         } else {
           document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
 
           LID = fs
             .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
             .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?sfo"
-      ) {
-        if (SFOU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("SFO");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?sf"
-      ) {
-        if (SFU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("SF");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?la"
-      ) {
-        if (LAU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("LA");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?sgb"
-      ) {
-        if (SGBU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("SGB");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?fwd"
-      ) {
-        if (FWDU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("FWD");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?ttd"
-      ) {
-        if (TTDU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("TTD");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?tb"
-      ) {
-        if (TBU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("TB");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?ae"
-      ) {
-        if (AEU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("AE");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?wr"
-      ) {
-        if (WRU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("WR");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?sn"
-      ) {
-        if (SNU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("SNRE");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          );
-        }
-      } else if (
-        window.location.href ==
-        "file:///" + dirnamew + "/Loading.html?vitf"
-      ) {
-        if (VITFU == true) {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
-
-          LaunchGame("VITF");
-          win.close();
-        } else {
-          document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
-
-          LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
-          win.loadURL(
-            "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-          ); //win.loadFile('index.html')
+          win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
         }
       } else {
-        document.getElementById("MyBartxt").innerHTML = currentLanguage[126];
+        document.getElementById("MyBartxt").innerHTML = currentLanguage[125];
+        GameAvailableOffline();
 
-        LID = fs
-          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-          .toString();
-        win.loadURL(
-          "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase()
-        );
+        LaunchWindowLauncherOffline();
       }
     } else {
-      document.getElementById("MyBartxt").innerHTML = currentLanguage[125];
-      GameAvailableOffline();
-
-      LaunchWindowLauncherOffline();
+      alert("Error, Please restart !");
     }
   }
   close();
@@ -1792,6 +1859,7 @@ function LaunchWindowLauncherOffline() {
         nodeIntegration: true,
         enableRemoteModule: true,
       },
+      frame: false,
     });
     //win.removeMenu()
     ACH_SAVER();
@@ -1954,7 +2022,7 @@ function GameAvailableOffline() {
       for (let i = 0; i < t.length; i++) {
         fs.writeFileSync(
           parentfolder3 + "/nytuolauncher_data/CurrentUser/" + t[i] + ".txt",
-          CryptoJS.AES.encrypt("true", "GamesAvailablePass")
+          "true"
         );
       }
     } else {
@@ -1986,7 +2054,7 @@ function GameAvailableOffline() {
       for (let i = 0; i < t.length; i++) {
         fs.writeFileSync(
           parentfolder3 + "/nytuolauncher_data/CurrentUser/" + t[i] + ".txt",
-          CryptoJS.AES.encrypt("true", "GamesAvailablePass")
+          "true"
         );
       }
     }
@@ -2029,7 +2097,7 @@ function GameAvailableOffline() {
             "/nytuolauncher_data/CurrentUser/" +
             t[i] +
             ".txt",
-          CryptoJS.AES.encrypt("true", "GamesAvailablePass")
+          "true"
         );
       }
     } else {
@@ -2061,7 +2129,7 @@ function GameAvailableOffline() {
       for (let i = 0; i < t.length; i++) {
         fs.writeFileSync(
           parentfolder3 + "/nytuolauncher_data/CurrentUser/" + t[i] + ".txt",
-          CryptoJS.AES.encrypt("true", "GamesAvailablePass")
+          "true"
         );
       }
     }

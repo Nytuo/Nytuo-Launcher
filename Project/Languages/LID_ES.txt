@@ -167,10 +167,10 @@ Por favor, seleccionar una carpeta vacía para almacenar los juegos
 se deconnectar
 Sin Internet Modo
 Tu ve a
-Activar un juego (con a llave)
+Activar un juego
 Cambia la contraseña
-cambiar foto de perfil
-cambie el nombre de usuario
+Cambiar foto de perfil
+Configuraciones del perfil
 Ver el juego en el sitio web
 Configuraciones
 Te descargaras

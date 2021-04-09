@@ -15,54 +15,17 @@ GNU General Public License for more details.
     You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
-var connectedtointernet = connectest();
-
-function connectest() {
-  if (portable == true) {
-    if (process.platform == "linux" || process.platform == "darwin") {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt")
-            .toString(),
-          "connection system"
-        )
-      );
-    } else {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs.readFileSync(__dirname + "/connected.txt").toString(),
-          "connection system"
-        )
-      );
-    }
-  } else {
-    if (process.platform == "linux" || process.platform == "darwin") {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs
-            .readFileSync(
-              app.getPath("documents") + "/nytuolauncher_data/connected.txt"
-            )
-            .toString(),
-          "connection system"
-        )
-      );
-    } else {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs.readFileSync(__dirname + "/connected.txt").toString(),
-          "connection system"
-        )
-      );
-    }
-  }
-}
-
 function LogOut() {
-  if (connectedtointernet == "true") {
-    if (process.platform == "linux" || process.platform == "darwin") {
-      const remote = require("electron").remote;
+  
+
+  if (process.platform == "linux" || process.platform == "darwin") {
+    alert("In order to complete the logout, please open a terminal and type the 2 following commands (press OK for see the next command):");
+    alert("cd ~/snap/nytuo-launcher/x1/.config\n(press OK for see the next command)")
+    alert("rm -rf Nytuo-Launcher\n(press OK for see the next command)")
+  setTimeout(() => {
+    app.exit();
+  }, 1000);
+    /*const remote = require("electron").remote;
       const BrowserWindow = remote.BrowserWindow;
       const path = require("path");
       let win = new BrowserWindow({
@@ -71,7 +34,6 @@ function LogOut() {
         minHeight: 720,
         width: 500,
         height: 720,
-        frame: false,
         icon: path.join(__dirname, "Resources/logoexp.png"),
         webPreferences: {
           webSecurity: false,
@@ -79,10 +41,25 @@ function LogOut() {
           enableRemoteModule: true,
         },
       });
-      win.removeMenu();
-      win.loadURL("https://launcher.nytuo.yo.fr/logout.php");
-    } else {
-      const remote = require("electron").remote;
+      win.removeMenu();*/
+    fs.writeFileSync(
+      app.getPath("documents") + "/nytuolauncher_data/LoginSecu.txt",
+      "false"
+    );
+    require("fs").rmdirSync(
+      app.getPath("documents") + "/nytuolauncher_data/currentUser",
+      { recursive: true }
+    );
+    require("fs").mkdirSync(
+      app.getPath("documents") + "/nytuolauncher_data/currentUser"
+    );
+    /*win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?out");*/
+  } else {
+    shell.openPath(__dirname + "/batch_sh_files/deleteCookies.bat");
+  setTimeout(() => {
+    app.exit();
+  }, 1000);
+    /*const remote = require("electron").remote;
       const BrowserWindow = remote.BrowserWindow;
       const path = require("path");
       let win = new BrowserWindow({
@@ -91,16 +68,23 @@ function LogOut() {
         minHeight: 720,
         width: 500,
         height: 720,
-        frame: false,
         icon: path.join(__dirname, "Resources/favicon.ico"),
         webPreferences: {
           webSecurity: false,
           nodeIntegration: true,
           enableRemoteModule: true,
         },
-      });
-      win.loadURL("https://launcher.nytuo.yo.fr/logout.php");
-    }
-    close();
-  }
+      });*/
+    fs.writeFileSync(
+      parentfolder3 + "/nytuolauncher_data/LoginSecu.txt",
+      "false"
+    );
+
+    require("fs").rmdirSync(parentfolder3 + "/nytuolauncher_data/currentUser", {
+      recursive: true,
+    });
+    require("fs").mkdirSync(parentfolder3 + "/nytuolauncher_data/currentUser");
+    /*win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?out");*/
+  } /*
+    close();*/
 }

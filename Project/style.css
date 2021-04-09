@@ -20,7 +20,9 @@ body {
     animation: fadeIn 0.5s;
     margin: 0%;
 }
-
+.closebtn:hover {
+    background-color: rgb(87, 6, 6);
+}
 .progressBarLAATIM {
     text-align: center;
 }

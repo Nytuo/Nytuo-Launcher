@@ -29,24 +29,36 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <script type="text/javascript" src="js/Variables.js"></script>
     <script type="text/javascript" src="js/Commons.js"></script>
     <script type="text/javascript" src="js/LogOut.js"></script>
+    <script type="text/javascript" src="js/Menu.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <title>Nytuo Launcher</title>
 </head>
-
+<header>
+    <nav style="-webkit-app-region: drag"class="animate__animated animate__slideInDown">
+        <div class="nav-wrapper">
+          <a class="brand-logo center"><img src="Resources/LogoLauncher.png" style="width:35%"/></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a onclick="minimizeWindow()" style="-webkit-app-region: no-drag;"><i class="material-icons">minimize</i></a></li>
+            <li><a onclick="maximizeWindow()" style="-webkit-app-region: no-drag;" id="maximize"><i class="material-icons">fullscreen</i></a></li>
+            <li><a onclick="closeWindow()" class="closebtn" style="-webkit-app-region: no-drag;"><i class="material-icons">close</i></a></li>
+          </ul>
+        </div>
+      </nav>
+</header>
 <body>
     <div style="padding-top:20%;text-align:center">
-        <img src="Resources/LogoLauncher.png" class="animate__animated animate__fadeInDown" alt=""></div>
+        <img src="Resources/LogoLauncher.png" class="animate__animated animate__zoomIn" alt=""></div>
     <div style="text-align:center" class="animate__animated animate__fadeInUp">
 
-        <a class="waves-effect waves-light btn" style="background-color: dodgerblue;" id="USRTXT" onclick="shell.openExternal('https://nytuo.yo.fr/changeUsername.php')">Change Username</a>
-        <a class="waves-effect waves-light btn" style="background-color: dodgerblue;" id="PPTXT" onclick="shell.openExternal('https://nytuo.yo.fr/uploadForm.php')">Change Profile Picture</a>
-        <a class="waves-effect waves-light btn" style="background-color: dodgerblue;" id="PWDTXT" onclick="shell.openExternal('https://nytuo.yo.fr/reset-password.php')">Change Password</a>
-        <a class="waves-effect waves-light btn" style="background-color: dodgerblue;" id='KEYTXT' onclick="shell.openExternal('https://nytuo.yo.fr/activate.php')">Activate a game (using a key)</a>
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" style="background-color: dodgerblue;" id="USRTXT" onclick="shell.openExternal('https://www.nytuo.yo.fr/profile')">Customize Account</a>
+
+
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" style="background-color: dodgerblue;" id='KEYTXT' onclick="shell.openExternal('https://www.nytuo.yo.fr/store')">Activate a game</a>
     </div>
 
-    <ul id="slide-out" class="sidenav sidenav-fixed">
-        <div class="animate__animated animate__slideInLeft">
+    <ul id="slide-out" class="sidenav sidenav-fixed animate__animated animate__slideInLeft">
+        <div>
 
             <li>
                 <div class="user-view">
@@ -59,19 +71,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
                     <a><span class="white-text email" id=emailtxt></span></a>
                 </div>
             </li>
-            <li><a href="" onclick="LogOut()"><i class="material-icons">exit_to_app</i><span id="LOGOUTTXT">Logout</a></span>
+            <li><a href="#" onclick="LogOut()"><i class="material-icons">exit_to_app</i><span id="LOGOUTTXT">Logout</a></span>
             </li>
 
             <li>
                 <div class="divider"></div>
             </li>
-            <li><a href="#" onclick="window.open('https://nytuo.yo.fr')"><i class="material-icons">language</i><span id="WEBTXT">Website</a></span>
+            <li><a href="#" onclick="window.open('https://nytuo.yo.fr')"><i class="material-icons">language</i><span id="WEBTXT">Website</span></a>
             </li>
-            <li><a href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i><span id="NEWSTXT">News</a></span>
+            <li><a href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i><span id="NEWSTXT">News</span></a>
             </li>
-            <li><a href="index.html"><i class="material-icons">home</i><span id="HOMETXT">Home</a></span>
+            <li><a href="index.html"><i class="material-icons">home</i><span id="HOMETXT">Home</span></a>
             </li>
-            <li><a href="about.html"><i class="material-icons">settings</i><span id="SETTINGTXT">Settings</a></span>
+            <li><a href="about.html"><i class="material-icons">settings</i><span id="SETTINGTXT">Settings</span></a>
             </li>
             <li>
                 <div class="divider"></div>

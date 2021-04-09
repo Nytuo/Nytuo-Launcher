@@ -36,16 +36,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <script type="text/javascript" src="js/GamesManager.js"></script>
     <script type="text/javascript" src="js/LogOut.js"></script>
     <script type="text/javascript" src="js/Ach.js"></script>
+    <script type="text/javascript" src="js/Menu.js"></script>
+
 
 
 
 
     <title>Nytuo Launcher</title>
 </head>
+<header>
+    <nav style="-webkit-app-region: drag;"class="animate__animated animate__slideInDown">
+        <div class="nav-wrapper">
+          <a class="brand-logo center"><img src="Resources/LogoLauncher.png" style="width:35%"/></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a onclick="minimizeWindow()" style="-webkit-app-region: no-drag;"><i class="material-icons">minimize</i></a></li>
+            <li><a onclick="maximizeWindow()" style="-webkit-app-region: no-drag;" id="maximize"><i class="material-icons">fullscreen</i></a></li>
+            <li><a onclick="closeWindow()" class="closebtn" style="-webkit-app-region: no-drag;"><i class="material-icons">close</i></a></li>
+          </ul>
+        </div>
+      </nav>
+</header>
 <!--Contents of page-->
 
-<ul id="slide-out" class="sidenav sidenav-fixed">
-    <div class="animate__animated animate__slideInLeft">
+<ul id="slide-out" class="sidenav sidenav-fixed animate__animated animate__slideInLeft">
+
+    <div>
         <li>
             <div class="user-view">
 
@@ -92,37 +107,38 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 </ul>
 </div>
 <script type="text/javascript" src="js/Sidenav.js"></script>
-<div class="animate__animated animate__slideInRight">
+<div style="padding-top:30px"></div>
+<div class="">
 
     <body class="sidebarpad">
     <!--Detection de la version et remplacement du text de version en conséquence-->
     <iframe id="DETECTION" src="javascript:void(0)" style="display: none;"></iframe>
     <!--Placement du titre du jeu, du text version et de l'affiche-->
     <div style="text-align: center">
-        <img id="LOGOCARD" src="" style="z-index: 1;">
-        <h2 id="NAME">Game Name</h2>
-        <h1 id="versiontxt"> Game Version </h1>
+        <img id="LOGOCARD" class="animate__animated animate__zoomIn" src="" style="z-index: 1;">
+        <h2 id="NAME" class="animate__animated animate__zoomIn">Game Name</h2>
+        <h1 id="versiontxt" class="animate__animated animate__zoomIn"> Game Version </h1>
     </div>
 
     <!--Buttons-->
     <div style="text-align: center;">
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal8" style="background-color:dodgerblue;margin-top: 10px;" id="button1"><i class="material-icons left">play_arrow</i>PLAY</a>
+        <a class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" href="#modal8" style="background-color:dodgerblue;margin-top: 10px;" id="button1"><i class="material-icons left">play_arrow</i>PLAY</a>
         <div id="ONLINEPLAY">
 
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal4" style="background-color:#1e90ff;margin-top: 10px;" id="ONLINEPLAYTXT"><i class="material-icons left">public</i>Play Online</a>
+            <a class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" href="#modal4" style="background-color:#1e90ff;margin-top: 10px;" id="ONLINEPLAYTXT"><i class="material-icons left">public</i>Play Online</a>
         </div>
         <div id="SNCLASSIC">
 
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal5" style="background-color:dodgerblue;margin-top: 10px;" id="SNCTXT"><i class="material-icons left">play_arrow</i>Play SansNom Classic</a>
+            <a class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" href="#modal5" style="background-color:dodgerblue;margin-top: 10px;" id="SNCTXT"><i class="material-icons left">play_arrow</i>Play SansNom Classic</a>
         </div>
         <div id="button2">
 
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal6" style="background-color:dodgerblue;margin-top: 10px;" id="ACHIEVEMENTSTXT"><i class="material-icons left">emoji_event</i>Achievements</a>
+            <a class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" href="#modal6" style="background-color:dodgerblue;margin-top: 10px;" id="ACHIEVEMENTSTXT"><i class="material-icons left">emoji_event</i>Achievements</a>
         </div>
         <div id="button3">
 
             <!-- Dropdown Trigger -->
-            <a class='modal-trigger btn' href='#param' style="background-color:dodgerblue;margin-top: 10px;" id="SETTINGSTXT"><i class="material-icons left">settings</i>Settings</a>
+            <a class='modal-trigger btn animate__animated animate__zoomIn' href='#param' style="background-color:dodgerblue;margin-top: 10px;" id="SETTINGSTXT"><i class="material-icons left">settings</i>Settings</a>
 
             <!-- Dropdown Structure
                 <ul id='dropdown1' class='dropdown-content'>
@@ -144,7 +160,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
         </div>
     </div>
         <div style="text-align: center;">
-            <a href="#modalChangesLog" class="waves-effect waves-light btn modal-trigger" style="margin-top:10px;background-color:dodgerblue"><i class="material-icons left">description</i>ChangesLogs</a>
+            <a href="#modalChangesLog" class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" style="margin-top:10px;background-color:dodgerblue"><i class="material-icons left">description</i>ChangesLogs</a>
 
         </div>
 

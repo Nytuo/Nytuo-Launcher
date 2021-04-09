@@ -167,10 +167,10 @@ Merci de sélectionner un dossier vide pour y stocker les jeux
 Se déconnecter
 Mode hors-ligne
 Vous allez
-Activer un jeu (avec une clé)
+Activer un jeu
 Changer de mot de passe
 Changer de photo de Profile
-Changer de nom d'utilisateur
+Customisation du profile
 Voir le jeu sur le site
 Paramètres
 Vous allez télécharger

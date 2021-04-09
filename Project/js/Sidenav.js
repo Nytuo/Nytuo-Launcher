@@ -177,8 +177,18 @@ function gameloc() {
 
 if (process.platform == "linux") {
   if (connectedtointernet == "true") {
-    document.getElementById("PP").src =
-      app.getPath("documents") + "/nytuolauncher_data/CurrentUser/PP.jpg";
+    if (fs.readFileSync(
+      app.getPath("documents") + "/nytuolauncher_data/CurrentUser/PP_URL.txt"
+    ) == "../images/default.png"){
+      document.getElementById("PP").src =
+      __dirname + "/Resources/default.png";
+    }else{
+      {
+        document.getElementById("PP").src = fs.readFileSync(
+        parentfolder3 + "/nytuolauncher_data/CurrentUser/PP_URL.txt"
+      );
+      }
+    }
     document.getElementById("NameTxt").innerHTML = fs.readFileSync(
       gamelocation + "/Games/Username.txt"
     );
@@ -187,7 +197,7 @@ if (process.platform == "linux") {
     );
   } else {
     document.getElementById("PP").src =
-      __dirname + "/Resources/ProfileDefault.gif";
+      __dirname + "/Resources/default.png";
     document.getElementById("NameTxt").innerHTML = fs.readFileSync(
       gamelocation + "/Games/Username.txt"
     );
@@ -195,8 +205,17 @@ if (process.platform == "linux") {
   }
 } else {
   if (connectedtointernet == "true") {
-    document.getElementById("PP").src =
-      parentfolder3 + "/nytuolauncher_data/CurrentUser/PP.jpg";
+    if (fs.readFileSync(
+      parentfolder3 + "/nytuolauncher_data/CurrentUser/PP_URL.txt"
+    ) == "../images/default.png"){
+      document.getElementById("PP").src =
+      __dirname + "/Resources/default.png";
+    }else{
+      document.getElementById("PP").src = fs.readFileSync(
+      parentfolder3 + "/nytuolauncher_data/CurrentUser/PP_URL.txt"
+    );
+    }
+    
     document.getElementById("NameTxt").innerHTML = fs.readFileSync(
       gamelocation + "/Games/Username.txt"
     );
@@ -205,7 +224,7 @@ if (process.platform == "linux") {
     );
   } else {
     document.getElementById("PP").src =
-      __dirname + "/Resources/ProfileDefault.gif";
+      __dirname + "/Resources/default.png";
     document.getElementById("NameTxt").innerHTML = fs.readFileSync(
       gamelocation + "/Games/Username.txt"
     );
@@ -237,19 +256,14 @@ if (process.platform == "linux") {
       )
     ) {
       if (
-        CryptoJS.enc.Latin1.stringify(
-          CryptoJS.AES.decrypt(
-            fs
-              .readFileSync(
-                app.getPath("documents") +
-                  "/nytuolauncher_data/CurrentUser/" +
-                  t[i] +
-                  ".txt"
-              )
-              .toString(),
-            "GamesAvailablePass"
+        fs
+          .readFileSync(
+            app.getPath("documents") +
+              "/nytuolauncher_data/CurrentUser/" +
+              t[i] +
+              ".txt"
           )
-        ) != "true"
+          .toString() != "true"
       ) {
         document.getElementById(t[i].toLowerCase() + "l").innerHTML = "";
       }
@@ -264,18 +278,13 @@ if (process.platform == "linux") {
     )
   ) {
     if (
-      CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
           fs
             .readFileSync(
               app.getPath("documents") +
                 "/nytuolauncher_data/CurrentUser/SNRE.txt"
             )
-            .toString(),
-          "GamesAvailablePass"
-        )
-      ) != "true"
-    ) {
+            .toString() != "true")
+     {
       document.getElementById("snl").innerHTML = "";
     }
   } else {
@@ -289,8 +298,6 @@ if (process.platform == "linux") {
       )
     ) {
       if (
-        CryptoJS.enc.Latin1.stringify(
-          CryptoJS.AES.decrypt(
             fs
               .readFileSync(
                 parentfolder3 +
@@ -298,11 +305,8 @@ if (process.platform == "linux") {
                   t[i] +
                   ".txt"
               )
-              .toString(),
-            "GamesAvailablePass"
-          )
-        ) != "true"
-      ) {
+              .toString() != "true")
+      {
         document.getElementById(t[i].toLowerCase() + "l").innerHTML = "";
       }
     } else {
@@ -314,16 +318,11 @@ if (process.platform == "linux") {
     fs.existsSync(parentfolder3 + "/nytuolauncher_data/CurrentUser/SNRE.txt")
   ) {
     if (
-      CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
           fs
             .readFileSync(
               parentfolder3 + "/nytuolauncher_data/CurrentUser/SNRE.txt"
             )
-            .toString(),
-          "GamesAvailablePass"
-        )
-      ) != "true"
+            .toString() != "true"
     ) {
       document.getElementById("snl").innerHTML = "";
     }

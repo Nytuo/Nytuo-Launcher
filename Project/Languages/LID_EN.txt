@@ -167,10 +167,10 @@ Please, select an empty folder to contain all the games...
 Logout
 Offline Mode
 You are going to
-Activate a game (Using a key)
+Activate a game
 Change password
 Change Profile Picture
-Change Username
+Customize profile
 View game on the website
 Settings
 You are going to download

@@ -9,7 +9,7 @@
         },
         "nsis": {
             "oneClick": true,
-            "runAfterFinish": true,
+            "runAfterFinish": false,
             "createDesktopShortcut": "always"
         },
         "snap": {
@@ -44,7 +44,7 @@
             "category": "Utility"
         }
     },
-    "version": "2021.03.06",
+    "version": "2021.04.09",
     "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
     "main": "main.js",
     "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
@@ -58,20 +58,18 @@
     "author": "Nytuo",
     "license": "GPL-3.0-only",
     "devDependencies": {
-        "electron": "^11.2.0",
+        "electron": "^12.0.2",
         "electron-builder": "^22.7.0"
     },
     "dependencies": {
         "app": "^0.1.0",
         "crypto-js": "^4.0.0",
-        "electron-packager": "^14.2.0",
         "extract-zip": "^1.6.7",
         "fs": "^0.0.1-security",
         "materialize-css": "^1.0.0-rc.2",
         "nodejs": "^0.0.0",
         "office-ui-fabric-core": "^11.0.0",
         "path": "^0.12.7",
-        "progressbar.js": "^1.1.0",
         "request": "^2.88.2",
         "rimraf": "^3.0.2",
         "shell": "^0.5.0",

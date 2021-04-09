@@ -51,7 +51,6 @@ var TBU = true;
 var VITFU = true;
 var LAU = true;
 var SFOU = true;
-var ProgressBar = require("progressbar.js");
 const { options } = require("request");
 const { platform } = require("process");
 const mat = require("materialize-css");

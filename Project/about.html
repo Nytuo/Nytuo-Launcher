@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 
 
 <!DOCTYPE html>
-<html lang="fr-FR" class="sidebarpad">
+<html lang="fr-FR" class="sidebarpad" style="overflow:hidden">
 
 <head>
     <meta charset="utf-8" />
@@ -32,16 +32,28 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <script type="text/javascript" src="js/Commons.js"></script>
     <script type="text/javascript" src="js/Settings.js"></script>
     <script type="text/javascript" src="js/LogOut.js"></script>
+    <script type="text/javascript" src="js/Menu.js"></script>
+
     <link rel="stylesheet" href="W3CustomCss.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <title>Settings -- Nytuo Launcher</title>
 </head>
 <header>
-
+    <nav style="-webkit-app-region: drag"class="animate__animated animate__slideInDown">
+        <div class="nav-wrapper">
+          <a class="brand-logo center"><img src="Resources/LogoLauncher.png" style="width:35%"/></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a onclick="minimizeWindow()" style="-webkit-app-region: no-drag;"><i class="material-icons">minimize</i></a></li>
+            <li><a onclick="maximizeWindow()" style="-webkit-app-region: no-drag;" id="maximize"><i class="material-icons">fullscreen</i></a></li>
+            <li><a onclick="closeWindow()" class="closebtn" style="-webkit-app-region: no-drag;"><i class="material-icons">close</i></a></li>
+          </ul>
+        </div>
+      </nav>
 </header>
-<ul id="slide-out" class="sidenav sidenav-fixed">
-    <div class="animate__animated animate__slideInLeft">
+<ul id="slide-out" class="sidenav sidenav-fixed animate__animated animate__slideInLeft">
+
+    <div>
 
         <li>
             <div class="user-view">
@@ -91,9 +103,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 
 <body>
     <iframe onload="gamelocsettings();" src="javascript:void(0)" style="display: none;"></iframe>
-    <div class="animate__animated animate__fadeInDown">
+    <div class="animate__animated animate__zoomIn">
 
-        <h1 id="SETTINGS">Settings</h1>
+        <h1 id="SETTINGS" style="margin-top:40px">Settings</h1>
         <p id="ABOUTTXT">About : </p>
         <p id="DEV">Created, coded, developed by Nytuo (Arnaud BEUX) in HTML/CSS/JS/PHP</p>
         <p>Nytuo Launcher :
@@ -117,23 +129,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     </div>
 
     <div style="padding-bottom: 2%;"></div>
-    <div style="text-align:center;" class="animate__animated animate__fadeInUp">
-        <a class="waves-effect waves-light btn" onclick="OpenEmpl(parentfolder3+'/')" href="javascript:void(0)" style="background-color:dodgerblue" id="ONLFTXT">Open the Nytuo Launcher folder</a>
+    <div style="text-align:center;">
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" onclick="OpenEmpl(parentfolder3+'/')" href="javascript:void(0)" style="background-color:dodgerblue" id="ONLFTXT">Open the Nytuo Launcher folder</a>
 
-        <a class="waves-effect waves-light btn" onclick="deleteall()" href="javascript:void(0)" style="background-color:dodgerblue" id="UAGTXT">Uninstall all games</a>
-        <a class="waves-effect waves-light btn" onclick="forceUpdate()" href="javascript:void(0)" style="background-color:dodgerblue" id="FUTXT">Force Update</a>
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" onclick="deleteall()" href="javascript:void(0)" style="background-color:dodgerblue" id="UAGTXT">Uninstall all games</a>
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" onclick="forceUpdate()" href="javascript:void(0)" style="background-color:dodgerblue" id="FUTXT">Force Update</a>
 
-        <a class="waves-effect waves-light btn" onclick="changegameloc()" href="javascript:void(0)" style="background-color:dodgerblue" id="CGFTXT">Change Games Folder</a>
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" onclick="changegameloc()" href="javascript:void(0)" style="background-color:dodgerblue" id="CGFTXT">Change Games Folder</a>
 
-        <a class="waves-effect waves-light btn" onclick="validate()" href="javascript:void(0)" style="background-color:dodgerblue" id="BTTXT">Beta Toggle</a>
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn"  onclick="validate()" href="javascript:void(0)" style="background-color:dodgerblue" id="BTTXT">Beta Toggle</a>
 
-        <a class="waves-effect waves-light btn" onclick="window.open('https://github.com/Nytuo/Nytuo-launcher/')" href="javascript:void(0)" style="background-color:dodgerblue" id="GHTXT">GitHub</a>
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" onclick="window.open('https://github.com/Nytuo/Nytuo-launcher/')" href="javascript:void(0)" style="background-color:dodgerblue" id="GHTXT">GitHub</a>
 
-        <a class="waves-effect waves-light btn" onclick="window.open('https://discord.gg/FPPfSSF')" href="javascript:void(0)" style="background-color:dodgerblue" id="JTDTXT">Join the Discord</a>
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" onclick="window.open('https://discord.gg/FPPfSSF')" href="javascript:void(0)" style="background-color:dodgerblue" id="JTDTXT">Join the Discord</a>
 
-        <a class="waves-effect waves-light btn" onclick="redm()" href="javascript:void(0)" style="background-color:dodgerblue;" id="RESETTXT">Restart</a>
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" onclick="redm()" href="javascript:void(0)" style="background-color:dodgerblue;" id="RESETTXT">Restart</a>
 
-        <a class="waves-effect waves-light btn" onclick="LANGCHANGE()" href="javascript:void(0)" style="background-color:dodgerblue;" id="LANGTXT">Change the Language</a>
+        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" onclick="LANGCHANGE()" href="javascript:void(0)" style="background-color:dodgerblue;" id="LANGTXT">Change the Language</a>
     </div>
 </body>
 <script type="text/javascript" src="js/Settings.lang.js"></script>
