@@ -305,7 +305,12 @@ function connectest() {
 }
 //Open any type of file or folder
 function Open(dossierdujeu, filename) {
-  shell.openPath(gamelocation + "/Games/" + dossierdujeu + "/" + filename);
+  if (shell.openPath(gamelocation + "/Games/" + dossierdujeu + "/" + filename)){
+    setTimeout(() => {
+      close()
+    },5000)
+    
+  }
 }
 //Open games in LINUX OS
 function OpenforLinux(gameloc, dossierdujeu, filename) {
@@ -321,6 +326,7 @@ function OpenforLinux(gameloc, dossierdujeu, filename) {
       " ./" +
       filename
   );
+  close();
 }
 
 function detectgamepage() {
@@ -511,9 +517,7 @@ function LAUNCH() {
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFO") {
       setTimeout(() => {
         OpenforLinux(gamelocation, "SFO", "nw");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (
@@ -525,9 +529,6 @@ function LAUNCH() {
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SGB") {
       setTimeout(() => {
         OpenforLinux(gamelocation, "SGB", "nw");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SF") {
@@ -545,9 +546,6 @@ function LAUNCH() {
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?TTD") {
       setTimeout(() => {
         OpenforLinux(gamelocation, "TTD", "nw");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (
@@ -556,33 +554,25 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         OpenforLinux(gamelocation, "SNRE", "nw");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?FWD") {
       setTimeout(() => {
         OpenforLinux(gamelocation, "FWD", "nw");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?TB") {
       setTimeout(() => {
         OpenforLinux(gamelocation, "TB", "nw");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?WR") {
       setTimeout(() => {
         OpenforLinux(gamelocation, "WR", "nw");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?AE") {
@@ -595,9 +585,7 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("SFO", "nw.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (
@@ -606,9 +594,7 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("LAATIM", "LA_IM.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (
@@ -617,25 +603,19 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("SGB", "nw.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SF") {
       setTimeout(() => {
         Open("SF", "ShootFighter.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?LA") {
       setTimeout(() => {
         Open("LA", "Lutin_Adventure.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (
@@ -644,9 +624,7 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("VITF", "VincentInTheForest.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (
@@ -655,9 +633,6 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("TTD", "nw.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (
@@ -666,9 +641,6 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("SNRE", "nw.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (
@@ -677,33 +649,21 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("FWD", "nw.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?TB") {
       setTimeout(() => {
         Open("TB", "nw.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?WR") {
       setTimeout(() => {
         Open("WR", "nw.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?AE") {
       setTimeout(() => {
         Open("AE", "AsteroidEscapeWinV1FinalPatch1.exe");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
   } else {
@@ -713,9 +673,6 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("SFO", "shootfighterorigins.app");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (
@@ -730,9 +687,6 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("SuperGeoffreyBros", "supergeoffreybros.app");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?SF") {
@@ -753,9 +707,6 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("TTD", "thetardisdefender.app");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
       }, 2000);
     }
     if (
@@ -764,9 +715,7 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("SNRE", "sansnomreedition.app");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (
@@ -775,25 +724,19 @@ function LAUNCH() {
     ) {
       setTimeout(() => {
         Open("FWD", "firewalldefender.app");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?TB") {
       setTimeout(() => {
         Open("TB", "tanksbattle.app");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?WR") {
       setTimeout(() => {
         Open("WR", "winrun.app");
-        setTimeout(() => {
-          app.quit();
-        }, 1000);
+
       }, 2000);
     }
     if (window.location.href == "file:///" + dirnamew + "/Gamelaunch.html?AE") {

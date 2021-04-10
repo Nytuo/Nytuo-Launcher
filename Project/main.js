@@ -537,7 +537,9 @@ app.on("ready", createWindow, function () {
   ACH_SAVER();
   console.log(app.getVersion());
 });
-
+app.on("window-all-closed", function () {
+  app.exit();
+})
 //correcly close the launcher
 app.on("before-quit", () => {
   if (portable == true) {

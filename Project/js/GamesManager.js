@@ -3648,4 +3648,7 @@ function LaunchGame(gameid) {
   } else {
     launching.loadURL(__dirname + "/Gamelaunch.html?" + gameid);
   }
+  setTimeout(() => {
+    window.location.reload();
+  }, 3000);
 }
