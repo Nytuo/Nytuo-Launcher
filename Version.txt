@@ -1,1 +1,1 @@
-echo latest
+latest
