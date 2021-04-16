@@ -1,4 +1,3 @@
-
 name: Write Version to File
 on:
   push:
@@ -6,13 +5,17 @@ on:
       - master
 
 jobs:
-  write-version:
+  GetTheTag:
     runs-on: ubuntu-latest
-    name: Write Version to File
     steps:
-    - uses: actions/checkout@master
-    - name: Update version
-      id: version
-      uses: brettdorrans/write-version-to-file@v1.0.2
+    - name: 'Get Previous tag'
+      id: previoustag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+    - uses: actions/checkout@v2
+    - name: 'Writting'
+      uses: DamianReeves/write-file-action@1.0
       with:
-        filename: '/.VERSION'
+        path: ${{ github.workspace}}/Version.txt
+        contents: |
+          echo ${{ steps.previoustag.outputs.tag }}
+        write-mode: overwrite
