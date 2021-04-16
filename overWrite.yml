@@ -1,0 +1,8 @@
+name: Write File
+on: workflow_dispatch
+uses: DamianReeves/write-file-action@v1.0
+with:
+  path: ${{ env.home}}/Version.txt
+  contents: |
+    echo ${{env.RELEASE_VERSION}}
+  write-mode: overwrite
