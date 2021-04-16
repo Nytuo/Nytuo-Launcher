@@ -20,7 +20,7 @@ jobs:
       with:
         path: ${{ github.workspace}}/Version.txt
         contents: |
-          echo ${{ steps.previoustag.outputs.tag }}
+          ${{ steps.previoustag.outputs.tag }}
         write-mode: overwrite
     - name: "Pushing"
       uses: actions-go/push@master
