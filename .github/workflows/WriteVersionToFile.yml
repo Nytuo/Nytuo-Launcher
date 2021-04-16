@@ -13,7 +13,7 @@ jobs:
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
     - uses: actions/checkout@v2
     - name: 'Writting'
-      uses: DamianReeves/write-file-action@1.0
+      uses: DamianReeves/write-file-action@v1.0
       with:
         path: ${{ github.workspace}}/Version.txt
         contents: |
