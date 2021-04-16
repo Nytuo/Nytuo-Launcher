@@ -1,7 +1,6 @@
 Project/dist/
 Project/Games/
 Project/electron-builder.yml
-Project/yarn.lock
 Project/node_modules/
 Project/VersionsFiles/
 Project/out/
