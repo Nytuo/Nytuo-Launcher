@@ -13,6 +13,6 @@ jobs:
     - uses: actions/checkout@master
     - name: Update version
       id: version
-      uses: brettdorrans/write-version-to-file@master
+      uses: brettdorrans/write-version-to-file@v1.0.2
       with:
         filename: '/.VERSION'
