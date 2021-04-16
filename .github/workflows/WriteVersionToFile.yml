@@ -8,10 +8,11 @@ jobs:
   GetTheTag:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: 'Get Previous tag'
       id: previoustag
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
-    - uses: actions/checkout@v2
+    
     - name: 'Writting'
       uses: DamianReeves/write-file-action@v1.0
       with:
