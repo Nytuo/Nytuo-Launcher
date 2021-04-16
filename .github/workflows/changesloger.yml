@@ -9,6 +9,8 @@ on:
 
   issues:
     types: [closed, edited]
+  
+  workflow_dispatch:
 
 jobs:
   generate_changelog:
