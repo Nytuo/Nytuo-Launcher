@@ -1,8 +1,14 @@
-name: Write File
+name: versionChanger
 on: workflow_dispatch
-uses: DamianReeves/write-file-action@v1.0
-with:
-  path: ${{ env.home}}/Version.txt
-  contents: |
-    echo ${{env.RELEASE_VERSION}}
-  write-mode: overwrite
+
+jobs:
+  versionChanger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write File
+        uses: DamianReeves/write-file-action@v1.0
+        with:
+          path: ${{ env.home}}/Version.txt
+          contents: |
+            echo ${{env.RELEASE_VERSION}}
+          write-mode: overwrite
