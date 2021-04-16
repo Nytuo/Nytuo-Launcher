@@ -31,11 +31,3 @@ jobs:
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
           release: ${{ startsWith(github.ref, 'refs/tags/v') }}
-
-      - name: Write File
-        uses: DamianReeves/write-file-action@v1.0
-        with:
-          path: ./Version.txt
-          contents: |
-            echo ${{ startsWith(github.ref, 'refs/tags/v') }}
-          write-mode: overwrite
