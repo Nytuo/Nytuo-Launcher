@@ -8,7 +8,7 @@ jobs:
       - name: Write File
         uses: DamianReeves/write-file-action@v1.0
         with:
-          path: ${{ env.home}}/Version.txt
+          path: ${{ env.home}}+"/Version.txt"
           contents: |
             echo ${{env.RELEASE_VERSION}}
           write-mode: overwrite
