@@ -212,36 +212,36 @@ function update() {
           var launcherversion = fs.readFileSync(
             parentfolder3 +
               "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-          );
+          ).toString().replace("v","");
           var launcherversionbeta = fs.readFileSync(
             parentfolder3 +
               "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt"
-          );
+          ).toString().replace("v","");
         } else {
           var launcherversion = fs.readFileSync(
             __dirname + "/VersionsFiles/LauncherVersion.txt"
-          );
+          ).toString().replace("v","");
           var launcherversionbeta = fs.readFileSync(
             __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
-          );
+          ).toString().replace("v","");
         }
       } else {
         if (process.platform == "linux") {
           var launcherversion = fs.readFileSync(
             app.getPath("documents") +
               "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-          );
+          ).toString().replace("v","");
           var launcherversionbeta = fs.readFileSync(
             app.getPath("documents") +
               "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt"
-          );
+          ).toString().replace("v","");
         } else {
           var launcherversion = fs.readFileSync(
             __dirname + "/VersionsFiles/LauncherVersion.txt"
-          );
+          ).toString().replace("v","");
           var launcherversionbeta = fs.readFileSync(
             __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
-          );
+          ).toString().replace("v","");
         }
       }
 
@@ -272,12 +272,12 @@ function update() {
           isUp2date = false;
         } else {
           if (
-            window.require("electron").remote.app.getVersion().toString() <
-            fs
+            parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
+            parseInt(fs
               .readFileSync(
                 __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
               )
-              .toString()
+              .toString().replace(/./g,""))
           ) {
             Toastifycation(currentLanguage[73]);
             console.log("You have to update the launcher !");
@@ -286,12 +286,12 @@ function update() {
             isUp2date = false;
           }
           if (
-            window.require("electron").remote.app.getVersion().toString() >
-            fs
+            parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
+            parseInt(fs
               .readFileSync(
                 __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
               )
-              .toString()
+              .toString().replace(/./g,""))
           ) {
             console.log("Very UpToDate");
             console.log(app.getAppPath());
@@ -300,12 +300,12 @@ function update() {
             verif_gameVersionLoading();
           }
           if (
-            window.require("electron").remote.app.getVersion().toString() ===
-            fs
+            parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) ===
+            parseInt(fs
               .readFileSync(
                 __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
               )
-              .toString()
+              .toString().replace(/./g,""))
           ) {
             console.log("UpToDate");
             document.getElementById("MyBartxt").innerHTML =
@@ -324,7 +324,7 @@ function update() {
             document.getElementById("MyBartxt").innerHTML =
               currentLanguage[134];
             DownlaodFileUpdate(
-              "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
+              "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
                 launcherversionbeta +
                 "/Nytuo-Launcher-Setup-" +
                 launcherversionbeta +
@@ -355,13 +355,13 @@ function update() {
               isUp2date = false;
             } else {
               if (
-                window.require("electron").remote.app.getVersion().toString() <
-                fs
+                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
+                parseInt(fs
                   .readFileSync(
                     parentfolder3 +
                       "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 Toastifycation(currentLanguage[75]);
                 document.getElementById("MyBartxt").innerHTML =
@@ -370,13 +370,13 @@ function update() {
                 isUp2date = false;
               }
               if (
-                window.require("electron").remote.app.getVersion().toString() >
-                fs
+                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
+                parseInt(fs
                   .readFileSync(
                     parentfolder3 +
                       "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 console.log("Very UpToDate");
                 console.log(app.getAppPath());
@@ -385,16 +385,16 @@ function update() {
                 verif_gameVersionLoading();
               }
               if (
-                window
+                parseInt(window
                   .require("electron")
                   .remote.app.getVersion()
-                  .toString() ===
-                fs
+                  .toString().replace(/./g,"")) ===
+                parseInt(fs
                   .readFileSync(
                     parentfolder3 +
                       "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 console.log("UpToDate");
                 document.getElementById("MyBartxt").innerHTML =
@@ -417,7 +417,7 @@ function update() {
                 document.getElementById("MyBartxt").innerHTML =
                   currentLanguage[129];
                 DownlaodFileUpdate(
-                  "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
+                  "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
                     launcherversion +
                     "/Nytuo-Launcher_" +
                     launcherversion +
@@ -446,12 +446,12 @@ function update() {
               isUp2date = false;
             } else {
               if (
-                window.require("electron").remote.app.getVersion().toString() <
-                fs
+                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
+                parseInt(fs
                   .readFileSync(
                     __dirname + "/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 Toastifycation(currentLanguage[75]);
                 document.getElementById("MyBartxt").innerHTML =
@@ -460,12 +460,12 @@ function update() {
                 isUp2date = false;
               }
               if (
-                window.require("electron").remote.app.getVersion().toString() >
-                fs
+                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
+                parseInt(fs
                   .readFileSync(
                     __dirname + "/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 console.log("Very UpToDate");
                 console.log(app.getAppPath());
@@ -474,15 +474,15 @@ function update() {
                 verif_gameVersionLoading();
               }
               if (
-                window
+                parseInt(window
                   .require("electron")
                   .remote.app.getVersion()
-                  .toString() ===
-                fs
+                  .toString().replace(/./g,"")) ===
+                parseInt(fs
                   .readFileSync(
                     __dirname + "/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 console.log("UpToDate");
                 document.getElementById("MyBartxt").innerHTML =
@@ -506,7 +506,7 @@ function update() {
                   document.getElementById("MyBartxt").innerHTML =
                     currentLanguage[129];
                   DownlaodFileUpdate(
-                    "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
+                    "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
                       launcherversion +
                       "/Nytuo-Launcher-Setup-" +
                       launcherversion +
@@ -539,13 +539,13 @@ function update() {
               isUp2date = false;
             } else {
               if (
-                window.require("electron").remote.app.getVersion().toString() <
-                fs
+                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
+                parseInt(fs
                   .readFileSync(
                     app.getPath("documents") +
                       "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 Toastifycation(currentLanguage[75]);
                 console.log("You have to update the launcher !");
@@ -554,13 +554,13 @@ function update() {
                 isUp2date = false;
               }
               if (
-                window.require("electron").remote.app.getVersion().toString() >
-                fs
+                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
+                parseInt(fs
                   .readFileSync(
                     app.getPath("documents") +
                       "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 console.log("Very UpToDate");
                 console.log(app.getAppPath());
@@ -569,16 +569,16 @@ function update() {
                 verif_gameVersionLoading();
               }
               if (
-                window
+                parseInt(window
                   .require("electron")
                   .remote.app.getVersion()
-                  .toString() ===
-                fs
+                  .toString().replace(/./g,"")) ===
+                parseInt(fs
                   .readFileSync(
                     app.getPath("documents") +
                       "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 console.log("UpToDate");
                 document.getElementById("MyBartxt").innerHTML =
@@ -597,7 +597,7 @@ function update() {
               document.getElementById("MyBartxt").innerHTML =
                 "Downloading Update";
               DownlaodFileUpdate(
-                "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
+                "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
                   launcherversion +
                   "/Nytuo-Launcher_" +
                   launcherversion +
@@ -625,12 +625,12 @@ function update() {
               isUp2date = false;
             } else {
               if (
-                window.require("electron").remote.app.getVersion().toString() <
-                fs
+                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
+                parseInt(fs
                   .readFileSync(
                     __dirname + "/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 Toastifycation(currentLanguage[75]);
                 document.getElementById("MyBartxt").innerHTML =
@@ -639,12 +639,12 @@ function update() {
                 isUp2date = false;
               }
               if (
-                window.require("electron").remote.app.getVersion().toString() >
-                fs
+                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
+                parseInt(fs
                   .readFileSync(
                     __dirname + "/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 console.log("Very UpToDate");
                 console.log(app.getAppPath());
@@ -653,15 +653,15 @@ function update() {
                 verif_gameVersionLoading();
               }
               if (
-                window
+                parseInt(window
                   .require("electron")
                   .remote.app.getVersion()
-                  .toString() ===
-                fs
+                  .toString().replace(/./g,"")) ===
+                parseInt(fs
                   .readFileSync(
                     __dirname + "/VersionsFiles/LauncherVersion.txt"
                   )
-                  .toString()
+                  .toString().replace("v","").replace(/./g,""))
               ) {
                 console.log("UpToDate");
                 document.getElementById("MyBartxt").innerHTML =
@@ -681,7 +681,7 @@ function update() {
                 document.getElementById("MyBartxt").innerHTML =
                   currentLanguage[129];
                 DownlaodFileUpdate(
-                  "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
+                  "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
                     launcherversion +
                     "/Nytuo-Launcher-Setup-" +
                     launcherversion +
@@ -706,13 +706,13 @@ function verif_gameVersionLoading() {
   document.getElementById("MyBartxt").innerHTML = currentLanguage[128];
 
   if (
-    window.require("electron").remote.app.getVersion().toString() >=
-    fs.readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt").toString()
+    parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >=
+    parseInt(fs.readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt").toString().replace("v","").replace(/./g,""))
   ) {
     setTimeout(function () {
       if (
         fs.existsSync(gamelocation + "/Games/LAATIM/LAIM_Version.txt")
-          .toString === true
+          .toString() === true
       ) {
         if (portable == true) {
           if (process.platform == "linux") {
