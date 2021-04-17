@@ -40,9 +40,8 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           draft: true
-          working-directory: ./Project
           files: |
-            dist/*.exe
+            *.exe
             dist/*.blockmap
             dist/*.zip
             dist/latest.yml
@@ -53,10 +52,9 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           draft: true
-          working-directory: ./Project
           files: |
             dist/*.zip
-            dist/*.snap
+            *.snap
   deploy:
     needs: release
     runs-on: ubuntu-latest
