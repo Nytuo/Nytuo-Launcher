@@ -38,7 +38,6 @@ jobs:
       - name: Publishing For Windows
         if: matrix.os == 'windows-latest'
         uses: "marvinpinto/action-automatic-releases@latest"
-        id: p
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
@@ -51,7 +50,6 @@ jobs:
       - name: Publishing for Linux
         if: matrix.os == 'ubuntu-latest'
         uses: "marvinpinto/action-automatic-releases@latest"
-        id: p
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
@@ -59,15 +57,16 @@ jobs:
           files: |
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/*.snap
-  publishDraft:
-    name: PublishDraft
-    runs-on: ubuntu-release
+  deploy:
+    runs-on: ubuntu-latest
     steps:
-      - name: Publish release
-        uses: StuYarrow/publish-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get version from ref
+        id: get-version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: Publish release drafts
+        uses: test-room-7/action-publish-release-drafts@v0.1.1
         with:
-          id: ${{ steps.p.outputs.automatic_releases_tag }}
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            tag-name: ${{ steps.get-version.outputs.VERSION }}
     
       
