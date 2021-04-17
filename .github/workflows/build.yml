@@ -24,6 +24,7 @@ jobs:
       - name: Setting the Path
         run: |
           cd ${{github.workspace}}/Project
+          export GH_TOKEN=${{secrets.GITTOKKEN}}
           yarn install
           yarn devBuild
       - name: "Build & test"
@@ -34,11 +35,11 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            dist/*.exe
-            dist/*.blockmap
-            dist/*.zip
-            dist/*.snap
-            dist/latest.yml
+            ${{github.workspace}}/Project/dist/*.exe
+            ${{github.workspace}}/Project/dist/*.blockmap
+            ${{github.workspace}}/Project/dist/*.zip
+            ${{github.workspace}}/Project/dist/*.snap
+            ${{github.workspace}}/Project/dist/latest.yml
       - uses: actions/checkout@v2.2.0
         with:
           fetch-depth: 0
