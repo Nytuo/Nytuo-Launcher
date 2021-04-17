@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest,windows-latest]
 
     steps:
       - name: Check out Git repository
@@ -32,11 +32,7 @@ jobs:
         working-directory: ./Project
         run: |
             yarn install
-            yarn devBuild
-      - if: matrix.os == 'windows-latest'
-        working-directory: ${{github.workspace}}/Project/dist
-        run: Get-ChildItem -File
-        
+            yarn devBuild        
         
       - name: Publishing For Windows
         if: matrix.os == 'windows-latest'
