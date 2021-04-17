@@ -21,10 +21,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10
-      - name: Run a yarn or npm command
-        uses: Adzz/yarn_command_action@v1.0.0
+      - name: Run Commands via SSH
+  # You may pin to the exact commit or the version.
+  # uses: Flaavius/ssh-commands@79ae027ae651731b483988ee69b2f628c75422f1
+        uses: Flaavius/ssh-commands@1.0
         with:
-          command:  |
+    # Command to run on the remote server
+          command: |
             cd Project
             yarn devBuild
       - name: "Build & test"
