@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - name: Check out Git repository
@@ -21,22 +21,22 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 14
-      - name: Setting the Path
+      - name: Setting the Path for Windows
+        if: matrix.os == 'windows-latest'
         run: |
             cd ${{github.workspace}}/Project
+            SET GH_TOKEN=${{secrets.GITTOKKEN}}
             yarn install
             yarn devBuild
-            docker run --rm -ti \
-            --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_') \
-            --env ELECTRON_CACHE="/root/.cache/electron" \
-            --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
-            -v ${PWD}:/project \
-            -v ${PWD##*/}-node-modules:/project/node_modules \
-            -v ~/.cache/electron:/root/.cache/electron \
-            -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-            electronuserland/builder:wine
-            /bin/bash -c "yarn && yarn dist"
-      - name: Publishing
+      - name: Setting the Path for Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+            cd ${{github.workspace}}/Project
+            export GH_TOKEN=${{secrets.GITTOKKEN}}
+            yarn install
+            yarn devBuild
+      - name: Publishing For Windows
+        if: matrix.os == 'windows-latest'
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -46,5 +46,12 @@ jobs:
             ${{github.workspace}}/Project/dist/*.blockmap
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/latest.yml
+      - name: Publishing for Linux
+        if: matrix.os == 'ubuntu-latest'
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/*.snap
