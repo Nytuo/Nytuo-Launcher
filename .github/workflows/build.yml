@@ -4,7 +4,7 @@ on:
     tags:
       - "v*"
   workflow_dispatch:
-
+  
 jobs:
   release:
     runs-on: ${{ matrix.os }}
@@ -55,19 +55,3 @@ jobs:
           files: |
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/*.snap
-      - name: 'Get Previous tag'
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
-
-      - name: 'Writting the tag in File'
-        uses: DamianReeves/write-file-action@v1.0
-        with:
-          path: ${{ github.workspace}}/Version.txt
-          contents: |
-            ${{ steps.previoustag.outputs.tag }}
-          write-mode: overwrite
-      - name: "Pushing the change"
-        uses: actions-go/push@master
-        with:
-          commit-message: '[Auto] Version file updated'
-          remote: master
