@@ -33,6 +33,18 @@ jobs:
         run: |
             yarn install
             yarn devBuild
+      - name: Get directory names
+        id: get-directory-names
+        uses: actions/collect-directory-names-by-file-glob@v1.1
+        with:
+          file-glob: '**/*.exe'
+          search-directory: '/Project'
+          unique: "true"
+
+      - name: Use Directory Names
+        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
+        
+        
       - name: Publishing For Windows
         if: matrix.os == 'windows-latest'
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -67,26 +79,3 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         tag-name: ${{ steps.get-version.outputs.VERSION }}
-  WrittingVersionFile:
-    needs: [release,deploy]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2.2.0
-      with:
-        fetch-depth: 0
-    - name: 'Get Previous tag'
-      id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1"
-
-    - name: 'Writting'
-      uses: DamianReeves/write-file-action@v1.0
-      with:
-        path: ${{ github.workspace}}/Version.txt
-        contents: |
-          ${{ steps.previoustag.outputs.tag }}
-        write-mode: overwrite
-    - name: "Pushing"
-      uses: actions-go/push@master
-      with:
-        commit-message: '[Auto] Version file updated'
-        remote: origin
