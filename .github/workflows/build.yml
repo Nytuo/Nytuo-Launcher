@@ -21,20 +21,19 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 14
-      - name: Setting the Path for Windows
-        if: ${{runner.os == Windows}}
+      - name: Setting the Path
         run: |
-          cd ${{github.workspace}}/Project
-          SET GH_TOKEN=${{secrets.GITTOKKEN}}
-          yarn install
-          yarn devBuild
-      - name: Setting the Path for Linux
-        if: ${{runner.os == Linux}}
-        run: |
-          cd ${{github.workspace}}/Project
-          export GH_TOKEN=${{secrets.GITTOKKEN}}
-          yarn install
-          yarn devBuild
+          if ["$RUNNER_OS" == "Windows"]; then
+            cd ${{github.workspace}}/Project
+            SET GH_TOKEN=${{secrets.GITTOKKEN}}
+            yarn install
+            yarn devBuild
+          elif ["$RUNNER_OS" == "Linux"]; then
+            cd ${{github.workspace}}/Project
+            export GH_TOKEN=${{secrets.GITTOKKEN}}
+            yarn install
+            yarn devBuild
+          fi
       - name: "Build & test"
         run: |
           echo "done!"
