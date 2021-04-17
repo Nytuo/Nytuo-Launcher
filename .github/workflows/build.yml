@@ -14,7 +14,6 @@ jobs:
         os: [ubuntu-latest, windows-latest]
 
     steps:
-      - working-directory: ./Project
       - name: Check out Git repository
         uses: actions/checkout@v2.2.0
 
@@ -23,12 +22,14 @@ jobs:
         with:
           node-version: 14
       - name: Setting the Path for Windows
+        working-directory: ./Project
         if: matrix.os == 'windows-latest'
         run: |
             yarn install
             yarn devBuild
       - name: Setting the Path for Linux
         if: matrix.os == 'ubuntu-latest'
+        working-directory: ./Project
         run: |
             yarn install
             yarn devBuild
@@ -39,6 +40,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           draft: true
+          working-directory: ./Project
           files: |
             dist/*.exe
             dist/*.blockmap
@@ -51,6 +53,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           draft: true
+          working-directory: ./Project
           files: |
             dist/*.zip
             dist/*.snap
@@ -58,13 +61,11 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
-      - name: Publish Release
-  # You may pin to the exact commit or the version.
-  # uses: eregon/publish-release@d6aee8c288e653387d895ee64d559fc0dd63339d
-        uses: eregon/publish-release@v1.0.3
-        with:
-    # The ID of the draft release to publish
-          release_id: 4
+        - name: Publish release on GitHub
+          uses: test-room-7/action-publish-release-drafts@v0
+          with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            tag-name: ${{ env.automatic_releases_tag }}
   WrittingVersionFile:
     needs: [release,deploy]
     runs-on: ubuntu-latest
