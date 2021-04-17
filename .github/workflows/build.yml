@@ -22,14 +22,14 @@ jobs:
         with:
           node-version: 14
       - name: Setting the Path for Windows
-        if: ${{runner.os == "Windows"}}
+        if: ${{runner.os == Windows}}
         run: |
           cd ${{github.workspace}}/Project
           SET GH_TOKEN=${{secrets.GITTOKKEN}}
           yarn install
           yarn devBuild
       - name: Setting the Path for Linux
-        if: ${{runner.os == "Linux"}}
+        if: ${{runner.os == Linux}}
         run: |
           cd ${{github.workspace}}/Project
           export GH_TOKEN=${{secrets.GITTOKKEN}}
