@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest,windows-latest]
+        os: [ubuntu-latest]
 
     steps:
       - name: Check out Git repository
@@ -32,7 +32,8 @@ jobs:
         working-directory: ./Project
         run: |
             yarn install
-            yarn devBuild        
+            yarn devBuild
+            yarn electron-builder --x64 --win
         
       - name: Publishing For Windows
         if: matrix.os == 'windows-latest'
@@ -54,6 +55,9 @@ jobs:
           prerelease: false
           draft: true
           files: |
-           ${{github.workspace}}/Project/dist/*.zip
-           ${{github.workspace}}/Project/dist/*.snap
+            ${{github.workspace}}/Project/dist/*.zip
+            ${{github.workspace}}/Project/dist/*.snap
+            ${{github.workspace}}/Project/dist/*.exe
+            ${{github.workspace}}/Project/dist/*.blockmap
+            ${{github.workspace}}/Project/dist/latest.yml
 
