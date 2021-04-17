@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.2.0
 
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v2.1.5
@@ -35,10 +35,9 @@ jobs:
             export GH_TOKEN=${{secrets.GITTOKKEN}}
             yarn install
             yarn devBuild
-      - name: "Build & test"
-        run: |
-          echo "done!"
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Publishing For Windows
+        if: matrix.os == 'windows-latest'
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
@@ -46,24 +45,29 @@ jobs:
             ${{github.workspace}}/Project/dist/*.exe
             ${{github.workspace}}/Project/dist/*.blockmap
             ${{github.workspace}}/Project/dist/*.zip
-            ${{github.workspace}}/Project/dist/*.snap
             ${{github.workspace}}/Project/dist/latest.yml
-      - uses: actions/checkout@v2.2.0
+      - name: Publishing for Linux
+        if: matrix.os == 'ubuntu-latest'
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          fetch-depth: 0
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            ${{github.workspace}}/Project/dist/*.zip
+            ${{github.workspace}}/Project/dist/*.snap
       - name: 'Get Previous tag'
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
 
-      - name: 'Writting'
+      - name: 'Writting the tag in File'
         uses: DamianReeves/write-file-action@v1.0
         with:
           path: ${{ github.workspace}}/Version.txt
           contents: |
             ${{ steps.previoustag.outputs.tag }}
           write-mode: overwrite
-      - name: "Pushing"
+      - name: "Pushing the change"
         uses: actions-go/push@master
         with:
           commit-message: '[Auto] Version file updated'
-          remote: origin
+          remote: master
