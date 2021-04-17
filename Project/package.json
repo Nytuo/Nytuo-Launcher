@@ -44,7 +44,7 @@
             "category": "Utility"
         }
     },
-    "version": "2.20.12",
+    "version": "2.20.13",
     "description": "Permet de télécharger,mettre à jour et jouer à mes jeux de manière simple et sans prise de tête.",
     "main": "main.js",
     "repository": "https://github.com/Nytuo/Nytuo-Launcher.git",
