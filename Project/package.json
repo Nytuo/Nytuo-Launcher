@@ -15,9 +15,17 @@
         "snap": {
             "confinement": "classic"
         },
-
+"publish": [
+            {
+                "provider": "github",
+                "repo": "Nytuo-Launcher",
+                "owner": "Nytuo"
+            }
+        ],
         "win": {
-
+         "publish": [
+                "github"
+            ],
             "target": [
                 "nsis",
                 "zip"
@@ -25,7 +33,9 @@
             "icon": "Resources/favicon.ico"
         },
         "linux": {
-
+      "publish": [
+                "github"
+            ],
             "target": [
                 "snap",
                 "zip"
@@ -41,7 +51,7 @@
         "postinstall": "electron-builder install-app-deps",
         "dist": "electron-builder",
         "gh-publish": "electron-builder --x64 -p always",
-        "devBuild": "electron-builder --x64",
+        "devBuild": "electron-builder --x64 -p never",
         "start": "electron ."
     },
     "author": "Nytuo",
