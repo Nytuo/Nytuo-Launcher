@@ -33,16 +33,8 @@ jobs:
         run: |
             yarn install
             yarn devBuild
-      - name: Get directory names
-        id: get-directory-names
-        uses: actions/collect-directory-names-by-file-glob@v1.1
-        with:
-          file-glob: '**/*.exe'
-          search-directory: '/Project'
-          unique: "true"
-
-      - name: Use Directory Names
-        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
+      
+      -  run: Get-ChildItem -Recurse | ?{ $_.PSIsContainer } | Select-Object FullName
         
         
       - name: Publishing For Windows
