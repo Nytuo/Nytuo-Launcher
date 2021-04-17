@@ -33,6 +33,9 @@ jobs:
             export GH_TOKEN=${{secrets.GITTOKKEN}}
             yarn install
             yarn devBuild
+          else
+            echo "Marche po"
+            exit 1
           fi
       - name: "Build & test"
         run: |
