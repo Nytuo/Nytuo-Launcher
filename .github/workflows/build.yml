@@ -21,6 +21,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10
+      - name: Run Commands via SSH
+  # You may pin to the exact commit or the version.
+  # uses: Flaavius/ssh-commands@79ae027ae651731b483988ee69b2f628c75422f1
+        uses: Flaavius/ssh-commands@1.0
+        with:
+    # Command to run on the remote server
+          command: cd Project
       - name: Run a yarn or npm command
         uses: Adzz/yarn_command_action@v1.0.0
         with:
@@ -38,3 +45,25 @@ jobs:
             dist/*.zip
             dist/*.snap
             dist/latest.yml
+  Main:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2.2.0
+        with:
+          fetch-depth: 0
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+      - name: 'Writting'
+        uses: DamianReeves/write-file-action@v1.0
+        with:
+          path: ${{ github.workspace}}/Version.txt
+          contents: |
+            ${{ steps.previoustag.outputs.tag }}
+          write-mode: overwrite
+      - name: "Pushing"
+        uses: actions-go/push@master
+        with:
+          commit-message: '[Auto] Version file updated'
+          remote: origin
