@@ -24,7 +24,7 @@ jobs:
       - name: Setting the Path
         run: |
           cd ${{github.workspace}}/Project
-          yarn upgrade
+          yarn install
           yarn devBuild
       - name: "Build & test"
         run: |
