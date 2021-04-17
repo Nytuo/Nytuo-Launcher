@@ -41,10 +41,10 @@ jobs:
           prerelease: false
           draft: true
           files: |
-            ${{github.workplace}}/Project/dist/*.exe
-            ${{github.workplace}}/Project/dist/*.blockmap
-            ${{github.workplace}}/Project/dist/*.zip
-            ${{github.workplace}}/Project/dist/latest.yml
+            ${{github.workspace}}/Project/dist/*.exe
+            ${{github.workspace}}/Project/dist/*.blockmap
+            ${{github.workspace}}/Project/dist/*.zip
+            ${{github.workspace}}/Project/dist/latest.yml
       - name: Publishing for Linux
         if: matrix.os == 'ubuntu-latest'
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -53,8 +53,8 @@ jobs:
           prerelease: false
           draft: true
           files: |
-           ${{github.workplace}}/Project/dist/*.zip
-           ${{github.workplace}}/Project/dist/*.snap
+           ${{github.workspace}}/Project/dist/*.zip
+           ${{github.workspace}}/Project/dist/*.snap
   deploy:
     needs: release
     runs-on: ubuntu-latest
