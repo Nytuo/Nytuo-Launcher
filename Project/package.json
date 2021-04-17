@@ -15,17 +15,9 @@
         "snap": {
             "confinement": "classic"
         },
-        "publish": [
-            {
-                "provider": "github",
-                "repo": "Nytuo-Launcher",
-                "owner": "Nytuo"
-            }
-        ],
+
         "win": {
-            "publish": [
-                "github"
-            ],
+
             "target": [
                 "nsis",
                 "zip"
@@ -33,9 +25,7 @@
             "icon": "Resources/favicon.ico"
         },
         "linux": {
-            "publish": [
-                "github"
-            ],
+
             "target": [
                 "snap",
                 "zip"
