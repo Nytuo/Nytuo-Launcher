@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [windows-latest]
 
     steps:
       - name: Check out Git repository
@@ -21,22 +21,13 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 14
-      - name: Setting the Path for Windows
-        if: matrix.os == 'windows-latest'
+      - name: Setting the Path
         run: |
             cd ${{github.workspace}}/Project
             SET GH_TOKEN=${{secrets.GITTOKKEN}}
             yarn install
             yarn devBuild
-      - name: Setting the Path for Linux
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-            cd ${{github.workspace}}/Project
-            export GH_TOKEN=${{secrets.GITTOKKEN}}
-            yarn install
-            yarn devBuild
-      - name: Publishing For Windows
-        if: matrix.os == 'windows-latest'
+      - name: Publishing
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -46,12 +37,5 @@ jobs:
             ${{github.workspace}}/Project/dist/*.blockmap
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/latest.yml
-      - name: Publishing for Linux
-        if: matrix.os == 'ubuntu-latest'
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: |
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/*.snap
