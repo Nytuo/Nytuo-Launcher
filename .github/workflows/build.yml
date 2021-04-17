@@ -18,17 +18,18 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Node.js, NPM and Yarn
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2.1.5
         with:
-          node-version: 10
-      - name: Setting the Path
-      - if: ${{runner.os === "Windows"}}
+          node-version: 14
+      - name: Setting the Path for Windows
+        if: ${{runner.os === "Windows"}}
         run: |
           cd ${{github.workspace}}/Project
-          setx GH_TOKEN  "${{secrets.GITTOKKEN}}"
+          SET GH_TOKEN=${{secrets.GITTOKKEN}}
           yarn install
           yarn devBuild
-      - if: ${{runner.os === "Linux"}}
+      - name: Setting the Path for Linux
+        if: ${{runner.os === "Linux"}}
         run: |
           cd ${{github.workspace}}/Project
           export GH_TOKEN=${{secrets.GITTOKKEN}}
