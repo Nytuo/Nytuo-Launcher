@@ -41,10 +41,10 @@ jobs:
           prerelease: false
           draft: true
           files: |
-            *.exe
-            dist/*.blockmap
-            dist/*.zip
-            dist/latest.yml
+            ${{github.workplace}}/Project/dist/*.exe
+            ${{github.workplace}}/Project/dist/*.blockmap
+            ${{github.workplace}}/Project/dist/*.zip
+            ${{github.workplace}}/Project/dist/latest.yml
       - name: Publishing for Linux
         if: matrix.os == 'ubuntu-latest'
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -53,17 +53,20 @@ jobs:
           prerelease: false
           draft: true
           files: |
-            dist/*.zip
-            *.snap
+           ${{github.workplace}}/Project/dist/*.zip
+           ${{github.workplace}}/Project/dist/*.snap
   deploy:
     needs: release
     runs-on: ubuntu-latest
     steps:
-        - name: Publish release on GitHub
-          uses: test-room-7/action-publish-release-drafts@v0
-          with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            tag-name: ${{ env.automatic_releases_tag }}
+    - name: Get version from ref
+      id: get-version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: Publish release on GitHub
+      uses: test-room-7/action-publish-release-drafts@v0.1.1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        tag-name: ${{ steps.get-version.outputs.VERSION }}
   WrittingVersionFile:
     needs: [release,deploy]
     runs-on: ubuntu-latest
