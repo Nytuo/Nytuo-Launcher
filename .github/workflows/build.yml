@@ -56,15 +56,4 @@ jobs:
           files: |
            ${{github.workspace}}/Project/dist/*.zip
            ${{github.workspace}}/Project/dist/*.snap
-  deploy:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-    - name: Get version from ref
-      id: get-version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-    - name: Publish release on GitHub
-      uses: test-room-7/action-publish-release-drafts@v0.1.1
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        tag-name: ${{ steps.get-version.outputs.VERSION }}
+
