@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [windows-latest]
 
     steps:
       - name: Check out Git repository
@@ -34,7 +34,7 @@ jobs:
             yarn install
             yarn devBuild
       - if: matrix.os == 'windows-latest'
-        run: Get-ChildItem -Recurse | ?{ $_.PSIsContainer } | Select-Object FullName
+        run: Get-ChildItem -Directory
         
         
       - name: Publishing For Windows
