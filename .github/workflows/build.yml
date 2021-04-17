@@ -31,6 +31,8 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         working-directory: ./Project
         run: |
+            sudo dpkg --add-architecture i386
+            sudo apt install --install-recommends winehq-stable
             yarn install
             yarn devBuild
             yarn electron-builder --x64 --win
