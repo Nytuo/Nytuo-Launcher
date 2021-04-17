@@ -14,6 +14,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
 
     steps:
+      - working-directory: ./Project
       - name: Check out Git repository
         uses: actions/checkout@v2.2.0
 
@@ -24,15 +25,11 @@ jobs:
       - name: Setting the Path for Windows
         if: matrix.os == 'windows-latest'
         run: |
-            cd ${{github.workspace}}/Project
-            SET GH_TOKEN=${{secrets.GITTOKKEN}}
             yarn install
             yarn devBuild
       - name: Setting the Path for Linux
         if: matrix.os == 'ubuntu-latest'
         run: |
-            cd ${{github.workspace}}/Project
-            export GH_TOKEN=${{secrets.GITTOKKEN}}
             yarn install
             yarn devBuild
       - name: Publishing For Windows
@@ -43,10 +40,10 @@ jobs:
           prerelease: false
           draft: true
           files: |
-            ${{github.workspace}}/Project/dist/*.exe
-            ${{github.workspace}}/Project/dist/*.blockmap
-            ${{github.workspace}}/Project/dist/*.zip
-            ${{github.workspace}}/Project/dist/latest.yml
+            dist/*.exe
+            dist/*.blockmap
+            dist/*.zip
+            dist/latest.yml
       - name: Publishing for Linux
         if: matrix.os == 'ubuntu-latest'
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -55,20 +52,19 @@ jobs:
           prerelease: false
           draft: true
           files: |
-            ${{github.workspace}}/Project/dist/*.zip
-            ${{github.workspace}}/Project/dist/*.snap
+            dist/*.zip
+            dist/*.snap
   deploy:
     needs: release
     runs-on: ubuntu-latest
     steps:
-      - name: Get version from ref
-        id: get-version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - name: Publish release drafts
-        uses: test-room-7/action-publish-release-drafts@v0.1.1
+      - name: Publish Release
+  # You may pin to the exact commit or the version.
+  # uses: eregon/publish-release@d6aee8c288e653387d895ee64d559fc0dd63339d
+        uses: eregon/publish-release@v1.0.3
         with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            tag-name: ${{ steps.get-version.outputs.VERSION }}
+    # The ID of the draft release to publish
+          release_id: 4
   WrittingVersionFile:
     needs: [release,deploy]
     runs-on: ubuntu-latest
