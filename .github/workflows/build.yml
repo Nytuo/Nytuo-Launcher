@@ -38,6 +38,7 @@ jobs:
       - name: Publishing For Windows
         if: matrix.os == 'windows-latest'
         uses: "marvinpinto/action-automatic-releases@latest"
+        id: p
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
@@ -50,6 +51,7 @@ jobs:
       - name: Publishing for Linux
         if: matrix.os == 'ubuntu-latest'
         uses: "marvinpinto/action-automatic-releases@latest"
+        id: p
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
@@ -57,3 +59,15 @@ jobs:
           files: |
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/*.snap
+  publishDraft:
+    name: PublishDraft
+    runs-on: ubuntu-release
+    steps:
+      - name: Publish release
+        uses: StuYarrow/publish-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          id: ${{ steps.p.outputs.automatic_releases_tag }}
+    
+      
