@@ -41,6 +41,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
+          draft: true
           files: |
             ${{github.workspace}}/Project/dist/*.exe
             ${{github.workspace}}/Project/dist/*.blockmap
@@ -52,6 +53,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
+          draft: true
           files: |
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/*.snap
