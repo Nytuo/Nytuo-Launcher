@@ -21,15 +21,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10
-      - name: Run Commands via SSH
-  # You may pin to the exact commit or the version.
-  # uses: Flaavius/ssh-commands@79ae027ae651731b483988ee69b2f628c75422f1
-        uses: Flaavius/ssh-commands@1.0
-        with:
-    # Command to run on the remote server
-          command: |
-            cd Project
-            yarn devBuild
+      - name: Setting the Path
+        run: |
+          cd Project
+          yarn devBuild
       - name: "Build & test"
         run: |
           echo "done!"
