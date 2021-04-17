@@ -33,8 +33,8 @@ jobs:
         run: |
             yarn install
             yarn devBuild
-      
-      -  run: Get-ChildItem -Recurse | ?{ $_.PSIsContainer } | Select-Object FullName
+      - if: matrix.os == 'windows-latest'
+        run: Get-ChildItem -Recurse | ?{ $_.PSIsContainer } | Select-Object FullName
         
         
       - name: Publishing For Windows
