@@ -209,39 +209,55 @@ function update() {
       );
       if (portable == true) {
         if (process.platform == "linux") {
-          var launcherversion = fs.readFileSync(
-            parentfolder3 +
-              "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-          ).toString().replace("v","");
-          var launcherversionbeta = fs.readFileSync(
-            parentfolder3 +
-              "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt"
-          ).toString().replace("v","");
+          var launcherversion = fs
+            .readFileSync(
+              parentfolder3 +
+                "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
+            )
+            .toString()
+            .replace("v", "");
+          var launcherversionbeta = fs
+            .readFileSync(
+              parentfolder3 +
+                "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt"
+            )
+            .toString()
+            .replace("v", "");
         } else {
-          var launcherversion = fs.readFileSync(
-            __dirname + "/VersionsFiles/LauncherVersion.txt"
-          ).toString().replace("v","");
-          var launcherversionbeta = fs.readFileSync(
-            __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
-          ).toString().replace("v","");
+          var launcherversion = fs
+            .readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt")
+            .toString()
+            .replace("v", "");
+          var launcherversionbeta = fs
+            .readFileSync(__dirname + "/VersionsFiles/LauncherBetaVersion.txt")
+            .toString()
+            .replace("v", "");
         }
       } else {
         if (process.platform == "linux") {
-          var launcherversion = fs.readFileSync(
-            app.getPath("documents") +
-              "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-          ).toString().replace("v","");
-          var launcherversionbeta = fs.readFileSync(
-            app.getPath("documents") +
-              "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt"
-          ).toString().replace("v","");
+          var launcherversion = fs
+            .readFileSync(
+              app.getPath("documents") +
+                "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
+            )
+            .toString()
+            .replace("v", "");
+          var launcherversionbeta = fs
+            .readFileSync(
+              app.getPath("documents") +
+                "/nytuolauncher_data/VersionsFiles/LauncherBetaVersion.txt"
+            )
+            .toString()
+            .replace("v", "");
         } else {
-          var launcherversion = fs.readFileSync(
-            __dirname + "/VersionsFiles/LauncherVersion.txt"
-          ).toString().replace("v","");
-          var launcherversionbeta = fs.readFileSync(
-            __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
-          ).toString().replace("v","");
+          var launcherversion = fs
+            .readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt")
+            .toString()
+            .replace("v", "");
+          var launcherversionbeta = fs
+            .readFileSync(__dirname + "/VersionsFiles/LauncherBetaVersion.txt")
+            .toString()
+            .replace("v", "");
         }
       }
 
@@ -272,12 +288,21 @@ function update() {
           isUp2date = false;
         } else {
           if (
-            parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
-            parseInt(fs
-              .readFileSync(
-                __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
-              )
-              .toString().replace(/./g,""))
+            parseInt(
+              window
+                .require("electron")
+                .remote.app.getVersion()
+                .toString()
+                .replace(/./g, "")
+            ) <
+            parseInt(
+              fs
+                .readFileSync(
+                  __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
+                )
+                .toString()
+                .replace(/./g, "")
+            )
           ) {
             Toastifycation(currentLanguage[73]);
             console.log("You have to update the launcher !");
@@ -286,12 +311,21 @@ function update() {
             isUp2date = false;
           }
           if (
-            parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
-            parseInt(fs
-              .readFileSync(
-                __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
-              )
-              .toString().replace(/./g,""))
+            parseInt(
+              window
+                .require("electron")
+                .remote.app.getVersion()
+                .toString()
+                .replace(/./g, "")
+            ) >
+            parseInt(
+              fs
+                .readFileSync(
+                  __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
+                )
+                .toString()
+                .replace(/./g, "")
+            )
           ) {
             console.log("Very UpToDate");
             console.log(app.getAppPath());
@@ -300,12 +334,21 @@ function update() {
             verif_gameVersionLoading();
           }
           if (
-            parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) ===
-            parseInt(fs
-              .readFileSync(
-                __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
-              )
-              .toString().replace(/./g,""))
+            parseInt(
+              window
+                .require("electron")
+                .remote.app.getVersion()
+                .toString()
+                .replace(/./g, "")
+            ) ===
+            parseInt(
+              fs
+                .readFileSync(
+                  __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
+                )
+                .toString()
+                .replace(/./g, "")
+            )
           ) {
             console.log("UpToDate");
             document.getElementById("MyBartxt").innerHTML =
@@ -355,13 +398,23 @@ function update() {
               isUp2date = false;
             } else {
               if (
-                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
-                parseInt(fs
-                  .readFileSync(
-                    parentfolder3 +
-                      "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) <
+                parseInt(
+                  fs
+                    .readFileSync(
+                      parentfolder3 +
+                        "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 Toastifycation(currentLanguage[75]);
                 document.getElementById("MyBartxt").innerHTML =
@@ -370,13 +423,23 @@ function update() {
                 isUp2date = false;
               }
               if (
-                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
-                parseInt(fs
-                  .readFileSync(
-                    parentfolder3 +
-                      "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) >
+                parseInt(
+                  fs
+                    .readFileSync(
+                      parentfolder3 +
+                        "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 console.log("Very UpToDate");
                 console.log(app.getAppPath());
@@ -385,16 +448,23 @@ function update() {
                 verif_gameVersionLoading();
               }
               if (
-                parseInt(window
-                  .require("electron")
-                  .remote.app.getVersion()
-                  .toString().replace(/./g,"")) ===
-                parseInt(fs
-                  .readFileSync(
-                    parentfolder3 +
-                      "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) ===
+                parseInt(
+                  fs
+                    .readFileSync(
+                      parentfolder3 +
+                        "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 console.log("UpToDate");
                 document.getElementById("MyBartxt").innerHTML =
@@ -446,12 +516,22 @@ function update() {
               isUp2date = false;
             } else {
               if (
-                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
-                parseInt(fs
-                  .readFileSync(
-                    __dirname + "/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) <
+                parseInt(
+                  fs
+                    .readFileSync(
+                      __dirname + "/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 Toastifycation(currentLanguage[75]);
                 document.getElementById("MyBartxt").innerHTML =
@@ -460,12 +540,22 @@ function update() {
                 isUp2date = false;
               }
               if (
-                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
-                parseInt(fs
-                  .readFileSync(
-                    __dirname + "/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) >
+                parseInt(
+                  fs
+                    .readFileSync(
+                      __dirname + "/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 console.log("Very UpToDate");
                 console.log(app.getAppPath());
@@ -474,15 +564,22 @@ function update() {
                 verif_gameVersionLoading();
               }
               if (
-                parseInt(window
-                  .require("electron")
-                  .remote.app.getVersion()
-                  .toString().replace(/./g,"")) ===
-                parseInt(fs
-                  .readFileSync(
-                    __dirname + "/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) ===
+                parseInt(
+                  fs
+                    .readFileSync(
+                      __dirname + "/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 console.log("UpToDate");
                 document.getElementById("MyBartxt").innerHTML =
@@ -539,13 +636,23 @@ function update() {
               isUp2date = false;
             } else {
               if (
-                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
-                parseInt(fs
-                  .readFileSync(
-                    app.getPath("documents") +
-                      "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) <
+                parseInt(
+                  fs
+                    .readFileSync(
+                      app.getPath("documents") +
+                        "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 Toastifycation(currentLanguage[75]);
                 console.log("You have to update the launcher !");
@@ -554,13 +661,23 @@ function update() {
                 isUp2date = false;
               }
               if (
-                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
-                parseInt(fs
-                  .readFileSync(
-                    app.getPath("documents") +
-                      "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) >
+                parseInt(
+                  fs
+                    .readFileSync(
+                      app.getPath("documents") +
+                        "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 console.log("Very UpToDate");
                 console.log(app.getAppPath());
@@ -569,16 +686,23 @@ function update() {
                 verif_gameVersionLoading();
               }
               if (
-                parseInt(window
-                  .require("electron")
-                  .remote.app.getVersion()
-                  .toString().replace(/./g,"")) ===
-                parseInt(fs
-                  .readFileSync(
-                    app.getPath("documents") +
-                      "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) ===
+                parseInt(
+                  fs
+                    .readFileSync(
+                      app.getPath("documents") +
+                        "/nytuolauncher_data/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 console.log("UpToDate");
                 document.getElementById("MyBartxt").innerHTML =
@@ -625,12 +749,22 @@ function update() {
               isUp2date = false;
             } else {
               if (
-                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) <
-                parseInt(fs
-                  .readFileSync(
-                    __dirname + "/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) <
+                parseInt(
+                  fs
+                    .readFileSync(
+                      __dirname + "/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 Toastifycation(currentLanguage[75]);
                 document.getElementById("MyBartxt").innerHTML =
@@ -639,12 +773,22 @@ function update() {
                 isUp2date = false;
               }
               if (
-                parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >
-                parseInt(fs
-                  .readFileSync(
-                    __dirname + "/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) >
+                parseInt(
+                  fs
+                    .readFileSync(
+                      __dirname + "/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 console.log("Very UpToDate");
                 console.log(app.getAppPath());
@@ -653,15 +797,22 @@ function update() {
                 verif_gameVersionLoading();
               }
               if (
-                parseInt(window
-                  .require("electron")
-                  .remote.app.getVersion()
-                  .toString().replace(/./g,"")) ===
-                parseInt(fs
-                  .readFileSync(
-                    __dirname + "/VersionsFiles/LauncherVersion.txt"
-                  )
-                  .toString().replace("v","").replace(/./g,""))
+                parseInt(
+                  window
+                    .require("electron")
+                    .remote.app.getVersion()
+                    .toString()
+                    .replace(/./g, "")
+                ) ===
+                parseInt(
+                  fs
+                    .readFileSync(
+                      __dirname + "/VersionsFiles/LauncherVersion.txt"
+                    )
+                    .toString()
+                    .replace("v", "")
+                    .replace(/./g, "")
+                )
               ) {
                 console.log("UpToDate");
                 document.getElementById("MyBartxt").innerHTML =
@@ -706,12 +857,25 @@ function verif_gameVersionLoading() {
   document.getElementById("MyBartxt").innerHTML = currentLanguage[128];
 
   if (
-    parseInt(window.require("electron").remote.app.getVersion().toString().replace(/./g,"")) >=
-    parseInt(fs.readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt").toString().replace("v","").replace(/./g,""))
+    parseInt(
+      window
+        .require("electron")
+        .remote.app.getVersion()
+        .toString()
+        .replace(/./g, "")
+    ) >=
+    parseInt(
+      fs
+        .readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt")
+        .toString()
+        .replace("v", "")
+        .replace(/./g, "")
+    )
   ) {
     setTimeout(function () {
       if (
-        fs.existsSync(gamelocation + "/Games/LAATIM/LAIM_Version.txt")
+        fs
+          .existsSync(gamelocation + "/Games/LAATIM/LAIM_Version.txt")
           .toString() === true
       ) {
         if (portable == true) {
