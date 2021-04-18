@@ -28,3 +28,5 @@ jobs:
         push-branch: 'master'
         commit-message: 'Automated Version Update'
         force-add: 'true'
+        name: JARVIS [BOT]
+        email: nytuo.yt@gmail.com
