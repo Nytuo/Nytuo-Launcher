@@ -32,7 +32,7 @@ jobs:
         working-directory: ./Project
         run: |
             sudo dpkg --add-architecture i386
-            apt-get update
+            sudo apt update
             sudo apt install wine64
             sudo apt install wine32
             
