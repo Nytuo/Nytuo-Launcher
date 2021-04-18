@@ -26,7 +26,5 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         push-branch: 'master'
-        commit-message: 'publish'
+        commit-message: 'Automated Version Update'
         force-add: 'true'
-        name: commiter name
-        email: my.github@email.com 
