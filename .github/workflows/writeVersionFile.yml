@@ -21,8 +21,5 @@ jobs:
         contents: |
           ${{ steps.previoustag.outputs.tag }}
         write-mode: overwrite
-    - name: "Pushing"
-      uses: actions-go/push@master
-      with:
-        commit-message: '[Auto] Version file updated'
-        remote: origin
+    - name: push
+      uses: actions-x/commit@v2
