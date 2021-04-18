@@ -28,5 +28,6 @@ jobs:
         name: Create an Tag
         uses: simpleactions/create-tag@v1.0.0
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{env.PACKAGE_VERSION}}
           message: "Automated Update"
