@@ -64,3 +64,30 @@ jobs:
             ${{github.workspace}}/Project/dist/*.blockmap
             ${{github.workspace}}/Project/dist/latest.yml
 
+  PushVersion:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.2.0
+      with:
+        fetch-depth: 0
+    - name: 'Get Previous tag'
+      id: previoustag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+    - name: 'Writting'
+      uses: DamianReeves/write-file-action@v1.0
+      with:
+        path: ${{ github.workspace}}/Version.txt
+        contents: |
+          ${{ steps.previoustag.outputs.tag }}
+        write-mode: overwrite
+    - name: push
+      uses: github-actions-x/commit@v2.8
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        push-branch: 'master'
+        commit-message: 'Automated Version Update'
+        force-add: 'true'
+        name: JARVIS [BOT]
+        email: nytuo.yt@gmail.com
