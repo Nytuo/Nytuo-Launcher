@@ -22,4 +22,11 @@ jobs:
           ${{ steps.previoustag.outputs.tag }}
         write-mode: overwrite
     - name: push
-      uses: actions-x/commit@v2
+      uses: github-actions-x/commit@v2.8
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        push-branch: 'master'
+        commit-message: 'publish'
+        force-add: 'true'
+        name: commiter name
+        email: my.github@email.com 
