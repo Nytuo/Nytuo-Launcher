@@ -1639,7 +1639,6 @@ function ConnectionForm() {
           nodeIntegration: false,
           enableRemoteModule: false,
           nativeWindowOpen: true,
-
         },
       });
       fs.writeFileSync(
@@ -1665,7 +1664,7 @@ function ConnectionForm() {
           webSecurity: false,
           nodeIntegration: true,
           enableRemoteModule: true,
-          contextIsolation: false
+          contextIsolation: false,
         },
       });
       win.removeMenu();
@@ -1723,7 +1722,7 @@ function ConnectionForm() {
           webSecurity: false,
           nodeIntegration: true,
           enableRemoteModule: true,
-          contextIsolation: false
+          contextIsolation: false,
         },
       });
       ACH_SAVER();
@@ -1994,7 +1993,7 @@ function LaunchWindowLauncherOffline() {
         webSecurity: false,
         nodeIntegration: true,
         enableRemoteModule: true,
-        contextIsolation: false
+        contextIsolation: false,
       },
     });
     ACH_SAVER();
@@ -2014,7 +2013,7 @@ function LaunchWindowLauncherOffline() {
         webSecurity: false,
         nodeIntegration: true,
         enableRemoteModule: true,
-        contextIsolation: false
+        contextIsolation: false,
       },
       frame: false,
     });
@@ -3078,7 +3077,7 @@ function LaunchGame(gameid) {
       webSecurity: true,
       nodeIntegration: true,
       enableRemoteModule: true,
-      contextIsolation: false
+      contextIsolation: false,
     },
   });
   if (process.platform == "linux") {
