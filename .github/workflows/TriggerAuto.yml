@@ -23,11 +23,14 @@ jobs:
       - name: 'Get Previous tag'
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      - name: 'Set PKGVER'
+        env:
+          PKGVER: v${{env.PACKAGE_VERSION}}
         
-      - if: ${{ steps.previoustag.outputs.tag != }}v${{env.PACKAGE_VERSION }}
+      - if: ${{ steps.previoustag.outputs.tag != env.PKGVER }}
         name: Create an Tag
         uses: simpleactions/create-tag@v1.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v${{env.PACKAGE_VERSION}}
+          tag: ${{env.PKGVER}}
           message: "Automated Update"
