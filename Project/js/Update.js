@@ -293,7 +293,7 @@ function update() {
                 .require("electron")
                 .remote.app.getVersion()
                 .toString()
-                .replace(/./g, "")
+                .replaceAll(".", "")
             ) <
             parseInt(
               fs
@@ -301,7 +301,7 @@ function update() {
                   __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
                 )
                 .toString()
-                .replace(/./g, "")
+                .replaceAll(".", "")
             )
           ) {
             Toastifycation(currentLanguage[73]);
@@ -316,7 +316,7 @@ function update() {
                 .require("electron")
                 .remote.app.getVersion()
                 .toString()
-                .replace(/./g, "")
+                .replaceAll(".", "")
             ) >
             parseInt(
               fs
@@ -324,7 +324,7 @@ function update() {
                   __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
                 )
                 .toString()
-                .replace(/./g, "")
+                .replaceAll(".", "")
             )
           ) {
             console.log("Very UpToDate");
@@ -339,7 +339,7 @@ function update() {
                 .require("electron")
                 .remote.app.getVersion()
                 .toString()
-                .replace(/./g, "")
+                .replaceAll(".", "")
             ) ===
             parseInt(
               fs
@@ -347,7 +347,7 @@ function update() {
                   __dirname + "/VersionsFiles/LauncherBetaVersion.txt"
                 )
                 .toString()
-                .replace(/./g, "")
+                .replaceAll(".", "")
             )
           ) {
             console.log("UpToDate");
@@ -369,7 +369,7 @@ function update() {
             DownlaodFileUpdate(
               "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
                 launcherversionbeta +
-                "/Nytuo-Launcher-Setup-" +
+                "/Nytuo-Launcher.Setup." +
                 launcherversionbeta +
                 ".exe",
               parentfolder3 + "/nytuolauncher_data/update.exe"
@@ -403,7 +403,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) <
                 parseInt(
                   fs
@@ -413,7 +413,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 Toastifycation(currentLanguage[75]);
@@ -428,7 +428,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) >
                 parseInt(
                   fs
@@ -438,7 +438,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 console.log("Very UpToDate");
@@ -453,7 +453,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) ===
                 parseInt(
                   fs
@@ -463,7 +463,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 console.log("UpToDate");
@@ -521,7 +521,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) <
                 parseInt(
                   fs
@@ -530,7 +530,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 Toastifycation(currentLanguage[75]);
@@ -545,7 +545,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) >
                 parseInt(
                   fs
@@ -554,7 +554,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 console.log("Very UpToDate");
@@ -569,7 +569,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) ===
                 parseInt(
                   fs
@@ -578,7 +578,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 console.log("UpToDate");
@@ -605,7 +605,7 @@ function update() {
                   DownlaodFileUpdate(
                     "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
                       launcherversion +
-                      "/Nytuo-Launcher-Setup-" +
+                      "/Nytuo-Launcher.Setup." +
                       launcherversion +
                       ".exe",
                     parentfolder3 + "/nytuolauncher_data/update.exe"
@@ -641,7 +641,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) <
                 parseInt(
                   fs
@@ -651,7 +651,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 Toastifycation(currentLanguage[75]);
@@ -666,7 +666,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) >
                 parseInt(
                   fs
@@ -676,7 +676,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 console.log("Very UpToDate");
@@ -691,7 +691,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) ===
                 parseInt(
                   fs
@@ -701,7 +701,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 console.log("UpToDate");
@@ -754,7 +754,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) <
                 parseInt(
                   fs
@@ -763,7 +763,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 Toastifycation(currentLanguage[75]);
@@ -778,7 +778,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) >
                 parseInt(
                   fs
@@ -787,7 +787,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 console.log("Very UpToDate");
@@ -802,7 +802,7 @@ function update() {
                     .require("electron")
                     .remote.app.getVersion()
                     .toString()
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 ) ===
                 parseInt(
                   fs
@@ -811,7 +811,7 @@ function update() {
                     )
                     .toString()
                     .replace("v", "")
-                    .replace(/./g, "")
+                    .replaceAll(".", "")
                 )
               ) {
                 console.log("UpToDate");
@@ -834,7 +834,7 @@ function update() {
                 DownlaodFileUpdate(
                   "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
                     launcherversion +
-                    "/Nytuo-Launcher-Setup-" +
+                    "/Nytuo-Launcher.Setup." +
                     launcherversion +
                     ".exe",
                   parentfolder3 + "/nytuolauncher_data/update.exe"
@@ -862,14 +862,14 @@ function verif_gameVersionLoading() {
         .require("electron")
         .remote.app.getVersion()
         .toString()
-        .replace(/./g, "")
+        .replaceAll(".", "")
     ) >=
     parseInt(
       fs
         .readFileSync(__dirname + "/VersionsFiles/LauncherVersion.txt")
         .toString()
         .replace("v", "")
-        .replace(/./g, "")
+        .replaceAll(".", "")
     )
   ) {
     setTimeout(function () {
@@ -1638,6 +1638,8 @@ function ConnectionForm() {
           webSecurity: true,
           nodeIntegration: false,
           enableRemoteModule: false,
+          nativeWindowOpen: true,
+
         },
       });
       fs.writeFileSync(
@@ -1663,6 +1665,7 @@ function ConnectionForm() {
           webSecurity: false,
           nodeIntegration: true,
           enableRemoteModule: true,
+          contextIsolation: false
         },
       });
       win.removeMenu();
@@ -1720,6 +1723,7 @@ function ConnectionForm() {
           webSecurity: false,
           nodeIntegration: true,
           enableRemoteModule: true,
+          contextIsolation: false
         },
       });
       ACH_SAVER();
@@ -1990,6 +1994,7 @@ function LaunchWindowLauncherOffline() {
         webSecurity: false,
         nodeIntegration: true,
         enableRemoteModule: true,
+        contextIsolation: false
       },
     });
     ACH_SAVER();
@@ -2009,6 +2014,7 @@ function LaunchWindowLauncherOffline() {
         webSecurity: false,
         nodeIntegration: true,
         enableRemoteModule: true,
+        contextIsolation: false
       },
       frame: false,
     });
@@ -3072,6 +3078,7 @@ function LaunchGame(gameid) {
       webSecurity: true,
       nodeIntegration: true,
       enableRemoteModule: true,
+      contextIsolation: false
     },
   });
   if (process.platform == "linux") {

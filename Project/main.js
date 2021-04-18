@@ -446,6 +446,7 @@ function createWindow() {
         webSecurity: true,
         nodeIntegration: true,
         enableRemoteModule: true,
+        contextIsolation: false,
       },
     });
     var linkbrowser = process.argv[1];
@@ -494,6 +495,7 @@ function createWindow() {
         webSecurity: true,
         nodeIntegration: true,
         enableRemoteModule: true,
+        contextIsolation: false,
       },
     });
     var linkbrowser = process.argv[1];

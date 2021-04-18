@@ -286,6 +286,8 @@ function LaunchGame(gameid) {
       webSecurity: true,
       nodeIntegration: true,
       enableRemoteModule: true,
+      contextIsolation: false
+
     },
   });
   if (process.platform == "linux") {
