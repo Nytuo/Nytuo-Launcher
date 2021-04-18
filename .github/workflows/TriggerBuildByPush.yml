@@ -1,31 +1,21 @@
 name: Get version from package.json
-
-on: workflow_dispatch
+on:
+  schedule:
+    - cron:  '0 17 * * 1'
+  workflow_dispatch:
 
 jobs:
-  PackVer:
-    runs-on: ubuntu-latest
+  main:
 
-    steps:
-      - uses: actions/checkout@v2.2.0
-
-      - name: Read package.json
-        uses: dutscher/read-package-json-endpoint-actions@v1.33.7
-        id: package-json-endpoint
-
-      - name: Show version number
-        run: echo "${{ steps.package-json-endpoint.outputs.endpoint }}"
-        
-  create-tag:
-    needs: PackVer
+    name: Setup
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2.2.0
-
-    - name: Create Tag
-      uses: negz/create-tag@v1
-      with:
-        version: ${{ github.event.inputs.version }}
-        message: ${{ github.event.inputs.message }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Create Tag
+        id: create_tag
+        uses: jaywcjlove/create-tag-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          package-path: ./Project/package.json
+      - run: echo steps.create_tag.outputs.successful
