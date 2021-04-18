@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest,windows-latest]
 
     steps:
       - name: Check out Git repository
@@ -31,10 +31,10 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         working-directory: ./Project
         run: |
-            sudo apt install wine64
+            
             yarn install
             yarn devBuild
-            yarn electron-builder --x64 --win
+            
         
       - name: Publishing For Windows
         if: matrix.os == 'windows-latest'
@@ -43,6 +43,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           draft: true
+          automatic_release_tag: Draft
           files: |
             Project/dist/*.exe
             Project/dist/*.blockmap
@@ -55,10 +56,10 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           draft: true
+          automatic_release_tag: Draft
+
           files: |
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/*.snap
-            ${{github.workspace}}/Project/dist/*.exe
-            ${{github.workspace}}/Project/dist/*.blockmap
-            ${{github.workspace}}/Project/dist/latest.yml
+
 
