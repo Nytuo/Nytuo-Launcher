@@ -1,0 +1,31 @@
+name: Get version from package.json
+
+on: workflow_dispatch
+
+jobs:
+  PackVer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.2.0
+
+      - name: Read package.json
+        uses: dutscher/read-package-json-endpoint-actions@v1.33.7
+        id: package-json-endpoint
+
+      - name: Show version number
+        run: echo "${{ steps.package-json-endpoint.outputs.endpoint }}"
+        
+  create-tag:
+    needs: PackVer
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2.2.0
+
+    - name: Create Tag
+      uses: negz/create-tag@v1
+      with:
+        version: ${{ github.event.inputs.version }}
+        message: ${{ github.event.inputs.message }}
+        token: ${{ secrets.GITHUB_TOKEN }}
