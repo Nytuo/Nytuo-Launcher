@@ -1,0 +1,32 @@
+name: Auto Start
+on:
+  schedule:
+    - cron:  '0 17 * * 1'
+  workflow_dispatch:
+
+jobs:
+  main:
+
+    name: Setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master        
+      - name: Get Package Version
+        uses: nyaa8/package-version@v1
+        with:
+          path: 'Project/package.json'
+          
+      - uses: actions/checkout@v2.2.0
+        with:
+          fetch-depth: 0
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        
+      - if: ${{ steps.previoustag.outputs.tag != env.PACKAGE_VERSION }}
+        name: Create an Tag
+        uses: simpleactions/create-tag@v1.0.0
+        with:
+          tag: v${{env.PACKAGE_VERSION}}
+          message: "Automated Update"
