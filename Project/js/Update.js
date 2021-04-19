@@ -367,7 +367,7 @@ function update() {
             document.getElementById("MyBartxt").innerHTML =
               currentLanguage[134];
             DownlaodFileUpdate(
-              "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
+              "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
                 launcherversionbeta +
                 "/Nytuo-Launcher.Setup." +
                 launcherversionbeta +
@@ -487,7 +487,7 @@ function update() {
                 document.getElementById("MyBartxt").innerHTML =
                   currentLanguage[129];
                 DownlaodFileUpdate(
-                  "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
+                  "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
                     launcherversion +
                     "/Nytuo-Launcher_" +
                     launcherversion +
@@ -603,7 +603,7 @@ function update() {
                   document.getElementById("MyBartxt").innerHTML =
                     currentLanguage[129];
                   DownlaodFileUpdate(
-                    "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
+                    "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
                       launcherversion +
                       "/Nytuo-Launcher.Setup." +
                       launcherversion +
@@ -721,7 +721,7 @@ function update() {
               document.getElementById("MyBartxt").innerHTML =
                 "Downloading Update";
               DownlaodFileUpdate(
-                "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
+                "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
                   launcherversion +
                   "/Nytuo-Launcher_" +
                   launcherversion +
@@ -832,7 +832,7 @@ function update() {
                 document.getElementById("MyBartxt").innerHTML =
                   currentLanguage[129];
                 DownlaodFileUpdate(
-                  "https://github.com/Nytuo/Nytuo-Launcher/releases/download/" +
+                  "https://github.com/Nytuo/Nytuo-Launcher/releases/download/v" +
                     launcherversion +
                     "/Nytuo-Launcher.Setup." +
                     launcherversion +
