@@ -1664,7 +1664,6 @@ function ConnectionForm() {
           webSecurity: false,
           nodeIntegration: true,
           enableRemoteModule: true,
-          contextIsolation: false,
         },
       });
       win.removeMenu();
@@ -1722,7 +1721,6 @@ function ConnectionForm() {
           webSecurity: false,
           nodeIntegration: true,
           enableRemoteModule: true,
-          contextIsolation: false,
         },
       });
       ACH_SAVER();
@@ -1993,7 +1991,6 @@ function LaunchWindowLauncherOffline() {
         webSecurity: false,
         nodeIntegration: true,
         enableRemoteModule: true,
-        contextIsolation: false,
       },
     });
     ACH_SAVER();
@@ -2013,7 +2010,6 @@ function LaunchWindowLauncherOffline() {
         webSecurity: false,
         nodeIntegration: true,
         enableRemoteModule: true,
-        contextIsolation: false,
       },
       frame: false,
     });
@@ -3077,7 +3073,6 @@ function LaunchGame(gameid) {
       webSecurity: true,
       nodeIntegration: true,
       enableRemoteModule: true,
-      contextIsolation: false,
     },
   });
   if (process.platform == "linux") {
