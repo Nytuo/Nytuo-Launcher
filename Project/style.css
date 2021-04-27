@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
 body {
     animation: fadeIn 0.5s;
-    margin: 0%;
+    margin: 0;
 }
 .closebtn:hover {
     background-color: rgb(87, 6, 6);
@@ -193,7 +193,7 @@ body {
 
 .card .card_title {
     text-align: center;
-    border-radius: 0px 0px 40px 40px;
+    border-radius: 0 0 40px 40px;
     font-family: sans-serif;
     font-weight: bold;
     font-size: 30px;
@@ -270,7 +270,6 @@ body {
     font-size: 14px;
     top: 50%;
     left: 50%;
-    font-size: 50px;
     color: white;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -410,12 +409,9 @@ h4 {
     color: #ffc107;
     font-weight: 600;
     font-size: 18px;
-    padding-left: 0.9375rem;
-    padding-top: 0.4375rem;
-    padding-right: 0.9375rem;
-    padding-bottom: 0.4375rem;
+    padding: 0.4375rem 0.9375rem;
     background-color: rgba(255, 193, 7, 0.1);
-    ;
+;
     border-color: transparent;
     border-radius: 0.5rem;
     display: inline-block;
@@ -430,10 +426,7 @@ h4 {
     color: #377dff;
     font-weight: 600;
     font-size: 18px;
-    padding-left: 0.9375rem;
-    padding-top: 0.4375rem;
-    padding-right: 0.9375rem;
-    padding-bottom: 0.4375rem;
+    padding: 0.4375rem 0.9375rem;
     background-color: rgba(55, 125, 255, 0.1);
     border-color: transparent;
     border-radius: 0.5rem;
@@ -449,12 +442,9 @@ h4 {
     color: #de4437;
     font-weight: 600;
     font-size: 18px;
-    padding-left: 0.9375rem;
-    padding-top: 0.4375rem;
-    padding-right: 0.9375rem;
-    padding-bottom: 0.4375rem;
+    padding: 0.4375rem 0.9375rem;
     background-color: rgba(222, 68, 55, 0.1);
-    border-color: tranrgba(160, 73, 65, 0.1);
+    border-color: rgba(160, 73, 65, 0.1);
     border-radius: 0.5rem;
     display: inline-block;
     text-align: center;
@@ -468,10 +458,7 @@ h4 {
     color: #00c9a7;
     font-weight: 600;
     font-size: 18px;
-    padding-left: 0.9375rem;
-    padding-top: 0.4375rem;
-    padding-right: 0.9375rem;
-    padding-bottom: 0.4375rem;
+    padding: 0.4375rem 0.9375rem;
     background-color: rgba(0, 201, 167, 0.1);
     border-color: transparent;
     border-radius: 0.5rem;
@@ -486,7 +473,7 @@ h4 {
 /*#endregion*/
 
 .column {
-    float: center;
+    float: none;
     width: 30%;
     padding: 8px;
 }
@@ -577,7 +564,6 @@ h4 {
 
 .IMGLOADSGB {
     background-image: url('Resources/SGB2.png');
-    background-size: contain;
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -598,7 +584,6 @@ h4 {
     /*#region common*/
     a {
         text-decoration: none;
-        font-family: "Arial", monospace;
         font-size: 15px;
         font-family: 'Roboto Condensed', sans-serif;
     }
@@ -629,7 +614,7 @@ h4 {
 }
 
 #myBar {
-    width: 0%;
+    width: 0;
     height: 30px;
     background-color: #008C3F;
     color: #ffffff;
@@ -642,7 +627,7 @@ h4 {
 }
 
 #BarAchSGB {
-    width: 0%;
+    width: 0;
     height: 30px;
     background-color: #008C3F;
     color: #ffffff;
@@ -655,7 +640,7 @@ h4 {
 }
 
 #BarAchLAATIM {
-    width: 0%;
+    width: 0;
     height: 30px;
     background-color: #008C3F;
     color: #ffffff;
@@ -668,7 +653,7 @@ h4 {
 }
 
 #BarAchSNRE {
-    width: 0%;
+    width: 0;
     height: 30px;
     background-color: #008C3F;
     color: #ffffff;
@@ -782,3 +767,48 @@ div[class*=box] {
 
 
 /*#endregion*/
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1061; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}

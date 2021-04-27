@@ -48,8 +48,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -73,8 +72,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -104,8 +102,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -129,8 +126,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }

@@ -18,7 +18,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 var connectedtointernet = connectest();
 var portable = portable_check();
 var gamelocation = gameloc();
-
 function gameloc() {
   if (portable == true) {
     if (process.platform == "linux") {
@@ -128,41 +127,21 @@ function portable_check() {
 function connectest() {
   if (portable == true) {
     if (process.platform == "linux" || process.platform == "darwin") {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs
+      return fs
             .readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt")
-            .toString(),
-          "connection system"
-        )
-      );
+            .toString()
     } else {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs.readFileSync(__dirname + "/connected.txt").toString(),
-          "connection system"
-        )
-      );
+      return fs.readFileSync(__dirname + "/connected.txt").toString()
     }
   } else {
     if (process.platform == "linux" || process.platform == "darwin") {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs
+      return fs
             .readFileSync(
               app.getPath("documents") + "/nytuolauncher_data/connected.txt"
             )
-            .toString(),
-          "connection system"
-        )
-      );
+            .toString()
     } else {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs.readFileSync(__dirname + "/connected.txt").toString(),
-          "connection system"
-        )
-      );
+      return fs.readFileSync(__dirname + "/connected.txt").toString()
     }
   }
 }
@@ -1624,8 +1603,7 @@ function ConnectionForm() {
       fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt") ==
       "false"
     ) {
-      const remote = require("electron").remote;
-      const BrowserWindow = remote.BrowserWindow;
+      const BrowserWindow = require("electron").remote.BrowserWindow;
       const path = require("path");
       let win = new BrowserWindow({
         backgroundColor: 212121,
@@ -1639,6 +1617,7 @@ function ConnectionForm() {
           nodeIntegration: false,
           enableRemoteModule: false,
           nativeWindowOpen: true,
+          contextIsolation: true,
         },
       });
       fs.writeFileSync(
@@ -1650,8 +1629,7 @@ function ConnectionForm() {
       fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt") ==
       "true"
     ) {
-      const remote = require("electron").remote;
-      const BrowserWindow = remote.BrowserWindow;
+      const BrowserWindow = require("electron").remote.BrowserWindow;
       const path = require("path");
       let win = new BrowserWindow({
         backgroundColor: 212121,
@@ -1664,6 +1642,7 @@ function ConnectionForm() {
           webSecurity: false,
           nodeIntegration: true,
           enableRemoteModule: true,
+          contextIsolation: false,
         },
       });
       win.removeMenu();
@@ -1679,8 +1658,7 @@ function ConnectionForm() {
       fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LoginSecu.txt") ==
       "false"
     ) {
-      const remote = require("electron").remote;
-      const BrowserWindow = remote.BrowserWindow;
+      const BrowserWindow = require("electron").remote.BrowserWindow;
       const path = require("path");
       let win = new BrowserWindow({
         backgroundColor: 212121,
@@ -1694,6 +1672,7 @@ function ConnectionForm() {
           nodeIntegration: false,
           enableRemoteModule: false,
           nativeWindowOpen: true,
+          contextIsolation: true,
         },
       });
       fs.writeFileSync(
@@ -1707,8 +1686,7 @@ function ConnectionForm() {
     ) {
       //launch custo window
 
-      const remote = require("electron").remote;
-      const BrowserWindow = remote.BrowserWindow;
+      const BrowserWindow = require("electron").remote.BrowserWindow;
       const path = require("path");
       let win = new BrowserWindow({
         backgroundColor: 212121,
@@ -1721,6 +1699,7 @@ function ConnectionForm() {
           webSecurity: false,
           nodeIntegration: true,
           enableRemoteModule: true,
+          contextIsolation: false,
         },
       });
       ACH_SAVER();
@@ -1977,8 +1956,7 @@ function ConnectionForm() {
 
 function LaunchWindowLauncherOffline() {
   if (process.platform == "linux" || process.platform == "darwin") {
-    const remote = require("electron").remote;
-    const BrowserWindow = remote.BrowserWindow;
+    const BrowserWindow = require("electron").remote.BrowserWindow;
     const path = require("path");
     let win = new BrowserWindow({
       backgroundColor: 212121,
@@ -1991,13 +1969,13 @@ function LaunchWindowLauncherOffline() {
         webSecurity: false,
         nodeIntegration: true,
         enableRemoteModule: true,
+        contextIsolation: false,
       },
     });
     ACH_SAVER();
     win.loadFile("index.html");
   } else {
-    const remote = require("electron").remote;
-    const BrowserWindow = remote.BrowserWindow;
+    const BrowserWindow = require("electron").remote.BrowserWindow;
     const path = require("path");
     let win = new BrowserWindow({
       backgroundColor: 212121,
@@ -2010,6 +1988,7 @@ function LaunchWindowLauncherOffline() {
         webSecurity: false,
         nodeIntegration: true,
         enableRemoteModule: true,
+        contextIsolation: false,
       },
       frame: false,
     });
@@ -2830,7 +2809,6 @@ function VerifyVersionSizeAndContent(URL, empl) {
     DownlaodVersion(URL, empl);
   }
 }
-
 function language() {
   if (portable == true) {
     if (process.platform == "linux") {
@@ -2847,8 +2825,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -2872,8 +2849,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -2903,8 +2879,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -2928,8 +2903,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -3037,8 +3011,8 @@ function showProgressUpdate(received, total, starttime, U) {
     var time = (total - received) / bps;
     var seconds = time % 60;
     var minutes = time / 60;
-    seconds = Math.floor(seconds);
-    minutes = Math.floor(minutes);
+    Math.floor(seconds);
+    Math.floor(minutes);
 
     var elem = document.getElementById("prgs");
     elem.className = "determinate";
@@ -3057,8 +3031,7 @@ function bytesToSize(bytes) {
 }
 
 function LaunchGame(gameid) {
-  const remote = require("electron").remote;
-  const BrowserWindow = remote.BrowserWindow;
+  const BrowserWindow = require("electron").remote.BrowserWindow;
   const path = require("path");
   let launching = new BrowserWindow({
     backgroundColor: 212121,
@@ -3073,6 +3046,7 @@ function LaunchGame(gameid) {
       webSecurity: true,
       nodeIntegration: true,
       enableRemoteModule: true,
+      contextIsolation: false,
     },
   });
   if (process.platform == "linux") {

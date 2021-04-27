@@ -35,13 +35,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
         overflow: hidden;
     }
     
-    .lds-ring {
-        display: inline-block;
-        position: relative;
-        width: 28px;
-        height: 28px;
-    }
-    
     .lds-ring div {
         box-sizing: border-box;
         display: block;
@@ -49,7 +42,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
         width: 22px;
         height: 22px;
         margin: 2px;
-        border: 2px solid dodgerblue;
         border-radius: 50%;
         animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
         border-color: dodgerblue transparent transparent transparent;
@@ -78,7 +70,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 </style>
 
 <div style="text-align: center">
-    <img src="" id="IMGLOAD">
+    <img src="" id="IMGLOAD" alt="">
     <div style="padding-top:20%">
         <h2 id="TXTLOAD" style="font-size: 20px;font-family: Roboto Condensed, sans-serif;margin-top: 10px;">
             Loading...</h2>
@@ -109,6 +101,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
         </div>
     </div>
 </div>-->
+<div id="snackbar">Some text some message..</div>
 <script>
     detectgamepage();
 </script>

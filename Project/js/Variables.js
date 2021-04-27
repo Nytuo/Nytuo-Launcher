@@ -31,7 +31,6 @@ var isInUpdate = false;
 var parentfolder1 = require("path").dirname(__dirname);
 var parentfolder2 = require("path").dirname(parentfolder1);
 var parentfolder3 = require("path").dirname(parentfolder2);
-const CryptoJS = require("crypto-js");
 var portable = portable_check();
 const currentLanguage = language();
 
@@ -53,28 +52,25 @@ var LAU = true;
 var SFOU = true;
 const { options } = require("request");
 const { platform } = require("process");
-const mat = require("materialize-css");
 
 var connectedtointernet = connectest();
-
 function language() {
   if (portable == true) {
     if (process.platform == "linux") {
       if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
         LID = fs
-          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-          .toString();
+            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+            .toString();
 
         if (fs.existsSync(__dirname + "/Languages") == true) {
           if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
             let t = require("fs")
-              .readFileSync(
-                __dirname + "/Languages/LID_" + LID + ".txt",
-                "utf-8"
-              )
-              .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+                .readFileSync(
+                    __dirname + "/Languages/LID_" + LID + ".txt",
+                    "utf-8"
+                )
+                .split("\n");
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -87,19 +83,18 @@ function language() {
     } else if (process.platform == "win32") {
       if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
         LID = fs
-          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-          .toString();
+            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+            .toString();
 
         if (fs.existsSync(__dirname + "/Languages") == true) {
           if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
             let t = require("fs")
-              .readFileSync(
-                __dirname + "/Languages/LID_" + LID + ".txt",
-                "utf-8"
-              )
-              .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+                .readFileSync(
+                    __dirname + "/Languages/LID_" + LID + ".txt",
+                    "utf-8"
+                )
+                .split("\n");
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -113,24 +108,23 @@ function language() {
   } else {
     if (process.platform == "linux") {
       if (
-        fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
+          fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
       ) {
         LID = fs
-          .readFileSync(
-            app.getPath("documents") + "/nytuolauncher_data/LID.txt"
-          )
-          .toString();
+            .readFileSync(
+                app.getPath("documents") + "/nytuolauncher_data/LID.txt"
+            )
+            .toString();
 
         if (fs.existsSync(__dirname + "/Languages") == true) {
           if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
             let t = require("fs")
-              .readFileSync(
-                __dirname + "/Languages/LID_" + LID + ".txt",
-                "utf-8"
-              )
-              .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+                .readFileSync(
+                    __dirname + "/Languages/LID_" + LID + ".txt",
+                    "utf-8"
+                )
+                .split("\n");
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -143,19 +137,18 @@ function language() {
     } else if (process.platform == "win32") {
       if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
         LID = fs
-          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-          .toString();
+            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+            .toString();
 
         if (fs.existsSync(__dirname + "/Languages") == true) {
           if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
             let t = require("fs")
-              .readFileSync(
-                __dirname + "/Languages/LID_" + LID + ".txt",
-                "utf-8"
-              )
-              .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+                .readFileSync(
+                    __dirname + "/Languages/LID_" + LID + ".txt",
+                    "utf-8"
+                )
+                .split("\n");
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -171,41 +164,21 @@ function language() {
 function connectest() {
   if (portable == true) {
     if (process.platform == "linux" || process.platform == "darwin") {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt")
-            .toString(),
-          "connection system"
-        )
-      );
+      return fs
+                  .readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt")
+                  .toString()
     } else {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs.readFileSync(__dirname + "/connected.txt").toString(),
-          "connection system"
-        )
-      );
+      return fs.readFileSync(__dirname + "/connected.txt").toString()
     }
   } else {
     if (process.platform == "linux" || process.platform == "darwin") {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs
-            .readFileSync(
-              app.getPath("documents") + "/nytuolauncher_data/connected.txt"
-            )
-            .toString(),
-          "connection system"
-        )
-      );
+      return fs
+                  .readFileSync(
+                      app.getPath("documents") + "/nytuolauncher_data/connected.txt"
+                  )
+                  .toString()
     } else {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs.readFileSync(__dirname + "/connected.txt").toString(),
-          "connection system"
-        )
-      );
+      return fs.readFileSync(__dirname + "/connected.txt").toString()
     }
   }
 }
@@ -232,7 +205,7 @@ function gameloc() {
           ) != ""
         ) {
           return fs.readFileSync(
-            parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
+              parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
           );
         } else {
           alert(currentLanguage[26]);
@@ -254,7 +227,7 @@ function gameloc() {
           ) != ""
         ) {
           return fs.readFileSync(
-            parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
+              parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
           );
         } else {
           alert(currentLanguage[26]);
@@ -278,7 +251,7 @@ function gameloc() {
           ) != ""
         ) {
           return fs.readFileSync(
-            app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt"
+              app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt"
           );
         } else {
           alert(currentLanguage[24]);
@@ -300,7 +273,7 @@ function gameloc() {
           ) != ""
         ) {
           return fs.readFileSync(
-            parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
+              parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
           );
         } else {
           alert(currentLanguage[26]);

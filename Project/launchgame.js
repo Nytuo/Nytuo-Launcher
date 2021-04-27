@@ -16,32 +16,19 @@ GNU General Public License for more details.
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
 //Variables et constantes
-const { shell, webContents, dialog } = require("electron");
-const { ipcRenderer } = require("electron");
-const rimraf = require("rimraf");
-const extract = require("extract-zip");
-var request = require("request");
-var fs = require("fs");
-const os = require("os");
-var homedir = os.homedir();
+const { shell } = require("electron");
+const fs = require("fs");
 const app = require("electron").remote.app;
-const ws = require("windows-shortcuts");
-var updatedownloaded = false;
-const path = require("path");
-var isInUpdate = false;
-var parentfolder1 = require("path").dirname(__dirname);
-var parentfolder2 = require("path").dirname(parentfolder1);
-var parentfolder3 = require("path").dirname(parentfolder2);
-const CryptoJS = require("crypto-js");
-var portable = portable_check();
+const parentfolder1 = require("path").dirname(__dirname);
+const parentfolder2 = require("path").dirname(parentfolder1);
+const parentfolder3 = require("path").dirname(parentfolder2);
+const portable = portable_check();
 const currentLanguage = language();
 
-var gamelocation = gameloc();
+const gamelocation = gameloc();
 const { execSync } = require("child_process");
-const { start } = require("repl");
-var dirnamew = __dirname.replace(/\\/g, "/");
-
-var connectedtointernet = connectest();
+const dirnamew = __dirname.replace(/\\/g, "/");
+var LID;
 
 function language() {
   if (portable == true) {
@@ -59,8 +46,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -84,8 +70,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -115,8 +100,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -140,8 +124,7 @@ function language() {
                 "utf-8"
               )
               .split("\n");
-            let t1 = Array.from(new Set(t));
-            return t1;
+            return Array.from(new Set(t));
           } else {
             return [];
           }
@@ -261,48 +244,7 @@ function gameloc() {
     }
   }
 }
-//Internet connexion test
-function connectest() {
-  if (portable == true) {
-    if (process.platform == "linux" || process.platform == "darwin") {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt")
-            .toString(),
-          "connection system"
-        )
-      );
-    } else {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs.readFileSync(__dirname + "/connected.txt").toString(),
-          "connection system"
-        )
-      );
-    }
-  } else {
-    if (process.platform == "linux" || process.platform == "darwin") {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs
-            .readFileSync(
-              app.getPath("documents") + "/nytuolauncher_data/connected.txt"
-            )
-            .toString(),
-          "connection system"
-        )
-      );
-    } else {
-      return CryptoJS.enc.Latin1.stringify(
-        CryptoJS.AES.decrypt(
-          fs.readFileSync(__dirname + "/connected.txt").toString(),
-          "connection system"
-        )
-      );
-    }
-  }
-}
+
 //Open any type of file or folder
 function Open(dossierdujeu, filename) {
   if (

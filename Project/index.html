@@ -25,6 +25,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+
+
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <script type="text/javascript" src="js/Variables.js"></script>
     <script type="text/javascript" src="js/Commons.js"></script>
@@ -32,81 +34,82 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <script type="text/javascript" src="js/Menu.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css" media="screen,projection" />
     <title>Nytuo Launcher</title>
 </head>
 <header>
-    <nav style="-webkit-app-region: drag"class="animate__animated animate__slideInDown">
+    <nav style="-webkit-app-region: drag" class="animate__animated animate__slideInDown">
         <div class="nav-wrapper">
-          <a class="brand-logo center"><img src="Resources/LogoLauncher.png" style="width:35%"/></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a onclick="minimizeWindow()" style="-webkit-app-region: no-drag;"><i class="material-icons">minimize</i></a></li>
-            <li><a onclick="maximizeWindow()" style="-webkit-app-region: no-drag;" id="maximize"><i class="material-icons">fullscreen</i></a></li>
-            <li><a onclick="closeWindow()" class="closebtn" style="-webkit-app-region: no-drag;"><i class="material-icons">close</i></a></li>
-          </ul>
+            <a class="brand-logo center"><img src="Resources/LogoLauncher.png" style="width:35%" alt=""/></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a onclick="minimizeWindow()" style="-webkit-app-region: no-drag;"><i class="material-icons">minimize</i></a></li>
+                <li><a onclick="maximizeWindow()" style="-webkit-app-region: no-drag;" id="maximize"><i class="material-icons">fullscreen</i></a></li>
+                <li><a onclick="closeWindow()" class="closebtn" style="-webkit-app-region: no-drag;"><i class="material-icons">close</i></a></li>
+            </ul>
         </div>
-      </nav>
+    </nav>
 </header>
 <body>
-    <div style="padding-top:20%;text-align:center">
-        <img src="Resources/LogoLauncher.png" class="animate__animated animate__zoomIn" alt=""></div>
-    <div style="text-align:center" class="animate__animated animate__fadeInUp">
+<div style="padding-top:20%;text-align:center">
+    <img src="Resources/LogoLauncher.png" class="animate__animated animate__zoomIn" alt="">
+</div>
+<div style="text-align:center" class="animate__animated animate__fadeInUp">
 
-        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" style="background-color: dodgerblue;" id="USRTXT" onclick="shell.openExternal('https://www.nytuo.yo.fr/profile')">Customize Account</a>
+    <a class="btn btn-primary animate__animated animate__zoomIn" id="USRTXT" onclick="shell.openExternal('https://www.nytuo.yo.fr/profile')">Customize Account</a>
 
 
-        <a class="waves-effect waves-light btn animate__animated animate__zoomIn" style="background-color: dodgerblue;" id='KEYTXT' onclick="shell.openExternal('https://www.nytuo.yo.fr/store')">Activate a game</a>
-    </div>
+    <a class="btn btn-primary animate__animated animate__zoomIn" id='KEYTXT' onclick="shell.openExternal('https://www.nytuo.yo.fr/store')">Activate a game</a>
+</div>
 
-    <ul id="slide-out" class="sidenav sidenav-fixed animate__animated animate__slideInLeft">
-        <div>
+<ul id="slide-out" class="sidenav sidenav-fixed animate__animated animate__slideInLeft">
+    
 
-            <li>
-                <div class="user-view">
+        <li>
+            <div class="user-view">
 
-                    <a><img id="PP" class="circle" src=""></a>
+                <a><img id="PP" class="circle" src="" alt=""></a>
 
-                    <a><span class="white-text name" id="NameTxt">
+                <a><span class="white-text name" id="NameTxt">
 
                 </span></a>
-                    <a><span class="white-text email" id=emailtxt></span></a>
-                </div>
-            </li>
-            <li><a href="#" onclick="LogOut()"><i class="material-icons">exit_to_app</i><span id="LOGOUTTXT">Logout</a></span>
-            </li>
+                <a><span class="white-text email" id=emailtxt></span></a>
+            </div>
+        </li>
+        <li><a href="#" onclick="LogOut()"><i class="material-icons">exit_to_app</i><span id="LOGOUTTXT">Logout</span></a>
+        </li>
 
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a href="#" onclick="window.open('https://nytuo.yo.fr')"><i class="material-icons">language</i><span id="WEBTXT">Website</span></a>
-            </li>
-            <li><a href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i><span id="NEWSTXT">News</span></a>
-            </li>
-            <li><a href="index.html"><i class="material-icons">home</i><span id="HOMETXT">Home</span></a>
-            </li>
-            <li><a href="about.html"><i class="material-icons">settings</i><span id="SETTINGTXT">Settings</span></a>
-            </li>
-            <li>
-                <div class="divider"></div>
-            </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a href="#" onclick="window.open('https://nytuo.yo.fr')"><i class="material-icons">language</i><span id="WEBTXT">Website</span></a>
+        </li>
+        <li><a href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i><span id="NEWSTXT">News</span></a>
+        </li>
+        <li><a href="index.html"><i class="material-icons">home</i><span id="HOMETXT">Home</span></a>
+        </li>
+        <li><a href="about.html"><i class="material-icons">settings</i><span id="SETTINGTXT">Settings</span></a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
 
-            <li id="sfol"><a href="Games.html?sfo">ShootFighter Origins</a></li>
-            <li id="laatiml"><a href="Games.html?laatim">Lutin Adventure And The Infernal Maze</a></li>
-            <li id="sgbl"><a href="Games.html?sgb">Super Geoffrey Bros</a></li>
-            <li id="sfl"><a href="Games.html?sf">ShootFighter</a></li>
-            <li id="lal"><a href="Games.html?la">Lutin Adventure</a></li>
-            <li id="vitfl"><a href="Games.html?vitf">Vincent In The Forest</a></li>
-            <li id="ttdl"><a href="Games.html?ttd">The Tardis Defender</a></li>
-            <li id="fwdl"><a href="Games.html?fwd">FireWall Defender</a></li>
-            <li id="tbl"><a href="Games.html?tb">TanksBattle</a></li>
-            <li id="wrl"><a href="Games.html?wr">WinRun</a></li>
-            <li id="ael"><a href="Games.html?ae">AsteroidEscape</a></li>
-            <li id="snl"><a href="Games.html?sn">SansNom Réédition & Classic</a></li>
-    </ul>
-    </div>
-
-    <script type="text/javascript" src="js/Sidenav.js"></script>
-    <script type="text/javascript" src="js/index.lang.js"></script>
-    <script type="text/javascript" src="js/sidebar.lang.js"></script>
+        <li id="sfol"><a href="Games.html?sfo">ShootFighter Origins</a></li>
+        <li id="laatiml"><a href="Games.html?laatim">Lutin Adventure And The Infernal Maze</a></li>
+        <li id="sgbl"><a href="Games.html?sgb">Super Geoffrey Bros</a></li>
+        <li id="sfl"><a href="Games.html?sf">ShootFighter</a></li>
+        <li id="lal"><a href="Games.html?la">Lutin Adventure</a></li>
+        <li id="vitfl"><a href="Games.html?vitf">Vincent In The Forest</a></li>
+        <li id="ttdl"><a href="Games.html?ttd">The Tardis Defender</a></li>
+        <li id="fwdl"><a href="Games.html?fwd">FireWall Defender</a></li>
+        <li id="tbl"><a href="Games.html?tb">TanksBattle</a></li>
+        <li id="wrl"><a href="Games.html?wr">WinRun</a></li>
+        <li id="ael"><a href="Games.html?ae">AsteroidEscape</a></li>
+        <li id="snl"><a href="Games.html?sn">SansNom Réédition & Classic</a></li>
+</ul>
+<div id="snackbar">Some text some message..</div>
+<script type="text/javascript" src="js/Sidenav.js"></script>
+<script type="text/javascript" src="js/index.lang.js"></script>
+<script type="text/javascript" src="js/sidebar.lang.js"></script>
 </body>
 
 </html>

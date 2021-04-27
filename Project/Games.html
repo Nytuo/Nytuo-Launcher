@@ -30,6 +30,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css" media="screen,projection" />
+
 
     <script type="text/javascript" src="js/Variables.js"></script>
     <script type="text/javascript" src="js/Commons.js"></script>
@@ -45,26 +47,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
     <title>Nytuo Launcher</title>
 </head>
 <header>
-    <nav style="-webkit-app-region: drag;"class="animate__animated animate__slideInDown">
+    <nav style="-webkit-app-region: drag;" class="animate__animated animate__slideInDown">
         <div class="nav-wrapper">
-          <a class="brand-logo center"><img src="Resources/LogoLauncher.png" style="width:35%"/></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a onclick="minimizeWindow()" style="-webkit-app-region: no-drag;"><i class="material-icons">minimize</i></a></li>
-            <li><a onclick="maximizeWindow()" style="-webkit-app-region: no-drag;" id="maximize"><i class="material-icons">fullscreen</i></a></li>
-            <li><a onclick="closeWindow()" class="closebtn" style="-webkit-app-region: no-drag;"><i class="material-icons">close</i></a></li>
-          </ul>
+            <a class="brand-logo center"><img src="Resources/LogoLauncher.png" style="width:35%" alt=""/></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a onclick="minimizeWindow()" style="-webkit-app-region: no-drag;"><i class="material-icons">minimize</i></a></li>
+                <li><a onclick="maximizeWindow()" style="-webkit-app-region: no-drag;" id="maximize"><i class="material-icons">fullscreen</i></a></li>
+                <li><a onclick="closeWindow()" class="closebtn" style="-webkit-app-region: no-drag;"><i class="material-icons">close</i></a></li>
+            </ul>
         </div>
-      </nav>
+    </nav>
 </header>
 <!--Contents of page-->
 
 <ul id="slide-out" class="sidenav sidenav-fixed animate__animated animate__slideInLeft">
 
-    <div>
         <li>
             <div class="user-view">
 
-                <a><img id="PP" class="circle" src=""></a>
+                <a><img id="PP" class="circle" src="" alt=""></a>
 
                 <a><span class="white-text name" id="NameTxt">
 
@@ -72,21 +73,21 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
                 <a><span class="white-text email" id=emailtxt></span></a>
             </div>
         </li>
-        <li><a href="" onclick="LogOut()"><i class="material-icons">exit_to_app</i><span id="LOGOUTTXT">Logout</a></span>
+        <li><a href="" onclick="LogOut()"><i class="material-icons">exit_to_app</i><span id="LOGOUTTXT">Logout</span></a>
         </li>
 
         <li>
             <div class="divider"></div>
         </li>
-        <li><a href="#" onclick="window.open('https://nytuo.yo.fr')"><i class="material-icons">language</i><span id="WEBTXT">Website</a></span>
+        <li><a href="#" onclick="window.open('https://nytuo.yo.fr')"><i class="material-icons">language</i><span id="WEBTXT">Website</span></a>
         </li>
-        <li><a href="#" onclick="LaunchExternally()"><i class="material-icons">language</i><span id="WEBGTXT">View game on the website</a></span>
+        <li><a href="#" onclick="LaunchExternally()"><i class="material-icons">language</i><span id="WEBGTXT">View game on the website</span></a>
         </li>
-        <li><a href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i><span id="NEWSTXT">News</a></span>
+        <li><a href="https://launcher.nytuo.yo.fr/news.html"><i class="material-icons">info</i><span id="NEWSTXT">News</span></a>
         </li>
-        <li><a href="index.html"><i class="material-icons">home</i><span id="HOMETXT">Home</a></span>
+        <li><a href="index.html"><i class="material-icons">home</i><span id="HOMETXT">Home</span></a>
         </li>
-        <li><a href="about.html"><i class="material-icons">settings</i><span id="SETTINGTXT">Settings</a></span>
+        <li><a href="about.html"><i class="material-icons">settings</i><span id="SETTINGTXT">Settings</span></a>
         </li>
         <li>
             <div class="divider"></div>
@@ -105,40 +106,39 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
         <li id="ael"><a href="Games.html?ae">AsteroidEscape</a></li>
         <li id="snl"><a href="Games.html?sn">SansNom Réédition & Classic</a></li>
 </ul>
-</div>
 <script type="text/javascript" src="js/Sidenav.js"></script>
 <div style="padding-top:30px"></div>
-<div class="">
+
 
     <body class="sidebarpad">
     <!--Detection de la version et remplacement du text de version en conséquence-->
     <iframe id="DETECTION" src="javascript:void(0)" style="display: none;"></iframe>
     <!--Placement du titre du jeu, du text version et de l'affiche-->
     <div style="text-align: center">
-        <img id="LOGOCARD" class="animate__animated animate__zoomIn" src="" style="z-index: 1;">
-        <h2 id="NAME" class="animate__animated animate__zoomIn">Game Name</h2>
-        <h1 id="versiontxt" class="animate__animated animate__zoomIn"> Game Version </h1>
+        <img id="LOGOCARD" class="animate__animated animate__zoomIn" src="" style="z-index: 1;" alt="">
+        <h1 id="NAME" class="animate__animated animate__zoomIn">Game Name</h1>
+        <h2 id="versiontxt" class="animate__animated animate__zoomIn"> Game Version </h2>
     </div>
 
     <!--Buttons-->
     <div style="text-align: center;">
-        <a class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" href="#modal8" style="background-color:dodgerblue;margin-top: 10px;" id="button1"><i class="material-icons left">play_arrow</i>PLAY</a>
+        <a class="btn btn-primary animate__animated animate__zoomIn" data-bs-toggle="modal" data-bs-target="#modaldl" id="button1"><i class="material-icons left">play_arrow</i>PLAY</a>
         <div id="ONLINEPLAY">
 
-            <a class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" href="#modal4" style="background-color:#1e90ff;margin-top: 10px;" id="ONLINEPLAYTXT"><i class="material-icons left">public</i>Play Online</a>
+            <a class="btn btn-primary animate__animated animate__zoomIn" data-bs-toggle="modal" data-bs-target="#modal4" id="ONLINEPLAYTXT"><i class="material-icons left">public</i>Play Online</a>
         </div>
         <div id="SNCLASSIC">
 
-            <a class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" href="#modal5" style="background-color:dodgerblue;margin-top: 10px;" id="SNCTXT"><i class="material-icons left">play_arrow</i>Play SansNom Classic</a>
+            <a class="btn btn-primary animate__animated animate__zoomIn" data-bs-toggle="modal" data-bs-target="#modal5" id="SNCTXT"><i class="material-icons left">play_arrow</i>Play SansNom Classic</a>
         </div>
         <div id="button2">
 
-            <a class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" href="#modal6" style="background-color:dodgerblue;margin-top: 10px;" id="ACHIEVEMENTSTXT"><i class="material-icons left">emoji_event</i>Achievements</a>
+            <a class="btn btn-primary animate__animated animate__zoomIn" data-bs-toggle="modal" data-bs-target="#modal6" id="ACHIEVEMENTSTXT"><i class="material-icons left">emoji_event</i>Achievements</a>
         </div>
         <div id="button3">
 
             <!-- Dropdown Trigger -->
-            <a class='modal-trigger btn animate__animated animate__zoomIn' href='#param' style="background-color:dodgerblue;margin-top: 10px;" id="SETTINGSTXT"><i class="material-icons left">settings</i>Settings</a>
+            <a class='btn btn-primary animate__animated animate__zoomIn' data-bs-toggle="modal" data-bs-target="#param"  id="SETTINGSTXT"><i class="material-icons left">settings</i>Settings</a>
 
             <!-- Dropdown Structure
                 <ul id='dropdown1' class='dropdown-content'>
@@ -159,66 +159,66 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
                 </script>-->
         </div>
     </div>
-        <div style="text-align: center;">
-            <a href="#modalChangesLog" class="waves-effect waves-light btn modal-trigger animate__animated animate__zoomIn" style="margin-top:10px;background-color:dodgerblue"><i class="material-icons left">description</i>ChangesLogs</a>
+    <div style="text-align: center;">
+        <a data-bs-toggle="offcanvas" data-bs-target="#modalChangesLog" aria-controls="offcanvasBottom" class="btn btn-primary animate__animated animate__zoomIn"><i class="material-icons left">description</i>ChangesLogs</a>
 
-        </div>
+    </div>
 
-</div>
+
+<div id="snackbar">Some text some message..</div>
 <!--Confirmation de déinstallation-->
-
-<!-- Modal Structure -->
-<div id="modal1" class="modal" style="background-color: #222222;">
-    <div class="modal-content">
-        <h4 id="CONFIRM">Confirmation: </h4>
-        <p id="DELETE">You are about to DELETE </p>
-        <p id="NAME3"></p>
-        <p id="ACTIONUNDONE">This action can't be undone.</br>If you search to repair the game is not here.</br>All the data will be loose (You can eventually do a manual backup)</p>
-    </div>
-    <div class="modal-footer" style="background-color: #222222;">
-        <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT">Cancel</a>
-        <a onclick="DELETE_DETECT();" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="AGREETXT">Yes,
-            Delete that shit</a>
-
+<div class="modal animate__animated animate__bounceIn" id="modal1" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CONFIRM">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="DELETE">You are about to DELETE </p>
+                <p id="NAME3"></p>
+                <p id="ACTIONUNDONE">This action can't be undone.<br/>If you search to repair the game is not here.<br/>All the data will be loose (You can eventually do a manual backup)</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" style="color:white" class="btn btn-secondary" data-bs-dismiss="modal" id="CANCELTXT">Cancel</a>
+                <a onclick="DELETE_DETECT();" style="color:white" class="btn btn-primary" id="AGREETXT">Yes,
+                    Delete that shit</a>
+            </div>
+        </div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.modal');
-        var options = {
-            'dismissible': false
-        }
-        var instances = M.Modal.init(elems, options);
-    });
-</script>
 <!--Confirmation de réinstallation-->
+<div class="modal animate__animated animate__bounceIn" id="modal2" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CONFIRM">Confirmation: </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="REINSTALLTXT2">You are about to re-install</p>
+                <p id="NAME4"></p>
+                <p id="DATALOSS">All your data will be loose, please do a manual backup</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" style="color:white" class="btn btn-secondary" data-bs-dismiss="modal" id="CANCELTXT2">Cancel</a>
+                <a onclick="REINSTALL_DETECT([],[],false);" class="btn btn-primary" style="color:white" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modaldl" id="AGREEREI">Yes, reinstall it!</a>
 
-<!-- Modal Structure -->
-<div id="modal2" class="modal" style="background-color: #222222;">
-    <div class="modal-content">
-        <h4 id="CONFIRM">Confirmation: </h4>
-        <p id="REINSTALLTXT2">You are about to re-install</p>
-        <p id="NAME4"></p>
-        <p id="DATALOSS">All your data will be loose, please do a manual backup</p>
-    </div>
-    <div class="modal-footer" style="background-color: #222222;">
-        <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT2">Cancel</a>
-        <a onclick="REINSTALL_DETECT([],[],false);" class="modal-close waves-effect waves-green btn-flat modal-trigger" style="color:white" href="#modal8" id="AGREEREI">Yes, reinstall it!</a>
+            </div>
+        </div>
     </div>
 </div>
 
 <!--ChangesLogs-->
-<div id="modalChangesLog" class="modal bottom-sheet">
-    <div class="modal-content">
-        <div style="text-align: right;">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="color:white;">Back</a>
 
-        </div>
-        <h4 id="ChangelogTXT">ChangesLogs: </h4>
-        <p id="changes"></p>
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="modalChangesLog" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="ChangelogTXT">ChangesLogs: </h5>
+        <button type="button" class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="color:white">Back</a>
+    <div class="offcanvas-body small">
+        <h4></h4>
+        <p id="changes"></p>
     </div>
 </div>
 
@@ -227,49 +227,60 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 
 
 <!--Confirmation de réparation-->
-
-<div id="modal3" class="modal" style="background-color: #222222;">
-    <div class="modal-content">
-        <h4 id="CONFIRM">Confirmation: </h4>
-        <p id="REPAIRTXT2">You are about to repair</p>
-        <p id="NAME5"></p>
-        <p id="DATALOSS2">Data may be delete, please do a backup, just in case...</p>
-    </div>
-    <div class="modal-footer" style="background-color: #222222;">
-        <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT3">Cancel</a>
-        <a onclick="REPAIR_DETECT();" class="modal-close waves-effect waves-green btn-flat modal-trigger" style="color:white" href="#modal8" id="AGREEREPAIR">Yes,
-            repair it!</a>
+<div class="modal animate__animated animate__bounceIn" id="modal3" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CONFIRM">Confirmation: </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="REPAIRTXT2">You are about to repair</p>
+                <p id="NAME5"></p>
+                <p id="DATALOSS2">Data may be delete, please do a backup, just in case...</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" style="color:white" class="btn btn-secondary" data-bs-dismiss="modal" id="CANCELTXT3">Cancel</a>
+                <a onclick="REPAIR_DETECT();" class="btn btn-primary" style="color:white" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modaldl" id="AGREEREPAIR">Yes,
+                    repair it!</a>
+            </div>
+        </div>
     </div>
 </div>
 
 
 
 <!--Parametres-->
-
-<div id="param" class="modal" style="background-color: #222222;">
-    <div class="modal-content">
-        <h4 id="paramTXT">Parameters: </h4>
-        <div style="text-align:center">
-            <a href="#modal3" id="REPAIRTXT" style="color:white" class="modal-close modal-trigger waves-effect waves-green btn-flat">Repair</a>
-            <br/>
-            <a href="#modal2" id="REINSTALLTXT" style="color:white" class="modal-close modal-trigger waves-effect waves-green btn-flat">Re-install</a>
-            <br/>
-            <a href="#modal1" id="UNINSTALLTXT" style="color:white" class="modal-close modal-trigger waves-effect waves-green btn-flat">Uninstall</a>
-            <br/>
-            <a onclick="OPEN_GAMELOC_DETECT()" id="OGLTXT" style="color:white" class="modal-close waves-effect waves-green btn-flat">Open Game location</a>
-            <br/>
-            <div id="SAVES">
-                <a onclick="OPEN_GAMESAVE()" href="javascript:void(0)" id="SVTXT" style="color:white" class="modal-close waves-effect waves-green btn-flat">Saved Games</a>
+<div class="modal animate__animated animate__bounceIn" id="param" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paramTXT">Parameters: </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div id="shortcuts">
-                <a onclick="SHORTCUT_DETECT()" href="javascript:void(0)" id="SHORTTXT" style="color:white" class="modal-close waves-effect waves-green btn-flat">Shortcut</a>
+            <div class="modal-body">
+                <div style="text-align:center">
+                    <a data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal3" id="REPAIRTXT" style="color:white" class="btn btn-primary">Repair</a>
+                    <br/>
+                    <a data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2" id="REINSTALLTXT" style="color:white" class="btn btn-primary">Re-install</a>
+                    <br/>
+                    <a data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal1" id="UNINSTALLTXT" style="color:white" class="btn btn-primary">Uninstall</a>
+                    <br/>
+                    <a onclick="OPEN_GAMELOC_DETECT()" id="OGLTXT" style="color:white" class="btn btn-primary">Open Game location</a>
+                    <br/>
+                    <div id="SAVES">
+                        <a onclick="OPEN_GAMESAVE()" href="javascript:void(0)" id="SVTXT" style="color:white" class="btn btn-primary">Saved Games</a>
+                    </div>
+                    <div id="shortcuts">
+                        <a onclick="SHORTCUT_DETECT()" href="javascript:void(0)" id="SHORTTXT" style="color:white" class="btn btn-primary">Shortcut</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" style="color:white" class="btn btn-secondary" data-bs-dismiss="modal" id="CANCELTXT3">Cancel</a>
+
             </div>
         </div>
-        <div class="modal-footer" style="background-color: #222222;">
-
-            <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT3">Cancel</a>
-        </div>
-
     </div>
 </div>
 
@@ -278,58 +289,74 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 
 
 <!--Confirmation de Online play-->
-
-
-<div id="modal4" class="modal" style="background-color: #222222;">
-    <div class="modal-content">
-        <h4 id="CONFIRM">Confirmation: </h4>
-        <p id="ABOUTPLAY">You are about to play Online at</p>
-        <p id="NAME2"></p>
-        <p id="GAMEJOLT">You will be redirected to the GameJolt page of the game, to launch click on play under the picture
-        </p>
-    </div>
-    <div class="modal-footer" style="background-color: #222222;">
-        <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT4">Cancel</a>
-        <a onclick="ONLINE_LINK_DETECT();" class="modal-close waves-effect waves-green btn-flat" style="color:white" id="AGREEPO">Yes,
-            play it!</a>
+<div class="modal  animate__animated animate__bounceIn" tabindex="-1" id="modal4">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CONFIRM">Confirmation: </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="ABOUTPLAY">You are about to play Online at</p>
+                <p id="NAME2"></p>
+                <p id="GAMEJOLT">You will be redirected to the GameJolt page of the game, to launch click on play under the picture
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" style="color:white" class="btn btn-secondary" data-bs-dismiss="modal" id="CANCELTXT4">Cancel</a>
+                <a onclick="ONLINE_LINK_DETECT();" class="btn btn-primary" style="color:white" id="AGREEPO">Yes,
+                    play it!</a>
+            </div>
+        </div>
     </div>
 </div>
 
 <!--Confirmation : PlayOnlineSNCLASSIC-->
-
-<div id="modal5" class="modal" style="background-color: #222222;">
-    <div class="modal-content">
-        <h4 id="CONFIRM">Confirmation: </h4>
-        <p id="SNCTXT2">You are about to play SansNom : Classic Online<br />SansNom classic is available only online.
-        </p>
-    </div>
-    <div class="modal-footer" style="background-color: #222222;">
-        <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="CANCELTXT5">Cancel</a>
-        <a onclick="RunWithoutInstall('http://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414');" class="modal-close waves-effect waves-green btn-flat" style="color:white" id="AGREEPO2">Yes,
-            play it!</a>
+<div class="modal  animate__animated animate__bounceIn" id="modal5" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CONFIRM">Confirmation: </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="SNCTXT2">You are about to play SansNom : Classic Online<br />SansNom classic is available only online.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" style="color:white" class="btn btn-secondary" data-bs-dismiss="modal" id="CANCELTXT5">Cancel</a>
+                <a onclick="RunWithoutInstall('https://uploads.ungrounded.net/alternate/1035000/1035158_alternate_39079_r3.zip/?f1478359414');" class="btn btn-primary" style="color:white" id="AGREEPO2">Yes,
+                    play it!</a>
+            </div>
+        </div>
     </div>
 </div>
 
 <!--Achievements-->
+<div class="modal animate__animated animate__bounceIn" id="modal6" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ACHTXT">Achievements: </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="ProgressAchLAATIM" class="progress">
+                    <div id="BarAch" class="determinate"></div>
+                </div>
+                <div style="text-align: center;">
+                    <div></div>
+                </div>
+                <h1 style="padding-left: 20px;" id="ACHTXTU">Achievements unlocked : </h1>
 
-
-<div id="modal6" class="modal" style="background-color: #222222;">
-    <div class="modal-content">
-        <h4 id="ACHTXT">Achievements: </h4>
-        <div id="ProgressAchLAATIM" class="progress">
-            <div id="BarAch" class="determinate"></div>
+                <p id="achDone"></p>
+                <h1 style="padding-left: 20px;" id="ACHTXTL">Achievements locked : </h1>
+                <p id="ach"></p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" style="color:white" class="btn btn-primary" id="ACHBACK" data-bs-dismiss="modal">Back</a>
+            </div>
         </div>
-        <div style="text-align: center;">
-            <div></div>
-        </div>
-        <h1 style="padding-left: 20px;" id="ACHTXTU">Achievements unlocked : </h1>
-
-        <p id="achDone"></p>
-        <h1 style="padding-left: 20px;" id="ACHTXTL">Achievements locked : </h1>
-        <p id="ach"></p>
-    </div>
-    <div class="modal-footer" style="background-color: #222222;">
-        <a href="#!" style="color:white" class="modal-close waves-effect waves-green btn-flat" id="ACHBACK">Back</a>
     </div>
 </div>
 
@@ -338,34 +365,36 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 
 
 
+<div class="modal animate__animated animate__bounceIn" id="modaldl" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="DLTEXT">Confirmation: </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="resultofcalculsize"></p>
+                <div id="pgrs2" class="progress" style="display: none; ">
+                    <div class="determinate" id="myBar2"></div>
+                </div>
+                <p id="actualDL"></p>
+
+                <div id="pgrs" class="progress" style="display: none; ">
+                    <div class="indeterminate" id="myBar"></div>
+                </div>
 
 
-<div id="modal8" class="modal" style="background-color: #222222;">
-    <div class="modal-content">
-        <h4 id="DLTEXT">Confirmation: </h4>
 
+                <p id="MyBartxt"></p>
+                <p id="AbortTuto">For cancel the download and installation, click 'Cancel' and uninstall the game by clicking 'Uninstall' under the parameter form.</p>
 
-
-
-        <p id="resultofcalculsize"></p>
-        <div id="pgrs2" class="progress" style="display: none; ">
-            <div class="determinate" id="myBar2"></div>
+            </div>
+            <div class="modal-footer">
+                <a id="downloadbtn2" onclick="DetectTheCancel()" style="color:white" data-bs-dismiss="modal" class="btn btn-secondary">Cancel</a>
+                <a id="downloadbtn" onclick="WHATTODO_DETECT()" class="btn btn-primary" style="color:white">Yes,
+                    do it!</a>
+            </div>
         </div>
-        <p id="actualDL"></p>
-
-        <div id="pgrs" class="progress" style="display: none; ">
-            <div class="indeterminate" id="myBar"></div>
-        </div>
-
-
-
-        <p id="MyBartxt"></p>
-        <p id="AbortTuto">For cancel the download and installation, click 'Cancel' and uninstall the game by clicking 'Uninstall' under the parameter form.</p>
-    </div>
-    <div class="modal-footer" style="background-color: #222222;">
-        <a id="downloadbtn2" onclick="DetectTheCancel()" style="color:white" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-        <a id="downloadbtn" onclick="WHATTODO_DETECT()" class="waves-effect waves-green btn-flat" style="color:white">Yes,
-            do it!</a>
     </div>
 </div>
 
@@ -379,16 +408,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>-->
 
 <!--Script-->
 <script>
-    if (window.location.href == "file:///" + dirnamew + "/Games.html?laatim") {
+    if (window.location.href === "file:///" + dirnamew + "/Games.html?laatim") {
         LoadAchivements();
     }
-    if (window.location.href == "file:///" + dirnamew + "/Games.html?sgb") {
+    if (window.location.href === "file:///" + dirnamew + "/Games.html?sgb") {
         LoadAchivements();
     }
-    if (window.location.href == "file:///" + dirnamew + "/Games.html?sn") {
+    if (window.location.href === "file:///" + dirnamew + "/Games.html?sn") {
         LoadAchivements();
     }
-    if (window.location.href == "file:///" + dirnamew + "/Games.html?sfo") {
+    if (window.location.href === "file:///" + dirnamew + "/Games.html?sfo") {
         LoadAchivements();
     }
 </script>
