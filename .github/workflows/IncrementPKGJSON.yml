@@ -1,0 +1,41 @@
+
+name: "Increment PKGJSON"
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  bump-version:
+    name: "Bump Version on master"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2"
+      - name: "Get the Version"
+        uses: MYXOMOPX/modify-pkg-json@master
+        id: getcmnver
+        with: 
+          target: ./Project/package.json
+          action: "get_version"
+      - name: "Modify the version"
+        uses: rickstaa/action-get-semver@v1
+        id: get_semver
+        with:
+          bump_level: "patch"
+      - uses: MYXOMOPX/modify-pkg-json@master
+        id: setcmnver
+        with: 
+          target: ./Project/package.json
+          action: "set_version"
+          argument: "${{ steps.get_semver.outputs.next_version }}"
+      - name: push
+        uses: github-actions-x/commit@v2.8
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'master'
+          commit-message: 'Automated Package.Json Update'
+          force-add: 'true'
+          name: JARVIS [BOT]
+          email: nytuo.yt@gmail.com
