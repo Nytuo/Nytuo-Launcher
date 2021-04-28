@@ -128,20 +128,20 @@ function connectest() {
   if (portable == true) {
     if (process.platform == "linux" || process.platform == "darwin") {
       return fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt")
-            .toString()
+        .readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt")
+        .toString();
     } else {
-      return fs.readFileSync(__dirname + "/connected.txt").toString()
+      return fs.readFileSync(__dirname + "/connected.txt").toString();
     }
   } else {
     if (process.platform == "linux" || process.platform == "darwin") {
       return fs
-            .readFileSync(
-              app.getPath("documents") + "/nytuolauncher_data/connected.txt"
-            )
-            .toString()
+        .readFileSync(
+          app.getPath("documents") + "/nytuolauncher_data/connected.txt"
+        )
+        .toString();
     } else {
-      return fs.readFileSync(__dirname + "/connected.txt").toString()
+      return fs.readFileSync(__dirname + "/connected.txt").toString();
     }
   }
 }
@@ -152,7 +152,9 @@ function Toastifycation(message) {
   x.className = "show";
   x.innerHTML = message;
 
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  setTimeout(function () {
+    x.className = x.className.replace("show", "");
+  }, 3000);
 }
 
 function DownlaodVersion(file_url, targetPath) {

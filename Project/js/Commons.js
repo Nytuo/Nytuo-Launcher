@@ -15,7 +15,7 @@ GNU General Public License for more details.
     You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
-var bootstrap = require('bootstrap');
+var bootstrap = require("bootstrap");
 //Open the emplacement of games
 function OpenEmpl(emplacement) {
   console.log(emplacement);
@@ -32,7 +32,7 @@ function redm() {
   } else {
     if (process.platform == "linux") {
       fs.unlinkSync(
-          app.getPath("documents") + "/nytuolauncher_data/LID_ONLINE.txt"
+        app.getPath("documents") + "/nytuolauncher_data/LID_ONLINE.txt"
       );
     } else if (process.platform == "win32") {
       fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt");
@@ -144,30 +144,30 @@ function deletefolder(folder2delete) {
   if (portable == true) {
     if (process.platform == "linux") {
       LID = fs
-          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-          .toString();
+        .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+        .toString();
       window.location.href =
-          "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
+        "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
     } else if (process.platform == "win32") {
       LID = fs
-          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-          .toString();
+        .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+        .toString();
       window.location.href =
-          "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
+        "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
     }
   } else {
     if (process.platform == "linux") {
       LID = fs
-          .readFileSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
-          .toString();
+        .readFileSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
+        .toString();
       window.location.href =
-          "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
+        "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
     } else if (process.platform == "win32") {
       LID = fs
-          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-          .toString();
+        .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+        .toString();
       window.location.href =
-          "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
+        "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
     }
   }
 }
@@ -215,13 +215,13 @@ function CalculSize(url, gamename, type) {
   get_filesize(url, function (size) {
     var sizetotaltemp = bytesToSize(size);
     document.getElementById("resultofcalculsize").innerHTML =
-        currentLanguage[168] +
-        type +
-        " : " +
-        gamename +
-        " (" +
-        sizetotaltemp +
-        ")";
+      currentLanguage[168] +
+      type +
+      " : " +
+      gamename +
+      " (" +
+      sizetotaltemp +
+      ")";
   });
 }
 //converter of size
@@ -266,8 +266,8 @@ function gameUsername(username) {
 //write password for remember me
 function passwordtxt(password) {
   fs.writeFileSync(
-      parentfolder3 + "/nytuolauncher_data/Password.txt",
-      password
+    parentfolder3 + "/nytuolauncher_data/Password.txt",
+    password
   );
 }
 
@@ -301,7 +301,9 @@ function Toastifycation(message) {
   x.className = "show";
   x.innerHTML = message;
 
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  setTimeout(function () {
+    x.className = x.className.replace("show", "");
+  }, 3000);
 }
 
 function DetectTheCancel() {

@@ -57,15 +57,15 @@ let win = BrowserWindow.getFocusedWindow();
 if (portable == true) {
   if (process.platform == "linux") {
     if (
-        fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == false ||
-        fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == ""
+      fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == false ||
+      fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == ""
     ) {
       window.location.href = "SelectLang.html?reload";
     }
   } else {
     if (
-        fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == false ||
-        fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == ""
+      fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == false ||
+      fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == ""
     ) {
       window.location.href = "SelectLang.html?reload";
     }
@@ -73,18 +73,18 @@ if (portable == true) {
 } else {
   if (process.platform == "linux") {
     if (
-        fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt") ==
+      fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt") ==
         false ||
-        fs.readFileSync(
-            app.getPath("documents") + "/nytuolauncher_data/LID.txt"
-        ) == ""
+      fs.readFileSync(
+        app.getPath("documents") + "/nytuolauncher_data/LID.txt"
+      ) == ""
     ) {
       window.location.href = "SelectLang.html?reload";
     }
   } else {
     if (
-        fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == false ||
-        fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == ""
+      fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == false ||
+      fs.readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt") == ""
     ) {
       window.location.href = "SelectLang.html?reload";
     }
@@ -95,8 +95,8 @@ if (portable == true) {
   document.getElementById("MyBartxt").innerHTML = currentLanguage[137];
 
   fs.writeFileSync(
-      parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt",
-      parentfolder3 + "/nytuolauncher_games"
+    parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt",
+    parentfolder3 + "/nytuolauncher_games"
   );
   gamelocation = parentfolder3 + "/nytuolauncher_games";
 } else {
@@ -107,9 +107,9 @@ if (portable == true) {
       ) === true
     ) {
       if (
-          fs.readFileSync(
-              app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt"
-          ).length == 0
+        fs.readFileSync(
+          app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt"
+        ).length == 0
       ) {
         window.location.href = "SelectFolder.html";
       }
@@ -123,9 +123,9 @@ if (portable == true) {
       ) === true
     ) {
       if (
-          fs.readFileSync(
-              parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
-          ).length == 0
+        fs.readFileSync(
+          parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
+        ).length == 0
       ) {
         window.location.href = "SelectFolder.html";
       }
@@ -142,52 +142,40 @@ if (portable == true) {
   if (connectiontest == false) {
     if (process.platform == "linux" || process.platform == "darwin") {
       fs.writeFileSync(
-          parentfolder3 + "/nytuolauncher_data/connected.txt",
-          "false"
+        parentfolder3 + "/nytuolauncher_data/connected.txt",
+        "false"
       );
     } else {
-      fs.writeFileSync(
-          __dirname + "/connected.txt",
-          "false"
-      );
+      fs.writeFileSync(__dirname + "/connected.txt", "false");
     }
   } else {
     if (process.platform == "linux" || process.platform == "darwin") {
       fs.writeFileSync(
-          parentfolder3 + "/nytuolauncher_data/connected.txt",
-          "true"
+        parentfolder3 + "/nytuolauncher_data/connected.txt",
+        "true"
       );
     } else {
-      fs.writeFileSync(
-          __dirname + "/connected.txt",
-          "true"
-      );
+      fs.writeFileSync(__dirname + "/connected.txt", "true");
     }
   }
 } else {
   if (connectiontest == false) {
     if (process.platform == "linux" || process.platform == "darwin") {
       fs.writeFileSync(
-          app.getPath("documents") + "/nytuolauncher_data/connected.txt",
-          "false"
+        app.getPath("documents") + "/nytuolauncher_data/connected.txt",
+        "false"
       );
     } else {
-      fs.writeFileSync(
-          __dirname + "/connected.txt",
-          "false"
-      );
+      fs.writeFileSync(__dirname + "/connected.txt", "false");
     }
   } else {
     if (process.platform == "linux" || process.platform == "darwin") {
       fs.writeFileSync(
-          app.getPath("documents") + "/nytuolauncher_data/connected.txt",
-         "true"
+        app.getPath("documents") + "/nytuolauncher_data/connected.txt",
+        "true"
       );
     } else {
-      fs.writeFileSync(
-          __dirname + "/connected.txt",
-          "true"
-      );
+      fs.writeFileSync(__dirname + "/connected.txt", "true");
     }
   }
 }
@@ -225,17 +213,17 @@ function language() {
     if (process.platform == "linux") {
       if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
         LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
+          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+          .toString();
 
         if (fs.existsSync(__dirname + "/Languages") == true) {
           if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
             let t = require("fs")
-                .readFileSync(
-                    __dirname + "/Languages/LID_" + LID + ".txt",
-                    "utf-8"
-                )
-                .split("\n");
+              .readFileSync(
+                __dirname + "/Languages/LID_" + LID + ".txt",
+                "utf-8"
+              )
+              .split("\n");
             return Array.from(new Set(t));
           } else {
             return [];
@@ -249,17 +237,17 @@ function language() {
     } else if (process.platform == "win32") {
       if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
         LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
+          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+          .toString();
 
         if (fs.existsSync(__dirname + "/Languages") == true) {
           if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
             let t = require("fs")
-                .readFileSync(
-                    __dirname + "/Languages/LID_" + LID + ".txt",
-                    "utf-8"
-                )
-                .split("\n");
+              .readFileSync(
+                __dirname + "/Languages/LID_" + LID + ".txt",
+                "utf-8"
+              )
+              .split("\n");
             return Array.from(new Set(t));
           } else {
             return [];
@@ -274,22 +262,22 @@ function language() {
   } else {
     if (process.platform == "linux") {
       if (
-          fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
+        fs.existsSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
       ) {
         LID = fs
-            .readFileSync(
-                app.getPath("documents") + "/nytuolauncher_data/LID.txt"
-            )
-            .toString();
+          .readFileSync(
+            app.getPath("documents") + "/nytuolauncher_data/LID.txt"
+          )
+          .toString();
 
         if (fs.existsSync(__dirname + "/Languages") == true) {
           if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
             let t = require("fs")
-                .readFileSync(
-                    __dirname + "/Languages/LID_" + LID + ".txt",
-                    "utf-8"
-                )
-                .split("\n");
+              .readFileSync(
+                __dirname + "/Languages/LID_" + LID + ".txt",
+                "utf-8"
+              )
+              .split("\n");
             return Array.from(new Set(t));
           } else {
             return [];
@@ -303,17 +291,17 @@ function language() {
     } else if (process.platform == "win32") {
       if (fs.existsSync(parentfolder3 + "/nytuolauncher_data/LID.txt")) {
         LID = fs
-            .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
-            .toString();
+          .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+          .toString();
 
         if (fs.existsSync(__dirname + "/Languages") == true) {
           if (fs.existsSync(__dirname + "/Languages/LID_" + LID + ".txt")) {
             let t = require("fs")
-                .readFileSync(
-                    __dirname + "/Languages/LID_" + LID + ".txt",
-                    "utf-8"
-                )
-                .split("\n");
+              .readFileSync(
+                __dirname + "/Languages/LID_" + LID + ".txt",
+                "utf-8"
+              )
+              .split("\n");
             return Array.from(new Set(t));
           } else {
             return [];
@@ -331,18 +319,19 @@ function language() {
 function connectest() {
   if (portable == true) {
     if (process.platform == "linux" || process.platform == "darwin") {
-      return fs.readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt")
-                  .toString();
+      return fs
+        .readFileSync(parentfolder3 + "/nytuolauncher_data/connected.txt")
+        .toString();
     } else {
       return fs.readFileSync(__dirname + "/connected.txt").toString();
     }
   } else {
     if (process.platform == "linux" || process.platform == "darwin") {
       return fs
-                  .readFileSync(
-                      app.getPath("documents") + "/nytuolauncher_data/connected.txt"
-                  )
-                  .toString()
+        .readFileSync(
+          app.getPath("documents") + "/nytuolauncher_data/connected.txt"
+        )
+        .toString();
     } else {
       return fs.readFileSync(__dirname + "/connected.txt").toString();
     }
@@ -373,7 +362,7 @@ function gameloc() {
           ) != ""
         ) {
           return fs.readFileSync(
-              parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
+            parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
           );
         } else {
           alert(currentLanguage[26]);
@@ -395,7 +384,7 @@ function gameloc() {
           ) != ""
         ) {
           return fs.readFileSync(
-              parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
+            parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
           );
         } else {
           alert(currentLanguage[26]);
@@ -419,7 +408,7 @@ function gameloc() {
           ) != ""
         ) {
           return fs.readFileSync(
-              app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt"
+            app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt"
           );
         } else {
           alert(currentLanguage[24]);
@@ -441,7 +430,7 @@ function gameloc() {
           ) != ""
         ) {
           return fs.readFileSync(
-              parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
+            parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt"
           );
         } else {
           alert(currentLanguage[26]);
@@ -465,8 +454,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
 
         fs.copyFileSync(
-            gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
-            parentfolder3 +
+          gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt"
         );
       } catch (error) {
@@ -478,8 +467,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[142];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SNRE/Achievements/AchDone.txt",
-            parentfolder3 +
+          gamelocation + "/Games/SNRE/Achievements/AchDone.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt"
         );
       } catch (error) {
@@ -491,8 +480,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[143];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SGB/Achievements/AchDone.txt",
-            parentfolder3 +
+          gamelocation + "/Games/SGB/Achievements/AchDone.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt"
         );
       } catch (error) {
@@ -504,8 +493,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[144];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SFO/Achievements/AchDone.txt",
-            parentfolder3 +
+          gamelocation + "/Games/SFO/Achievements/AchDone.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/SFO/AchDone.txt"
         );
       } catch (error) {
@@ -518,8 +507,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
 
         fs.copyFileSync(
-            gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
-            parentfolder3 +
+          gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt"
         );
       } catch (error) {
@@ -531,8 +520,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[142];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SNRE/Achievements/AchDone.txt",
-            parentfolder3 +
+          gamelocation + "/Games/SNRE/Achievements/AchDone.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt"
         );
       } catch (error) {
@@ -544,8 +533,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[143];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SGB/Achievements/AchDone.txt",
-            parentfolder3 +
+          gamelocation + "/Games/SGB/Achievements/AchDone.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt"
         );
       } catch (error) {
@@ -557,8 +546,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[144];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SFO/Achievements/AchDone.txt",
-            parentfolder3 +
+          gamelocation + "/Games/SFO/Achievements/AchDone.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/SFO/AchDone.txt"
         );
       } catch (error) {
@@ -573,8 +562,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
 
         fs.copyFileSync(
-            gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
-            app.getPath("documents") +
+          gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
+          app.getPath("documents") +
             "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt"
         );
       } catch (error) {
@@ -586,8 +575,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[142];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SNRE/Achievements/AchDone.txt",
-            app.getPath("documents") +
+          gamelocation + "/Games/SNRE/Achievements/AchDone.txt",
+          app.getPath("documents") +
             "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt"
         );
       } catch (error) {
@@ -599,8 +588,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[143];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SGB/Achievements/AchDone.txt",
-            app.getPath("documents") +
+          gamelocation + "/Games/SGB/Achievements/AchDone.txt",
+          app.getPath("documents") +
             "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt"
         );
       } catch (error) {
@@ -612,8 +601,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[144];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SFO/Achievements/AchDone.txt",
-            app.getPath("documents") +
+          gamelocation + "/Games/SFO/Achievements/AchDone.txt",
+          app.getPath("documents") +
             "/nytuolauncher_data/Achievements_Save/SFO/AchDone.txt"
         );
       } catch (error) {
@@ -626,8 +615,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
 
         fs.copyFileSync(
-            gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
-            parentfolder3 +
+          gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt"
         );
       } catch (error) {
@@ -639,8 +628,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[142];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SNRE/Achievements/AchDone.txt",
-            parentfolder3 +
+          gamelocation + "/Games/SNRE/Achievements/AchDone.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/SNRE/AchDone.txt"
         );
       } catch (error) {
@@ -652,8 +641,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[143];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SGB/Achievements/AchDone.txt",
-            parentfolder3 +
+          gamelocation + "/Games/SGB/Achievements/AchDone.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/SGB/AchDone.txt"
         );
       } catch (error) {
@@ -665,8 +654,8 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[144];
 
         fs.copyFileSync(
-            gamelocation + "/Games/SFO/Achievements/AchDone.txt",
-            parentfolder3 +
+          gamelocation + "/Games/SFO/Achievements/AchDone.txt",
+          parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/SFO/AchDone.txt"
         );
       } catch (error) {
