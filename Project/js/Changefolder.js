@@ -30,7 +30,6 @@ var portable = portable_check();
 const currentLanguage = language();
 
 var dirnamew = __dirname.replace(/\\/g, "/");
-const mat = require("materialize-css");
 
 function language() {
   if (portable == true) {

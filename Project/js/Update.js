@@ -147,7 +147,12 @@ function connectest() {
 }
 
 function Toastifycation(message) {
-  mat.toast({ html: message });
+  var x = document.getElementById("snackbar");
+
+  x.className = "show";
+  x.innerHTML = message;
+
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 function DownlaodVersion(file_url, targetPath) {
