@@ -31,7 +31,7 @@ jobs:
         with: 
           target: ./Project/package.json
           action: "set_version"
-          argument: "${{ steps.semver_parser.outputs.major }}.${{steps.semver_parser.outputs.minor}}.${{(steps.semver_parser.outputs.patch)+1}}"
+          argument: "${{ steps.semver_parser.outputs.major }}.${{steps.semver_parser.outputs.minor}}.${{steps.semver_parser.outputs.patch}}+1"
       - name: push
         uses: github-actions-x/commit@v2.8
         with:
