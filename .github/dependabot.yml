@@ -1,0 +1,10 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/Project"
+  schedule:
+    interval: weekly
+    time: "08:00"
+    timezone: Europe/Paris
+  open-pull-requests-limit: 99
+  versioning-strategy: increase
