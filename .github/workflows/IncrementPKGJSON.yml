@@ -20,11 +20,13 @@ jobs:
         with: 
           target: ./Project/package.json
           action: "get_version"
+      - run: |
+          echo '${{steps.getcmnver.outputs.result}}'
       - name: "ParseVersion"
         id: semver_parser 
         uses: booxmedialtd/ws-action-parse-semver@v1
         with:
-          input_string: ${{steps.getcmnver.outputs.result}}
+          input_string: '${{steps.getcmnver.outputs.result}}'
       - name: "Modify Version"
         uses: MYXOMOPX/modify-pkg-json@master
         id: setcmnver
