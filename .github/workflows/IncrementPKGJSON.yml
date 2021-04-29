@@ -4,6 +4,7 @@ name: "Increment PKGJSON"
 on:
   pull_request:
     types: [closed]
+  workflow_dispatch:
 
 jobs:
   bump-version:
@@ -19,17 +20,18 @@ jobs:
         with: 
           target: ./Project/package.json
           action: "get_version"
-      - name: "Modify the version"
-        uses: rickstaa/action-get-semver@v1
-        id: get_semver
+      - name: "ParseVersion"
+        id: semver_parser 
+        uses: booxmedialtd/ws-action-parse-semver@v1
         with:
-          bump_level: "patch"
-      - uses: MYXOMOPX/modify-pkg-json@master
+          input_string: "${{steps.getcmnver.outputs.result}}"
+      - name: "Modify Version"
+        uses: MYXOMOPX/modify-pkg-json@master
         id: setcmnver
         with: 
           target: ./Project/package.json
           action: "set_version"
-          argument: "${{ steps.get_semver.outputs.next_version }}"
+          argument: "${{ steps.semver_parser.outputs.major }}.${{steps.semver_parser.outputs.minor}}.${{steps.semver_parser.outputs.patch+1}}"
       - name: push
         uses: github-actions-x/commit@v2.8
         with:
