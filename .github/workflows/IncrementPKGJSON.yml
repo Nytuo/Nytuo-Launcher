@@ -24,7 +24,7 @@ jobs:
         id: semver_parser 
         uses: booxmedialtd/ws-action-parse-semver@v1
         with:
-          input_string: "${{steps.getcmnver.outputs.result}}"
+          input_string: ${{steps.getcmnver.outputs.result}}
       - name: "Modify Version"
         uses: MYXOMOPX/modify-pkg-json@master
         id: setcmnver
