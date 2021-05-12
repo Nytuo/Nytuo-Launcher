@@ -14,26 +14,27 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: "actions/checkout@v2"
-      - name: "Get the Version"
-        uses: MYXOMOPX/modify-pkg-json@master
-        id: getcmnver
-        with: 
-          target: ./Project/package.json
-          action: "get_version"
-      - run: |
-          echo '${{steps.getcmnver.outputs.result}}'
-      - name: "ParseVersion"
-        id: semver_parser 
-        uses: booxmedialtd/ws-action-parse-semver@v1
+      - name: Get Package Version
+        id: get-package-version
+        uses: stevenbenitez/get-package-version-action@v1
         with:
-          input_string: '${{steps.getcmnver.outputs.result}}'
+          path: "./Project"
+      - run: |
+          echo '${{ steps.get-package-version.outputs.version }}'
+          
+      - name: 'Get next minor version'
+        id: semvers
+        uses: "WyriHaximus/github-action-next-semvers@v1"
+        with:
+          version: ${{ steps.get-package-version.outputs.version }}
+          
       - name: "Modify Version"
         uses: MYXOMOPX/modify-pkg-json@master
         id: setcmnver
         with: 
           target: ./Project/package.json
           action: "set_version"
-          argument: "${{ steps.semver_parser.outputs.major }}.${{steps.semver_parser.outputs.minor}}.${{steps.semver_parser.outputs.patch}}+1"
+          argument: "${{ steps.semvers.outputs.patch }}"
       - name: push
         uses: github-actions-x/commit@v2.8
         with:
