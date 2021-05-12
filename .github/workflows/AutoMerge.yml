@@ -1,13 +1,23 @@
 name: Auto approve
 
 on:
-  pull_request
+  pull_request: 
+    types: [ready_for_review]
 
 jobs:
   auto-approve:
     runs-on: ubuntu-latest
     steps:
-      - uses: koj-co/dependabot-pr-action@master
+      - name: 'Wait for status checks'
+        id: waitforstatuschecks
+        uses: "WyriHaximus/github-action-wait-for-status@v2"
+        with:
+          ignoreActions: auto-approve
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: 'Auto Merging'
+        if: steps.waitforstatuschecks.outputs.status == 'success'
+        uses: koj-co/dependabot-pr-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           merge-minor: true
