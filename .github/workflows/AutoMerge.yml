@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: 'Wait for status checks'
         id: waitforstatuschecks
-        uses: "WyriHaximus/github-action-wait-for-status@v2"
+        uses: "WyriHaximus/github-action-wait-for-status@1d03bce2aefd4ca378b936604d27cccbe98957a9"
         with:
           ignoreActions: auto-approve
         env:
