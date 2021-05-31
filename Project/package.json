@@ -58,8 +58,8 @@
     "author": "Nytuo",
     "license": "GPL-3.0-only",
     "devDependencies": {
-        "electron": "^13.0.1",
-        "electron-builder": "^22.11.1"
+      "electron": "^13.0.1",
+      "electron-builder": "^22.11.5"
     },
     "dependencies": {
         "@popperjs/core": "^2.9.2",
