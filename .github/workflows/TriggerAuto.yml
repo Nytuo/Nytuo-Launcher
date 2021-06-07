@@ -28,6 +28,8 @@ jobs:
         name: Create Tag
         uses: negz/create-tag@v1
         with:
-          version: ${{v+env.PKGVER}}
+          version: ${{env.PKGVER}}
           message: "Automated Update"
           token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          PKGVER: v${{env.PACKAGE_VERSION}}
