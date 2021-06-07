@@ -7,18 +7,7 @@ jobs:
   auto-approve:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Wait for status checks'
-        id: waitforstatuschecks
-        uses: "WyriHaximus/github-action-wait-for-status@1d03bce2aefd4ca378b936604d27cccbe98957a9"
-        with:
-          ignoreActions: auto-approve
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      - name: 'Auto Merging'
-        if: steps.waitforstatuschecks.outputs.status == 'success'
-        uses: koj-co/dependabot-pr-action@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          merge-minor: true
-          merge-patch: true
-          ignore-status-checks: true
+    - uses: ahmadnassri/action-dependabot-auto-merge@v2
+      with:
+        target: patch
+        github-token: ${{ secrets.GITHUB_TOKEN }}
