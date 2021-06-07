@@ -4,7 +4,7 @@
 
 | Version    | Supported          |
 | ---------- | ------------------ |
-| 2021.03.06 | :white_check_mark: |
+| 2.22.1 | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
