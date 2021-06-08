@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - "v*"
+  schedule:
+    - cron:  '0 17 * * 1'
   workflow_dispatch:
   
 jobs:
@@ -21,14 +23,22 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 14
-      - name: Setting the Path for Windows
-        working-directory: ./Project
-        if: matrix.os == 'windows-latest'
-        run: |
-            yarn install
-            yarn devBuild
-      - name: Setting the Path for Linux
-        if: matrix.os == 'ubuntu-latest'
+      - name: Get Package Version
+        uses: nyaa8/package-version@v1
+        with:
+          path: 'Project/package.json'
+          
+      - uses: actions/checkout@v2.2.0
+        with:
+          fetch-depth: 0
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        env:
+          PKGVER: v${{env.PACKAGE_VERSION}}
+        
+      - if: ${{ steps.previoustag.outputs.tag != env.PKGVER }}
+        name: Setting the path and publishing
         working-directory: ./Project
         run: |
             sudo dpkg --add-architecture i386
@@ -38,25 +48,13 @@ jobs:
             
             yarn install
             yarn devBuild
-            yarn electron-builder --x64 --win -p never
-        
-      - name: Publishing For Windows
-        if: matrix.os == 'windows-latest'
+            yarn electron-builder --x64 --win -p never        
+      - if: ${{ steps.previoustag.outputs.tag != env.PKGVER }}
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          files: |
-            Project/dist/*.exe
-            Project/dist/*.blockmap
-            Project/dist/*.zip
-            Project/dist/latest.yml
-      - name: Publishing for Linux
-        if: matrix.os == 'ubuntu-latest'
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
+          automatic_release_tag: ${{env.PKGVER}}
           files: |
             ${{github.workspace}}/Project/dist/*.zip
             ${{github.workspace}}/Project/dist/*.snap
