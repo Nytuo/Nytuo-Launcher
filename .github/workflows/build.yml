@@ -6,7 +6,6 @@ on:
   schedule:
     - cron:  '0 17 * * 1'
   workflow_dispatch:
-  
 jobs:
   release:
     runs-on: ${{ matrix.os }}
