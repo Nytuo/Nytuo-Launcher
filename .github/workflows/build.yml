@@ -35,7 +35,7 @@ jobs:
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         env:
           PKGVER: v${{env.PACKAGE_VERSION}}
-        
+      - run: echo ${{env.PKGVER}}  
       - if: ${{ steps.previoustag.outputs.tag != env.PKGVER }}
         name: Setting the path and publishing
         working-directory: ./Project
@@ -48,7 +48,7 @@ jobs:
             yarn install
             yarn devBuild
             yarn electron-builder --x64 --win -p never        
-      - run: echo ${{env.PKGVER}}
+      
       - if: ${{ steps.previoustag.outputs.tag != env.PKGVER }}
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
