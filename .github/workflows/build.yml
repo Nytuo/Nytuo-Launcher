@@ -48,6 +48,7 @@ jobs:
             yarn install
             yarn devBuild
             yarn electron-builder --x64 --win -p never        
+      - run: echo ${{env.PKGVER}}
       - if: ${{ steps.previoustag.outputs.tag != env.PKGVER }}
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
