@@ -2775,6 +2775,7 @@ function showProgress(received, total, starttime, i, limitlist) {
     minutes +
     " " +
     currentLanguage[33] +
+      " "+
     seconds +
     " " +
     currentLanguage[34] +

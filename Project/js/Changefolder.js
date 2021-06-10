@@ -165,13 +165,13 @@ function FolderChange() {
     if (process.platform == "win32") {
       fs.writeFileSync(
         parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt",
-        folder
+        folder[0]
       );
       verif = true;
     } else if (process.platform == "linux") {
       fs.writeFileSync(
         app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt",
-        folder
+        folder[0]
       );
       verif = true;
     }
