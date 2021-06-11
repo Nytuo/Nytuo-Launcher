@@ -76,7 +76,6 @@ function changegameloc() {
         parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt",
         ""
       );
-      fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt");
 
       app.relaunch();
       app.quit();
@@ -85,7 +84,6 @@ function changegameloc() {
         parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt",
         ""
       );
-      fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt");
 
       app.relaunch();
       app.quit();
@@ -96,9 +94,7 @@ function changegameloc() {
         app.getPath("documents") + "/nytuolauncher_data/GamesFolderLoc.txt",
         ""
       );
-      fs.unlinkSync(
-        app.getPath("documents") + "/nytuolauncher_data/LID_ONLINE.txt"
-      );
+
 
       app.relaunch();
       app.quit();
@@ -107,7 +103,6 @@ function changegameloc() {
         parentfolder3 + "/nytuolauncher_data/GamesFolderLoc.txt",
         ""
       );
-      fs.unlinkSync(parentfolder3 + "/nytuolauncher_data/LID_ONLINE.txt");
 
       app.relaunch();
       app.quit();
