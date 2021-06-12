@@ -57,7 +57,10 @@
         "devBuild": "electron-builder --x64 -p never",
         "start": "electron ."
     },
-    "author": "Nytuo",
+    "author": {
+        "name": "Nytuo",
+        "email": "nytuo.yt@gmail.com"
+    },
     "license": "GPL-3.0-only",
     "devDependencies": {
         "electron": "^13.1.1",
