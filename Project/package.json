@@ -37,6 +37,8 @@
                 "github"
             ],
             "target": [
+                "AppImage",
+                "deb",
                 "snap",
                 "zip"
             ],
