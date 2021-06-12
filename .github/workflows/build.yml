@@ -57,6 +57,8 @@ jobs:
             ${{github.workspace}}/Project/dist/*.exe
             ${{github.workspace}}/Project/dist/*.blockmap
             ${{github.workspace}}/Project/dist/latest.yml
+            ${{github.workspace}}/Project/dist/*.deb
+            ${{github.workspace}}/Project/dist/*.AppImage
         env:
           PKGVER: v${{env.PACKAGE_VERSION}}
 
