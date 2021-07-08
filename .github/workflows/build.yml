@@ -24,12 +24,7 @@ jobs:
       - uses: actions/checkout@v2.2.0
         with:
           fetch-depth: 0
-      - name: 'Get Previous tag'
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
-      - run: echo ${{env.PKGVER}}  
-      - if: ${{ steps.previoustag.outputs.tag != env.PKGVER }}
-        name: Setting the path and publishing
+      - name: Building the Project
         working-directory: ./Project
         run: |
             sudo dpkg --add-architecture i386
@@ -43,7 +38,7 @@ jobs:
         env:
           PKGVER: v${{env.PACKAGE_VERSION}}
       
-      - if: ${{ steps.previoustag.outputs.tag != env.PKGVER }}
+      - name: Publishing...
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
