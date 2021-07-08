@@ -177,3 +177,6 @@ Vous allez télécharger
 Pour annuler le téléchargement et l'installation cliquer sur "Annuler" et dans les paramètres du jeu cliquer sur déinstaller pour vider les élements déjà installer
 Finalisation de l'installation...
 Veuillez patienter pendant que nous finalisation l'installation...
+Lancement de ShootFighter: Total Warfare
+ShootFighter: Total Warfare est maintenant supprimer!
+ShootFighter: Total Warfare est maintenant jouable!

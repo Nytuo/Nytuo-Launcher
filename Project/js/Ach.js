@@ -21,6 +21,15 @@ function ACH_SAVER() {
     if (process.platform == "linux") {
       try {
         fs.copyFileSync(
+            gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt",
+            parentfolder3 +
+            "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt"
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      try {
+        fs.copyFileSync(
           gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
           parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt"
@@ -56,6 +65,15 @@ function ACH_SAVER() {
         console.log(error);
       }
     } else {
+      try {
+        fs.copyFileSync(
+            gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt",
+            parentfolder3 +
+            "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt"
+        );
+      } catch (error) {
+        console.log(error);
+      }
       try {
         fs.copyFileSync(
           gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
@@ -97,6 +115,15 @@ function ACH_SAVER() {
     if (process.platform == "linux") {
       try {
         fs.copyFileSync(
+            gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt",
+            app.getPath("documents") +
+            "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt"
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      try {
+        fs.copyFileSync(
           gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
           app.getPath("documents") +
             "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt"
@@ -132,6 +159,15 @@ function ACH_SAVER() {
         console.log(error);
       }
     } else {
+      try {
+        fs.copyFileSync(
+            gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt",
+            parentfolder3 +
+            "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt"
+        );
+      } catch (error) {
+        console.log(error);
+      }
       try {
         fs.copyFileSync(
           gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
@@ -177,6 +213,15 @@ function ACH_RECUP() {
       if (process.platform == "linux") {
         try {
           fs.copyFileSync(
+              parentfolder3 +
+              "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt",
+              gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt"
+          );
+        } catch (error) {
+          console.log(error);
+        }
+        try {
+          fs.copyFileSync(
             parentfolder3 +
               "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt",
             gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt"
@@ -216,6 +261,15 @@ function ACH_RECUP() {
       if (process.platform == "linux") {
         try {
           fs.copyFileSync(
+              app.getPath("documents") +
+              "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt",
+              gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt"
+          );
+        } catch (error) {
+          console.log(error);
+        }
+        try {
+          fs.copyFileSync(
             app.getPath("documents") +
               "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt",
             gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt"
@@ -251,6 +305,15 @@ function ACH_RECUP() {
           console.log(error);
         }
       } else {
+        try {
+          fs.copyFileSync(
+              parentfolder3 +
+              "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt",
+              gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt"
+          );
+        } catch (error) {
+          console.log(error);
+        }
         try {
           fs.copyFileSync(
             parentfolder3 +
@@ -296,6 +359,68 @@ function ACH_RECUP() {
 function LoadAchivements() {
   console.log(homedir);
   var page = window.location.href;
+  if (
+      page === "file:///" + dirnamew + "/Games.html?sftw" ||
+      page === "index.html" ||
+      page === "profile.php" ||
+      page === "/sftw.html"
+  ) {
+    var AchlistSFTW = require("fs")
+        .readFileSync(
+            __dirname + "/Achievements/SFTW/AllAchievements.txt",
+            "utf-8"
+        )
+        .split("\n");
+    if (fs.existsSync(gamelocation + "/Games/SFTW/Achievements/AchDone.txt")) {
+      let AchListSFTWDone2 = require("fs")
+          .readFileSync(
+              gamelocation + "/Games/SFTW/Achievements/AchDone.txt",
+              "utf-8"
+          )
+          .split("\n");
+      console.log(AchListSFTWDone2);
+      let temp = AchListSFTWDone2.sort();
+      let AchListSFTWDone = Array.from(new Set(temp));
+      console.log(AchListSFTWDone);
+      var percentage =
+          ((AchListSFTWDone.length - 2) * 100) / (AchlistSFTW.length - 1);
+      if (percentage < "0") {
+        percentage = 0;
+      }
+      console.log(percentage);
+      var elem = document.getElementById("BarAch");
+      var width = 0;
+      elem.style.width = percentage + "%";
+      elem.innerHTML = percentage.toFixed() + "%";
+      var AchListSFTWTab = AchListSFTWDone.slice(1, AchListSFTWDone.length);
+      var AchListSFTWTXT = AchListSFTWTab.toString().split(",").join("<br/>");
+      if (
+          page === "file:///" + dirnamew + "/Games.html?sftw" ||
+          page === "sftw.html"
+      ) {
+        document.getElementById("achDone").innerHTML = AchListSFTWTXT.toString();
+        var SFTWLock = compare(AchlistSFTW, AchListSFTWDone);
+
+        if (percentage <= "0") {
+          document.getElementById("achDone").innerHTML = currentLanguage[22];
+        }
+        if (percentage != "100") {
+          document.getElementById("ach").innerHTML = SFTWLock.toString()
+              .split(",")
+              .join("<br/>");
+        } else {
+          document.getElementById("ach").innerHTML = currentLanguage[23];
+        }
+      }
+    } else {
+      document.getElementById("achDone").innerHTML = currentLanguage[22];
+      document.getElementById("ach").innerHTML = AchlistSFTW.toString()
+          .split(",")
+          .join("<br/>");
+    }
+  }
+
+
   if (
     page === "file:///" + dirnamew + "/Games.html?sfo" ||
     page === "index.html" ||

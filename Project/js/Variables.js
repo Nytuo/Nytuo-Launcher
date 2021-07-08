@@ -50,6 +50,7 @@ var TBU = true;
 var VITFU = true;
 var LAU = true;
 var SFOU = true;
+var SFTW = true;
 const { options } = require("request");
 const { platform } = require("process");
 

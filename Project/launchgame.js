@@ -274,6 +274,12 @@ function OpenforLinux(gameloc, dossierdujeu, filename) {
 
 function detectgamepage() {
   if (process.platform == "linux" || process.platform == "darwin") {
+    if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFTW") {
+      document.getElementById("TXTLOAD").innerHTML = currentLanguage[179];
+      document.getElementById("IMGLOAD").src = "Resources/SFTW.png";
+      document.getElementById("IMGLOAD").style.width = "35%";
+      document.getElementById("BG").className = "IMGBGSFTW";
+    }
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFO") {
       document.getElementById("TXTLOAD").innerHTML = currentLanguage[110];
       document.getElementById("IMGLOAD").src = "Resources/LogoSFO2.png";
@@ -356,6 +362,15 @@ function detectgamepage() {
       document.getElementById("BG").className = "IMGBGSNRE";
     }
   } else {
+    if (
+        window.location.href ==
+        "file:///" + dirnamew + "/Gamelaunch.html?SFTW"
+    ) {
+      document.getElementById("TXTLOAD").innerHTML = currentLanguage[179];
+      document.getElementById("IMGLOAD").src = "Resources/SFTW.png";
+      document.getElementById("IMGLOAD").style.width = "35%";
+      document.getElementById("BG").className = "IMGBGSFTW";
+    }
     if (
       window.location.href ==
       "file:///" + dirnamew + "/Gamelaunch.html?SFO"
@@ -457,6 +472,11 @@ function detectgamepage() {
 //modify to add games
 function LAUNCH() {
   if (process.platform == "linux") {
+    if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFTW") {
+      setTimeout(() => {
+        OpenforLinux(gamelocation, "SFTW", "RiffleDivision.sh");
+      }, 2000);
+    }
     if (window.location.href == "file://" + dirnamew + "/Gamelaunch.html?SFO") {
       setTimeout(() => {
         OpenforLinux(gamelocation, "SFO", "nw");
@@ -517,6 +537,14 @@ function LAUNCH() {
       alert("Game not available on Linux");
     }
   } else if (process.platform == "win32") {
+    if (
+        window.location.href ==
+        "file:///" + dirnamew + "/Gamelaunch.html?SFO"
+    ) {
+      setTimeout(() => {
+        Open("SFTW", "RiffleDivision.exe");
+      }, 2000);
+    }
     if (
       window.location.href ==
       "file:///" + dirnamew + "/Gamelaunch.html?SFO"
@@ -599,6 +627,12 @@ function LAUNCH() {
       }, 2000);
     }
   } else {
+    if (
+        window.location.href ==
+        "file:///" + dirnamew + "/Gamelaunch.html?SFTW"
+    ) {
+      alert("Game not supported on this platform yet");
+    }
     if (
       window.location.href ==
       "file:///" + dirnamew + "/Gamelaunch.html?SFO"

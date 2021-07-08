@@ -224,6 +224,8 @@ if (!fs.existsSync(gamelocation + "/Games/WR"))
   fs.mkdirSync(gamelocation + "/Games/WR", { recursive: true });
 if (!fs.existsSync(gamelocation + "/Games/SFO"))
   fs.mkdirSync(gamelocation + "/Games/SFO", { recursive: true });
+if (!fs.existsSync(gamelocation + "/Games/SFTW"))
+  fs.mkdirSync(gamelocation + "/Games/SFTW", {recursive: true});
 if (portable == true) {
   if (process.platform == "linux" || process.platform == "darwin") {
     //create linux beta files
@@ -329,6 +331,8 @@ function createWindow() {
     if (linkbrowser != null) {
       if (linkbrowser == "nytuo://launchid/sgb") {
         win.loadURL(__dirname + "/Loading.html?sgb");
+      } else if (linkbrowser == "nytuo://launchid/sftw") {
+        win.loadURL(__dirname + "/Loading.html?sftw");
       } else if (linkbrowser == "nytuo://launchid/laatim") {
         win.loadURL(__dirname + "/Loading.html?laatim");
       } else if (linkbrowser == "nytuo://launchid/sf") {
@@ -378,6 +382,8 @@ function createWindow() {
     if (linkbrowser != null) {
       if (linkbrowser == "nytuo://launchid/sgb") {
         win.loadURL(__dirname + "/Loading.html?sgb");
+      } else if (linkbrowser == "nytuo://launchid/sftw") {
+        win.loadURL(__dirname + "/Loading.html?sftw");
       } else if (linkbrowser == "nytuo://launchid/laatim") {
         win.loadURL(__dirname + "/Loading.html?laatim");
       } else if (linkbrowser == "nytuo://launchid/sf") {
@@ -423,6 +429,7 @@ app.on("before-quit", () => {
   if (portable == true) {
     if (process.platform == "linux") {
       GamesIDs = [
+        "SFTW",
         "SFO",
         "LAATIM",
         "SGB",
@@ -455,6 +462,7 @@ app.on("before-quit", () => {
       }
     } else if (process.platform == "win32") {
       GamesIDs = [
+        "SFTW",
         "SFO",
         "LAATIM",
         "SGB",
@@ -489,6 +497,7 @@ app.on("before-quit", () => {
   } else {
     if (process.platform == "linux") {
       GamesIDs = [
+        "SFTW",
         "SFO",
         "LAATIM",
         "SGB",
@@ -521,6 +530,7 @@ app.on("before-quit", () => {
       }
     } else if (process.platform == "win32") {
       GamesIDs = [
+        "SFTW",
         "SFO",
         "LAATIM",
         "SGB",

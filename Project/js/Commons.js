@@ -69,6 +69,8 @@ function rebuildGameFolderTree() {
     fs.mkdirSync(gamelocation + "/Games/WR", { recursive: true });
   if (!fs.existsSync(gamelocation + "/Games/SFO"))
     fs.mkdirSync(gamelocation + "/Games/SFO", { recursive: true });
+  if (!fs.existsSync(gamelocation + "/Games/SFTW"))
+    fs.mkdirSync(gamelocation + "/Games/SFTW", { recursive: true });
 }
 //delete folder of a game
 //modify to add games
@@ -104,9 +106,14 @@ function deletefolder(folder2delete) {
       fs.mkdirSync(gamelocation + "/Games/WR", { recursive: true });
     if (!fs.existsSync(gamelocation + "/Games/SFO"))
       fs.mkdirSync(gamelocation + "/Games/SFO", { recursive: true });
+    if (!fs.existsSync(gamelocation + "/Games/SFTW"))
+      fs.mkdirSync(gamelocation + "/Games/SFTW", { recursive: true });
   }, 5000);
   if (folder2delete === gamelocation + "/Games/LAATIM") {
     Toastifycation(currentLanguage[48]);
+  }
+  if (folder2delete === gamelocation + "/Games/SFTW") {
+    Toastifycation(currentLanguage[180]);
   }
   if (folder2delete === gamelocation + "/Games/SFO") {
     Toastifycation(currentLanguage[49]);
@@ -205,6 +212,8 @@ function deleteall() {
       fs.mkdirSync(gamelocation + "/Games/WR", { recursive: true });
     if (!fs.existsSync(gamelocation + "/Games/SFO"))
       fs.mkdirSync(gamelocation + "/Games/SFO", { recursive: true });
+    if (!fs.existsSync(gamelocation + "/Games/SFTW"))
+      fs.mkdirSync(gamelocation + "/Games/SFTW", { recursive: true });
 
     Toastifycation(currentLanguage[60]);
     refresh();

@@ -860,10 +860,77 @@ function verif_gameVersionLoading() {
   ) {
     setTimeout(function () {
       if (
+          fs
+              .existsSync(gamelocation + "/Games/SFTW/SFTW_Version.txt")
+              .toString() === true
+      )
+      {
+        if (portable == true) {
+          if (process.platform == "linux") {
+            if (
+                fs
+                    .readFileSync(gamelocation + "/Games/SFTW/SFTW_Version.txt")
+                    .toString() <
+                fs
+                    .readFileSync(
+                        parentfolder3 +
+                        "/nytuolauncher_data/VersionsFiles/SFTW_Version.txt"
+                    )
+                    .toString()
+            ) {
+              SFTWU = false;
+            }
+          } else {
+            if (
+                fs
+                    .readFileSync(gamelocation + "/Games/SFTW/SFTW_Version.txt")
+                    .toString() <
+                fs
+                    .readFileSync(__dirname + "/VersionsFiles/SFTW_Version.txt")
+                    .toString()
+            ) {
+              SFTWU = false;
+            }
+          }
+        } else {
+          if (process.platform == "linux") {
+            if (
+                fs
+                    .readFileSync(gamelocation + "/Games/SFTW/SFTW_Version.txt")
+                    .toString() <
+                fs
+                    .readFileSync(
+                        app.getPath("documents") +
+                        "/nytuolauncher_data/VersionsFiles/SFTW_Version.txt"
+                    )
+                    .toString()
+            ) {
+              SFTWU = false;
+            }
+          } else {
+            if (
+                fs
+                    .readFileSync(gamelocation + "/Games/SFTW/SFTW_Version.txt")
+                    .toString() <
+                fs
+                    .readFileSync(__dirname + "/VersionsFiles/SFTW_Version.txt")
+                    .toString()
+            ) {
+              SFTWU = false;
+            }
+          }
+        }
+        Toastifycation(curentLanguage[76]);
+      }
+
+
+
+      if (
         fs
           .existsSync(gamelocation + "/Games/LAATIM/LAIM_Version.txt")
           .toString() === true
-      ) {
+      )
+      {
         if (portable == true) {
           if (process.platform == "linux") {
             if (
@@ -1712,6 +1779,27 @@ function ConnectionForm() {
       ACH_SAVER();
       if (connectedtointernet == "true") {
         if (
+            window.location.href ==
+            "file:///" + dirnamew + "/Loading.html?sftw"
+        ) {
+          if (SFTWU == true) {
+            document.getElementById("MyBartxt").innerHTML =
+                currentLanguage[127];
+
+            LaunchGame("SFTW");
+
+            win.close();
+          } else {
+            document.getElementById("MyBartxt").innerHTML =
+                currentLanguage[126];
+
+            LID = fs
+                .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
+                .toString();
+            win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?Nosecu");
+          }
+        }
+        else if (
           window.location.href ==
           "file:///" + dirnamew + "/Loading.html?laatim"
         ) {
@@ -2002,6 +2090,18 @@ function LaunchWindowLauncherOffline() {
     //win.removeMenu()
     ACH_SAVER();
     if (
+        window.location.href ==
+        "file:///" + dirnamew + "/Loading.html?sftw"
+    ) {
+      if (SFTWU == true) {
+        document.getElementById("MyBartxt").innerHTML = currentLanguage[127];
+
+        LaunchGame("SFTW");
+
+        win.close();
+      }
+    }
+    else if (
       window.location.href ==
       "file:///" + dirnamew + "/Loading.html?laatim"
     ) {
@@ -2136,6 +2236,7 @@ function GameAvailableOffline() {
         fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/CurrentUser");
       }
       var GamesIDs = [
+        "SFTW",
         "SFO",
         "LAATIM",
         "SGB",
@@ -2168,6 +2269,7 @@ function GameAvailableOffline() {
         fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/CurrentUser");
       }
       var GamesIDs = [
+        "SFTW",
         "SFO",
         "LAATIM",
         "SGB",
@@ -2208,6 +2310,7 @@ function GameAvailableOffline() {
         );
       }
       var GamesIDs = [
+        "SFTW",
         "SFO",
         "LAATIM",
         "SGB",
@@ -2243,6 +2346,7 @@ function GameAvailableOffline() {
         fs.mkdirSync(parentfolder3 + "/nytuolauncher_data/CurrentUser");
       }
       var GamesIDs = [
+        "SFTW",
         "SFO",
         "LAATIM",
         "SGB",
@@ -2280,6 +2384,10 @@ function DLVersions() {
 
     if (portable == true) {
       if (process.platform == "linux" || process.platform == "darwin") {
+        DownlaodVersion(
+            "https://raw.githubusercontent.com/Nytuo/SFTW/master/Linux/SFTW_Version.txt",
+            parentfolder3 + "/nytuolauncher_data/VersionsFiles/SFTW_Version.txt"
+        );
         DownlaodVersion(
           "https://raw.githubusercontent.com/Nytuo/SN/master/Linux/SNRE_Version.txt",
           parentfolder3 + "/nytuolauncher_data/VersionsFiles/SNRE_Version.txt"
@@ -2358,6 +2466,10 @@ function DLVersions() {
         }
       } else {
         DownlaodVersion(
+            "https://raw.githubusercontent.com/Nytuo/SFTW/master/Windows/SFTW_Version.txt",
+            __dirname + "/VersionsFiles/SFTW_Version.txt"
+        );
+        DownlaodVersion(
           "https://raw.githubusercontent.com/Nytuo/SN/master/Windows/SNRE_Version.txt",
           __dirname + "/VersionsFiles/SNRE_Version.txt"
         );
@@ -2432,6 +2544,11 @@ function DLVersions() {
       }
     } else {
       if (process.platform == "linux" || process.platform == "darwin") {
+        DownlaodVersion(
+            "https://raw.githubusercontent.com/Nytuo/SFTW/master/Linux/SFTW_Version.txt",
+            app.getPath("documents") +
+            "/nytuolauncher_data/VersionsFiles/SFTW_Version.txt"
+        );
         DownlaodVersion(
           "https://raw.githubusercontent.com/Nytuo/SN/master/Linux/SNRE_Version.txt",
           app.getPath("documents") +
@@ -2523,6 +2640,10 @@ function DLVersions() {
         }
       } else {
         DownlaodVersion(
+            "https://raw.githubusercontent.com/Nytuo/SFTW/master/Windows/SFTW_Version.txt",
+            __dirname + "/VersionsFiles/SFTW_Version.txt"
+        );
+        DownlaodVersion(
           "https://raw.githubusercontent.com/Nytuo/SN/master/Windows/SNRE_Version.txt",
           __dirname + "/VersionsFiles/SNRE_Version.txt"
         );
@@ -2606,6 +2727,10 @@ function DLCL() {
     if (portable == true) {
       if (process.platform == "linux" || process.platform == "darwin") {
         DownlaodVersion(
+            "https://raw.githubusercontent.com/Nytuo/SFTW/master/ChangesLogs",
+            parentfolder3 + "/nytuolauncher_data/ChangesLogs/SFTW.txt"
+        );
+        DownlaodVersion(
           "https://raw.githubusercontent.com/Nytuo/SN/master/ChangesLogs",
           parentfolder3 + "/nytuolauncher_data/ChangesLogs/SN.txt"
         );
@@ -2654,6 +2779,10 @@ function DLCL() {
           parentfolder3 + "/nytuolauncher_data/ChangesLogs/SFO.txt"
         );
       } else {
+        DownlaodVersion(
+            "https://raw.githubusercontent.com/Nytuo/SFTW/master/ChangesLogs",
+            __dirname + "/ChangesLogs/SFTW.txt"
+        );
         DownlaodVersion(
           "https://raw.githubusercontent.com/Nytuo/SN/master/ChangesLogs",
           __dirname + "/ChangesLogs/SN.txt"
@@ -2706,6 +2835,10 @@ function DLCL() {
     } else {
       if (process.platform == "linux" || process.platform == "darwin") {
         DownlaodVersion(
+            "https://raw.githubusercontent.com/Nytuo/SFTW/master/ChangesLogs",
+            app.getPath("documents") + "/nytuolauncher_data/ChangesLogs/SFTW.txt"
+        );
+        DownlaodVersion(
           "https://raw.githubusercontent.com/Nytuo/SN/master/ChangesLogs",
           app.getPath("documents") + "/nytuolauncher_data/ChangesLogs/SN.txt"
         );
@@ -2755,6 +2888,10 @@ function DLCL() {
           app.getPath("documents") + "/nytuolauncher_data/ChangesLogs/SFO.txt"
         );
       } else {
+        DownlaodVersion(
+            "https://raw.githubusercontent.com/Nytuo/SFTW/master/ChangesLogs",
+            __dirname + "/ChangesLogs/SFTW.txt"
+        );
         DownlaodVersion(
           "https://raw.githubusercontent.com/Nytuo/SN/master/ChangesLogs",
           __dirname + "/ChangesLogs/SN.txt"

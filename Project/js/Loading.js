@@ -50,6 +50,7 @@ var TBU = true;
 var VITFU = true;
 var LAU = true;
 var SFOU = true;
+var SFTWU = true;
 const { options } = require("request");
 const { platform } = require("process");
 const { BrowserWindow } = require("electron").remote;
@@ -454,6 +455,19 @@ function ACH_SAVER() {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
 
         fs.copyFileSync(
+            gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt",
+            parentfolder3 +
+            "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt"
+        );
+      } catch (error) {
+        document.getElementById("MyBartxt").innerHTML = currentLanguage[145];
+
+        console.log(error);
+      }
+      try {
+        document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
+
+        fs.copyFileSync(
           gamelocation + "/Games/LAATIM/LA_IM/Achievements.txt",
           parentfolder3 +
             "/nytuolauncher_data/Achievements_Save/LAATIM/Achievements.txt"
@@ -503,6 +517,19 @@ function ACH_SAVER() {
         console.log(error);
       }
     } else {
+      try {
+        document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
+
+        fs.copyFileSync(
+            gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt",
+            parentfolder3 +
+            "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt"
+        );
+      } catch (error) {
+        document.getElementById("MyBartxt").innerHTML = currentLanguage[145];
+
+        console.log(error);
+      }
       try {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
 
@@ -558,6 +585,19 @@ function ACH_SAVER() {
     }
   } else {
     if (process.platform == "linux" || process.platform == "darwin") {
+      try {
+        document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
+
+        fs.copyFileSync(
+            gamelocation + "/Games/SFTW/RiffleDivision/Achievements.txt",
+            app.getPath("documents") +
+            "/nytuolauncher_data/Achievements_Save/SFTW/Achievements.txt"
+        );
+      } catch (error) {
+        document.getElementById("MyBartxt").innerHTML = currentLanguage[145];
+
+        console.log(error);
+      }
       try {
         document.getElementById("MyBartxt").innerHTML = currentLanguage[141];
 
