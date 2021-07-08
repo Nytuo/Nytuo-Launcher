@@ -713,7 +713,7 @@ function detectgamepage() {
       document.getElementById("UNINSTALLTXT").innerHTML = currentLanguage[9];
       document.getElementById("OGLTXT").innerHTML = currentLanguage[10];
       document.getElementById("SHORTTXT").innerHTML = currentLanguage[12];
-      document.getElementById("changes").innerHTML = ChangesLogs_Load("SFO");
+      document.getElementById("changes").innerHTML = ChangesLogs_Load("SFTW");
       document.getElementById("SVTXT").innerHTML = currentLanguage[11];
     }
 
