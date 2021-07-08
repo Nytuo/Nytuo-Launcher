@@ -3,8 +3,6 @@ on:
   push:
     tags:
       - "v*"
-  schedule:
-    - cron:  '0 17 * * 1'
   workflow_dispatch:
 jobs:
   release:
