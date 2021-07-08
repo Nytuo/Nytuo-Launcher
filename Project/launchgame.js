@@ -539,7 +539,7 @@ function LAUNCH() {
   } else if (process.platform == "win32") {
     if (
         window.location.href ==
-        "file:///" + dirnamew + "/Gamelaunch.html?SFO"
+        "file:///" + dirnamew + "/Gamelaunch.html?SFTW"
     ) {
       setTimeout(() => {
         Open("SFTW", "RiffleDivision.exe");
