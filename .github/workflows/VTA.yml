@@ -3,7 +3,6 @@ name: VirusTotal Analysis
 on:
   release:
     types: [published]
-  workflow_dispatch:
 jobs:
   virustotal:
     runs-on: ubuntu-latest
