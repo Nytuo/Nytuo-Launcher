@@ -23,10 +23,8 @@ function LogOut() {
     alert(
       "cd ~/snap/nytuo-launcher/x1/.config\n(press OK for see the next command)"
     );
-    alert("rm -rf Nytuo-Launcher\n(press OK for see the next command)");
-    setTimeout(() => {
-      app.exit();
-    }, 1000);
+    alert("rm -rf Nytuo-Launcher\n(press OK to finish)");
+
     /*const remote = require("electron").remote;
       const BrowserWindow = remote.BrowserWindow;
       const path = require("path");
@@ -54,13 +52,14 @@ function LogOut() {
     );
     require("fs").mkdirSync(
       app.getPath("documents") + "/nytuolauncher_data/currentUser"
-    );
+    );    
+    setTimeout(() => {
+      app.exit();
+    }, 5000);
     /*win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?out");*/
   } else {
     shell.openPath(__dirname + "/batch_sh_files/deleteCookies.bat");
-    setTimeout(() => {
-      app.exit();
-    }, 1000);
+
     /*const remote = require("electron").remote;
       const BrowserWindow = remote.BrowserWindow;
       const path = require("path");
@@ -85,7 +84,10 @@ function LogOut() {
     require("fs").rmdirSync(parentfolder3 + "/nytuolauncher_data/currentUser", {
       recursive: true,
     });
-    require("fs").mkdirSync(parentfolder3 + "/nytuolauncher_data/currentUser");
+    require("fs").mkdirSync(parentfolder3 + "/nytuolauncher_data/currentUser");    
+    setTimeout(() => {
+      app.exit();
+    }, 5000);
     /*win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?out");*/
   } /*
     close();*/
