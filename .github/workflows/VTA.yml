@@ -20,4 +20,9 @@ jobs:
           update_release_body: true
           vt_api_key: ${{ secrets.VT_API_KEY }}
           files: |
-            ./Nytuo-Launcher.Setup.${{env.PACKAGE_VERSION}}.exe$
+            ./Nytuo-Launcher.Setup.${{env.PACKAGE_VERSION}}.exe
+            ./Nytuo-Launcher-${{env.PACKAGE_VERSION}}-win.zip
+            ./Nytuo-launcher-${{env.PACKAGE_VERSION}}.zip
+            ./Nytuo-Launcher-${{env.PACKAGE_VERSION}}.AppImage
+            ./nytuo-launcher_${{env.PACKAGE_VERSION}}_amd64.deb
+            ./nytuo-launcher_${{env.PACKAGE_VERSION}}_amd64.snap
