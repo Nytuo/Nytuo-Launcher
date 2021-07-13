@@ -9,11 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.2.0
+      - name: Get Package Version
+        uses: nyaa8/package-version@v1
         with:
-          fetch-depth: 0
-      - name: 'Get Previous tag'
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+          path: 'Project/package.json'
       -
         name: VirusTotal Scan
         uses: crazy-max/ghaction-virustotal@v2
@@ -21,4 +20,4 @@ jobs:
           update_release_body: true
           vt_api_key: ${{ secrets.VT_API_KEY }}
           files: |
-            ./Nytuo-Launcher.Setup.${{ steps.previoustag.outputs.tag }}.exe$
+            ./Nytuo-Launcher.Setup.${{env.PACKAGE_VERSION}}.exe$
