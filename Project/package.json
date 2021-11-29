@@ -67,7 +67,7 @@
         "electron-builder": "^22.11.7"
     },
     "dependencies": {
-        "@popperjs/core": "^2.9.2",
+        "@popperjs/core": "^2.11.0",
         "app": "^0.1.0",
         "bootstrap": "^5.0.2",
         "extract-zip": "^2.0.1",
