@@ -1549,10 +1549,10 @@ minimist@~0.0.1:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
   integrity sha1-3j+YVD2/lggr5IrRoMfNqDYwHc8=
 
-mixme@^0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/mixme/-/mixme-0.3.5.tgz#304652cdaf24a3df0487205e61ac6162c6906ddd"
-  integrity sha512-SyV9uPETRig5ZmYev0ANfiGeB+g6N2EnqqEfBbCGmmJ6MgZ3E4qv5aPbnHVdZ60KAHHXV+T3sXopdrnIXQdmjQ==
+mixme@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/mixme/-/mixme-0.5.4.tgz#8cb3bd0cd32a513c161bf1ca99d143f0bcf2eff3"
+  integrity sha512-3KYa4m4Vlqx98GPdOHghxSdNtTvcP8E0kkaJ5Dlh+h2DRzF7zpuVVcA8B0QpKd11YJeP9QQ7ASkKzOeu195Wzw==
 
 mkdirp@^0.5.4:
   version "0.5.5"
@@ -2026,12 +2026,12 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
-shell@^0.8.4:
-  version "0.8.4"
-  resolved "https://registry.yarnpkg.com/shell/-/shell-0.8.4.tgz#f44d1bdf03d54983037c961c5a93bc7c90dc9c00"
-  integrity sha512-E8DGKQIvuglx3za0fzlSSBInsMH6Rpn/IvGDNp1zy9WW8zieUSx3Zd6IsgOv67k8H2StOWESMkB9wGZuSLZ8RQ==
+shell@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/shell/-/shell-0.8.5.tgz#f9b6799ffc7cd69e54ae866a29f846342d13a4dc"
+  integrity sha512-FCEs8d6vZNDr5nDTAWXAI65icuZlnQa4LBEBNK29+d2+fDL4YDSaLury7F3KsFqV8WFAaaPQIsH9vHf2cp1f+A==
   dependencies:
-    mixme "^0.3.5"
+    mixme "^0.5.4"
     pad "^3.2.0"
 
 shelljs@^0.8.4:
