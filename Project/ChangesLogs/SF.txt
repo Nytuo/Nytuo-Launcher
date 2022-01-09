@@ -1,0 +1,2 @@
+1.0.0.1:
+<p><span class="fixed">fixed</span>Correction of bugs</p>

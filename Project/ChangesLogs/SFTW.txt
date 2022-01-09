@@ -1,0 +1,5 @@
+0.0.2-alpha:
+<p><span class="new">New</span>Multiplayer Support</p>
+<p><span class="new">New</span>Adding Gun and explosive barrels</p>
+0.0.1-alpha:
+<p><span class="new">New</span>Base game</p>

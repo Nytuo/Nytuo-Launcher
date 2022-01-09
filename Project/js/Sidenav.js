@@ -209,6 +209,7 @@ if (process.platform == "linux") {
 }
 
 t = [
+    "SS",
   "SFTW",
   "SFO",
   "LAATIM",

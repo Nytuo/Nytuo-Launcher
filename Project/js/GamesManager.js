@@ -112,6 +112,49 @@ function detectgamepage() {
   document.getElementById("AbortTuto").innerHTML = currentLanguage[176];
 
   if (process.platform == "linux") {
+    if (window.location.href == "file://" + dirnamew + "/Games.html?ss") {
+      document.getElementById("BG").className = "IMGBGSS";
+      document.getElementById("LOGOCARD").src = "Resources/SS.png";
+
+      document.getElementById("NAME").innerHTML = "Super Smash !";
+      document.getElementById("NAME2").innerHTML = "Super Smash !";
+      document.getElementById("NAME3").innerHTML = "Super Smash !";
+      document.getElementById("NAME5").innerHTML = "Super Smash !";
+      document.getElementById("NAME4").innerHTML = "Super Smash !";
+      document.getElementById("DETECTION").onclick = detect(
+          "SS",
+          "SS_Version.txt",
+          "SS_Version.txt",
+          "Super Smash !",
+          "versiontxt"
+      );
+      document.getElementById("ONLINEPLAY").onclick = 0;
+      document.getElementById("ONLINEPLAY").innerHTML = "";
+      document.getElementById("SNCLASSIC").onclick = 0;
+      document.getElementById("SNCLASSIC").innerHTML = "";
+      //document.getElementById("GAMEJOLT").innerHTML = currentLanguage[97];
+      document.getElementById("myBar").style.backgroundColor = "#cc3333";
+      document.getElementById(
+          "myBar2"
+      ).style.backgroundColor = document.getElementById(
+          "myBar"
+      ).style.backgroundColor;
+
+      document.getElementById("BarAch").style.backgroundColor = "#cc3333";
+      document.getElementById("BarAch").style.color = "black";
+      document.getElementById("shortcuts").onclick = 0;
+      document.getElementById("shortcuts").innerHTML = "";
+      //document.getElementById("button2").onclick= 0;
+      //document.getElementById("button2").innerHTML = "";
+      //document.getElementById("SAVES").onclick = 0;
+      //  document.getElementById("SAVES").innerHTML = "";
+      //document.getElementById("ONLINEPLAYTXT").innerHTML = currentLanguage[4];
+      document.getElementById("REPAIRTXT").innerHTML = currentLanguage[7];
+      document.getElementById("REINSTALLTXT").innerHTML = currentLanguage[8];
+      document.getElementById("UNINSTALLTXT").innerHTML = currentLanguage[9];
+      document.getElementById("OGLTXT").innerHTML = currentLanguage[10];
+      document.getElementById("changes").innerHTML = ChangesLogs_Load("SS");
+    }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sftw") {
       document.getElementById("BG").className = "IMGBGSFTW";
       document.getElementById("LOGOCARD").src = "Resources/SFTW.png";
@@ -671,6 +714,49 @@ function detectgamepage() {
       document.getElementById("SVTXT").innerHTML = currentLanguage[11];
     }
   } else {
+    if (window.location.href == "file:///" + dirnamew + "/Games.html?ss") {
+      document.getElementById("BG").className = "IMGBGSS";
+      document.getElementById("LOGOCARD").src = "Resources/SS.png";
+      document.getElementById("NAME").innerHTML = "Super Smash !";
+      document.getElementById("NAME2").innerHTML = "Super Smash !";
+      document.getElementById("NAME3").innerHTML = "Super Smash !";
+      document.getElementById("NAME4").innerHTML = "Super Smash !";
+      document.getElementById("NAME5").innerHTML = "Super Smash !";
+      document.getElementById("DETECTION").onclick = detectforWin(
+          "SS",
+          "SS_Version.txt",
+          "SS_Version.txt",
+          "Super Smash !",
+          "versiontxt"
+      );
+      document.getElementById("ONLINEPLAY").onclick = 0;
+      document.getElementById("ONLINEPLAY").innerHTML = "";
+      document.getElementById("SNCLASSIC").onclick = 0;
+      document.getElementById("SNCLASSIC").innerHTML = "";
+      //document.getElementById("GAMEJOLT").innerHTML = currentLanguage[97];
+      document.getElementById("myBar").style.backgroundColor = "#cc3333";
+      document.getElementById("BarAch").style.backgroundColor = "#cc3333";
+      document.getElementById(
+          "myBar2"
+      ).style.backgroundColor = document.getElementById(
+          "myBar"
+      ).style.backgroundColor;
+
+      document.getElementById("BarAch").style.color = "black";
+      //document.getElementById("shortcuts").onclick = 0;
+      //document.getElementById("shortcuts").innerHTML = "";
+      //document.getElementById("button2").onclick= 0;
+      //document.getElementById("button2").innerHTML = "";
+      //document.getElementById("SAVES").onclick= 0;
+      //document.getElementById("SAVES").innerHTML = "";
+      //document.getElementById("ONLINEPLAYTXT").innerHTML = currentLanguage[4];
+      document.getElementById("REPAIRTXT").innerHTML = currentLanguage[7];
+      document.getElementById("REINSTALLTXT").innerHTML = currentLanguage[8];
+      document.getElementById("UNINSTALLTXT").innerHTML = currentLanguage[9];
+      document.getElementById("OGLTXT").innerHTML = currentLanguage[10];
+      document.getElementById("SHORTTXT").innerHTML = currentLanguage[12];
+      document.getElementById("changes").innerHTML = ChangesLogs_Load("SS");
+    }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sftw") {
       document.getElementById("BG").className = "IMGBGSFTW";
       document.getElementById("LOGOCARD").src = "Resources/SFTW.png";
@@ -1293,7 +1379,11 @@ function deletefolder(folder2delete) {
       fs.mkdirSync(gamelocation + "/Games/SFO", { recursive: true });
     if (!fs.existsSync(gamelocation + "/Games/SFTW"))
       fs.mkdirSync(gamelocation + "/Games/SFTW", { recursive: true });
-
+    if (!fs.existsSync(gamelocation + "/Games/SS"))
+      fs.mkdirSync(gamelocation + "/Games/SS", { recursive: true });
+    if (folder2delete === gamelocation + "/Games/SS") {
+      Toastifycation(currentLanguage[183]);
+    }
     if (folder2delete === gamelocation + "/Games/SFTW") {
       Toastifycation(currentLanguage[181]);
     }
@@ -1357,6 +1447,9 @@ function DELETE_DETECT() {
     if (window.location.href == "file://" + dirnamew + "/Games.html?sftw") {
       deletefolder(gamelocation + "/Games/SFTW");
     }
+    if (window.location.href == "file://" + dirnamew + "/Games.html?ss") {
+      deletefolder(gamelocation + "/Games/SS");
+    }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sfo") {
       deletefolder(gamelocation + "/Games/SFO");
     }
@@ -1394,6 +1487,9 @@ function DELETE_DETECT() {
       deletefolder(gamelocation + "/Games/SNRE");
     }
   } else {
+    if (window.location.href == "file:///" + dirnamew + "/Games.html?ss") {
+      deletefolder(gamelocation + "/Games/SS");
+    }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sftw") {
       deletefolder(gamelocation + "/Games/SFTW");
     }
@@ -1445,6 +1541,13 @@ function REINSTALL_DETECT(list1, list2, m) {
     document.getElementById("resultofcalculsize").innerHTML =
       currentLanguage[96];
     if (process.platform == "linux") {
+      if (window.location.href == "file://" + dirnamew + "/Games.html?ss") {
+        if (m === false) {
+          deletefolderforrepair(gamelocation + "/Games/SS", "SS", 1);
+        } else {
+          repair("SS", list1, list2);
+        }
+      }
       if (window.location.href == "file://" + dirnamew + "/Games.html?sftw") {
         if (m === false) {
           deletefolderforrepair(gamelocation + "/Games/SFTW", "SFTW", 1);
@@ -1545,6 +1648,16 @@ function REINSTALL_DETECT(list1, list2, m) {
           deletefolderforrepair(gamelocation + "/Games/SFTW", "SFTW", 0);
         } else {
           repair("SFTW", list1, list2);
+        }
+      }
+      if (
+          window.location.href ==
+          "file:///" + dirnamew + "/Games.html?ss"
+      ) {
+        if (m === false) {
+          deletefolderforrepair(gamelocation + "/Games/SS", "SS", 0);
+        } else {
+          repair("SS", list1, list2);
         }
       }
       if (
@@ -1672,6 +1785,9 @@ function ONLINE_LINK_DETECT() {
 //modify to add games
 function OPEN_GAMELOC_DETECT() {
   if (process.platform == "linux") {
+    if (window.location.href == "file://" + dirnamew + "/Games.html?ss") {
+      OpenEmpl(gamelocation + "/Games/SS/");
+    }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sftw") {
       OpenEmpl(gamelocation + "/Games/SFTW/");
     }
@@ -1712,6 +1828,9 @@ function OPEN_GAMELOC_DETECT() {
       OpenEmpl(gamelocation + "/Games/SNRE/");
     }
   } else {
+    if (window.location.href == "file:///" + dirnamew + "/Games.html?ss") {
+      OpenEmpl(gamelocation + "/Games/SS/");
+    }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sftw") {
       OpenEmpl(gamelocation + "/Games/SFTW/");
     }
@@ -1776,6 +1895,17 @@ function SHORTCUT_DETECT() {
           ),
           "Launch ShootFighter: Total Warfare",
           __dirname + "/Resources/LogoSF.ico"
+      );
+    }
+    if (window.location.href == "file:///" + dirnamew + "/Games.html?ss") {
+      createlink(
+          "SS",
+          require("path").join(
+              require("os").homedir(),
+              "Desktop/Super Smash.lnk"
+          ),
+          "Launch Super Smash !",
+          __dirname + "/Resources/LogoSS.ico"
       );
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sfo") {
@@ -1925,6 +2055,16 @@ function WHATTODO_DETECT() {
           "RiffleDivision.sh"
       );
     }
+    if (window.location.href == "file://" + dirnamew + "/Games.html?ss") {
+      Do(
+          "SS",
+          "SS_Version.txt",
+          "SS_Version.txt",
+          "SuperSmash.exe",
+          "Super Smash",
+          "SuperSmash.x86_64"
+      );
+    }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sfo") {
       Do(
         "SFO",
@@ -2021,6 +2161,16 @@ function WHATTODO_DETECT() {
           "RiffleDivision.exe",
           "ShootFighter: Total Warfare",
           "RiffleDivision.sh"
+      );
+    }
+    if (window.location.href == "file:///" + dirnamew + "/Games.html?ss") {
+      Do(
+          "SS",
+          "SS_Version.txt",
+          "SS_Version.txt",
+          "SuperSmash.exe",
+          "Super Smash !",
+          "SuperSmash.x86_64"
       );
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sfo") {
@@ -2130,6 +2280,8 @@ function OPEN_GAMESAVE() {
   if (process.platform == "linux") {
     if (window.location.href == "file://" + dirnamew + "/Games.html?laatim") {
       alert("No available on this platform...");
+    }    if (window.location.href == "file://" + dirnamew + "/Games.html?ss") {
+      alert("No available on this platform...");
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sgb") {
       OpenEmpl(homedir + "/SuperGeoffreyBros/User Data/");
@@ -2149,6 +2301,8 @@ function OPEN_GAMESAVE() {
   } else {
     if (window.location.href == "file:///" + dirnamew + "/Games.html?laatim") {
       OpenEmpl(homedir + "/AppData/Local/LA_IM/Saved/SaveGames/");
+    }    if (window.location.href == "file:///" + dirnamew + "/Games.html?ss") {
+alert("No available on this platform...");
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sgb") {
       OpenEmpl(homedir + "/AppData/Local/SuperGeoffreyBros/User Data/");
@@ -2179,6 +2333,13 @@ function REPAIR_DETECT() {
             "SFTW",
             "https://raw.githubusercontent.com/Nytuo/SFTW/master/Windows/Manifest.txt",
             "https://raw.githubusercontent.com/Nytuo/SFTW/master/Linux/Manifest.txt"
+        ); //check
+      }
+      if (window.location.href == "file://" + dirnamew + "/Games.html?ss") {
+        MANIFEST(
+            "SS",
+            "https://raw.githubusercontent.com/Nytuo/SS/master/Windows/Manifest.txt",
+            "https://raw.githubusercontent.com/Nytuo/SS/master/Linux/Manifest.txt"
         ); //check
       }
       if (window.location.href == "file://" + dirnamew + "/Games.html?laatim") {
@@ -2271,6 +2432,12 @@ function REPAIR_DETECT() {
             "SFTW",
             "https://raw.githubusercontent.com/Nytuo/SFTW/master/Windows/Manifest.txt",
             "https://raw.githubusercontent.com/Nytuo/SFTW/master/Linux/Manifest.txt"
+        ); //check
+      }      if (window.location.href == "file:///" + dirnamew + "/Games.html?ss") {
+        MANIFEST(
+            "SS",
+            "https://raw.githubusercontent.com/Nytuo/SS/master/Windows/Manifest.txt",
+            "https://raw.githubusercontent.com/Nytuo/SS/master/Linux/Manifest.txt"
         ); //check
       }
       if (
@@ -3784,6 +3951,8 @@ function deletefolderforrepair(folder2delete, DDG, os) {
       fs.mkdirSync(gamelocation + "/Games/SFO", { recursive: true });
     if (!fs.existsSync(gamelocation + "/Games/SFTW"))
       fs.mkdirSync(gamelocation + "/Games/SFTW", { recursive: true });
+    if (!fs.existsSync(gamelocation + "/Games/SS"))
+      fs.mkdirSync(gamelocation + "/Games/SS", { recursive: true });
     DLFromGitHubAllFiles(DDG, os);
   });
 }
@@ -3810,6 +3979,9 @@ function RunWithoutInstall(url, gamejolt) {
 function LaunchExternally() {
   var page;
   if (process.platform == "linux") {
+    if (window.location.href == "file://" + dirnamew + "/Games.html?ss") {
+      page = "https://nytuo.yo.fr/superSmash";
+    }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sn") {
       page = "https://nytuo.yo.fr/sansNomReedition";
     }
@@ -3850,6 +4022,9 @@ function LaunchExternally() {
       page = "https://nytuo.yo.fr/shootFighterOrigins";
     }
   } else {
+    if (window.location.href == "file:///" + dirnamew + "/Games.html?ss") {
+      page = "https://nytuo.yo.fr/SuperSmash";
+    }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sftw") {
       page = "https://nytuo.yo.fr/shootFighterTotalWarfare";
     }

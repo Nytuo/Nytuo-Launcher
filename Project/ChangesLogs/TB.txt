@@ -1,0 +1,3 @@
+1.0.5.3:
+<p><span class="fixed">Fixed</span>Bugs Fix</p>
+<p><span class="enhanced">Enhanced</span>Android Update</p>

@@ -1,0 +1,2 @@
+1.0.4:
+<p><span class="fixed">fixed</span>Correction of bugs and performances issue</p>

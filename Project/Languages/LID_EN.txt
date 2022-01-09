@@ -180,3 +180,6 @@ Please wait until we finalizing the installation process...
 launching ShootFighter: Total Warfare...
 ShootFighter: Total Warfare has been sucessfully deleted!
 ShootFighter: Total Warfare is now playable!
+launching Super Smash !
+Super Smash ! has been sucessfully deleted!
+Super Smash ! is now playable!

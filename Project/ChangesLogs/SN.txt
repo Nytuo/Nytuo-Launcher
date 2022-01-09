@@ -1,0 +1,2 @@
+1.0.1.1:
+<p><span class="fixed">Fixed</span>Android Touch buttons scale increased because there were too small</p>

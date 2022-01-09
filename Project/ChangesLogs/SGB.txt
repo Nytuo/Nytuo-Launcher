@@ -1,0 +1,3 @@
+1.0.1.1 (Mariage Update):
+<p><span class="new">New</span>New character playable (Chloé)</p>
+<p><span class="fixed">Fixed</span>Global Improvement and bugs correction</p>

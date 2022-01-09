@@ -180,3 +180,6 @@ Veuillez patienter pendant que nous finalisation l'installation...
 Lancement de ShootFighter: Total Warfare
 ShootFighter: Total Warfare est maintenant supprimer!
 ShootFighter: Total Warfare est maintenant jouable!
+Lancement de Super Smash !
+Super Smash ! est maintenant supprimer!
+Super Smash ! est maintenant jouable!
