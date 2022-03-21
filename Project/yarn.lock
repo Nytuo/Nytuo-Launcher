@@ -1784,6 +1784,14 @@ plist@^3.0.1, plist@^3.0.4:
     base64-js "^1.5.1"
     xmlbuilder "^9.0.7"
 
+plug-and-play@^2.4.0:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/plug-and-play/-/plug-and-play-2.5.4.tgz#7c88d2d6a8b360040e82c42232b9ffd0b4143b0d"
+  integrity sha512-Mj0VnPSbjq45tk0ue9f0He9G7XWbbXAT54FPtVxQ1rX//N7JJuXSpm1jo8vl6YaGmeYaU/keurRC0B0FKVrYLw==
+  dependencies:
+    mixme "^0.5.4"
+    toposort "^2.0.2"
+
 prepend-http@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
@@ -2042,13 +2050,14 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
-shell@^0.8.4:
-  version "0.8.6"
-  resolved "https://registry.yarnpkg.com/shell/-/shell-0.8.6.tgz#dc82eefbd348ffc65795d77d264eee61ee51d48a"
-  integrity sha512-9ez9S/VMA1L2tkzvYrFp1GE1oamu4BX1jKNfCMAKC+qwf62z0GKohYznwZWdmkK5bdkubaveMutlVXVo0nyNRQ==
+shell@^0.9.4:
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/shell/-/shell-0.9.4.tgz#8bacfb822e1d656dba2d9ba6812f90612859125e"
+  integrity sha512-+ghvKO3N1/4/c5T30EPPQ80P3MjRtuOwQIfewyB2ZVgdzTjtuCJ42qF1QbfKxMqhdGZvjccpTQYkQ+Wwtm3hnQ==
   dependencies:
     mixme "^0.5.4"
     pad "^3.2.0"
+    plug-and-play "^2.4.0"
 
 shelljs@^0.8.4:
   version "0.8.5"
@@ -2218,6 +2227,11 @@ to-readable-stream@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/to-readable-stream/-/to-readable-stream-1.0.0.tgz#ce0aa0c2f3df6adf852efb404a783e77c0475771"
   integrity sha512-Iq25XBt6zD5npPhlLVXGFN3/gyR2/qODcKNNyTMd4vbm39HUaOiAM4PMq0eMVC/Tkxz+Zjdsc55g9yyz+Yq00Q==
+
+toposort@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
+  integrity sha1-riF2gXXRVZ1IvvNUILL0li8JwzA=
 
 tough-cookie@~2.5.0:
   version "2.5.0"
