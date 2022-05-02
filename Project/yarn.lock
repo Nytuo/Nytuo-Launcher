@@ -1684,10 +1684,10 @@ object-keys@^1.0.12:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
-office-ui-fabric-core@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-core/-/office-ui-fabric-core-11.0.0.tgz#73f43c8d1bd40e87971c7cda0ff1aa7bfa246410"
-  integrity sha512-K6+KGnBXXjfSxxZpp+4oDXVLgUc//7OnXrn8F08VoJnGhEz27WUf4ZuMa32SjGoqirWlb4JlKkXbOpC9cis6dQ==
+office-ui-fabric-core@^11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-core/-/office-ui-fabric-core-11.0.1.tgz#f4769680afae49f067ab4d177c985fc4727a55d4"
+  integrity sha512-jcfycbVOm2aUoI+AGtHW24HvM7nUVFr44hR5NIE56EobK67bVwbNAQL15CJj3vNz5PBrnitsV9ROOB+KOEWn8g==
 
 on-finished@~2.3.0:
   version "2.3.0"
