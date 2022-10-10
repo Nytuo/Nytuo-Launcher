@@ -64,7 +64,7 @@
     "license": "GPL-3.0-only",
     "devDependencies": {
         "electron": "^13.1.6",
-        "electron-builder": "^22.11.7"
+        "electron-builder": "^23.6.0"
     },
     "dependencies": {
         "@popperjs/core": "^2.9.2",
