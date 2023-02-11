@@ -10,7 +10,7 @@ For the moment, the Nytuo-Launcher have a .deb and .appimage version for Linux b
 ## Introduction
 
 The Nytuo Launcher is a software for download, update, play, delete my games with some features added each update.
-It's free, you just have to create a Nytuo account on my website (https://nytuo.yo.fr) or directly in the launcher.
+It's free, you just have to create a Nytuo account on my website (https://nytuo.fr) or directly in the launcher.
 I made it very simply for use (I think it is).
 I made it open source because it's a small project and I want to be transparent with the people who play my games.
 
@@ -90,7 +90,7 @@ With that done, normally the cookies, storageCache/Data will be cleaned. Note th
 
 If you encounter a problem please tell me in the issues section of GitHub.
 I publish new updates frequently like for example bugs correction, new features and new look.
-Please refers to https://www.nytuo.yo.fr/help for informations, guides and more.
+Please refers to https://www.nytuo.fr/help for informations, guides and more.
 
 ## Got an idea of something could be added or enhanced ?
 

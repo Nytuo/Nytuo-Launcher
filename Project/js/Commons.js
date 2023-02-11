@@ -164,13 +164,13 @@ function deletefolder(folder2delete) {
                 .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
                 .toString();
             window.location.href =
-                "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
+                "https://launcher.nytuo.fr/profile.php?lang=" + LID.toLowerCase();
         } else if (process.platform == "win32") {
             LID = fs
                 .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
                 .toString();
             window.location.href =
-                "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
+                "https://launcher.nytuo.fr/profile.php?lang=" + LID.toLowerCase();
         }
     } else {
         if (process.platform == "linux") {
@@ -178,13 +178,13 @@ function deletefolder(folder2delete) {
                 .readFileSync(app.getPath("documents") + "/nytuolauncher_data/LID.txt")
                 .toString();
             window.location.href =
-                "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
+                "https://launcher.nytuo.fr/profile.php?lang=" + LID.toLowerCase();
         } else if (process.platform == "win32") {
             LID = fs
                 .readFileSync(parentfolder3 + "/nytuolauncher_data/LID.txt")
                 .toString();
             window.location.href =
-                "https://launcher.nytuo.yo.fr/profile.php?lang=" + LID.toLowerCase();
+                "https://launcher.nytuo.fr/profile.php?lang=" + LID.toLowerCase();
         }
     }
 }

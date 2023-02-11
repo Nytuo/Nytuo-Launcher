@@ -67,12 +67,12 @@ is available
 This game is not available for your platform!
 Unavailable
 Download the game when you are online to play it when you are offline!
-Manual Update needed: go to the help on the website(nytuo.yo.fr) for more information.
+Manual Update needed: go to the help on the website(nytuo.fr) for more information.
 You are not connected to the internet, restart the launcher with one to access to this.
  Is not available for your operating system
 Beging Downloading
 Beta Update available!
-Automatic updates are disabled for the launcher in portable mode, for update the launcher manuelly, please refer to the website(nytuo.yo.fr)
+Automatic updates are disabled for the launcher in portable mode, for update the launcher manuelly, please refer to the website(nytuo.fr)
 Update available!
 Update available for Legend Adventure And The Infernal Maze!
 Update available for ShootFighter!

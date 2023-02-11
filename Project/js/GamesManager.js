@@ -3980,89 +3980,89 @@ function LaunchExternally() {
   var page;
   if (process.platform == "linux") {
     if (window.location.href == "file://" + dirnamew + "/Games.html?ss") {
-      page = "https://nytuo.yo.fr/superSmash";
+      page = "https://nytuo.fr/superSmash";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sn") {
-      page = "https://nytuo.yo.fr/sansNomReedition";
+      page = "https://nytuo.fr/sansNomReedition";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?ae") {
-      page = "https://nytuo.yo.fr/asteroidEscape";
+      page = "https://nytuo.fr/asteroidEscape";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?wr") {
-      page = "https://nytuo.yo.fr/winrun";
+      page = "https://nytuo.fr/winrun";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?tb") {
-      page = "https://nytuo.yo.fr/tanksBattle";
+      page = "https://nytuo.fr/tanksBattle";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?fwd") {
-      page = "https://nytuo.yo.fr/fireWallDefender";
+      page = "https://nytuo.fr/fireWallDefender";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?ttd") {
-      page = "https://nytuo.yo.fr/theTardisDefender";
+      page = "https://nytuo.fr/theTardisDefender";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?vitf") {
-      page = "https://nytuo.yo.fr/vincentInTheForest";
+      page = "https://nytuo.fr/vincentInTheForest";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?la") {
-      page = "https://nytuo.yo.fr/lutinAdventure";
+      page = "https://nytuo.fr/lutinAdventure";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sf") {
-      page = "https://nytuo.yo.fr/shootFighter";
+      page = "https://nytuo.fr/shootFighter";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sgb") {
-      page = "https://nytuo.yo.fr/superGeoffreyBros";
+      page = "https://nytuo.fr/superGeoffreyBros";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?laatim") {
-      page = "https://nytuo.yo.fr/legendAdventureAndTheInfernalMaze";
+      page = "https://nytuo.fr/legendAdventureAndTheInfernalMaze";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sftw") {
-      page = "https://nytuo.yo.fr/shootFighterTotalWarfare";
+      page = "https://nytuo.fr/shootFighterTotalWarfare";
     }
     if (window.location.href == "file://" + dirnamew + "/Games.html?sfo") {
-      page = "https://nytuo.yo.fr/shootFighterOrigins";
+      page = "https://nytuo.fr/shootFighterOrigins";
     }
   } else {
     if (window.location.href == "file:///" + dirnamew + "/Games.html?ss") {
-      page = "https://nytuo.yo.fr/SuperSmash";
+      page = "https://nytuo.fr/SuperSmash";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sftw") {
-      page = "https://nytuo.yo.fr/shootFighterTotalWarfare";
+      page = "https://nytuo.fr/shootFighterTotalWarfare";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sfo") {
-      page = "https://nytuo.yo.fr/shootFighterOrigins";
+      page = "https://nytuo.fr/shootFighterOrigins";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?laatim") {
-      page = "https://nytuo.yo.fr/legendAdventureAndTheInfernalMaze";
+      page = "https://nytuo.fr/legendAdventureAndTheInfernalMaze";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sgb") {
-      page = "https://nytuo.yo.fr/superGeoffreyBros";
+      page = "https://nytuo.fr/superGeoffreyBros";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sf") {
-      page = "https://nytuo.yo.fr/shootFighter";
+      page = "https://nytuo.fr/shootFighter";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?la") {
-      page = "https://nytuo.yo.fr/lutinAdventure";
+      page = "https://nytuo.fr/lutinAdventure";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?vitf") {
-      page = "https://nytuo.yo.fr/vincentInTheForest";
+      page = "https://nytuo.fr/vincentInTheForest";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?ttd") {
-      page = "https://nytuo.yo.fr/theTardisDefender";
+      page = "https://nytuo.fr/theTardisDefender";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?fwd") {
-      page = "https://nytuo.yo.fr/fireWallDefender";
+      page = "https://nytuo.fr/fireWallDefender";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?tb") {
-      page = "https://nytuo.yo.fr/tanksBattle";
+      page = "https://nytuo.fr/tanksBattle";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?wr") {
-      page = "https://nytuo.yo.fr/winrun";
+      page = "https://nytuo.fr/winrun";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?ae") {
-      page = "https://nytuo.yo.fr/asteroidEscape";
+      page = "https://nytuo.fr/asteroidEscape";
     }
     if (window.location.href == "file:///" + dirnamew + "/Games.html?sn") {
-      page = "https://nytuo.yo.fr/sansNomReedition";
+      page = "https://nytuo.fr/sansNomReedition";
     }
   }
   if (page != "") {

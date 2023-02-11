@@ -56,7 +56,7 @@ function LogOut() {
     setTimeout(() => {
       app.exit();
     }, 5000);
-    /*win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?out");*/
+    /*win.loadURL("https://launcher.nytuo.fr/connexion.html?out");*/
   } else {
     shell.openPath(__dirname + "/batch_sh_files/deleteCookies.bat");
 
@@ -88,7 +88,7 @@ function LogOut() {
     setTimeout(() => {
       app.exit();
     }, 5000);
-    /*win.loadURL("https://launcher.nytuo.yo.fr/connexion.html?out");*/
+    /*win.loadURL("https://launcher.nytuo.fr/connexion.html?out");*/
   } /*
     close();*/
 }
