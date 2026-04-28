@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "nytuo-launcher",
-  "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "version": "4.0.0",
+  "identifier": "fr.nytuo.launcher",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
@@ -36,8 +36,9 @@
   },
 
   "bundle": {
+    "createUpdaterArtifacts": true,
     "active": true,
-    "targets": "all",
+    "targets": ["nsis", "app", "dmg", "deb", "rpm", "appimage"],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
