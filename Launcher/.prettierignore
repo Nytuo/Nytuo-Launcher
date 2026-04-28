@@ -1,0 +1,16 @@
+node_modules
+dist
+build
+public
+src-tauri/target
+src-tauri/Cargo.lock
+src-tauri/**/target
+target
+.git
+.cache
+*.lock
+*.log
+*.sqlite
+*.db
+*.db-shm
+*.db-wal

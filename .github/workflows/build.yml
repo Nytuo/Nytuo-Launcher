@@ -1,84 +1,106 @@
-name: Build/release
+name: 'publish'
+
 on:
-  push:
-    tags:
-      - "v*"
   workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform to build for (choose a single target or "all")'
+        required: false
+        type: choice
+        default: 'all'
+        options:
+          - all
+          - macos-aarch64
+          - macos-x86_64
+          - ubuntu
+          - ubuntu-arm
+          - windows
+  push:
+    branches:
+      - master
+
 jobs:
-  release:
+  setup:
     runs-on: ubuntu-latest
-
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2.2.0
-
-      - name: Install Node.js, NPM and Yarn
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 14
-      - name: Get Package Version
-        uses: nyaa8/package-version@v1
-        with:
-          path: 'Project/package.json'
-          
-      - uses: actions/checkout@v2.2.0
-        with:
-          fetch-depth: 0
-      - name: Building the Project
-        working-directory: ./Project
+      - id: set-matrix
+        shell: bash
         run: |
-            sudo dpkg --add-architecture i386
-            sudo apt update
-            sudo apt install wine64
-            sudo apt install wine32
-            
-            yarn install
-            yarn devBuild
-            yarn electron-builder --x64 --win -p never        
-        env:
-          PKGVER: v${{env.PACKAGE_VERSION}}
-      
-      - name: Publishing...
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          automatic_release_tag: ${{env.PKGVER}}
-          files: |
-            ${{github.workspace}}/Project/dist/*.zip
-            ${{github.workspace}}/Project/dist/*.snap
-            ${{github.workspace}}/Project/dist/*.exe
-            ${{github.workspace}}/Project/dist/*.blockmap
-            ${{github.workspace}}/Project/dist/latest.yml
-            ${{github.workspace}}/Project/dist/*.deb
-            ${{github.workspace}}/Project/dist/*.AppImage
-        env:
-          PKGVER: v${{env.PACKAGE_VERSION}}
+          ALL='[
+            {"id":"macos-aarch64","runs_on":"macos-latest","args":"--target aarch64-apple-darwin"},
+            {"id":"macos-x86_64","runs_on":"macos-latest","args":"--target x86_64-apple-darwin"},
+            {"id":"ubuntu","runs_on":"ubuntu-24.04"},
+            {"id":"ubuntu-arm","runs_on":"ubuntu-24.04-arm"},
+            {"id":"windows","runs_on":"windows-2022"},
+          ]'
+          PLATFORM="${{ github.event.inputs.platform }}"
+          if [[ -z "$PLATFORM" || "$PLATFORM" == "all" ]]; then
+            INCLUDE="$ALL"
+          else
+            INCLUDE=$(echo "$ALL" | jq "[.[] | select(.id == \"$PLATFORM\")]")
+          fi
+          echo "matrix=$(echo "$INCLUDE" | jq -c '{include: .}')]" >> "$GITHUB_OUTPUT"
 
-  PushVersion:
-    needs: release
-    runs-on: ubuntu-latest
+  publish-tauri:
+    needs: setup
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
+
+    runs-on: ${{ matrix.runs_on }}
     steps:
-    - uses: actions/checkout@v2.2.0
-      with:
-        fetch-depth: 0
-    - name: 'Get Previous tag'
-      id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      - uses: actions/checkout@v4
 
-    - name: 'Writting'
-      uses: DamianReeves/write-file-action@v1.0
-      with:
-        path: ${{ github.workspace}}/Version.txt
-        contents: |
-          ${{ steps.previoustag.outputs.tag }}
-        write-mode: overwrite
-    - name: push
-      uses: github-actions-x/commit@v2.8
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        push-branch: 'master'
-        commit-message: 'Automated Version Update'
-        force-add: 'true'
-        name: JARVIS [BOT]
-        email: nytuo.yt@gmail.com
+      - name: install dependencies (ubuntu only)
+        if: startsWith(matrix.runs_on, 'ubuntu')
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf xdg-utils protobuf-compiler
+      
+      - name: install protoc (macOS)
+        if: matrix.runs_on == 'macos-latest'
+        run: brew install protobuf
+
+      - name: install protoc (Windows)
+        if: startsWith(matrix.runs_on, 'windows')
+        run: choco install protoc -y
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+          cache-dependency-path: ./Launcher/package-lock.json
+
+      - name: install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.runs_on == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './Launcher/src-tauri -> target'
+
+      - name: Install JS dependencies
+        run: npm ci --prefix Launcher
+
+      - name: Build Vite frontend
+        run: npm run build:vite --prefix Launcher
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}      
+        with:
+          tagName: nytuolauncher-v__VERSION__
+          releaseName: 'NytuoLauncher v__VERSION__'
+          releaseBody: 'NytuoLauncher  release v__VERSION__'
+          releaseDraft: true
+          prerelease: false
+          args: ${{ matrix.args }}

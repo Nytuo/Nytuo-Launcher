@@ -1,0 +1,176 @@
+[
+  {
+    "id": "sfo",
+    "name": "ShootFighter Origins",
+    "logo": "/images/LogoSFO3.png",
+    "background": "/images/IMGSFO.png",
+    "version_file": "SFO_Version.txt",
+    "repo": "SFO",
+    "online_url": "https://itch.io/embed-upload/2669133?color=212121",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "nw.exe",
+      "linux": "nw",
+      "macos": "shootfighterorigins.app"
+    }
+  },
+  {
+    "id": "laatim",
+    "name": "Legend Adventure And The Infernal Maze",
+    "logo": "/images/LogoLAATIM2.png",
+    "background": "/images/IMGLAATIM.png",
+    "version_file": "LAIM_Version.txt",
+    "repo": "LAATIM",
+    "platforms": "PC",
+    "status": "Completed",
+    "exec_name": {
+      "windows": "LA_IM.exe"
+    }
+  },
+  {
+    "id": "sgb",
+    "name": "Super Geoffrey Bros",
+    "logo": "/images/SGB3.png",
+    "background": "/images/SGB2.png",
+    "version_file": "SGB_Version.txt",
+    "repo": "SGB",
+    "online_url": "https://itch.io/embed-upload/1461064?color=303030",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "nw.exe",
+      "linux": "nw",
+      "macos": "supergeoffreybros.app"
+    }
+  },
+  {
+    "id": "sf",
+    "name": "ShootFighter",
+    "logo": "/images/sflogo.png",
+    "background": "/images/IMGSF.png",
+    "version_file": "SF_Version.txt",
+    "repo": "SF",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "ShootFighter.exe"
+    }
+  },
+  {
+    "id": "la",
+    "name": "Lutin Adventure",
+    "logo": "/images/LA_logo.png",
+    "background": "/images/IMGLA.png",
+    "version_file": "LA_Version.txt",
+    "repo": "LA",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "Lutin_Adventure.exe"
+    }
+  },
+  {
+    "id": "vitf",
+    "name": "Vincent In The Forest",
+    "logo": "/images/VITF_Logo.png",
+    "background": "/images/IMGVITF.png",
+    "version_file": "VITF_Version.txt",
+    "repo": "VITF",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "VincentInTheForest.exe"
+    }
+  },
+  {
+    "id": "ttd",
+    "name": "The TARDIS Defender",
+    "logo": "/images/LogoTTD.png",
+    "background": "/images/IMGTTD.png",
+    "version_file": "TTD_Version.txt",
+    "repo": "TTD",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "nw.exe",
+      "linux": "nw",
+      "macos": "tardisdefender.app"
+    }
+  },
+  {
+    "id": "fwd",
+    "name": "FireWall Defender",
+    "logo": "/images/LogoFWD.png",
+    "background": "/images/IMGFWD.png",
+    "version_file": "FWD_Version.txt",
+    "repo": "FWD",
+    "online_url": "https://gamejolt.com/games/FirewallDefender/323970",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "nw.exe",
+      "linux": "nw",
+      "macos": "firewalldefender.app"
+    }
+  },
+  {
+    "id": "tb",
+    "name": "TanksBattle",
+    "logo": "/images/tbvertLogo.png",
+    "background": "/images/IMGTB.png",
+    "version_file": "TB_Version.txt",
+    "repo": "TB",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "nw.exe",
+      "linux": "nw",
+      "macos": "tanksbattle.app"
+    }
+  },
+  {
+    "id": "wr",
+    "name": "WinRun",
+    "logo": "/images/LogoWR.png",
+    "background": "/images/IMGWR.png",
+    "version_file": "WR_Version.txt",
+    "repo": "WR",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "nw.exe",
+      "linux": "nw",
+      "macos": "winrun.app"
+    }
+  },
+  {
+    "id": "ae",
+    "name": "Asteroid Escape",
+    "logo": "/images/AELogo.png",
+    "background": "/images/IMGAE.png",
+    "version_file": "AE_Version.txt",
+    "repo": "AE",
+    "platforms": "PC",
+    "status": "In Progress",
+    "exec_name": {
+      "windows": "AsteroidEscapeWinV1FinalPatch1.exe"
+    }
+  },
+  {
+    "id": "sn",
+    "name": "SansNom Réédition",
+    "logo": "/images/logoSNRE.png",
+    "background": "/images/IMGSN.png",
+    "version_file": "SNRE_Version.txt",
+    "repo": "SN",
+    "online_url": "https://itch.io/embed-upload/1889077?color=303030",
+    "platforms": "PC",
+    "status": "Not Started",
+    "exec_name": {
+      "windows": "nw.exe",
+      "linux": "nw",
+      "macos": "sansnomreedition.app"
+    }
+  }
+]

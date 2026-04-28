@@ -1,0 +1,50 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "nytuo-launcher",
+  "version": "4.0.0",
+  "identifier": "fr.nytuo.launcher",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Nytuo Launcher",
+        "width": 1000,
+        "height": 700,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    },
+    "sql": {},
+    "updater": {
+      "endpoint": "https://github.com/Nytuo/Nytuo-Launcher/releases/latest/download/latest.json",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDU3NDU1QzExMDMyMUJFOQpSV1RwR3pJUXdWVjBCVldwaWtndjMyN2NRNGkxNHJzV09vemx0LytBL3VKM1JkV29jVjdueHNIYwo="
+    }
+  },
+
+  "bundle": {
+    "createUpdaterArtifacts": true,
+    "active": true,
+    "targets": ["nsis", "app", "dmg", "deb", "rpm", "appimage"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
