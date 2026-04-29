@@ -33,7 +33,7 @@ jobs:
             {"id":"macos-x86_64","runs_on":"macos-latest","args":"--target x86_64-apple-darwin"},
             {"id":"ubuntu","runs_on":"ubuntu-24.04"},
             {"id":"ubuntu-arm","runs_on":"ubuntu-24.04-arm"},
-            {"id":"windows","runs_on":"windows-2022"},
+            {"id":"windows","runs_on":"windows-2022"}
           ]'
           PLATFORM="${{ github.event.inputs.platform }}"
           if [[ -z "$PLATFORM" || "$PLATFORM" == "all" ]]; then
@@ -41,15 +41,14 @@ jobs:
           else
             INCLUDE=$(echo "$ALL" | jq "[.[] | select(.id == \"$PLATFORM\")]")
           fi
-          echo "matrix=$(echo "$INCLUDE" | jq -c '{include: .}')]" >> "$GITHUB_OUTPUT"
-
+            echo "matrix=$(echo "$INCLUDE" | jq -c '{include: .}')" >> "$GITHUB_OUTPUT"
   publish-tauri:
     needs: setup
     permissions:
       contents: write
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
 
     runs-on: ${{ matrix.runs_on }}
     steps:
@@ -90,7 +89,7 @@ jobs:
         run: npm ci --prefix Launcher
 
       - name: Build Vite frontend
-        run: npm run build:vite --prefix Launcher
+        run: npm run build --prefix Launcher
 
       - uses: tauri-apps/tauri-action@v0
         env:
