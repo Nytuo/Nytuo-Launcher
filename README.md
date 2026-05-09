@@ -20,8 +20,6 @@
 <br />
 
 [![Build/release](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/build.yml/badge.svg)](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/build.yml)
-[![Prettier](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/prettier.yml/badge.svg)](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/prettier.yml)
-[![CodeQL](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Nytuo/Nytuo-Launcher/actions/workflows/codeql-analysis.yml)
 [![Project license](https://img.shields.io/github/license/Nytuo/Nytuo-Launcher.svg?style=flat-square)](LICENSE)
 
 </div>
@@ -51,7 +49,7 @@ The **Nytuo Launcher** is a dedicated platform for downloading, updating, playin
 
 If you encounter issues or have ideas for enhancements:
 * **Issues:** Open a ticket in the [GitHub Issues](https://github.com/Nytuo/Nytuo-Launcher/issues) section.
-* **Guides:** Visit the [Nytuo Help Page](https://www.nytuo.fr/help) for detailed documentation.
+* **Guides:** Visit the [Page](https://www.nytuo.fr/software/launcher) for detailed documentation.
 
 ---
 
