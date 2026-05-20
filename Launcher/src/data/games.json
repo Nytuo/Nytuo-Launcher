@@ -1,5 +1,29 @@
 [
   {
+    "id": "tlp",
+    "name": "The Little Princess",
+    "logo": "/images/LogoTLP.png",
+    "background": "/images/IMGTLP.png",
+    "version_file": "TLP_Version.txt",
+    "repo": "TLP",
+    "exec_name": {
+      "windows": "thelittleprincess.exe",
+      "linux": "thelittleprincess.x86_64",
+      "macos": "thelittleprincess.app"
+    }
+  },
+  {
+    "id": "ss",
+    "name": "Super Smash",
+    "logo": "/images/logoexp.png",
+    "background": "/images/logoexp.png",
+    "version_file": "SS_Version.txt",
+    "repo": "SS",
+    "exec_name": {
+      "windows": "SuperSmash.exe"
+    }
+  },
+  {
     "id": "sfo",
     "name": "ShootFighter Origins",
     "logo": "/images/LogoSFO3.png",
@@ -7,8 +31,6 @@
     "version_file": "SFO_Version.txt",
     "repo": "SFO",
     "online_url": "https://itch.io/embed-upload/2669133?color=212121",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "nw.exe",
       "linux": "nw",
@@ -22,8 +44,6 @@
     "background": "/images/IMGLAATIM.png",
     "version_file": "LAIM_Version.txt",
     "repo": "LAATIM",
-    "platforms": "PC",
-    "status": "Completed",
     "exec_name": {
       "windows": "LA_IM.exe"
     }
@@ -36,8 +56,6 @@
     "version_file": "SGB_Version.txt",
     "repo": "SGB",
     "online_url": "https://itch.io/embed-upload/1461064?color=303030",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "nw.exe",
       "linux": "nw",
@@ -51,8 +69,6 @@
     "background": "/images/IMGSF.png",
     "version_file": "SF_Version.txt",
     "repo": "SF",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "ShootFighter.exe"
     }
@@ -64,8 +80,6 @@
     "background": "/images/IMGLA.png",
     "version_file": "LA_Version.txt",
     "repo": "LA",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "Lutin_Adventure.exe"
     }
@@ -77,8 +91,6 @@
     "background": "/images/IMGVITF.png",
     "version_file": "VITF_Version.txt",
     "repo": "VITF",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "VincentInTheForest.exe"
     }
@@ -90,8 +102,6 @@
     "background": "/images/IMGTTD.png",
     "version_file": "TTD_Version.txt",
     "repo": "TTD",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "nw.exe",
       "linux": "nw",
@@ -106,8 +116,6 @@
     "version_file": "FWD_Version.txt",
     "repo": "FWD",
     "online_url": "https://gamejolt.com/games/FirewallDefender/323970",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "nw.exe",
       "linux": "nw",
@@ -121,8 +129,6 @@
     "background": "/images/IMGTB.png",
     "version_file": "TB_Version.txt",
     "repo": "TB",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "nw.exe",
       "linux": "nw",
@@ -136,8 +142,6 @@
     "background": "/images/IMGWR.png",
     "version_file": "WR_Version.txt",
     "repo": "WR",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "nw.exe",
       "linux": "nw",
@@ -151,8 +155,6 @@
     "background": "/images/IMGAE.png",
     "version_file": "AE_Version.txt",
     "repo": "AE",
-    "platforms": "PC",
-    "status": "In Progress",
     "exec_name": {
       "windows": "AsteroidEscapeWinV1FinalPatch1.exe"
     }
@@ -163,10 +165,8 @@
     "logo": "/images/logoSNRE.png",
     "background": "/images/IMGSN.png",
     "version_file": "SNRE_Version.txt",
-    "repo": "SN",
+    "repo": "SNRE",
     "online_url": "https://itch.io/embed-upload/1889077?color=303030",
-    "platforms": "PC",
-    "status": "Not Started",
     "exec_name": {
       "windows": "nw.exe",
       "linux": "nw",

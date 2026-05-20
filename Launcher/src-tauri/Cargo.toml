@@ -1,6 +1,6 @@
 [package]
 name = "nytuo-launcher"
-version = "4.0.0"
+version = "4.0.1"
 description = "Nytuo Launcher - A modern game launcher for Nytuo's games"
 authors = ["Nytuo"]
 license = "GNU GPL V3-only"

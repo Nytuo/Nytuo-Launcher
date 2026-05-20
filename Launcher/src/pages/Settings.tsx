@@ -109,7 +109,7 @@ export function Settings() {
           <Button
             variant="ghost"
             className="justify-start gap-2 h-12"
-            onClick={() => openUrl('https://nytuo.fr/nytuo-launcher')}
+            onClick={() => openUrl('https://nytuo.fr/software/launcher')}
           >
             <Globe className="h-4 w-4" /> {t('website')}
           </Button>

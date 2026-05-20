@@ -20,9 +20,7 @@ export interface Game {
   online_url?: string;
   version?: string;
   remoteVersion?: string;
-  platforms?: string;
   rating?: string;
-  status?: string;
   tags?: string;
   critic_score?: string;
   genres?: string;
