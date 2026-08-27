@@ -1,5 +1,18 @@
 [
   {
+    "id": "dead_orbit",
+    "name": "Dead Orbit",
+    "logo": "/images/LogoDeadOrbit.png",
+    "background": "/images/IMGDeadOrbit.png",
+    "version_file": "DEAD_ORBIT_Version.txt",
+    "repo": "DeadOrbit",
+    "developers": "BEUX Arnaud - Nytuo",
+    "exec_name": {
+      "windows": "dead_orbit.exe",
+      "linux": "dead_orbit"
+    }
+  },
+  {
     "id": "tlp",
     "name": "The Little Princess",
     "logo": "/images/LogoTLP.png",
