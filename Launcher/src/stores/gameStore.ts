@@ -1,8 +1,15 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import defaultGames from '../data/games.json';
 import { invoke } from '@tauri-apps/api/core';
 import { toast } from 'sonner';
+import {
+  fetchPocketCollection,
+  resolveFileUrl,
+  resolveFileUrls,
+  parseAuthors,
+  slugify,
+  type PocketRecord,
+} from '@/lib/pocketbase';
 
 export interface Achievement {
   name: string;
@@ -41,6 +48,91 @@ export interface Game {
     linux?: string;
     macos?: string;
   };
+  webOnly?: boolean;
+  status?: string;
+  website?: string;
+  colors?: string;
+  itch?: string;
+  gamejolt?: string;
+}
+
+interface PocketGameRecord extends PocketRecord {
+  repo?: string;
+  name?: string;
+  logo?: string;
+  background?: string;
+  screenshots?: string[];
+  video?: string;
+  summary?: string;
+  description?: string;
+  information?: string;
+  creationDate?: string;
+  status?: string;
+  colors?: string;
+  itch?: string;
+  gamejolt?: string;
+  website?: string;
+  authors?: unknown;
+  versionFile?: string;
+  onlineEmbedUrl?: string;
+  execWindows?: string;
+  execLinux?: string;
+  execMac?: string;
+}
+
+const EXTRA_GAME_SOURCES: { collection: string; id: string; overrides: Partial<PocketGameRecord> }[] =
+  [
+    {
+      collection: 'University',
+      id: 'qfk63ekxezmvuz1', // "The Little Princess"
+      overrides: {
+        repo: 'TLP',
+        execWindows: 'thelittleprincess.exe',
+        execLinux: 'thelittleprincess.x86_64',
+        execMac: 'thelittleprincess.app',
+        versionFile: 'TLP_Version.txt',
+      },
+    },
+  ];
+
+function mergeRemoteGame(local: Game | undefined, remote: PocketGameRecord): Game {
+  const authors = parseAuthors(remote.authors);
+  const developers = authors.map((a) => a.name).filter(Boolean).join(', ');
+  const id = local?.id ?? slugify(remote.repo || remote.name || remote.id);
+
+  const execName =
+    remote.execWindows || remote.execLinux || remote.execMac
+      ? {
+          windows: remote.execWindows || local?.exec_name?.windows,
+          linux: remote.execLinux || local?.exec_name?.linux,
+          macos: remote.execMac || local?.exec_name?.macos,
+        }
+      : local?.exec_name;
+
+  return {
+    id,
+    name: remote.name || local?.name || remote.repo || id,
+    logo: resolveFileUrl(remote, remote.logo) || local?.logo,
+    background: resolveFileUrl(remote, remote.background) || local?.background,
+    screenshots: resolveFileUrls(remote, remote.screenshots),
+    videos: remote.video ? [remote.video] : local?.videos,
+    description: remote.summary || remote.description || local?.description,
+    release_date: remote.creationDate || local?.release_date,
+    developers: developers || local?.developers,
+    status: remote.status || local?.status,
+    website: remote.website || local?.website,
+    colors: remote.colors || local?.colors,
+    version_file: remote.versionFile || local?.version_file,
+    repo: remote.repo || local?.repo,
+    online_url: remote.onlineEmbedUrl || local?.online_url,
+    itch: remote.itch || local?.itch,
+    gamejolt: remote.gamejolt || local?.gamejolt,
+    exec_name: execName,
+    webOnly: !execName?.windows && !execName?.linux && !execName?.macos,
+    isInstalled: local?.isInstalled,
+    version: local?.version,
+    remoteVersion: local?.remoteVersion,
+  };
 }
 
 interface GameState {
@@ -60,10 +152,41 @@ interface GameState {
 export const useGameStore = create<GameState>()(
   persist(
     (set, get) => ({
-      games: defaultGames as Game[],
+      games: [],
       currentGame: null,
       achievements: [],
-      fetchGames: async () => {},
+      fetchGames: async () => {
+        const [remoteGames, extraGames] = await Promise.all([
+          fetchPocketCollection<PocketGameRecord>('games'),
+          Promise.all(
+            EXTRA_GAME_SOURCES.map(async (src) => {
+              const [record] = await fetchPocketCollection<PocketGameRecord>(src.collection, {
+                filter: `id='${src.id}'`,
+              });
+              return record ? { ...record, ...src.overrides } : undefined;
+            }),
+          ),
+        ]);
+        const allRemote = [
+          ...remoteGames,
+          ...extraGames.filter((g): g is PocketGameRecord => !!g),
+        ];
+        if (allRemote.length === 0) return; // offline: keep cached catalog as-is
+
+        const existing = get().games;
+        const byRepo = new Map(
+          existing.map((g) => [(g.repo || g.id).toLowerCase(), g] as const),
+        );
+
+        const merged = allRemote.map((remote) => {
+          const key = (remote.repo || remote.name || '').toLowerCase();
+          const local = byRepo.get(key);
+          if (local) byRepo.delete(key);
+          return mergeRemoteGame(local, remote);
+        });
+
+        set({ games: [...merged, ...byRepo.values()] });
+      },
       getGame: (id) => get().games.find((g) => g.id === id),
       setCurrentGame: (game) => set({ currentGame: game }),
       setGame: (id, game) => set({ games: get().games.map((g) => (g.id === id ? game : g)) }),
@@ -196,10 +319,15 @@ export const useGameStore = create<GameState>()(
               try {
                 const url = `https://raw.githubusercontent.com/Nytuo/${game.repo}/master/Windows/${game.version_file}`;
                 const version = await invoke<string>('fetch_remote_data', { url });
-                if (version) {
-                  game.remoteVersion = version.trim();
+                const trimmed = version?.trim();
+                if (trimmed && !/\s/.test(trimmed)) {
+                  game.remoteVersion = trimmed;
+                } else {
+                  game.remoteVersion = undefined;
                 }
-              } catch (e) {}
+              } catch (e) {
+                game.remoteVersion = undefined;
+              }
             }
           }
 

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGameStore } from '@/stores/gameStore';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useAppStore } from '@/stores/appStore';
+import { useDownloadStore } from '@/stores/downloadStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Play,
@@ -32,9 +33,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { open as openUrl } from '@tauri-apps/plugin-shell';
 import { invoke } from '@tauri-apps/api/core';
-import { listen } from '@tauri-apps/api/event';
 import { toast } from 'sonner';
 import { compareVersions } from '@/lib/utils';
+import { colorsToGradient } from '@/lib/pocketbase';
+import { ScreenshotGallery } from '@/components/game/ScreenshotGallery';
 import { useTranslation } from '../lib/i18n';
 import {
   Dialog,
@@ -54,20 +56,20 @@ export function GameDetails() {
     useGameStore();
   const { gamePath } = useSettingsStore();
   const { stopBGMusic } = useAppStore();
+  const { activeDownload, setActiveDownload } = useDownloadStore();
 
   const [scrollY, setScrollY] = useState(0);
   const [showLaunchAnim, setShowLaunchAnim] = useState(false);
-  const [isDownloading, setIsDownloading] = useState(false);
   const [displayProgress, setDisplayProgress] = useState(0);
   const displayRef = useRef(0);
   const targetRef = useRef(0);
-  const lastUpdateRef = useRef(0);
-  const totalFilesRef = useRef<number>(0);
   const [changelog, setChangelog] = useState('');
   const [showAllAchievements, setShowAllAchievements] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const game = id ? getGame(id) : undefined;
+  const isDownloading = !!game && activeDownload?.gameId === game.id;
+  const otherDownloadActive = !!activeDownload && activeDownload.gameId !== game?.id;
 
   const launchGame = async () => {
     if (!game) return;
@@ -97,7 +99,12 @@ export function GameDetails() {
 
   const handleDownload = async (mode: 'install' | 'repair' | 'update') => {
     if (!game) return;
-    setIsDownloading(true);
+    if (useDownloadStore.getState().activeDownload) {
+      toast.error(t('download_already_in_progress'));
+      return;
+    }
+
+    setActiveDownload({ gameId: game.id, mode, downloaded: 0, total: 0 });
     displayRef.current = 0;
     targetRef.current = 0;
     setDisplayProgress(0);
@@ -118,15 +125,19 @@ export function GameDetails() {
         await invoke('download_game', { gameId: game.id, platform, installPath: installPath });
       }
 
-      setIsDownloading(false);
       await refreshInstallationStatus(gamePath);
       if (mode === 'repair') toast.success(t('repair_complete', { name: game.name }));
       else if (mode === 'update') toast.success(t('update_complete', { name: game.name }));
       else toast.success(t('install_complete', { name: game.name }));
     } catch (e) {
       console.error('Download failed:', e);
-      setIsDownloading(false);
-      toast.error('Failed to download game. Please check your connection.');
+      if (String(e).includes('download_in_progress')) {
+        toast.error(t('download_already_in_progress'));
+      } else {
+        toast.error('Failed to download game. Please check your connection.');
+      }
+    } finally {
+      setActiveDownload(null);
     }
   };
 
@@ -188,52 +199,12 @@ export function GameDetails() {
   };
 
   useEffect(() => {
-    const unlistenFns: Array<() => void> = [];
-
-    listen<number>('download_started', (event) => {
-      console.log('download_started event', event.payload);
-      totalFilesRef.current = event.payload || 0;
-
+    if (!isDownloading || !activeDownload || activeDownload.total <= 0) {
       targetRef.current = 0;
-      displayRef.current = 0;
-      setDisplayProgress(0);
-      lastUpdateRef.current = performance.now();
-      setIsDownloading(true);
-    }).then((fn) => unlistenFns.push(fn));
-
-    listen<{ downloaded: number; total: number }>('download_progress', (event) => {
-      console.log('download_progress received', event.payload);
-      const { downloaded, total } = event.payload;
-      const effectiveTotal = total && total > 0 ? total : totalFilesRef.current;
-      if (effectiveTotal && effectiveTotal > 0) {
-        const pct = Math.min(100, (downloaded / effectiveTotal) * 100);
-        const now = performance.now();
-        const minDelta = 0.3;
-        const minInterval = 60;
-        if (
-          Math.abs(pct - targetRef.current) >= minDelta ||
-          now - lastUpdateRef.current > minInterval
-        ) {
-          targetRef.current = pct;
-          lastUpdateRef.current = now;
-        }
-
-        if (downloaded >= effectiveTotal) {
-          setTimeout(() => {
-            setIsDownloading(false);
-          }, 350);
-        }
-      }
-    }).then((fn) => unlistenFns.push(fn));
-
-    listen<string>('download_debug', (event) => {
-      console.log('backend-debug:', event.payload);
-    }).then((fn) => unlistenFns.push(fn));
-
-    return () => {
-      unlistenFns.forEach((u) => u && u());
-    };
-  }, []);
+      return;
+    }
+    targetRef.current = Math.min(100, (activeDownload.downloaded / activeDownload.total) * 100);
+  }, [isDownloading, activeDownload]);
 
   useEffect(() => {
     if (!isDownloading) {
@@ -346,6 +317,7 @@ export function GameDetails() {
   const totalTimePlayed = '0h 0m';
   const lastTimePlayed = 'N/A';
 
+  const gameGradient = colorsToGradient(game.colors);
   const bgOpacity = Math.max(0.1, 0.65 - (scrollY / 500) * 0.55);
   const heroOpacity = Math.max(0, 1 - scrollY / 300);
 
@@ -369,6 +341,8 @@ export function GameDetails() {
             className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
             style={{ opacity: bgOpacity }}
           />
+        ) : gameGradient ? (
+          <div className="absolute inset-0" style={{ opacity: bgOpacity, background: gameGradient }} />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-background to-muted" />
         )}
@@ -379,30 +353,32 @@ export function GameDetails() {
           onScrollCapture={(e) => setScrollY(e.currentTarget.scrollTop)}
           ref={scrollRef}
         >
-          <div className="max-w-[1200px] mx-auto px-8 pt-24 pb-16">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-8 pt-16 sm:pt-24 pb-16">
             <div
-              className="flex flex-col md:flex-row gap-10 items-start md:items-end mb-12"
+              className="flex flex-col md:flex-row gap-6 sm:gap-10 items-center md:items-end mb-12 text-center md:text-left"
               style={{ opacity: heroOpacity }}
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden flex-shrink-0"
+                className="w-28 h-28 sm:w-40 sm:h-40 md:w-64 md:h-64 rounded-2xl overflow-hidden flex-shrink-0"
                 style={{ border: 0 }}
               >
                 <img src={game.logo} alt={game.name} className="w-full h-full object-contain" />
               </motion.div>
 
-              <div className="flex-grow space-y-4">
-                <div className="flex flex-wrap gap-2">
+              <div className="min-w-0 w-full flex-grow space-y-3 sm:space-y-4">
+                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                   {game.version && (
                     <Badge variant="outline" className="border-white/20">
                       v{game.version}
                     </Badge>
                   )}
                 </div>
-                <h1 className="text-5xl md:text-7xl font-black tracking-tighter">{game.name}</h1>
-                <div className="flex items-center gap-6 text-sm font-medium text-muted-foreground">
+                <h1 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter break-words">
+                  {game.name}
+                </h1>
+                <div className="flex flex-wrap justify-center md:justify-start items-center gap-x-6 gap-y-1 text-sm font-medium text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4" />
                     <span>{totalTimePlayed} played</span>
@@ -419,55 +395,62 @@ export function GameDetails() {
               className={`grid grid-cols-1 ${hasAchievements ? 'lg:grid-cols-3' : 'lg:grid-cols-1'} gap-8`}
             >
               <div className={`${hasAchievements ? 'lg:col-span-2' : ''} space-y-8`}>
-                <div className="flex flex-wrap lg:flex-nowrap gap-4 items-center p-6 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10">
+                <div className="flex flex-wrap gap-3 sm:gap-4 items-center justify-center sm:justify-start p-4 sm:p-6 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10">
                   {game.isInstalled ? (
                     <>
                       <Button
                         size="lg"
-                        className="h-14 px-10 text-lg font-bold rounded-2xl bg-primary hover:bg-primary/90 shadow-[0_0_20px_rgba(var(--primary),0.3)]"
+                        className="h-11 sm:h-14 px-6 sm:px-10 text-sm sm:text-lg font-bold rounded-2xl bg-primary hover:bg-primary/90 shadow-[0_0_20px_rgba(var(--primary),0.3)]"
                         onClick={launchGame}
                       >
-                        <Play className="w-6 h-6 mr-3 fill-current" />
+                        <Play className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3 fill-current" />
                         {t('play')}
                       </Button>
                       {isUpdateAvailable && (
                         <Button
                           size="lg"
                           variant="secondary"
-                          className="h-14 px-8 text-lg font-bold rounded-2xl"
+                          className="h-11 sm:h-14 px-5 sm:px-8 text-sm sm:text-lg font-bold rounded-2xl"
+                          disabled={otherDownloadActive}
+                          title={otherDownloadActive ? t('download_already_in_progress') : undefined}
                           onClick={() => handleDownload('update')}
                         >
-                          <RefreshCw className="w-6 h-6 mr-3" />
+                          <RefreshCw className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                           {t('update_to', { version: game.remoteVersion })}
                         </Button>
                       )}
                     </>
-                  ) : (
+                  ) : !game.webOnly ? (
                     <Button
                       size="lg"
-                      className="h-14 px-10 text-lg font-bold rounded-2xl"
-                      disabled={isDownloading}
+                      className="h-11 sm:h-14 px-6 sm:px-10 text-sm sm:text-lg font-bold rounded-2xl"
+                      disabled={isDownloading || otherDownloadActive}
+                      title={otherDownloadActive ? t('download_already_in_progress') : undefined}
                       onClick={() => handleDownload('install')}
                     >
                       {isDownloading ? (
                         <>
-                          <RefreshCw className="w-6 h-6 mr-3 animate-spin" />
+                          <RefreshCw className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3 animate-spin" />
                           {t('installing')}
                         </>
                       ) : (
                         <>
-                          <Download className="w-6 h-6 mr-3" />
+                          <Download className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                           {t('install_now')}
                         </>
                       )}
                     </Button>
+                  ) : (
+                    <p className="text-sm text-muted-foreground max-w-xs text-center sm:text-left">
+                      {t('web_only_notice')}
+                    </p>
                   )}
 
                   {game.online_url && (
                     <Button
                       size="lg"
                       variant="outline"
-                      className="h-14 px-8 text-lg font-bold rounded-2xl border-white/10 bg-white/5 hover:bg-white/10"
+                      className="h-11 sm:h-14 px-5 sm:px-8 text-sm sm:text-lg font-bold rounded-2xl border-white/10 bg-white/5 hover:bg-white/10"
                       onClick={() => {
                         if (game.online_url) {
                           openUrl(game.online_url);
@@ -477,21 +460,56 @@ export function GameDetails() {
                       }}
                       disabled={!game.online_url}
                     >
-                      <ExternalLink className="w-6 h-6 mr-3" />
+                      <ExternalLink className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
                       {t('play_online')}
                     </Button>
                   )}
 
-                  <div className="flex gap-2 ml-auto">
+                  {!game.online_url &&
+                    (game.website ? (
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="h-11 sm:h-14 px-5 sm:px-8 text-sm sm:text-lg font-bold rounded-2xl border-white/10 bg-white/5 hover:bg-white/10"
+                        onClick={() => openUrl(game.website!)}
+                      >
+                        <ExternalLink className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+                        {t('visit_website')}
+                      </Button>
+                    ) : game.itch ? (
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="h-11 sm:h-14 px-5 sm:px-8 text-sm sm:text-lg font-bold rounded-2xl border-white/10 bg-white/5 hover:bg-white/10"
+                        onClick={() => openUrl(game.itch!)}
+                      >
+                        <ExternalLink className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+                        {t('view_on_itch')}
+                      </Button>
+                    ) : (
+                      game.gamejolt && (
+                        <Button
+                          size="lg"
+                          variant="outline"
+                          className="h-11 sm:h-14 px-5 sm:px-8 text-sm sm:text-lg font-bold rounded-2xl border-white/10 bg-white/5 hover:bg-white/10"
+                          onClick={() => openUrl(game.gamejolt!)}
+                        >
+                          <ExternalLink className="w-4 h-4 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+                          {t('view_on_gamejolt')}
+                        </Button>
+                      )
+                    ))}
+
+                  <div className="flex gap-2 sm:ml-auto">
                     {game.isInstalled && (
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
                             variant="outline"
                             size="icon"
-                            className="w-14 h-14 rounded-2xl border-white/10 bg-white/5"
+                            className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl border-white/10 bg-white/5"
                           >
-                            <MoreHorizontal className="w-6 h-6" />
+                            <MoreHorizontal className="w-5 h-5 sm:w-6 sm:h-6" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
@@ -520,6 +538,7 @@ export function GameDetails() {
                           )}
                           <DropdownMenuItem
                             className="rounded-xl py-3 cursor-pointer"
+                            disabled={otherDownloadActive}
                             onClick={() => handleDownload('repair')}
                           >
                             <Wrench className="w-4 h-4 mr-3" /> {t('repair_files')}
@@ -571,6 +590,16 @@ export function GameDetails() {
                     </ScrollArea>
                   </Card>
                 </div>
+
+                {((game.screenshots?.length ?? 0) > 0 || (game.videos?.length ?? 0) > 0) && (
+                  <div className="space-y-6">
+                    <h2 className="text-2xl font-bold tracking-tight">{t('gallery_title')}</h2>
+                    <ScreenshotGallery
+                      screenshots={game.screenshots ?? []}
+                      video={game.videos?.[0]}
+                    />
+                  </div>
+                )}
               </div>
 
               {hasAchievements && (
@@ -681,8 +710,8 @@ export function GameDetails() {
             exit={{ opacity: 0 }}
             className="absolute inset-0 z-[100] flex items-center justify-center bg-background/50 backdrop-blur-lg"
           >
-            <div className="flex flex-col items-center justify-center gap-6">
-              <div className="w-48 h-48 flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center gap-6 px-4 text-center">
+              <div className="w-32 h-32 sm:w-48 sm:h-48 flex items-center justify-center">
                 <img
                   src={game.logo}
                   alt=""
@@ -690,7 +719,7 @@ export function GameDetails() {
                 />
               </div>
               <div className="space-y-2">
-                <h2 className="text-4xl font-black tracking-tighter animate-pulse">
+                <h2 className="text-2xl sm:text-4xl font-black tracking-tighter animate-pulse break-words">
                   {t('launching', { name: game.name })}
                 </h2>
                 <p className="text-muted-foreground font-medium">{t('get_ready')}</p>

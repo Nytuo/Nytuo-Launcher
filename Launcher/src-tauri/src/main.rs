@@ -16,6 +16,7 @@ fn main() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_sql::Builder::new().build())
         .plugin(tauri_plugin_updater::Builder::new().build())
+        .manage(DownloadState::default())
         .invoke_handler(tauri::generate_handler![
             greet,
             launch_game,
@@ -28,6 +29,8 @@ fn main() {
             download_game,
             repair_game,
             update_game,
+            get_active_download,
+            download_and_open_installer,
             fetch_remote_data,
             check_path_exists,
             read_local_file,
@@ -213,6 +216,47 @@ struct ProgressPayload {
     total: u64,
 }
 
+#[derive(Clone, serde::Serialize)]
+struct ActiveDownload {
+    game_id: String,
+    mode: String,
+    downloaded: u64,
+    total: u64,
+}
+
+#[derive(Default)]
+struct DownloadState(std::sync::Mutex<Option<ActiveDownload>>);
+
+fn begin_download(state: &DownloadState, game_id: &str, mode: &str) -> Result<(), String> {
+    let mut guard = state.0.lock().unwrap();
+    if let Some(existing) = guard.as_ref() {
+        return Err(format!("download_in_progress:{}", existing.game_id));
+    }
+    *guard = Some(ActiveDownload {
+        game_id: game_id.to_string(),
+        mode: mode.to_string(),
+        downloaded: 0,
+        total: 0,
+    });
+    Ok(())
+}
+
+fn set_download_progress(state: &DownloadState, downloaded: u64, total: u64) {
+    if let Some(active) = state.0.lock().unwrap().as_mut() {
+        active.downloaded = downloaded;
+        active.total = total;
+    }
+}
+
+fn end_download(state: &DownloadState) {
+    *state.0.lock().unwrap() = None;
+}
+
+#[tauri::command]
+fn get_active_download(state: tauri::State<DownloadState>) -> Option<ActiveDownload> {
+    state.0.lock().unwrap().clone()
+}
+
 #[derive(Deserialize)]
 struct ManifestFile {
     path: String,
@@ -318,6 +362,20 @@ async fn fetch_manifest_for(game_id: &str, platform: &str) -> Result<(Manifest, 
 #[tauri::command]
 async fn download_game(
     window: Window,
+    state: tauri::State<'_, DownloadState>,
+    gameId: String,
+    platform: String,
+    installPath: String,
+) -> Result<(), String> {
+    begin_download(&state, &gameId, "install")?;
+    let result = download_game_inner(&window, &state, gameId.clone(), platform, installPath).await;
+    end_download(&state);
+    result
+}
+
+async fn download_game_inner(
+    window: &Window,
+    state: &DownloadState,
     gameId: String,
     platform: String,
     installPath: String,
@@ -335,6 +393,7 @@ async fn download_game(
     let total_chunks: u64 = manifest.files.iter().map(|f| f.chunks.len() as u64).sum();
     let mut downloaded_chunks: u64 = 0;
     let _ = window.emit("download_started", total_chunks);
+    set_download_progress(state, 0, total_chunks);
 
     for f in &manifest.files {
         let lp = build_local_path(&installPath, &f.path);
@@ -366,6 +425,7 @@ async fn download_game(
             out.write_all(&bytes).map_err(|e| e.to_string())?;
 
             downloaded_chunks += 1;
+            set_download_progress(state, downloaded_chunks, total_chunks);
             let payload = ProgressPayload {
                 downloaded: downloaded_chunks,
                 total: total_chunks,
@@ -409,6 +469,20 @@ async fn compare_manifest(
 #[tauri::command]
 async fn repair_game(
     window: Window,
+    state: tauri::State<'_, DownloadState>,
+    gameId: String,
+    platform: String,
+    installPath: String,
+) -> Result<(), String> {
+    begin_download(&state, &gameId, "repair")?;
+    let result = repair_game_inner(&window, &state, gameId.clone(), platform, installPath).await;
+    end_download(&state);
+    result
+}
+
+async fn repair_game_inner(
+    window: &Window,
+    state: &DownloadState,
     gameId: String,
     platform: String,
     installPath: String,
@@ -432,6 +506,7 @@ async fn repair_game(
     let total_chunks: u64 = needs.iter().map(|f| f.chunks.len() as u64).sum();
     let mut downloaded_chunks: u64 = 0;
     let _ = window.emit("download_started", total_chunks);
+    set_download_progress(state, 0, total_chunks);
 
     for f in &needs {
         if let Some(parent) = build_local_path(&installPath, &f.path).parent() {
@@ -457,6 +532,7 @@ async fn repair_game(
             out.write_all(&bytes).map_err(|e| e.to_string())?;
 
             downloaded_chunks += 1;
+            set_download_progress(state, downloaded_chunks, total_chunks);
             let payload = ProgressPayload {
                 downloaded: downloaded_chunks,
                 total: total_chunks,
@@ -475,6 +551,20 @@ async fn repair_game(
 #[tauri::command]
 async fn update_game(
     window: Window,
+    state: tauri::State<'_, DownloadState>,
+    gameId: String,
+    platform: String,
+    installPath: String,
+) -> Result<(), String> {
+    begin_download(&state, &gameId, "update")?;
+    let result = update_game_inner(&window, &state, gameId.clone(), platform, installPath).await;
+    end_download(&state);
+    result
+}
+
+async fn update_game_inner(
+    window: &Window,
+    state: &DownloadState,
     gameId: String,
     platform: String,
     installPath: String,
@@ -511,6 +601,8 @@ async fn update_game(
             .sum();
     }
     let mut downloaded_chunks: u64 = 0;
+    let _ = window.emit("download_started", total_chunks);
+    set_download_progress(state, 0, total_chunks);
 
     for f in &manifest.files {
         let lp = build_local_path(&installPath, &f.path);
@@ -555,6 +647,7 @@ async fn update_game(
             out.write_all(&bytes).map_err(|e| e.to_string())?;
 
             downloaded_chunks += 1;
+            set_download_progress(state, downloaded_chunks, total_chunks);
             let payload = ProgressPayload {
                 downloaded: downloaded_chunks,
                 total: total_chunks,
@@ -574,10 +667,99 @@ async fn update_game(
     Ok(())
 }
 
+#[derive(Clone, serde::Serialize)]
+struct InstallerProgressPayload {
+    id: String,
+    downloaded: u64,
+    total: u64,
+}
+
+#[tauri::command]
+async fn download_and_open_installer(
+    window: Window,
+    url: String,
+    filename: String,
+    download_id: String,
+) -> Result<String, String> {
+    let client = Client::new();
+    let resp = client.get(&url).send().await.map_err(|e| e.to_string())?;
+    if !resp.status().is_success() {
+        return Err(format!("Download failed: HTTP {}", resp.status()));
+    }
+    let total = resp.content_length().unwrap_or(0);
+    let _ = window.emit(
+        "installer_download_progress",
+        InstallerProgressPayload {
+            id: download_id.clone(),
+            downloaded: 0,
+            total,
+        },
+    );
+
+    let mut stream = resp.bytes_stream();
+    let mut bytes: Vec<u8> = Vec::new();
+    let mut downloaded: u64 = 0;
+    while let Some(chunk) = stream.next().await {
+        let chunk = chunk.map_err(|e| e.to_string())?;
+        downloaded += chunk.len() as u64;
+        bytes.extend_from_slice(&chunk);
+        let _ = window.emit(
+            "installer_download_progress",
+            InstallerProgressPayload {
+                id: download_id.clone(),
+                downloaded,
+                total,
+            },
+        );
+    }
+
+    let mut dir = std::env::temp_dir();
+    dir.push("NytuoLauncherDownloads");
+    std::fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
+    let dest = dir.join(&filename);
+    std::fs::write(&dest, &bytes).map_err(|e| e.to_string())?;
+
+    #[cfg(target_os = "windows")]
+    {
+        std::process::Command::new("cmd")
+            .arg("/C")
+            .arg("start")
+            .arg("")
+            .arg(&dest)
+            .spawn()
+            .map_err(|e| e.to_string())?;
+    }
+    #[cfg(target_os = "macos")]
+    {
+        std::process::Command::new("open")
+            .arg(&dest)
+            .spawn()
+            .map_err(|e| e.to_string())?;
+    }
+    #[cfg(target_os = "linux")]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        if let Ok(meta) = std::fs::metadata(&dest) {
+            let mut perms = meta.permissions();
+            perms.set_mode(0o755);
+            let _ = std::fs::set_permissions(&dest, perms);
+        }
+        std::process::Command::new("xdg-open")
+            .arg(&dest)
+            .spawn()
+            .map_err(|e| e.to_string())?;
+    }
+
+    Ok(dest.to_string_lossy().to_string())
+}
+
 #[tauri::command]
 async fn fetch_remote_data(url: String) -> Result<String, String> {
     let client = Client::new();
     let res = client.get(&url).send().await.map_err(|e| e.to_string())?;
+    if !res.status().is_success() {
+        return Err(format!("{} -> HTTP {}", url, res.status()));
+    }
     res.text().await.map_err(|e| e.to_string())
 }
 

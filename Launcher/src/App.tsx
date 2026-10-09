@@ -1,14 +1,21 @@
-import { HashRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { invoke } from '@tauri-apps/api/core';
+import { listen } from '@tauri-apps/api/event';
 import { Library } from './pages/Library';
 import { GameDetails } from './pages/GameDetails';
+import { CreationDetails } from './pages/CreationDetails';
 import { Settings as SettingsPage } from './pages/Settings';
 import UpdaterDialog from '@/components/ui/UpdaterDialog';
 import { useGameStore } from './stores/gameStore';
-import { Settings, RefreshCw, Minus, Square, X } from 'lucide-react';
+import { useCreationStore } from './stores/creationStore';
+import { useSettingsStore } from './stores/settingsStore';
+import { useDownloadStore, type DownloadMode } from './stores/downloadStore';
+import { Settings, Minus, Square, X, Home } from 'lucide-react';
 import { Toaster } from 'sonner';
 import { getCurrentWindow } from '@tauri-apps/api/window';
+import { useTranslation } from '@/lib/i18n';
+import { cn } from '@/lib/utils';
 
 const appWindow = getCurrentWindow();
 
@@ -38,13 +45,35 @@ function WindowControls() {
 }
 
 function TitleBar() {
+  const { t } = useTranslation();
+  const location = useLocation();
+
+  const navLinkClass = (path: string) =>
+    cn(
+      'flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium transition-colors hover:bg-muted/50',
+      location.pathname === path && 'bg-muted/60',
+    );
+
   return (
     <div
       data-tauri-drag-region
       className="h-10 border-b border-border bg-card flex items-center justify-between select-none"
     >
-      <div className="flex items-center gap-2 px-4 text-xs font-medium text-muted-foreground pointer-events-none">
-        <span>Nytuo Launcher</span>
+      <div className="flex items-center gap-3 px-3 no-drag">
+        <Link
+          to="/"
+          className="flex items-center text-sm font-bold tracking-tight hover:opacity-80 transition-opacity"
+        >
+          {t('nytuo_launcher')}
+        </Link>
+        <nav className="flex items-center gap-1">
+          <Link to="/" className={navLinkClass('/')}>
+            <Home className="w-3.5 h-3.5" /> {t('home')}
+          </Link>
+          <Link to="/settings" className={navLinkClass('/settings')}>
+            <Settings className="w-3.5 h-3.5" /> {t('settings')}
+          </Link>
+        </nav>
       </div>
       <WindowControls />
     </div>
@@ -52,7 +81,9 @@ function TitleBar() {
 }
 
 export function AppContent() {
-  const { games, fetchRemoteVersions } = useGameStore();
+  const { fetchGames, fetchRemoteVersions, refreshInstallationStatus } = useGameStore();
+  const { fetchCreations } = useCreationStore();
+  const { gamePath } = useSettingsStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,55 +105,63 @@ export function AppContent() {
     })();
   }, [navigate]);
 
+  useEffect(() => {
+    refreshInstallationStatus(gamePath);
+    fetchGames().then(() => refreshInstallationStatus(gamePath));
+    fetchCreations();
+    fetchRemoteVersions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const unlistenFns: Array<() => void> = [];
+
+    (async () => {
+      try {
+        const active = await invoke<{
+          game_id: string;
+          mode: string;
+          downloaded: number;
+          total: number;
+        } | null>('get_active_download');
+        if (active) {
+          useDownloadStore.getState().setActiveDownload({
+            gameId: active.game_id,
+            mode: active.mode as DownloadMode,
+            downloaded: active.downloaded,
+            total: active.total,
+          });
+        }
+      } catch {
+        // ignore
+      }
+
+      unlistenFns.push(
+        await listen<number>('download_started', (event) => {
+          useDownloadStore.getState().updateProgress(0, event.payload || 0);
+        }),
+      );
+      unlistenFns.push(
+        await listen<{ downloaded: number; total: number }>('download_progress', (event) => {
+          useDownloadStore.getState().updateProgress(event.payload.downloaded, event.payload.total);
+        }),
+      );
+    })();
+
+    return () => unlistenFns.forEach((u) => u());
+  }, []);
+
   return (
     <div className="flex flex-col h-screen bg-background text-foreground overflow-hidden">
       <TitleBar />
-      <div className="flex flex-1 overflow-hidden">
-        <aside className="w-64 border-r border-border bg-card flex flex-col h-full overflow-hidden">
-          <div className="p-6 border-b border-border/40 flex items-center gap-3">
-            <img src="/images/LogoLauncher.png" alt="Logo" className=" object-contain" />
-          </div>
-
-          <nav className="p-2 space-y-1 border-b border-border/40">
-            <Link
-              to="/settings"
-              className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors"
-            >
-              <Settings className="w-4 h-4" /> Settings
-            </Link>
-            <div
-              onClick={fetchRemoteVersions}
-              className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors cursor-pointer"
-              title="Fetch latest game versions from GitHub"
-            >
-              <RefreshCw className="w-4 h-4" /> Update Metadata
-            </div>
-          </nav>
-
-          <div className="flex-1 overflow-y-auto p-2 space-y-1">
-            <p className="px-3 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">
-              Games Library
-            </p>
-            {games.map((game) => (
-              <Link
-                key={game.id}
-                to={`/game/${game.id}`}
-                className="flex items-center gap-3 px-3 py-2 text-sm rounded-md hover:bg-muted/50 transition-colors truncate w-full"
-              >
-                <span className="truncate">{game.name}</span>
-              </Link>
-            ))}
-          </div>
-        </aside>
-
-        <main className="flex-1 relative h-full bg-background overflow-hidden">
-          <Routes>
-            <Route path="/" element={<Library />} />
-            <Route path="/game/:id" element={<GameDetails />} />
-            <Route path="/settings" element={<SettingsPage />} />
-          </Routes>
-        </main>
-      </div>
+      <main className="flex-1 relative h-full bg-background overflow-hidden">
+        <Routes>
+          <Route path="/" element={<Library />} />
+          <Route path="/game/:id" element={<GameDetails />} />
+          <Route path="/creation/:id" element={<CreationDetails />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Routes>
+      </main>
       <Toaster theme="dark" position="bottom-right" />
       <UpdaterDialog />
     </div>
