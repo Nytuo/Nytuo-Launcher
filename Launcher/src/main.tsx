@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App.tsx';
 import './index.css';
 import { I18nProvider } from './lib/i18n';
+import { trackEvent } from '@aptabase/tauri';
+
+trackEvent('app_started').catch(() => {});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

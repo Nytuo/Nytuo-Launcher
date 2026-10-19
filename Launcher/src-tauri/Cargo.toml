@@ -34,3 +34,4 @@ tokio = { version = "1.39", features = ["full"] }
 futures-util = "0.3.32"
 tauri-plugin-dialog = "^2.0.0"
 sha2 = "0.10.9"
+tauri-plugin-aptabase = "1.0.0"

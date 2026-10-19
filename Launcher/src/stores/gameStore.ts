@@ -95,6 +95,11 @@ const EXTRA_GAME_SOURCES: { collection: string; id: string; overrides: Partial<P
     },
   ];
 
+// Bundled /images/* assets were removed; only keep cached remote URLs.
+function remoteOnly(url?: string): string | undefined {
+  return url && /^https?:\/\//.test(url) ? url : undefined;
+}
+
 function mergeRemoteGame(local: Game | undefined, remote: PocketGameRecord): Game {
   const authors = parseAuthors(remote.authors);
   const developers = authors.map((a) => a.name).filter(Boolean).join(', ');
@@ -112,8 +117,8 @@ function mergeRemoteGame(local: Game | undefined, remote: PocketGameRecord): Gam
   return {
     id,
     name: remote.name || local?.name || remote.repo || id,
-    logo: resolveFileUrl(remote, remote.logo) || local?.logo,
-    background: resolveFileUrl(remote, remote.background) || local?.background,
+    logo: resolveFileUrl(remote, remote.logo) || remoteOnly(local?.logo),
+    background: resolveFileUrl(remote, remote.background) || remoteOnly(local?.background),
     screenshots: resolveFileUrls(remote, remote.screenshots),
     videos: remote.video ? [remote.video] : local?.videos,
     description: remote.summary || remote.description || local?.description,
@@ -340,6 +345,18 @@ export const useGameStore = create<GameState>()(
     {
       name: 'nytuo-games',
       storage: createJSONStorage(() => localStorage),
+      version: 1,
+      migrate: (persisted) => {
+        const state = persisted as { games?: Game[] };
+        return {
+          ...state,
+          games: (state.games ?? []).map((g) => ({
+            ...g,
+            logo: remoteOnly(g.logo),
+            background: remoteOnly(g.background),
+          })),
+        };
+      },
     },
   ),
 );

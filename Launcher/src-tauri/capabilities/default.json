@@ -16,6 +16,7 @@
     },
     "sql:default",
     "dialog:default",
+    "aptabase:allow-track-event",
     "core:window:default",
     "core:window:allow-start-dragging",
     "core:window:allow-toggle-maximize",
