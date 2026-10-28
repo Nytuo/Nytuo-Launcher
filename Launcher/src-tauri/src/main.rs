@@ -32,6 +32,7 @@ fn main() {
             get_active_download,
             download_and_open_installer,
             fetch_remote_data,
+            fetch_remote_manifest_version,
             check_path_exists,
             read_local_file,
             open_folder,
@@ -761,6 +762,14 @@ async fn fetch_remote_data(url: String) -> Result<String, String> {
         return Err(format!("{} -> HTTP {}", url, res.status()));
     }
     res.text().await.map_err(|e| e.to_string())
+}
+
+/// Latest published version for a game/platform, from the same manifest.json
+/// the downloader uses. Empty string when the game has no published manifest.
+#[tauri::command]
+async fn fetch_remote_manifest_version(game_id: String, platform: String) -> Result<String, String> {
+    let (manifest, _text) = fetch_manifest_for(&game_id, &platform).await?;
+    Ok(manifest.version.trim().to_string())
 }
 
 #[tauri::command]

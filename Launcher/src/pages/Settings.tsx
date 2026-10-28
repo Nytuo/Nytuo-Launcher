@@ -14,6 +14,7 @@ import {
 import { FolderOpen, Globe, RefreshCw } from 'lucide-react';
 import { open as openUrl } from '@tauri-apps/plugin-shell';
 import { open as openDialog } from '@tauri-apps/plugin-dialog';
+import { getVersion } from '@tauri-apps/api/app';
 import { toast } from 'sonner';
 
 import { useSettingsStore } from '@/stores/settingsStore';
@@ -24,6 +25,11 @@ export function Settings() {
   const { gamePath, setGamePath, language, setLanguage } = useSettingsStore();
   const { setLang, t } = useTranslation();
   const { refreshInstallationStatus } = useGameStore();
+  const [appVersion, setAppVersion] = useState('');
+
+  useEffect(() => {
+    getVersion().then(setAppVersion).catch(() => setAppVersion(''));
+  }, []);
 
   const handleFolderChange = async () => {
     try {
@@ -90,7 +96,7 @@ export function Settings() {
       content: (
         <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/20">
           <div>
-            <p className="font-semibold text-sm">{t('version_text', { version: '2.0.0' })}</p>
+            <p className="font-semibold text-sm">{t('version_text', { version: appVersion })}</p>
             <p className="text-xs text-muted-foreground">{t('launcher_up_to_date')}</p>
           </div>
           <div className="flex items-center gap-2">

@@ -140,11 +140,144 @@ function mergeRemoteGame(local: Game | undefined, remote: PocketGameRecord): Gam
   };
 }
 
+// One entry per game id, first occurrence wins. Remote records can resolve to the
+// same id (same repo, or an extra source that is also in the main collection).
+function dedupeGames(games: Game[]): Game[] {
+  const seen = new Set<string>();
+  return games.filter((g) => {
+    const key = g.id.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function currentPlatform(): string {
+  return navigator.userAgent.includes('Windows')
+    ? 'windows'
+    : navigator.userAgent.includes('Mac')
+      ? 'macos'
+      : 'linux';
+}
+
+async function fetchRemoteCatalog(): Promise<PocketGameRecord[]> {
+  const [remoteGames, extraGames] = await Promise.all([
+    fetchPocketCollection<PocketGameRecord>('games'),
+    Promise.all(
+      EXTRA_GAME_SOURCES.map(async (src) => {
+        const [record] = await fetchPocketCollection<PocketGameRecord>(src.collection, {
+          filter: `id='${src.id}'`,
+        });
+        return record ? { ...record, ...src.overrides } : undefined;
+      }),
+    ),
+  ]);
+  return [...remoteGames, ...extraGames.filter((g): g is PocketGameRecord => !!g)];
+}
+
+function mergeCatalog(existing: Game[], allRemote: PocketGameRecord[]): Game[] {
+  const byRepo = new Map(existing.map((g) => [(g.repo || g.id).toLowerCase(), g] as const));
+
+  const merged = allRemote.map((remote) => {
+    const key = (remote.repo || remote.name || '').toLowerCase();
+    const local = byRepo.get(key);
+    if (local) byRepo.delete(key);
+    return mergeRemoteGame(local, remote);
+  });
+
+  return dedupeGames([...merged, ...byRepo.values()]);
+}
+
+// Installed state of one game: manifest.json first, *_Version.txt files as legacy fallback.
+async function readInstallState(
+  game: Game,
+  gamePath: string,
+): Promise<Pick<Game, 'isInstalled' | 'version'>> {
+  const manifestPath = `${gamePath}/${game.id}/manifest.json`;
+  try {
+    if (await invoke<boolean>('check_path_exists', { path: manifestPath })) {
+      const manifest = JSON.parse(await invoke<string>('read_local_file', { path: manifestPath }));
+      if (typeof manifest.version === 'string' && manifest.version.trim().length > 0) {
+        return { isInstalled: true, version: manifest.version.trim() };
+      }
+    }
+  } catch {}
+
+  const candidates: string[] = [];
+  if (game.version_file && game.version_file.trim().length > 0) {
+    candidates.push(game.version_file.trim());
+  }
+
+  const idUpper = game.id.toUpperCase();
+  candidates.push(`${idUpper}_Version.txt`);
+  candidates.push(`Version${idUpper}.txt`);
+
+  if ((game as any).importer_id) {
+    const imp = String((game as any).importer_id).toUpperCase();
+    candidates.push(`Version${imp}.txt`);
+  }
+  if ((game as any).game_importer_id) {
+    const gip = String((game as any).game_importer_id).toUpperCase();
+    candidates.push(`Version${gip}.txt`);
+  }
+
+  for (const candidate of candidates) {
+    const path = `${gamePath}/${game.id}/${candidate}`;
+    try {
+      if (await invoke<boolean>('check_path_exists', { path })) {
+        let version: string | undefined;
+        try {
+          version = (await invoke<string>('read_local_file', { path })).trim();
+        } catch {}
+        return { isInstalled: true, version };
+      }
+    } catch {}
+  }
+
+  return { isInstalled: false, version: undefined };
+}
+
+async function resolveInstallState(games: Game[], gamePath: string): Promise<Game[]> {
+  return Promise.all(
+    games.map(async (game) => ({ ...game, ...(await readInstallState(game, gamePath)) })),
+  );
+}
+
+// Latest published version: manifest.json from the download server, then the GitHub txt.
+async function readRemoteVersion(game: Game): Promise<string | undefined> {
+  try {
+    const version = await invoke<string>('fetch_remote_manifest_version', {
+      gameId: game.id,
+      platform: currentPlatform(),
+    });
+    if (version && !/\s/.test(version)) return version;
+  } catch {}
+
+  if (game.repo && game.version_file) {
+    try {
+      const url = `https://raw.githubusercontent.com/Nytuo/${game.repo}/master/Windows/${game.version_file}`;
+      const version = (await invoke<string>('fetch_remote_data', { url }))?.trim();
+      if (version && !/\s/.test(version)) return version;
+    } catch {}
+  }
+
+  return undefined;
+}
+
+async function resolveRemoteVersions(games: Game[]): Promise<Game[]> {
+  return Promise.all(
+    games.map(async (game) => ({ ...game, remoteVersion: await readRemoteVersion(game) })),
+  );
+}
+
 interface GameState {
   games: Game[];
+  // False until loadLibrary has finished resolving install and remote versions.
+  // The library waits on this so no card shows before its state is known.
+  ready: boolean;
   currentGame: Game | null;
   achievements: Achievement[];
-  fetchGames: () => Promise<void>;
+  loadLibrary: (gamePath: string) => Promise<void>;
   getGame: (id: string) => Game | undefined;
   setCurrentGame: (game: Game | null) => void;
   setGame: (id: string, game: Game) => void;
@@ -158,39 +291,27 @@ export const useGameStore = create<GameState>()(
   persist(
     (set, get) => ({
       games: [],
+      ready: false,
       currentGame: null,
       achievements: [],
-      fetchGames: async () => {
-        const [remoteGames, extraGames] = await Promise.all([
-          fetchPocketCollection<PocketGameRecord>('games'),
-          Promise.all(
-            EXTRA_GAME_SOURCES.map(async (src) => {
-              const [record] = await fetchPocketCollection<PocketGameRecord>(src.collection, {
-                filter: `id='${src.id}'`,
-              });
-              return record ? { ...record, ...src.overrides } : undefined;
-            }),
-          ),
-        ]);
-        const allRemote = [
-          ...remoteGames,
-          ...extraGames.filter((g): g is PocketGameRecord => !!g),
-        ];
-        if (allRemote.length === 0) return; // offline: keep cached catalog as-is
+      loadLibrary: async (gamePath) => {
+        try {
+          let games = get().games;
+          try {
+            const remote = await fetchRemoteCatalog();
+            // Offline or empty: keep the cached catalog as-is.
+            if (remote.length > 0) games = mergeCatalog(games, remote);
+          } catch {}
 
-        const existing = get().games;
-        const byRepo = new Map(
-          existing.map((g) => [(g.repo || g.id).toLowerCase(), g] as const),
-        );
-
-        const merged = allRemote.map((remote) => {
-          const key = (remote.repo || remote.name || '').toLowerCase();
-          const local = byRepo.get(key);
-          if (local) byRepo.delete(key);
-          return mergeRemoteGame(local, remote);
-        });
-
-        set({ games: [...merged, ...byRepo.values()] });
+          games = dedupeGames(games);
+          games = await resolveInstallState(games, gamePath);
+          games = await resolveRemoteVersions(games);
+          set({ games });
+        } catch (err) {
+          console.error('Failed to load library:', err);
+        } finally {
+          set({ ready: true });
+        }
       },
       getGame: (id) => get().games.find((g) => g.id === id),
       setCurrentGame: (game) => set({ currentGame: game }),
@@ -200,51 +321,7 @@ export const useGameStore = create<GameState>()(
           games: get().games.map((g) => (g.id === id ? { ...g, isInstalled: installed } : g)),
         }),
       refreshInstallationStatus: async (gamePath) => {
-        const gamesMap = [...get().games];
-        for (const game of gamesMap) {
-          const candidates: string[] = [];
-          if (game.version_file && game.version_file.trim().length > 0) {
-            candidates.push(game.version_file.trim());
-          }
-
-          const idUpper = game.id.toUpperCase();
-          candidates.push(`${idUpper}_Version.txt`);
-          candidates.push(`Version${idUpper}.txt`);
-
-          if ((game as any).importer_id) {
-            const imp = String((game as any).importer_id).toUpperCase();
-            candidates.push(`Version${imp}.txt`);
-          }
-          if ((game as any).game_importer_id) {
-            const gip = String((game as any).game_importer_id).toUpperCase();
-            candidates.push(`Version${gip}.txt`);
-          }
-
-          let found = false;
-          for (const candidate of candidates) {
-            const path = `${gamePath}/${game.id}/${candidate}`;
-            try {
-              const exists = await invoke<boolean>('check_path_exists', { path });
-              if (exists) {
-                game.isInstalled = true;
-                try {
-                  const localVersion = await invoke<string>('read_local_file', { path });
-                  game.version = localVersion.trim();
-                } catch {
-                  game.version = undefined;
-                }
-                found = true;
-                break;
-              }
-            } catch {}
-          }
-
-          if (!found) {
-            game.isInstalled = false;
-            game.version = undefined;
-          }
-        }
-        set({ games: gamesMap });
+        set({ games: await resolveInstallState(get().games, gamePath) });
       },
       fetchAchievements: async (id, gamePath) => {
         try {
@@ -317,26 +394,7 @@ export const useGameStore = create<GameState>()(
       },
       fetchRemoteVersions: async () => {
         try {
-          const gamesMap = [...get().games];
-
-          for (const game of gamesMap) {
-            if (game.repo && game.version_file) {
-              try {
-                const url = `https://raw.githubusercontent.com/Nytuo/${game.repo}/master/Windows/${game.version_file}`;
-                const version = await invoke<string>('fetch_remote_data', { url });
-                const trimmed = version?.trim();
-                if (trimmed && !/\s/.test(trimmed)) {
-                  game.remoteVersion = trimmed;
-                } else {
-                  game.remoteVersion = undefined;
-                }
-              } catch (e) {
-                game.remoteVersion = undefined;
-              }
-            }
-          }
-
-          set({ games: gamesMap });
+          set({ games: await resolveRemoteVersions(get().games) });
         } catch (err) {
           toast.error('Failed to fetch game versions.');
         }
@@ -346,11 +404,15 @@ export const useGameStore = create<GameState>()(
       name: 'nytuo-games',
       storage: createJSONStorage(() => localStorage),
       version: 1,
+      partialize: (state) => {
+        const { ready, ...persisted } = state;
+        return persisted;
+      },
       migrate: (persisted) => {
         const state = persisted as { games?: Game[] };
         return {
           ...state,
-          games: (state.games ?? []).map((g) => ({
+          games: dedupeGames(state.games ?? []).map((g) => ({
             ...g,
             logo: remoteOnly(g.logo),
             background: remoteOnly(g.background),

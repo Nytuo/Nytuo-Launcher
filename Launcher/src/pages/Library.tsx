@@ -11,7 +11,7 @@ type Filter = 'all' | 'installed' | 'not_installed';
 
 export function Library() {
   const { t } = useTranslation();
-  const { games } = useGameStore();
+  const { games, ready } = useGameStore();
   const { creations } = useCreationStore();
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
@@ -45,7 +45,9 @@ export function Library() {
           <div className="flex flex-col gap-1 min-w-0">
             <h1 className="text-3xl font-black tracking-tight truncate">{t('nytuo_launcher')}</h1>
             <p className="text-muted-foreground text-sm">
-              {t('library_subtitle', { count: installedGames.length, total: games.length })}
+              {ready
+                ? t('library_subtitle', { count: installedGames.length, total: games.length })
+                : t('loading_library')}
             </p>
           </div>
         </div>
@@ -77,7 +79,7 @@ export function Library() {
           </div>
         </div>
 
-        {filteredGames.length > 0 ? (
+        {!ready ? null : filteredGames.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {filteredGames.map((game) => (
               <GameCard key={game.id} game={game} />

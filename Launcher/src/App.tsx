@@ -81,7 +81,7 @@ function TitleBar() {
 }
 
 export function AppContent() {
-  const { fetchGames, fetchRemoteVersions, refreshInstallationStatus } = useGameStore();
+  const { loadLibrary } = useGameStore();
   const { fetchCreations } = useCreationStore();
   const { gamePath } = useSettingsStore();
   const navigate = useNavigate();
@@ -106,10 +106,8 @@ export function AppContent() {
   }, [navigate]);
 
   useEffect(() => {
-    refreshInstallationStatus(gamePath);
-    fetchGames().then(() => refreshInstallationStatus(gamePath));
+    loadLibrary(gamePath);
     fetchCreations();
-    fetchRemoteVersions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
