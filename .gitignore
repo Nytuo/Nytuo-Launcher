@@ -11,3 +11,7 @@ Launcher/js.js.old
 Launcher/ChangesLogs
 Launcher/connected.txt
 .DS_Store
+
+Launcher/target/
+
+Launcher/dist/

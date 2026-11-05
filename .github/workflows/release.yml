@@ -208,11 +208,11 @@ jobs:
         run: |
           set -euo pipefail
           ALL='[
-            {"id":"macos-aarch64","runs_on":"macos-latest","args":"--target aarch64-apple-darwin"},
-            {"id":"macos-x86_64","runs_on":"macos-latest","args":"--target x86_64-apple-darwin"},
-            {"id":"ubuntu","runs_on":"ubuntu-24.04"},
-            {"id":"ubuntu-arm","runs_on":"ubuntu-24.04-arm"},
-            {"id":"windows","runs_on":"windows-2022"}
+            {"id":"macos-aarch64","runs_on":"macos-latest","target":"aarch64-apple-darwin","os":"macos"},
+            {"id":"macos-x86_64","runs_on":"macos-latest","target":"x86_64-apple-darwin","os":"macos"},
+            {"id":"ubuntu","runs_on":"ubuntu-24.04","target":"x86_64-unknown-linux-gnu","os":"linux"},
+            {"id":"ubuntu-arm","runs_on":"ubuntu-24.04-arm","target":"aarch64-unknown-linux-gnu","os":"linux"},
+            {"id":"windows","runs_on":"windows-2022","target":"x86_64-pc-windows-msvc","os":"windows"}
           ]'
           PLATFORM="${{ inputs.platform }}"
           if [ -z "$PLATFORM" ] || [ "$PLATFORM" = "all" ]; then
@@ -225,77 +225,167 @@ jobs:
   build:
     name: Build ${{ matrix.id }}
     needs: version
-    permissions:
-      contents: write
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.version.outputs.matrix) }}
     runs-on: ${{ matrix.runs_on }}
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
 
-      - name: install dependencies (ubuntu only)
-        if: startsWith(matrix.runs_on, 'ubuntu')
+      - name: Install Linux dependencies
+        if: matrix.os == 'linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf xdg-utils protobuf-compiler
-      
-      - name: install protoc (macOS)
-        if: matrix.runs_on == 'macos-latest'
-        run: brew install protobuf
+          sudo apt-get install -y cmake clang pkg-config file libfuse2 xdg-utils \
+            libxkbcommon-dev libxkbcommon-x11-dev libwayland-dev libx11-xcb-dev libxcb1-dev \
+            libvulkan-dev libfontconfig-dev libasound2-dev libssl-dev
 
-      - name: install protoc (Windows)
-        if: startsWith(matrix.runs_on, 'windows')
-        run: choco install protoc -y
-
-      - name: setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: 'npm'
-          cache-dependency-path: ./Launcher/package-lock.json
-
-      - name: install Rust stable
+      - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ matrix.runs_on == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+          targets: ${{ matrix.target }}
 
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
-          workspaces: './Launcher/src-tauri -> target'
+          workspaces: './Launcher -> target'
+          key: ${{ matrix.id }}
 
-      - name: Install JS dependencies
-        run: npm ci --prefix Launcher
+      - name: Install packaging tools
+        run: |
+          cargo install cargo-packager --locked
+          if [ "${{ matrix.os }}" = "linux" ]; then cargo install cargo-generate-rpm --locked; fi
 
-      - name: Build Vite frontend
-        run: npm run build --prefix Launcher
+      - name: setup node (updater signing)
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
 
-      # Runs after the dependency install so the lockfile is never left out of
-      # sync with package.json. The edits live only in the runner workspace —
-      # they are never committed back to the repo.
+      # The edit lives only in the runner workspace — never committed back.
       - name: Apply release version
-        shell: bash
         env:
           VERSION: ${{ needs.version.outputs.version }}
         run: |
           set -euo pipefail
-          jq --arg v "$VERSION" '.version = $v' Launcher/src-tauri/tauri.conf.json > conf.tmp
-          mv conf.tmp Launcher/src-tauri/tauri.conf.json
-          jq --arg v "$VERSION" '.version = $v' Launcher/package.json > pkg.tmp
-          mv pkg.tmp Launcher/package.json
-          perl -0pi -e 's/^(\[package\](?:[^\[]*?)\nversion\s*=\s*")[^"]*(")/${1}'"$VERSION"'${2}/ms' Launcher/src-tauri/Cargo.toml
-          echo "Building version $VERSION"
+          perl -0pi -e 's/^(\[package\](?:[^\[]*?)\nversion\s*=\s*")[^"]*(")/${1}'"$VERSION"'${2}/ms' Launcher/Cargo.toml
+          grep -m1 '^version' Launcher/Cargo.toml
 
-      - uses: tauri-apps/tauri-action@v0
+      - name: Build
+        working-directory: Launcher
+        run: cargo build --release --target ${{ matrix.target }}
+
+      # ---- Windows: nytuo-launcher_<v>_x64-setup.exe (NSIS)
+      - name: Package (Windows)
+        if: matrix.os == 'windows'
+        working-directory: Launcher
+        run: cargo packager --release --target ${{ matrix.target }} --formats nsis
+
+      # ---- macOS: nytuo-launcher_<v>_{aarch64,x64}.dmg + updater .app.tar.gz
+      - name: Package (macOS)
+        if: matrix.os == 'macos'
+        working-directory: Launcher
+        run: |
+          set -euo pipefail
+          cargo packager --release --target ${{ matrix.target }} --formats app,dmg
+          ARCH="${{ matrix.target == 'aarch64-apple-darwin' && 'aarch64' || 'x64' }}"
+          tar -C dist -czf "dist/nytuo-launcher_${ARCH}.app.tar.gz" nytuo-launcher.app
+          rm -rf dist/nytuo-launcher.app
+
+      # ---- Linux: .deb + .AppImage (amd64 / arm64) and .rpm
+      - name: Package (Linux)
+        if: matrix.os == 'linux'
+        working-directory: Launcher
+        run: |
+          set -euo pipefail
+          cargo packager --release --target ${{ matrix.target }} --formats deb,appimage
+          cargo generate-rpm --target ${{ matrix.target }}
+          cp target/${{ matrix.target }}/generate-rpm/*.rpm dist/
+
+      # ---- Updater signatures (same minisign key the Tauri updater used)
+      - name: Sign updater artifacts
+        working-directory: Launcher/dist
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
-          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}      
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TAURI_SIGNING_PRIVATE_KEY:-}" ]; then
+            echo "::warning::TAURI_SIGNING_PRIVATE_KEY is not set — updater signatures skipped"
+            exit 0
+          fi
+          for f in *-setup.exe *.app.tar.gz *.AppImage; do
+            [ -e "$f" ] || continue
+            npx --yes @tauri-apps/cli@2 signer sign "$f"
+          done
+          ls -la
+
+      - name: List artifacts
+        run: ls -la Launcher/dist
+
+      - uses: actions/upload-artifact@v4
         with:
-          tagName: ${{ needs.version.outputs.tag }}
-          releaseName: 'Nytuo Launcher ${{ needs.version.outputs.tag }}'
-          releaseBody: ${{ needs.version.outputs.changelog }}
-          releaseDraft: true
+          name: launcher-${{ matrix.id }}
+          path: |
+            Launcher/dist/*.exe
+            Launcher/dist/*.dmg
+            Launcher/dist/*.app.tar.gz
+            Launcher/dist/*.deb
+            Launcher/dist/*.rpm
+            Launcher/dist/*.AppImage
+            Launcher/dist/*.sig
+          if-no-files-found: error
+
+  release:
+    name: Draft release
+    needs: [version, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          pattern: launcher-*
+
+      # latest.json for the in-app updater (the format Tauri 4.x clients already poll at
+      # releases/latest/download/latest.json, so existing installs keep updating).
+      - name: Generate latest.json
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+          TAG: ${{ needs.version.outputs.tag }}
+          NOTES: ${{ needs.version.outputs.changelog }}
+        run: |
+          set -euo pipefail
+          BASE="https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}"
+          entry() { # <platform-key> <artifact dir> <glob>
+            local dir="dist/launcher-$2"
+            [ -d "$dir" ] || return 0
+            local file; file=$(cd "$dir" && ls $3 2>/dev/null | head -n1 || true)
+            [ -n "$file" ] && [ -f "$dir/$file.sig" ] || return 0
+            jq -n --arg k "$1" --arg u "$BASE/$file" --rawfile s "$dir/$file.sig" \
+              '{($k): {signature: ($s | rtrimstr("\n")), url: $u}}'
+          }
+          {
+            entry windows-x86_64 windows '*-setup.exe'
+            entry darwin-aarch64 macos-aarch64 '*.app.tar.gz'
+            entry darwin-x86_64 macos-x86_64 '*.app.tar.gz'
+            entry linux-x86_64 ubuntu '*.AppImage'
+            entry linux-aarch64 ubuntu-arm '*.AppImage'
+          } | jq -s --arg v "$VERSION" --arg n "$NOTES" --arg d "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+              '{version: $v, notes: $n, pub_date: $d, platforms: (add // {})}' > latest.json
+          cat latest.json
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.version.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: 'Nytuo Launcher ${{ needs.version.outputs.tag }}'
+          body: ${{ needs.version.outputs.changelog }}
+          draft: true
           prerelease: ${{ inputs.prerelease }}
-          args: ${{ matrix.args }}
+          files: |
+            dist/*/*
+            latest.json

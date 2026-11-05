@@ -1,0 +1,54 @@
+[package]
+name = "nytuo-launcher"
+version = "5.0.0-alpha.1"
+description = "Nytuo Launcher - a pure Rust game launcher built on GPUI"
+repository = "https://github.com/Nytuo/Nytuo-Launcher"
+authors = ["Nytuo"]
+license = "GPL-3.0-only"
+edition = "2024"
+
+[dependencies]
+gpui-kit = "0.9.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+ureq = { version = "2", features = ["json"] }
+dirs = "5"
+include_dir = "0.7"
+rust-embed = { version = "8", features = ["include-exclude"] }
+
+[target.'cfg(windows)'.build-dependencies]
+winresource = "0.1"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
+
+# ---- installers (cargo-packager) ------------------------------------------
+# Produces the same artifact families the Tauri bundler did:
+#   Windows  nytuo-launcher_<v>_x64-setup.exe           (NSIS)
+#   macOS    nytuo-launcher_<v>_{aarch64,x64}.dmg + .app
+#   Linux    nytuo-launcher_<v>_{amd64,arm64}.deb / .AppImage  (+ .rpm via cargo-generate-rpm)
+[package.metadata.packager]
+product-name = "nytuo-launcher"
+identifier = "fr.nytuo.launcher"
+category = "Game"
+out-dir = "dist"
+icons = [
+    "assets/icons/32x32.png",
+    "assets/icons/128x128.png",
+    "assets/icons/128x128@2x.png",
+    "assets/icons/icon.icns",
+    "assets/icons/icon.ico",
+]
+
+[package.metadata.packager.nsis]
+installer-mode = "currentUser"
+
+[package.metadata.generate-rpm]
+name = "nytuo-launcher"
+assets = [
+    { source = "target/release/nytuo-launcher", dest = "/usr/bin/nytuo-launcher", mode = "755" },
+    { source = "assets/icons/128x128.png", dest = "/usr/share/icons/hicolor/128x128/apps/nytuo-launcher.png", mode = "644" },
+    { source = "packaging/nytuo-launcher.desktop", dest = "/usr/share/applications/nytuo-launcher.desktop", mode = "644" },
+]
