@@ -5,7 +5,7 @@ use gpui_kit::prelude::*;
 use gpui_kit::component::group_box::{GroupBox, GroupBoxVariants};
 use gpui_kit::component::progress::Progress;
 use gpui_kit::component::tag::Tag;
-use gpui_kit::component::{Disableable, Icon, IconName, Sizable, Theme};
+use gpui_kit::component::{Icon, IconName, Sizable, Theme};
 use gpui_kit::*;
 use std::path::PathBuf;
 
@@ -134,7 +134,7 @@ pub fn panel(pad: f32, gap: f32) -> GroupBox {
 }
 
 /// Same surface look for the rare spots that need a plain `Div` (clickable / row layouts).
-pub fn surface() -> Div {
+pub fn panel_surface() -> Div {
     div().rounded(px(16.)).bg(col(SURFACE)).border_1().border_color(col(BORDER))
 }
 

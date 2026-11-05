@@ -153,7 +153,7 @@ impl LauncherApp {
 
         if let Some(doc) = c.documentation.clone() {
             page = page.child(
-                surface()
+                panel_surface()
                     .p_5()
                     .flex()
                     .flex_row()
@@ -179,7 +179,7 @@ impl LauncherApp {
             let cmd = format!("brew install --cask {brew}");
             let copy = cmd.clone();
             page = page.child(
-                surface()
+                panel_surface()
                     .p_4()
                     .flex()
                     .flex_row()
