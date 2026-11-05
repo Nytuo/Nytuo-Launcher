@@ -43,7 +43,19 @@ The **Nytuo Launcher** is a dedicated platform for downloading, updating, playin
 
 * **Centralized Library:** Manage all your Nytuo games in one place.
 * **Open Source:** Full transparency regarding how the launcher interacts with your system.
-* **Cross-Platform:** Support for both Windows and Linux environments.
+* **Native & Fast:** Written entirely in Rust with [GPUI](https://www.gpui.rs/) — no WebView, no Electron.
+* **Cross-Platform:** Windows, Linux and macOS.
+
+## Building
+
+```bash
+cd Launcher
+cargo run --release
+```
+
+Requires a recent Rust toolchain and CMake. On Windows the Windows SDK is also needed (GPUI compiles its shaders with `fxc`);
+on Linux install `libxkbcommon-x11-dev libwayland-dev libvulkan-dev libfontconfig-dev libasound2-dev libx11-xcb-dev clang cmake`.
+See [`Launcher/README.md`](Launcher/README.md) for architecture and details.
 
 ## Support
 

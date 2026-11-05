@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Nytuo Launcher
+Comment=Download, update and play Nytuo games
+Exec=nytuo-launcher
+Icon=nytuo-launcher
+Categories=Game;
+Terminal=false
+StartupWMClass=fr.nytuo.launcher
